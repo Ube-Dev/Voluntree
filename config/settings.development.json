@@ -13,5 +13,8 @@
   ],
   "public": {
     "development": true
-  }
+  },
+  "defaultEvent": [
+    { "title":  "Humanitarian Aid Vacation in Belize!", "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png", "description": "This expedition is a chance for your family to step out of their comfort zone and discover a world beyond their own. As you immerse in a new culture, your children will learn firsthand about the diverse lives of others, helping them appreciate their blessings and understand the importance of giving back.", "location": "Belize", "frequency": "once", "requiredSkills": "communication", "accessibility": "Group", "requirements": "driver's license", "impact": "You'll change people's lives!", "eventPlanner": "GLOBAL EDUCATION PHILANTHROPISTS"}
+  ]
 }
