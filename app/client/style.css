@@ -26,3 +26,9 @@ body {
   padding-top: 10px;
   padding-bottom: 20px;
 }
+
+.circle
+{
+  border-radius: 100%;
+  max-width:100px;
+}
