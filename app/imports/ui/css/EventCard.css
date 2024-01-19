@@ -1,0 +1,8 @@
+/*
+  css file for EventCard.jsx component
+*/
+
+
+.flex-wrap-buttons {
+  flex-wrap: wrap;
+}
