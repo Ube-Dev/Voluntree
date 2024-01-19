@@ -1,0 +1,44 @@
+.description {
+  max-width: inherit;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description:hover,
+.description:focus {
+  -webkit-line-clamp: unset;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: visible;
+  white-space: normal;
+}
+
+.skill-button {
+  background-color: rgba(0,123, 255, 0); /* Set your desired color and opacity */
+  color: black;
+  padding-right: 10px;
+  border: none;
+  text-decoration: underline;
+}
+.flex-wrap-buttons {
+  max-width: inherit;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.flex-wrap-buttons:hover,
+.flex-wrap-buttons:focus {
+  -webkit-line-clamp: unset;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: visible;
+  white-space: normal;
+}
