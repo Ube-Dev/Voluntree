@@ -15,17 +15,16 @@ const NavBar = () => {
   }), []);
   const menuStyle = { marginBottom: '10px' };
   return (
-    <Navbar bg="light" expand="lg" style={menuStyle}>
+    <Navbar className="color1" bg="light" expand="lg" style={menuStyle}>
       <Container>
-        <Navbar.Brand id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/"><h1>Voluntree</h1>
-        <Image src={"https://d1yjjnpx0p53s8.cloudfront.net"}/></Navbar.Brand>
+        <Navbar.Brand id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/">
+        <Image src={"/images/voluntreeLogo.png"} height={"100px"} width={"100px"}/></Navbar.Brand>
         <Navbar.Toggle aria-controls={COMPONENT_IDS.NAVBAR_COLLAPSE} />
         <Navbar.Collapse id={COMPONENT_IDS.NAVBAR_COLLAPSE}>
           <Nav className="me-auto justify-content-start">
             <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_STUFF} as={NavLink} to="/Home" key="Home">Home</Nav.Link>
             <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/About" key="About">About</Nav.Link>
             <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/Events" key="Events">Events</Nav.Link>
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>
             {currentUser ? ([
 
               <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link>,
@@ -37,6 +36,7 @@ const NavBar = () => {
                   <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} to="/manage-database"><CloudDownload /> Database</NavDropdown.Item>
                 </NavDropdown>]
             ) : ''}
+            <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>
           </Nav>
           <Nav className="justify-content-end">
             {currentUser === '' ? (
