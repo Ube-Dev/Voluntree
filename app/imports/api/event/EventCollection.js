@@ -13,20 +13,22 @@ export const eventPublications = {
 class EventCollection extends BaseCollection {
   constructor() {
     super('Events', new SimpleSchema({
-      title: String,
-      image: String,
-      description: String,
-      location: String,
+      title: { type: String, index: true, unique: true },
+      image: { type: String, optional: true },
+      description: { type: String, optional: true },
+      location: { type: String, optional: true },
       time: {
         type: Date,
         defaultValue: new Date(),
+        optional: true,
       },
-      frequency: String,
-      requiredSkills: String,
-      accessibility: String,
-      requirements: String,
-      impact: String,
-      eventPlanner: String,
+      frequency: { type: String, optional: true },
+      accessibilities: { type: Array, unique: true, optional: true },
+      'accessibilities.$': { type: String },
+      requirements: { type: Array, unique: true, optional: true },
+      'requirements.$': { type: String },
+      impact: { type: String, optional: true },
+      eventPlanner: { type: String, optional: true },
     }));
   }
 
@@ -38,14 +40,17 @@ class EventCollection extends BaseCollection {
    * @param location the location of the event
    * @param time the time of the event
    * @param frequency the frequency of the event
-   * @param requiredSkills the skills required for the event
-   * @param accessibility how accessible the event is
-   * @param requirements what is required for the event
+   * @param accessibilities how accessible the event is (can be a string or an array of strings)
+   * @param requirements what is required for the event (can be a string or an array of strings)
    * @param impact the impact of the event
    * @param eventPlanner the organization who planned the event
    * @return {String} the docID of the new document.
    */
-  define({ title, image, description, location, time, frequency, requiredSkills, accessibility, requirements, impact, eventPlanner }) {
+  define({ title, image, description, location, time, frequency, accessibilities, requirements, impact, eventPlanner }) {
+    // Convert single values to arrays if they are not already
+    const accessibilityArray = Array.isArray(accessibilities) ? accessibilities : [accessibilities];
+    const requirementsArray = Array.isArray(requirements) ? requirements : [requirements];
+
     const docID = this._collection.insert({
       title,
       image,
@@ -53,12 +58,12 @@ class EventCollection extends BaseCollection {
       location,
       time,
       frequency,
-      requiredSkills,
-      accessibility,
-      requirements,
+      accessibilities: accessibilityArray.join(', '),
+      requirements: requirementsArray.join(', '),
       impact,
       eventPlanner,
     });
+
     return docID;
   }
 
@@ -71,14 +76,14 @@ class EventCollection extends BaseCollection {
    * @param location the location of the event
    * @param time the time of the event
    * @param frequency the frequency of the event
-   * @param requiredSkills the skills required for the event
-   * @param accessibility how accessible the event is
-   * @param requirements what is required for the event
+   * @param accessibility how accessible the event is (can be a string or an array of strings)
+   * @param requirements what is required for the event (can be a string or an array of strings)
    * @param impact the impact of the event
    * @param eventPlanner the organization who planned the event
    */
-  update(docID, { title, image, description, location, time, frequency, requiredSkills, accessibility, requirements, impact, eventPlanner }) {
+  update(docID, { title, image, description, location, time, frequency, accessibilities, requirements, impact, eventPlanner }) {
     const updateData = {};
+
     if (title) {
       updateData.title = title;
     }
@@ -97,20 +102,17 @@ class EventCollection extends BaseCollection {
     if (frequency) {
       updateData.frequency = frequency;
     }
-    if (requiredSkills) {
-      updateData.requiredSkills = requiredSkills;
-    }
-    if (accessibility) {
-      updateData.accessibility = accessibility;
-    }
-    if (requirements) {
-      updateData.requirements = requirements;
-    }
     if (impact) {
       updateData.impact = impact;
     }
     if (eventPlanner) {
       updateData.eventPlanner = eventPlanner;
+    }
+    if (accessibilities) {
+      updateData.accessibilities = accessibilities;
+    }
+    if (requirements) {
+      updateData.requirements = requirements;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -192,11 +194,17 @@ class EventCollection extends BaseCollection {
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const name = doc.name;
-    const quantity = doc.quantity;
-    const condition = doc.condition;
-    const owner = doc.owner;
-    return { name, quantity, condition, owner };
+    const title = doc.title;
+    const image = doc.image;
+    const description = doc.description;
+    const location = doc.location;
+    const time = doc.time;
+    const frequency = doc.frequency;
+    const accessibilities = doc.accessibilities;
+    const requirements = doc.requirements;
+    const impact = doc.impact;
+    const eventPlanner = doc.eventPlanner;
+    return { title, image, description, location, time, frequency, accessibilities, requirements, impact, eventPlanner };
   }
 }
 
