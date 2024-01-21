@@ -11,7 +11,7 @@ function createUser(email, role, firstName, lastName, password, name, image, loc
   if (role === ROLE.ADMIN) {
     AdminProfiles.define({ email, firstName, lastName, password });
   } else if (role === ROLE.ORGANIZATION) {
-    OrganizationProfiles.define({ email, firstName, lastName, password, name, image, location, mission, contactInfo });
+    OrganizationProfiles.define({ email, password, name, image, location, mission, contactInfo });
   } else { // everyone else is just a user.
     UserProfiles.define({ email, firstName, lastName, password });
   }

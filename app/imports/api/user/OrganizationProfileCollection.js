@@ -1,9 +1,9 @@
 import SimpleSchema from 'simpl-schema';
-import BaseProfileCollection from './BaseProfileCollection';
+import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
 
-class OrganizationProfileCollection extends BaseProfileCollection {
+class OrganizationProfileCollection extends BaseCollection {
   constructor() {
     super('OrganizationProfile', new SimpleSchema({
       name: { type: String },
@@ -11,6 +11,7 @@ class OrganizationProfileCollection extends BaseProfileCollection {
       location: { type: String },
       mission: { type: String },
       contactInfo: { type: String },
+      role: { type: String },
     }));
   }
 
@@ -123,7 +124,8 @@ class OrganizationProfileCollection extends BaseProfileCollection {
     const mission = doc.mission;
     const contactInfo = doc.contactInfo;
     const password = doc.password;
-    return { email, name, image, location, mission, contactInfo, password }; // CAM this is not enough for the define method. We lose the password.
+    const role = doc.role;
+    return { email, name, image, location, mission, contactInfo, password, role }; // CAM this is not enough for the define method. We lose the password.
   }
 }
 
