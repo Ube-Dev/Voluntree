@@ -5,6 +5,11 @@
 :root {
   --matr-navbar-bg: #ECECEC;
   --matr-navbar-bg-rgb: 236, 236, 236;
+  --color1:#025159;
+  --color2:#03A696;
+  --color3:#04BF9D;
+  --color4:#6EBF34;
+  --color5:#f2f2f2;
 }
 
 /* Change bootstrap variable values.
@@ -25,4 +30,30 @@ body {
   color: var(--bs-dark);
   padding-top: 10px;
   padding-bottom: 20px;
+}
+
+.circle
+{
+  border-radius: 100%;
+  max-width:100px;
+}
+.color1
+{
+  background-color: var(--color1);
+}
+.color2
+{
+  background-color: var(--color2);
+}
+.color3
+{
+  background-color: var(--color3);
+}
+.color4
+{
+  background-color: var(--color4);
+}
+.color5
+{
+  background-color: var(--color5);
 }
