@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="mt-auto bg-light">
       <Container style={divStyle}>
         <Col className="text-center">
-          Created by <a href={"https://ube-dev.github.io/"}>Ube-Dev</a> <br />
+          Created by <a href="https://ube-dev.github.io/">Ube-Dev</a> <br />
           Based on a template provided by <br />
           the Department of Information and Computer Sciences <br />
           University of Hawaii<br />
