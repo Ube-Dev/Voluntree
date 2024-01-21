@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Container, Row, Form, Button, Card, Tab, Dropdown, ProgressBar, Table, Tabs } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import CommitToEvent from '../components/CommitToEvent';
 
 const HomePage = () => (
   <Container id={PAGE_IDS.HOME_PAGE} className="py-3">
@@ -110,6 +111,7 @@ const HomePage = () => (
               <Card style={{ width: '25rem', height: '20rem' }} className="mr-3">
                 <Card.Body className="d-flex flex-column align-items-center">
                   <h3 className="mb-3">Create An Opportunity</h3>
+                  <CommitToEvent />
                 </Card.Body>
               </Card>
             </Col>
