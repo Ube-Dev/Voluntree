@@ -17,18 +17,25 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg" style={menuStyle}>
       <Container>
-        <Navbar.Brand id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/">
-          <Image src="/images/voluntree-logo.png" width="100px" />
-        </Navbar.Brand>
+        {currentUser ? (
+          <Navbar.Brand id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/Home" key="Home">
+            <Image src="/images/voluntree-logo.png" width="100px" />
+          </Navbar.Brand>
+        ) : (
+          <Navbar.Brand id={COMPONENT_IDS.NAVBAR_ADD_STUFF} as={NavLink} to="/">
+            <Image src="/images/voluntree-logo.png" width="100px" />
+          </Navbar.Brand>
+        )}
         <Navbar.Toggle aria-controls={COMPONENT_IDS.NAVBAR_COLLAPSE} />
         <Navbar.Collapse id={COMPONENT_IDS.NAVBAR_COLLAPSE}>
           <Nav className="me-auto justify-content-start">
             {currentUser ? (
               <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_STUFF} as={NavLink} to="/Home" key="Home">Home</Nav.Link>
-            ) : ''}
-            <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/About" key="About">About</Nav.Link>
-            <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/Events" key="Events">Events</Nav.Link>
-            <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>
+            ) : ([
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/About" key="About">About</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/Events" key="Events">Events</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>,
+            ])}
             {currentUser ? ([
               <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link>,
               <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>,
