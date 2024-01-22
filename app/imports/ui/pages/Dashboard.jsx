@@ -4,7 +4,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 
 /* A simple static component to render some text for the landing page. */
 const Dashboard = () => (
-  <Container id={PAGE_IDS.LANDING} className="py-3">
+  <Container id={PAGE_IDS.DASHBOARD} className="py-3">
     <Row>
       <Col xs={12} md={3}>
         <Navbar className>
