@@ -23,7 +23,9 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls={COMPONENT_IDS.NAVBAR_COLLAPSE} />
         <Navbar.Collapse id={COMPONENT_IDS.NAVBAR_COLLAPSE}>
           <Nav className="me-auto justify-content-start">
-            <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_STUFF} as={NavLink} to="/Home" key="Home">Home</Nav.Link>
+            {currentUser ? (
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_STUFF} as={NavLink} to="/Home" key="Home">Home</Nav.Link>
+            ) : ''}
             <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/About" key="About">About</Nav.Link>
             <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/Events" key="Events">Events</Nav.Link>
             <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>
