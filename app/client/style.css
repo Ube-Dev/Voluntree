@@ -32,23 +32,26 @@ body {
   padding-bottom: 20px;
 }
 
-.color1
-{
+.color1 {
   background-color: var(--color1);
 }
-.color2
-{
+
+.color2 {
   background-color: var(--color2);
 }
-.color3
-{
+
+.color3 {
   background-color: var(--color3);
 }
-.color4
-{
+
+.color4 {
   background-color: var(--color4);
 }
-.color5
-{
+
+.color5 {
   background-color: var(--color5);
+}
+
+.btn-primary {
+  
 }
