@@ -1,8 +1,29 @@
 import React from 'react';
 import { Col, Container, Image, Row, Card, Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Doughnut } from 'react-chartjs-2';
+import { Chart, ArcElement } from 'chart.js';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
+Chart.register(ArcElement);
+
 /* A simple static component to render some text for the landing page. */
+const data = {
+  labels: [
+    'Red',
+    'Blue',
+    'Yellow',
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [300, 50, 100],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)',
+    ],
+    hoverOffset: 4,
+  }],
+};
 const Dashboard = () => (
   <Container id={PAGE_IDS.DASHBOARD} className="py-3">
     <Row>
@@ -22,23 +43,13 @@ const Dashboard = () => (
           <Image className="circle" src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0022/1594/brand.gif?itok=z5CHdxN7" width="100px" height="100px" alt="habitat for humanity" />
           <h2>Habitat for humanity</h2>
         </Row>
+        <Row>
+          <Card xs={12} md="auto">
+            <Card.Header>Mission Statement</Card.Header>
+            <Card.Body> <Doughnut data={data} /></Card.Body>
+          </Card>
 
-        <Card>
-          <Card.Header>Mission Statement</Card.Header>
-          <Card.Body> Lorem Ipsum</Card.Body>
-        </Card>
-        <Card>
-          <Card.Header>Impact Index</Card.Header>
-          <Card.Body> <strong>12</strong></Card.Body>
-        </Card>
-        <Card>
-          <Card.Header>Upcoming Events</Card.Header>
-          <Card.Body> <strong>12</strong></Card.Body>
-        </Card>
-        <Card>
-          <Card.Header>Upcoming Events</Card.Header>
-          <Card.Body> <strong>12</strong></Card.Body>
-        </Card>
+        </Row>
 
       </Col>
     </Row>
