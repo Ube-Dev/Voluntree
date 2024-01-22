@@ -5,7 +5,6 @@ import { Accounts } from 'meteor/accounts-base';
 import { Promise } from 'meteor/promise';
 import { Roles } from 'meteor/alanning:roles';
 import { CallPromiseMixin } from 'meteor/didericis:callpromise-mixin';
-import { Stuffs } from '../api/stuff/StuffCollection';
 import { ROLE } from '../api/role/Role';
 import { AdminProfiles } from '../api/user/AdminProfileCollection';
 import { UserProfiles } from '../api/user/UserProfileCollection';
@@ -14,10 +13,9 @@ export function withSubscriptions() {
   return new Promise((resolve => {
     // Add the collections to subscribe to.
     const sub1 = AdminProfiles.subscribe();
-    const sub2 = Stuffs.subscribeStuff();
     const sub3 = UserProfiles.subscribe();
     const poll = Meteor.setInterval(() => {
-      const ready = sub1.ready() && sub2.ready() && sub3.ready();
+      const ready = sub1.ready() && sub3.ready();
       if (ready) {
         Meteor.clearInterval(poll);
         resolve();

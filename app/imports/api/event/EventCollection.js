@@ -131,7 +131,7 @@ class EventCollection extends BaseCollection {
 
   /**
    * Default publication method for entities.
-   * It publishes the entire collection for admin and just the stuff associated to an owner.
+   * It publishes the entire collection for admin and just the event associated to an owner.
    */
   publish() {
     if (Meteor.isServer) {
@@ -139,11 +139,7 @@ class EventCollection extends BaseCollection {
       const instance = this;
       /** This subscription publishes only the documents associated with the logged in user */
       Meteor.publish(eventPublications.event, function publish() {
-        if (this.userId) {
-          const username = Meteor.users.findOne(this.userId).username;
-          return instance._collection.find({ owner: username });
-        }
-        return this.ready();
+        return instance._collection.find();
       });
 
       /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
@@ -157,9 +153,9 @@ class EventCollection extends BaseCollection {
   }
 
   /**
-   * Subscription method for stuff owned by the current user.
+   * Subscription method for event owned by the current user.
    */
-  subscribeStuff() {
+  subscribeEvent() {
     if (Meteor.isClient) {
       return Meteor.subscribe(eventPublications.event);
     }
@@ -170,7 +166,7 @@ class EventCollection extends BaseCollection {
    * Subscription method for admin users.
    * It subscribes to the entire collection.
    */
-  subscribeStuffAdmin() {
+  subscribeEventAdmin() {
     if (Meteor.isClient) {
       return Meteor.subscribe(eventPublications.eventAdmin);
     }
