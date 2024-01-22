@@ -1,9 +1,9 @@
 import SimpleSchema from 'simpl-schema';
-import BaseCollection from '../base/BaseCollection';
+import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
 
-class OrganizationProfileCollection extends BaseCollection {
+class OrganizationProfileCollection extends BaseProfileCollection {
   constructor() {
     super('OrganizationProfile', new SimpleSchema({
       name: { type: String },
