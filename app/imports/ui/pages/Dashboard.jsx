@@ -39,17 +39,17 @@ const Dashboard = () => (
 
       </Col>
       <Col xs={12} md={9}>
-        <Row>
-          <Image className="circle" src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0022/1594/brand.gif?itok=z5CHdxN7" width="100px" height="100px" alt="habitat for humanity" />
+        <Row className="justify-content-center">
+          <Image className="circle" src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0022/1594/brand.gif?itok=z5CHdxN7" alt="habitat for humanity" />
           <h2>Habitat for humanity</h2>
         </Row>
-        <Row>
-          <Card xs={12} md="auto">
-            <Card.Header>Mission Statement</Card.Header>
-            <Card.Body> <Doughnut data={data} /></Card.Body>
-          </Card>
+        <Container>
+          <Card xs={12} md="auto"><Card.Body> <Doughnut data={data} /></Card.Body></Card>
+          <Card xs={12} md="auto"><Card.Body> <Doughnut data={data} /></Card.Body></Card>
+          <Card xs={12} md="auto"><Card.Body> <Doughnut data={data} /></Card.Body></Card>
+          <Card xs={12} md="auto"><Card.Body> <Doughnut data={data} /></Card.Body></Card>
 
-        </Row>
+        </Container>
 
       </Col>
     </Row>
