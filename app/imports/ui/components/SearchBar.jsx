@@ -1,42 +1,61 @@
 import React from 'react';
 import Fuse from 'fuse.js';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Meteor } from 'meteor/meteor';
 import { Events } from '../../api/event/EventCollection';
 import LoadingSpinner from './LoadingSpinner';
 
 const SearchBar = () => {
 
-  const { event, ready } = useTracker(() => {
-    const subscription = Meteor.subscribe(Events.userPublicationName);
+  const { ready, events } = useTracker(() => {
+    // Note that this subscription will get cleaned up
+    // when your component is unmounted or deps change.
+    // Get access to Event documents.
+    const subscription = Events.subscribeStuff();
+    // Determine if the subscription is ready
     const rdy = subscription.ready();
-    const item = Events.collection.find({}).fetch();
+    // Get the event documents
+    const items = Events.find({}).fetch();
     return {
-      event: item,
+      events: items,
       ready: rdy,
     };
   }, []);
 
-  if (ready && event) {
-
+  if (ready) {
+    console.log('Ready');
+    console.log(events);
     const fuseOptions = {
       isCaseSensitive: false,
       shouldSort: true,
       includeMatches: true,
       findAllMatches: true,
       useExtendedSearch: false,
-      keys: [
-        'Event', 'Organization',
-      ],
+      keys: ['title'],
     };
 
-    const fuse = new Fuse(Event, fuseOptions);
+    if (events && events.length > 0) {
+      const fuse = new Fuse(events, fuseOptions);
+      const result = fuse.search('Humanitarian');
 
-    const result = fuse.search('');
-
-    return result;
+      return (
+        <div>
+          <ul>
+            {result.map((item) => (
+              <li key={item.item._id}>
+                <p>{item.item.title}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    // Handle the case when the collection is empty
+    return (
+      <p>No events found</p>
+    );
 
   }
+
   return (
     <LoadingSpinner />
   );

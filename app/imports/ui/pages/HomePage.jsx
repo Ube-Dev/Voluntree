@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Container, Row, Form, Button, Card, Tab, Dropdown, ProgressBar, Table, Tabs } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import SearchBar from '../components/SearchBar';
 
 const HomePage = () => (
   <Container id={PAGE_IDS.HOME_PAGE} className="py-3">
@@ -10,7 +11,7 @@ const HomePage = () => (
           <Card style={{ width: '60rem', height: '10rem' }}>
             <Card.Body>
               <h2>Event Search</h2>
-              {/* Event Search */}
+              <SearchBar />
               <Form className="mb-3">
                 <Form.Group controlId="formEventSearch" className="d-flex align-items-center">
                   <Form.Control type="text" placeholder="Search for events..." style={{ width: '500px' }} className="mr-2" />

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import SearchBar from '../components/SearchBar';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
@@ -11,9 +10,6 @@ const Landing = () => (
         <h1>Welcome to Voluntree</h1>
         <p>Now get to work and modify this app!</p>
       </Col>
-
-      <SearchBar />
-
     </Row>
   </Container>
 );
