@@ -31,10 +31,9 @@ const NavBar = () => {
           <Nav className="me-auto justify-content-start">
             {currentUser ? (
               <Nav.Link id={COMPONENT_IDS.NAVBAR_HOME_PAGE} as={NavLink} to="/home" key="Home">Home</Nav.Link>
-            ) : ([
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_ABOUT_PAGE} as={NavLink} to="/About" key="About">About</Nav.Link>,
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_FAQ} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>,
-            ])}
+            ) : ''}
+            <Nav.Link id={COMPONENT_IDS.NAVBAR_ABOUT_PAGE} as={NavLink} to="/About" key="About">About</Nav.Link>
+            <Nav.Link id={COMPONENT_IDS.NAVBAR_FAQ} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>
             <Nav.Link id={COMPONENT_IDS.NAVBAR_EVENTS_PAGE} as={NavLink} to="/Events" key="Events">Find Events</Nav.Link>
             {currentUser ? ([
               <Nav.Link id={COMPONENT_IDS.NAVBAR_MYEVENTS} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link>,

@@ -13,8 +13,6 @@ class BaseProfileCollection extends BaseCollection {
   constructor(type, schema) {
     super(type, schema.extend(new SimpleSchema({
       email: String,
-      firstName: String,
-      lastName: String,
       role: String,
       userID: /^[23456789ABCDEFGHJKLMNPQRSTWXYZabcdefghijkmnopqrstuvwxyz]{17}$/,
     })));
