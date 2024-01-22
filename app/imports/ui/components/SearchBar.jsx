@@ -13,7 +13,7 @@ const SearchBar = () => {
     // Note that this subscription will get cleaned up
     // when your component is unmounted or deps change.
     // Get access to Event documents.
-    const subscription = Events.subscribeStuff();
+    const subscription = Events.subscribeEvent();
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the event documents
