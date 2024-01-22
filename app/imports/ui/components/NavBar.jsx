@@ -18,11 +18,11 @@ const NavBar = () => {
     <Navbar className="color1" bg="light" expand="lg" style={menuStyle}>
       <Container>
         {currentUser ? (
-          <Navbar.Brand id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/home" key="Home">
+          <Navbar.Brand id={COMPONENT_IDS.NAVBAR_HOME_PAGE} as={NavLink} to="/home" key="Home">
             <Image src="/images/voluntree-logo.png" width="100px" />
           </Navbar.Brand>
         ) : (
-          <Navbar.Brand id={COMPONENT_IDS.NAVBAR_ADD_STUFF} as={NavLink} to="/">
+          <Navbar.Brand id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/">
             <Image src="/images/voluntree-logo.png" width="100px" />
           </Navbar.Brand>
         )}
@@ -30,15 +30,15 @@ const NavBar = () => {
         <Navbar.Collapse id={COMPONENT_IDS.NAVBAR_COLLAPSE}>
           <Nav className="me-auto justify-content-start">
             {currentUser ? (
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_STUFF} as={NavLink} to="/home" key="Home">Home</Nav.Link>
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_HOME_PAGE} as={NavLink} to="/home" key="Home">Home</Nav.Link>
             ) : ([
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/About" key="About">About</Nav.Link>,
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_ABOUT_PAGE} as={NavLink} to="/About" key="About">About</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_FAQ} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>,
             ])}
-            <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/Events" key="Events">Find Events</Nav.Link>
+            <Nav.Link id={COMPONENT_IDS.NAVBAR_EVENTS_PAGE} as={NavLink} to="/Events" key="Events">Find Events</Nav.Link>
             {currentUser ? ([
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link>,
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_MYEVENTS} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_DASHBOARD} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>,
             ]) : ''}
             {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
               [<Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN} as={NavLink} to="/admin" key="admin">Admin</Nav.Link>,
