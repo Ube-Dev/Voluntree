@@ -5,7 +5,10 @@ import { Users } from './UserCollection';
 
 class UserProfileCollection extends BaseProfileCollection {
   constructor() {
-    super('UserProfile', new SimpleSchema({}));
+    super('UserProfile', new SimpleSchema({
+      firstName: { type: String },
+      lastName: { type: String },
+    }));
   }
 
   /**
