@@ -4,11 +4,11 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
-  <Container id={PAGE_IDS.LANDING} className="py-3">
+  <Container id={PAGE_IDS.LANDING} className="py-3 landing-background">
     <Row className="align-middle text-center">
       <Col xs={12} className="d-flex flex-column justify-content-center">
-        <Image src="/images/voluntree.png" alt="Voluntree Logo" className="mx-auto d-block" style={{ width: '45%' }} />
-        <h1>Working together made simple</h1>
+        <Image src="/images/voluntree.png" alt="Voluntree Logo" className="mx-auto d-block" style={{ width: '50%' }} />
+        <h2>Working together made simple</h2>
       </Col>
     </Row>
     <Row className="mb-5 g-0 justify-content-center">

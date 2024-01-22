@@ -32,28 +32,41 @@ body {
   padding-bottom: 20px;
 }
 
-.circle
-{
+.circle {
   border-radius: 100%;
   max-width:100px;
 }
-.color1
-{
+
+.color1 {
   background-color: var(--color1);
 }
-.color2
-{
+
+.color2 {
   background-color: var(--color2);
 }
-.color3
-{
+
+.color3 {
   background-color: var(--color3);
 }
-.color4
-{
+
+.color4 {
   background-color: var(--color4);
 }
-.color5
-{
+
+.color5 {
   background-color: var(--color5);
+}
+
+.landing-background {
+  background: url('/images/Doing-Volunteer-Work.jpg') fixed center no-repeat;
+  background-size: cover;
+  color: white;
+  min-height: 60vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.1);
+  object-fit: contain;
 }
