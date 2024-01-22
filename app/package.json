@@ -6,7 +6,9 @@
     "bootstrap": "^5.3.0",
     "classnames": "^2.3.2",
     "core-js": "^3.31.1",
+    "fuse.js": "^7.0.0",
     "graphql": "^16.7.1",
+    "material-ui-search-bar": "^1.0.1",
     "meteor-node-stubs": "^1.2.5",
     "moment": "^2.29.4",
     "prop-types": "^15.7.2",
@@ -38,12 +40,13 @@
     "faker": "^5.5.3",
     "fast-check": "^3.11.0",
     "puppeteer": "^19.11.1",
-    "testcafe": "^3.0.1"
+    "testcafe": "^3.5.0"
   },
   "scripts": {
     "start": "meteor --no-release-check --exclude-archs web.browser.legacy,web.cordova --settings ../config/settings.development.json",
     "lint": "eslint --quiet --ext .jsx --ext .js ./imports && eslint --quiet --ext .js ./tests",
     "lint-fix": "eslint --quiet --fix --ext .jsx --ext .js ./imports && eslint --quiet --ext .js ./tests",
+    "testcafe": "testcafe chrome tests/*.testcafe.js",
     "test-unit": "cross-env TEST_BROWSER_DRIVER=puppeteer MOCHA_TIMEOUT=150000 meteor test --exclude-archs web.browser.legacy,web.cordova --no-release-check --once --driver-package meteortesting:mocha --port 3100",
     "test-integration": "cross-env METEOR_NO_RELEASE_CHECK=1 TEST_BROWSER_DRIVER=puppeteer meteor test --full-app --once --driver-package meteortesting:mocha --port 3100",
     "test-acceptance-development": "testcafe chrome tests/*.testcafe.js",
