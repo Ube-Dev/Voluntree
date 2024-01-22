@@ -2,7 +2,8 @@
 import React from 'react';
 import { Container, Card, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
 
-import EventCard from '../components/EventCard';
+// import EventCard from '../components/EventCard';
+import SearchBar from '../components/SearchBar';
 import '../css/AllEventPage.css';
 // samples for display purposes.
 const events = {
@@ -49,37 +50,38 @@ const AllEventPage = () => {
     // console.log('triggered');
   };
   return (
-    // <searchFilter> here
-    <Container>
-      <Row className="g-2">
-        {Object.values(events).map((event) => (
-          <Col className="w-25 h-25 xl-3 md-4 sm-6">
-            <Card key={event.key} className="">
-              <Card.Img variant="top" src={event.img} />
-              <Card.Body>
-                <Card.Title>{event.title}</Card.Title>
-                <Card.Text className="description">
-                  {event.description}
-                </Card.Text>
-              </Card.Body>
-              <Card.Body>
-                <ButtonGroup className="flex-wrap-buttons">
-                  {event.requiredSkills.map((skill) => (
-                    <Button className="skill-button" onClick={() => filterSkill(skill)}>
-                      {skill}
-                    </Button>
-                  ))}
-                </ButtonGroup>
-              </Card.Body>
-              <Card.Footer>
-                <small className="text-muted">{event.date}</small>
-              </Card.Footer>
-            </Card>
-          </Col>
+    <><SearchBar />
+      <Container>
+        <Row className="g-2">
+          {Object.values(events).map((event) => (
+            <Col className="w-25 h-25 xl-3 md-4 sm-6">
+              <Card key={event.key} className="">
+                <Card.Img variant="top" src={event.img} />
+                <Card.Body>
+                  <Card.Title>{event.title}</Card.Title>
+                  <Card.Text className="description">
+                    {event.description}
+                  </Card.Text>
+                </Card.Body>
+                <Card.Body>
+                  <ButtonGroup className="flex-wrap-buttons">
+                    {event.requiredSkills.map((skill) => (
+                      <Button className="skill-button" onClick={() => filterSkill(skill)}>
+                        {skill}
+                      </Button>
+                    ))}
+                  </ButtonGroup>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">{event.date}</small>
+                </Card.Footer>
+              </Card>
+            </Col>
 
-        ))}
-      </Row>
-    </Container>
+          ))}
+        </Row>
+      </Container>
+    </>
   );
 };
 

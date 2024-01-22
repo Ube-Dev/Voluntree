@@ -2,7 +2,8 @@
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "ADMIN", "firstName": "Admin", "lastName": "MATRP"
     },
-    { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" }
+    { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" },
+    { "email": "organization@foo.com", "password": "changeme", "role": "ORGANIZATION", "name": "temp", "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png", "location": "Honolulu, HI", "mission": "mission", "contactInfo": "(808)-000-0000"}
   ],
 
   "defaultData": [
@@ -13,5 +14,12 @@
   ],
   "public": {
     "development": true
-  }
+  },
+  "defaultEvent": [
+    { "title": "Humanitarian Aid Vacation in Belize!", "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png", "description": "This expedition is a chance for your family to step out of their comfort zone and discover a world beyond their own. As you immerse in a new culture, your children will learn firsthand about the diverse lives of others, helping them appreciate their blessings and understand the importance of giving back.", "location": "Belize", "frequency": "once", "requiredSkills": ["communication", "teaching abilities"], "accessibilities": ["Group", "Child-friendly"], "requirements": ["Driver's license", "Background-check"], "impact": "You'll change people's lives!", "eventPlanner": "GLOBAL EDUCATION PHILANTHROPISTS"},
+    { "title": "Alamoana Beach Clean Up"},
+    { "title": "Turtle Bay Beach Clean Up"},
+    { "title": "Lanikai Beach Clean Up"}
+
+  ]
 }
