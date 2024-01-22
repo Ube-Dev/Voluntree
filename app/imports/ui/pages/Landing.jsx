@@ -10,7 +10,6 @@ const Landing = () => (
         <h1>Welcome to Voluntree</h1>
         <p>Now get to work and modify this app!</p>
       </Col>
-
     </Row>
   </Container>
 );
