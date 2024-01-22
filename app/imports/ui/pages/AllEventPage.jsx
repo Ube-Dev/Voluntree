@@ -46,7 +46,7 @@ const AllEventPage = () => {
   // apply filter to the entire page when a specific skill is clicked.
   // buttons inside <EventCard> will invoke this function.
   const filterSkill = (skill) => {
-    console.log('triggered');
+    // console.log('triggered');
   };
   return (
     // <searchFilter> here
