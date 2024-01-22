@@ -23,16 +23,15 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls={COMPONENT_IDS.NAVBAR_COLLAPSE} />
         <Navbar.Collapse id={COMPONENT_IDS.NAVBAR_COLLAPSE}>
           <Nav className="me-auto justify-content-start">
-            <Nav.Link id={COMPONENT_IDS.NAVBAR_HOME_PAGE} as={NavLink} to="/Home" key="Home">Home</Nav.Link>
-            <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/About" key="About">About</Nav.Link>
-            <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/Events" key="Events">Events</Nav.Link>
+            <Nav.Link id={COMPONENT_IDS.NAVBAR_ABOUT_PAGE} as={NavLink} to="/About" key="About">About</Nav.Link>
+            <Nav.Link id={COMPONENT_IDS.NAVBAR_EVENTS_PAGE} as={NavLink} to="/Events" key="Events">Events</Nav.Link>
             {currentUser ? ([
-
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_HOME_PAGE} as={NavLink} to="/Home" key="Home">Home</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_MYEVENTS} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link>,
               <Nav.Link id={COMPONENT_IDS.NAVBAR_DASHBOARD} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>,
             ]) : ''}
             {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
-              [<Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF_ADMIN} as={NavLink} to="/admin" key="admin">Admin</Nav.Link>,
+              [<Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN} as={NavLink} to="/admin" key="admin">Admin</Nav.Link>,
                 <NavDropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} title="Manage" key="manage-dropdown">
                   <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} to="/manage-database"><CloudDownload /> Database</NavDropdown.Item>
                 </NavDropdown>]

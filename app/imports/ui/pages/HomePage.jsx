@@ -54,48 +54,36 @@ const HomePage = () => (
                   <h2 className="mb-3">User Overview</h2>
                   <Tabs defaultActiveKey="served" id="fill-tab-example" className="mb-3" fill>
                     <Tab eventKey="profile" title="Profile">
-                      <Card style={{ width: '10rem', height: '15rem' }}>
-                        <Card.Img variant="top" style={{ width: '100%', height: '100%' }} src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=600" />
-                        <Card.Body>
-                          <Card.Title>Profile</Card.Title>
-                          <Card.Text>
-                            <p> First Name </p>
-                            <p> Last Name </p>
-                          </Card.Text>
-                        </Card.Body>
+                      <Card style={{ width: '30rem', height: '20rem' }}>
+                        <Card.Img variant="top" style={{ width: '100%', height: '100%' }} src="https://help.learn.taleo.net/Content/Resources/Images/User%20Account%20Graphics/UserProperties_Details.png" />
                       </Card>
                     </Tab>
                     <Tab eventKey="served" title="Served">
                       <Table striped bordered hover>
                         <thead>
                           <tr>
-                            <th>#########</th>
-                            <th>xxxxxxxxx</th>
-                            <th>xxxxxxxxx</th>
-                            <th>xxxxxxxxx</th>
+                            <th>Served</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td>xxxxxxxxx</td>
-                            <td>xxxxxxxxx</td>
-                            <td>xxxxxxxxx</td>
-                            <td>xxxxxxxxx</td>
+                            <td>a</td>
+                            <td>1 hour</td>
+                            <td>2 hours</td>
+                            <td>3 houes</td>
                           </tr>
                           <tr>
-                            <td>xxxxxxxxx</td>
-                            <td>xxxxxxxxx</td>
-                            <td>xxxxxxxxx</td>
-                            <td>xxxxxxxxx</td>
+                            <td>b</td>
+                            <td>1 hour</td>
+                            <td>2 hours</td>
+                            <td>3 houes</td>
                           </tr>
                         </tbody>
                       </Table>
-                      <div>
-                        <ProgressBar variant="success" now={40} />
-                        <ProgressBar variant="info" now={20} />
-                        <ProgressBar variant="warning" now={60} />
-                        <ProgressBar variant="danger" now={80} />
-                      </div>
+                      <ProgressBar variant="success" now={40} />
                     </Tab>
                   </Tabs>
                 </Card.Body>
@@ -118,6 +106,7 @@ const HomePage = () => (
                 <Card.Body className="d-flex flex-column align-items-center">
                   <h3 className="mb-3">Volunteer Calendar</h3>
                   <Card.Title>Google Calendar</Card.Title>
+                  <Card.Img variant="top" style={{ width: '100%', height: '100%' }} src="https://media.gcflearnfree.org/content/560be4f6557fa909dc9cf5a1_09_30_2015/googletips_calendar2.jpg" />
                 </Card.Body>
               </Card>
             </Col>
