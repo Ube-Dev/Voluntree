@@ -8,7 +8,7 @@ const HomePage = () => (
     <Row className="justify-content-center">
       <Col xs={12} md={8} className="d-flex flex-column align-items-center justify-content-center">
         <div className="my-3 text-center">
-          <Card style={{ width: '60rem', height: '10rem' }}>
+          <Card style={{ width: '60rem' }}>
             <Card.Body>
               <h2>Event Search</h2>
               <SearchBar />
