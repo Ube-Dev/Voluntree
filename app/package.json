@@ -40,7 +40,7 @@
     "faker": "^5.5.3",
     "fast-check": "^3.11.0",
     "puppeteer": "^19.11.1",
-    "testcafe": "^3.0.1"
+    "testcafe": "^3.5.0"
   },
   "scripts": {
     "start": "meteor --no-release-check --exclude-archs web.browser.legacy,web.cordova --settings ../config/settings.development.json",
