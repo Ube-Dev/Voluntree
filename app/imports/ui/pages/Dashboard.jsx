@@ -1,13 +1,23 @@
 import React from 'react';
 import { Col, Container, Image, Row, Card, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { Doughnut } from 'react-chartjs-2';
-import { Chart, ArcElement } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import { Chart, ArcElement,CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
 Chart.register(ArcElement);
+Chart.register(CategoryScale);
+Chart.register(LinearScale);
+Chart.register(BarElement);
+Chart.register(BarElement);
 
 /* A simple static component to render some text for the landing page. */
-const data = {
+const color1 = 'rgb(2, 81, 89)';
+const color2 = 'rgb(3, 166, 150)';
+const color3 = 'rgb(4, 191, 157)';
+const color4 = 'rgb(110, 191, 52)';
+const color5 = 'rgb(242, 242, 242)';
+const doughnutData = {
   labels: [
     'Red',
     'Blue',
@@ -17,12 +27,27 @@ const data = {
     label: 'My First Dataset',
     data: [300, 50, 100],
     backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)',
+      color1,
+      color2,
+      color3,
     ],
     hoverOffset: 4,
   }],
+};
+const barData = {
+
+    labels: ["January", "February", "March", "April", "May"],
+    datasets: [{
+      data: [55, 49, 44, 24, 15],
+      backgroundColor: [
+        color1,
+        color2,
+        color3,
+        color4,
+        color5,
+          ],
+
+    }]
 };
 const Dashboard = () => (
   <Container id={PAGE_IDS.DASHBOARD} className="py-3">
@@ -44,10 +69,8 @@ const Dashboard = () => (
           <h2>Habitat for humanity</h2>
         </Row>
         <Container>
-          <Card xs={12} md="auto"><Card.Body> <Doughnut data={data} /></Card.Body></Card>
-          <Card xs={12} md="auto"><Card.Body> <Doughnut data={data} /></Card.Body></Card>
-          <Card xs={12} md="auto"><Card.Body> <Doughnut data={data} /></Card.Body></Card>
-          <Card xs={12} md="auto"><Card.Body> <Doughnut data={data} /></Card.Body></Card>
+          <Card xs={12} md="auto"><Card.Body> <Doughnut data={doughnutData} /></Card.Body></Card>
+          <Card xs={12} md="auto"><Card.Body> <Bar data={barData} /></Card.Body></Card>
 
         </Container>
 
