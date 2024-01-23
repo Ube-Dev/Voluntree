@@ -36,10 +36,10 @@ body {
 
 .circle {
   border-radius: 100%;
-  max-width:100px;
+  width:100%;
   border: solid;
   border-color: var(--color4);
-  border-width: 2em;
+  border-width: 5px;
 }
 
 .color1 {
@@ -93,4 +93,3 @@ body {
   padding: 12px 26px !important;
   transition: all 0.3s ease-out !important;
 }
-

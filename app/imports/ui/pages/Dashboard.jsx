@@ -49,70 +49,84 @@ const barData = {
 };
 const Dashboard = () => (
   <Container fluid id={PAGE_IDS.DASHBOARD} className="py-3 color2 justify-content-center">
-    <Row>
-      <Col xs={12} md={3}>
-        <Navbar className>
-          <Nav className="flex-column">
-            <NavItem><a href="/">Campaigns</a></NavItem>
-            <NavItem><a href="/">Volunteer Opportunities</a></NavItem>
-            <NavItem><a href="/">Events</a></NavItem>
+    <Container>
+      <Row className="pb-4 ">
+        <Col xs={12}>
+          <Navbar className>
+            <Nav className="flex-column">
+              <NavItem><a href="/">Campaigns</a></NavItem>
+              <NavItem><a href="/">Volunteer Opportunities</a></NavItem>
+              <NavItem><a href="/">Events</a></NavItem>
 
-          </Nav>
-        </Navbar>
+            </Nav>
+          </Navbar>
 
-      </Col>
-    </Row>
-
-    <Col xs={12} md={9}>
-      <Row className="justify-content-center">
-        <Image className="circle" src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0022/1594/brand.gif?itok=z5CHdxN7" alt="habitat for humanity" />
-        <h2>Habitat for humanity</h2>
-        <h3> Company Summary:</h3>
-        <p />
+        </Col>
       </Row>
       <Row>
-        <Col xs={12} md={4}>
-          <Card>
-            <Card.Body>
-              <Doughnut data={doughnutData} />
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col xs={12} md={4}>
-          <Card>
-            <Card.Body>
-              <Doughnut data={doughnutData} />
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col xs={12} md={4}>
-          <Card>
-            <Card.Body>
-              <Doughnut data={doughnutData} />
-            </Card.Body>
-          </Card>
-        </Col>
+        <Col xs={12}>
+          <Row className="justify-content-center">
+            <Col md={4} className="">
+              <Image
+                src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0022/1594/brand.gif?itok=z5CHdxN7"
+                alt="habitat for humanity"
+                className="circle"
+              />
+            </Col>
+            <Col md={8}>
+              <h2>Habitat for humanity</h2>
+              <h3> Company Summary:</h3>
+              <p>Habitat for Humanity partners with people in your community, and all over the world, to help them build or improve a place they can call home.
+                Habitat homeowners help build their own homes alongside volunteers and pay an affordable mortgage.
+                With your support, Habitat homeowners achieve the strength, stability and independence they need to build a better life for themselves and for their families.
+                Through our 2020 Strategic Plan, Habitat for Humanity will serve more people than ever before through decent and affordable housing.
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} md={4}>
+              <Card>
+                <Card.Body>
+                  <Doughnut data={doughnutData} />
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col xs={12} md={4}>
+              <Card>
+                <Card.Body>
+                  <Doughnut data={doughnutData} />
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col xs={12} md={4}>
+              <Card>
+                <Card.Body>
+                  <Doughnut data={doughnutData} />
+                </Card.Body>
+              </Card>
+            </Col>
 
+          </Row>
+          <Row className="pt-4">
+            <Col xs={12} md={6}>
+              <Card>
+                <Card.Body>
+                  <Bar data={barData} />
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col xs={12} md={6}>
+              <Card>
+                <Card.Body>
+                  <Bar data={barData} />
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+
+        </Col>
       </Row>
-      <Row>
-        <Col xs={12} md={6}>
-          <Card>
-            <Card.Body>
-              <Bar data={barData} />
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col xs={12} md={6}>
-          <Card>
-            <Card.Body>
-              <Bar data={barData} />
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-
-    </Col>
-
+    </Container>
   </Container>
 );
 
