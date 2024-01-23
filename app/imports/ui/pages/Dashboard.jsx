@@ -52,12 +52,11 @@ const Dashboard = () => (
     <Container>
       <Row className="pb-4 ">
         <Col xs={12}>
-          <Navbar className>
-            <Nav className="flex-column">
-              <NavItem><a href="/">Campaigns</a></NavItem>
-              <NavItem><a href="/">Volunteer Opportunities</a></NavItem>
-              <NavItem><a href="/">Events</a></NavItem>
-
+          <Navbar expand="md">
+            <Nav className="me-auto">
+              <Nav.Link><a href="/">Campaigns</a></Nav.Link>
+              <Nav.Link><a href="/">Volunteer Opportunities</a></Nav.Link>
+              <Nav.Link><a href="/">Events</a></Nav.Link>
             </Nav>
           </Navbar>
 
