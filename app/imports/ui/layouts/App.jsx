@@ -18,6 +18,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import ManageDatabase from '../pages/ManageDatabase';
 import Dashboard from '../pages/Dashboard';
 import HomePage from '../pages/HomePage';
+import AllEventPage from '../pages/AllEventPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
         <NavBar />
         <Routes>
           <Route exact path="/" element={<Landing />} />
+          <Route path="/events" element={<AllEventPage />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
