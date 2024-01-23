@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Card, Image } from 'react-bootstrap';
 
 const About = () => (
   <>
@@ -8,7 +8,7 @@ const About = () => (
     </Container>
     <Container className="p-3">
       <Row>
-        <Col className="text-center">
+        <Col className="align-middle text-center">
           <h2>Transforming Volunteer Engagement</h2>
         </Col>
         <Col>
@@ -21,17 +21,34 @@ const About = () => (
         </Col>
       </Row>
     </Container>
-    <Container>
-      <Row>
-        <h2>The Voluntree:</h2>
-        <Col>
-          <h3>Makes Working Together Simple</h3>
+    <Container fluid className="color2 p-3">
+      <Row className="m-5">
+        <h1>The Voluntree:</h1>
+      </Row>
+      <Row className="m-5 align-items-center align-content-center text-center">
+        <Col className="col-4">
+          <Card className="rounded-0 d-flex justify-content-center align-items-center text-center p-3" style={{ height: '325px' }}>
+            <h3>Makes Working Together Simple</h3>
+            <br />
+            <Image src="./images/workTogetherAbout.png" alt="People working together" className="d-block" style={{ width: '32%' }} />
+            <p>Removes barriers for volunteers to connect.</p>
+          </Card>
         </Col>
-        <Col>
-          <h3>Benifits Your Community</h3>
+        <Col className="col-4">
+          <Card className="rounded-0 d-flex justify-content-center align-items-center text-center p-3" style={{ height: '325px' }}>
+            <h3>Unlocks Your Potential</h3>
+            <br />
+            <Image src="./images/growthAbout.png" alt="People working together" className="d-block" style={{ width: '32%' }} />
+            <p>Provides opportunities to grow and learn</p>
+          </Card>
         </Col>
-        <Col>
-          <h3>Unlocks Your Potential</h3>
+        <Col className="col-4">
+          <Card className="rounded-0 d-flex justify-content-center align-items-center text-center p-3" style={{ height: '325px' }}>
+            <h3>Benefits Your Community</h3>
+            <br />
+            <Image src="./images/benifitCommunityAbout.png" alt="People working together" className="d-block" style={{ width: '45%' }} />
+            <p>Creates a lasting positive impact</p>
+          </Card>
         </Col>
       </Row>
     </Container>
