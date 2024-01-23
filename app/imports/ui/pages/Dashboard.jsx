@@ -9,7 +9,6 @@ Chart.register(ArcElement);
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
 Chart.register(BarElement);
-Chart.register(BarElement);
 
 /* A simple static component to render some text for the landing page. */
 const color1 = 'rgb(2, 81, 89)';
@@ -67,12 +66,51 @@ const Dashboard = () => (
         <Row className="justify-content-center">
           <Image className="circle" src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0022/1594/brand.gif?itok=z5CHdxN7" alt="habitat for humanity" />
           <h2>Habitat for humanity</h2>
+          <h3> Company Summary:</h3>
+          <p>
+            
+          </p>
         </Row>
-        <Container>
-          <Card xs={12} md="auto"><Card.Body> <Doughnut data={doughnutData} /></Card.Body></Card>
-          <Card xs={12} md="auto"><Card.Body> <Bar data={barData} /></Card.Body></Card>
+        <Row>
+          <Col xs={12} md={4}>
+            <Card >
+              <Card.Body>
+                <Doughnut data={doughnutData}/>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={12} md={4}>
+            <Card >
+              <Card.Body>
+                <Doughnut data={doughnutData}/>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={12} md={4}>
+            <Card >
+              <Card.Body>
+                <Doughnut data={doughnutData}/>
+              </Card.Body>
+            </Card>
+          </Col>
 
-        </Container>
+        </Row>
+        <Row>
+          <Col xs={12} md={6}>
+            <Card >
+              <Card.Body>
+                <Bar data={barData}/>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={12} md={6}>
+            <Card >
+              <Card.Body>
+                <Bar data={barData}/>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
 
       </Col>
     </Row>
