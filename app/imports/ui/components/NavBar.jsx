@@ -13,9 +13,8 @@ const NavBar = () => {
   const { currentUser } = useTracker(() => ({
     currentUser: Meteor.user() ? Meteor.user().username : '',
   }), []);
-  const menuStyle = { marginBottom: '10px' };
   return (
-    <Navbar className="color1" bg="light" expand="lg" style={menuStyle}>
+    <Navbar className="color1" bg="light" expand="lg">
       <Container>
         {currentUser ? (
           <Navbar.Brand id={COMPONENT_IDS.NAVBAR_HOME_PAGE} as={NavLink} to="/home" key="Home">
