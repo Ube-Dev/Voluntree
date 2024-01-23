@@ -37,6 +37,9 @@ body {
 .circle {
   border-radius: 100%;
   max-width:100px;
+  border: solid;
+  border-color: var(--color4);
+  border-width: 2em;
 }
 
 .color1 {

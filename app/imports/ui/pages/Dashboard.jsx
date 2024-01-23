@@ -68,7 +68,7 @@ const Dashboard = () => (
           <h2>Habitat for humanity</h2>
           <h3> Company Summary:</h3>
           <p>
-            
+
           </p>
         </Row>
         <Row>
