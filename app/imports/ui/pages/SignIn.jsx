@@ -51,7 +51,7 @@ const SignIn = () => {
           </Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
-              <Card.Body>
+              <Card.Body className="rounded login">
                 <TextField id={COMPONENT_IDS.SIGN_IN_FORM_EMAIL} name="email" placeholder="E-mail address" />
                 <TextField id={COMPONENT_IDS.SIGN_IN_FORM_PASSWORD} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
@@ -59,8 +59,8 @@ const SignIn = () => {
               </Card.Body>
             </Card>
           </AutoForm>
-          <Alert variant="secondary">
-            <Link to="/signup">Click here to Register</Link>
+          <Alert variant="secondary" className="under-login">
+            <Link to="/signup" className="under-login">Click here to Register</Link>
           </Alert>
           {error === '' ? (
             ''

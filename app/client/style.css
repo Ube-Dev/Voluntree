@@ -52,6 +52,12 @@ body {
   background-color: var(--color5);
 }
 
-.btn-primary {
-  
+.login {
+  background-color: var(--color2);
+  color: white !important;
+}
+
+.under-login {
+  background-color: var(--color1) !important;
+  color: white !important;
 }
