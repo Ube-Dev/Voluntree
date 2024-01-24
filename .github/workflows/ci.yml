@@ -1,4 +1,4 @@
-name: ci-meteor-application-template-production
+name: Voluntree
 
 on:
   push:
