@@ -19,6 +19,7 @@ import ManageDatabase from '../pages/ManageDatabase';
 import Dashboard from '../pages/Dashboard';
 import HomePage from '../pages/HomePage';
 import About from '../pages/About';
+import AllEventPage from '../pages/AllEventPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/Events" element={<AllEventPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
