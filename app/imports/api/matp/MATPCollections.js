@@ -3,6 +3,9 @@ import { AdminProfiles } from '../user/AdminProfileCollection';
 import { UserProfiles } from '../user/UserProfileCollection';
 import { Events } from '../event/EventCollection';
 import { OrganizationProfiles } from '../user/OrganizationProfileCollection';
+import { Skills } from '../skill/SkillCollection';
+import { UserSkills } from '../skill/UserSkillCollection';
+import { RequiredSkills } from '../skill/RequiredSkillCollection';
 
 class MATPClass {
   collections;
@@ -18,6 +21,9 @@ class MATPClass {
       UserProfiles,
       Events,
       OrganizationProfiles,
+      Skills,
+      UserSkills,
+      RequiredSkills,
     ];
     /*
      * A list of collection class instances in the order required for them to be sequentially loaded from a file.
@@ -26,6 +32,9 @@ class MATPClass {
       AdminProfiles,
       UserProfiles,
       OrganizationProfiles,
+      Skills,
+      UserSkills,
+      RequiredSkills,
       Events,
     ];
 
