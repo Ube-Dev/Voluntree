@@ -4,28 +4,28 @@ import { check } from 'meteor/check';
 import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
 
-export const requiredSkillPublications = {
-  requiredSkill: 'requiredSkill',
+export const userSkillPublications = {
+  userSkill: 'userSkill',
 };
 
-class RequiredSkillCollection extends BaseCollection {
+class UserSkillCollection extends BaseCollection {
   constructor() {
-    super('requiredSkills', new SimpleSchema({
-      requiredSkills: { type: String, index: true, unique: true },
-      event: { type: String },
+    super('userSkills', new SimpleSchema({
+      skills: { type: String, index: true, unique: true },
+      user: { type: String },
     }));
   }
 
   /**
-   * Defines a new requiredSkill skill.
-   * @param requiredSkills the name of the skill.
-   * @param event the name of the event that requires these requiredSkills.
+   * Defines a new userSkill skill.
+   * @param skills the name of the skill.
+   * @param user the name of the user that has these skills.
    * @return {String} the docID of the new document.
    */
-  define({ requiredSkills, event }) {
+  define({ skills, user }) {
     const docID = this._collection.insert({
-      requiredSkills,
-      event,
+      skills,
+      user,
     });
     return docID;
   }
@@ -33,16 +33,16 @@ class RequiredSkillCollection extends BaseCollection {
   /**
    * Updates the given document.
    * @param docID the id of the document to update.
-   * @param requiredSkills the new skill names (optional).
-   * @param event the new event (optional).
+   * @param skills the new skill names (optional).
+   * @param user the new user (optional).
    */
-  update(docID, { requiredSkills, event }) {
+  update(docID, { skills, user }) {
     const updateData = {};
-    if (requiredSkills) {
-      updateData.requiredSkills = requiredSkills;
+    if (skills) {
+      updateData.skills = skills;
     }
-    if (event) {
-      updateData.event = event;
+    if (user) {
+      updateData.user = user;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -65,10 +65,10 @@ class RequiredSkillCollection extends BaseCollection {
    */
   publish() {
     if (Meteor.isServer) {
-      // get the requiredSkillCollection instance.
+      // get the userSkillCollection instance.
       const instance = this;
       /** This subscription publishes the entire collection */
-      Meteor.publish(requiredSkillPublications.requiredSkill, function publish() {
+      Meteor.publish(userSkillPublications.userSkill, function publish() {
         if (this.userId) {
           return instance._collection.find();
         }
@@ -78,11 +78,11 @@ class RequiredSkillCollection extends BaseCollection {
   }
 
   /**
-   * Subscription method for requiredSkill owned by the current user.
+   * Subscription method for userSkill owned by the current user.
    */
   subscribeRequiredSkill() {
     if (Meteor.isClient) {
-      return Meteor.subscribe(requiredSkillPublications.requiredSkill);
+      return Meteor.subscribe(userSkillPublications.userSkill);
     }
     return null;
   }
@@ -100,17 +100,17 @@ class RequiredSkillCollection extends BaseCollection {
   /**
    * Returns an object representing the definition of docID in a format appropriate to the restoreOne or define function.
    * @param docID
-   * @return { requiredSkills, event }
+   * @return { skills, user }
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const requiredSkills = doc.requiredSkills;
-    const event = doc.event;
-    return { requiredSkills, event };
+    const skills = doc.skills;
+    const user = doc.user;
+    return { skills, user };
   }
 }
 
 /**
  * Provides the singleton instance of this class to all other entities.
  */
-export const RequiredSkills = new RequiredSkillCollection();
+export const UserSkills = new UserSkillCollection();
