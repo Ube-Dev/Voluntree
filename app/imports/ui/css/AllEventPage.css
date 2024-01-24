@@ -18,12 +18,21 @@
 }
 
 .skill-button {
-  background-color: rgba(0,123, 255, 0); /* Set your desired color and opacity */
+  background-color: transparent;
+  border: transparent;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skill-button:hover,
+.skill-button:focus {
+  background-color: transparent;
   color: black;
   padding-right: 10px;
-  border: none;
+  border: transparent;
   text-decoration: underline;
 }
+
 .flex-wrap-buttons {
   max-width: inherit;
   display: -webkit-box;
@@ -40,5 +49,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: visible;
+  text-overflow: ellipsis; 
   white-space: normal;
 }
