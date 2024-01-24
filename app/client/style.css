@@ -42,7 +42,7 @@ body {
 
 .circle {
   border-radius: 100%;
-  width:100%;
+  width:75%;
   border: solid;
   border-color: var(--color4);
   border-width: 5px;
