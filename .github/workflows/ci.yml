@@ -1,4 +1,4 @@
-name: Voluntree
+name: ci-Voluntree
 
 on:
   push:
