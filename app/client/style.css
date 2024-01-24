@@ -16,7 +16,9 @@
  See https://getbootstrap.com/docs/5.2/customize/css-variables/
  */
 body {
-  --bs-light-rgb: var(--matr-navbar-bg-rgb);
+  --bs-dark: var(--matr-navbar-bg);
+  --bs-dark-rgb: var(--matr-navbar-bg-rgb);
+  --bs-body-bg: #ffffff;
 }
 
 /* Set the SignIn and SignUp alerts background. */
@@ -32,28 +34,76 @@ body {
   padding-bottom: 20px;
 }
 
-.circle
-{
+.circle {
   border-radius: 100%;
-  max-width:100px;
+  width:100%;
+  border: solid;
+  border-color: var(--color4);
+  border-width: 5px;
 }
-.color1
-{
+
+.color1 {
   background-color: var(--color1);
+  color: white;
 }
-.color2
-{
+
+.color2 {
   background-color: var(--color2);
+  color: white;
 }
-.color3
-{
+
+.color3 {
   background-color: var(--color3);
+  color: white;
 }
-.color4
-{
+
+.color4 {
   background-color: var(--color4);
+  color: white;
 }
-.color5
-{
+
+.color5 {
   background-color: var(--color5);
+}
+
+.landing-background {
+  background: url('/images/Doing-Volunteer-Work.jpg') fixed center;
+  background-size: cover;
+  color: white;
+  min-height: 65vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.1);
+  object-fit: contain;
+}
+
+.btn-outline-light-landing {
+  color: white!important;
+  border-color: white!important;
+  font-size: 20px !important;
+  padding: 12px 26px !important;
+  transition: all 0.3s ease-out !important;
+}
+
+.btn-light {
+  font-size: 20px !important;
+  padding: 12px 26px !important;
+  transition: all 0.3s ease-out !important;
+}
+
+.about-background {
+  background: url('/images/beachCleanAbout.jpg') center;
+  background-size: cover;
+  color: white;
+  height: 57vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.1);
+  object-fit: contain;
 }
