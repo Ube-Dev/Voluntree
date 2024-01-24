@@ -7,8 +7,8 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 const SignOut = () => {
   Meteor.logout();
   return (
-    <Container id={PAGE_IDS.SIGN_OUT} className="justify-content-center py-3">
-      <Col className="text-center py-3">
+    <Container id={PAGE_IDS.SIGN_OUT} className="justify-content-center py-3 login-background" fluid>
+      <Col className="text-center py-3 login-text">
         <h2>You are signed out.</h2>
         <Button href="/" className="m-2">Home</Button>
         <Button href="signin" className="m-2">Sign in</Button>

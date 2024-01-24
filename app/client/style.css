@@ -10,6 +10,7 @@
   --color3:#04BF9D;
   --color4:#6EBF34;
   --color5:#f2f2f2;
+  --color6: #032f34;
 }
 
 /* Change bootstrap variable values.
@@ -21,7 +22,7 @@ body {
 
 /* Set the SignIn and SignUp alerts background. */
 #signin-page .alert-light, #signup-page .alert-light {
-  --bs-alert-bg: var(--matr-navbar-bg);
+  --bs-alert-bg: var(--color1);
 }
 
 /* Define custom styles */
@@ -57,11 +58,21 @@ body {
   color: white !important;
 }
 
+.login-text {
+  color: white !important;
+}
+
 .under-login {
   background-color: var(--color2) !important;
   color: white !important;
 }
 
 .login-background {
-  background-color: darkslategrey;
+  background-color: var(--color6);
+  height: 500px;
+}
+
+#signup-background {
+  background-color: var(--color6);
+  height: 600px;
 }

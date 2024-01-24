@@ -53,10 +53,10 @@ const SignUp = () => {
     return <Navigate to="/add" />;
   }
   return (
-    <Container id={PAGE_IDS.SIGN_UP} className="py-3">
-      <Row className="justify-content-center">
+    <Container id={PAGE_IDS.SIGN_UP} fluid>
+      <Row className="justify-content-center py-3" id="signup-background">
         <Col xs={5}>
-          <Col className="text-center">
+          <Col className="text-center py-2 login-text">
             <h2>Register your account</h2>
           </Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
