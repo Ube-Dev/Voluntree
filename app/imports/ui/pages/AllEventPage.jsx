@@ -7,6 +7,7 @@ import { TagFill } from 'react-bootstrap-icons';
 import SearchBar from '../components/SearchBar';
 import '../css/AllEventPage.css';
 import CommitToEvent from '../components/CommitToEvent';
+import { PAGE_IDS } from '../utilities/PageIDs';
 // samples for display purposes.
 const img_path = '/images/workTogetherAbout.png';
 const sample_data = {
@@ -60,7 +61,7 @@ const AllEventPage = () => {
 
   return (
     <>
-      <Container className="d-flex justify-content-center mt-3">
+      <Container id={PAGE_IDS.EVENTS} className="d-flex justify-content-center mt-3">
         <SearchBar />
       </Container>
       <Container>

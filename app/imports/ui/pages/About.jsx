@@ -1,9 +1,10 @@
 import React from 'react';
 import { Col, Container, Row, Card, Image } from 'react-bootstrap';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 const About = () => (
   <>
-    <Container fluid className="about-background p-0">
+    <Container id={PAGE_IDS.ABOUT} fluid className="about-background p-0">
       <h1>Who We Are</h1>
     </Container>
     <Container className="p-3">

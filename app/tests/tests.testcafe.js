@@ -6,6 +6,8 @@ import { dashboardPage } from './dashboard.page';
 import { navBar } from './navbar.component';
 import { faqPage } from './faq.page';
 import { homePage } from './home.page';
+import { aboutPage } from './about.page';
+import { eventsPage } from './events.page';
 
 /* global fixture:false, test:false */
 
@@ -43,6 +45,22 @@ test('Test that Home page works', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
+});
+
+test('Test that about page works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoAboutPage();
+  await aboutPage.isDisplayed();
+});
+
+test('Test that events page works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoEventsPage();
+  await eventsPage.isDisplayed();
 });
 
 test('Test that signin and signout work', async () => {

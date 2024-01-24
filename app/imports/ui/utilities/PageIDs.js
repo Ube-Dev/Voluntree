@@ -4,6 +4,8 @@ export const PAGE_IDS = {
   HOME_PAGE: 'home-page',
   DASHBOARD: 'dashboard',
   MANAGE_DATABASE: 'manage-database',
+  ABOUT: 'about',
+  EVENTS: 'events',
   NOT_AUTHORIZED: 'not-authorized',
   NOT_FOUND: 'not-found',
   SIGN_IN: 'sign-in',

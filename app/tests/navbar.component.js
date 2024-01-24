@@ -64,7 +64,7 @@ class NavBar {
     await t.click(`#${COMPONENT_IDS.NAVBAR_HOME_PAGE}`);
   }
 
-  /* Go to the manage database page. Must be adimin. */
+  /* Go to the manage database page. Must be admin. */
   async gotoManageDatabasePage() {
     const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
     if (!visible) {
@@ -103,6 +103,26 @@ class NavBar {
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_HOME_PAGE}`);
+  }
+
+  /* Go to the about page. */
+  async gotoAboutPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ABOUT_PAGE}`);
+  }
+
+  /* Go to the events page. */
+  async gotoEventsPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_EVENTS_PAGE}`);
   }
 }
 
