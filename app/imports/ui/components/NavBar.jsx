@@ -18,11 +18,11 @@ const NavBar = () => {
       <Container>
         {currentUser ? (
           <Navbar.Brand id={COMPONENT_IDS.NAVBAR_HOME_PAGE} as={NavLink} to="/home" key="Home">
-            <Image src="/images/voluntree-logo.png" width="100px" />
+            <Image src="/images/voluntreeText1.png" width="150px" />
           </Navbar.Brand>
         ) : (
           <Navbar.Brand id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/">
-            <Image src="/images/voluntree-logo.png" width="100px" />
+            <Image src="/images/voluntreeText1.png" width="150px" />
           </Navbar.Brand>
         )}
         <Navbar.Toggle aria-controls={COMPONENT_IDS.NAVBAR_COLLAPSE} />
