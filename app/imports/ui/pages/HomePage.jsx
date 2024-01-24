@@ -12,35 +12,6 @@ const HomePage = () => (
             <Card.Body>
               <h2>Event Search</h2>
               <SearchBar />
-              {/* <Form className="mb-3"> */}
-              {/*  <Form.Group controlId="formEventSearch" className="d-flex align-items-center"> */}
-              {/*    <Form.Control type="text" placeholder="Search for events..." style={{ width: '500px' }} className="mr-2" /> */}
-              {/*    /!* Filter Dropdowns *!/ */}
-              {/*    <Dropdown> */}
-              {/*      <Dropdown.Toggle variant="secondary" id="dropdown-basic"> */}
-              {/*        Select Distance */}
-              {/*      </Dropdown.Toggle> */}
-              {/*      <Dropdown.Menu> */}
-              {/*        <Dropdown.Item href="#/action-1">5 miles</Dropdown.Item> */}
-              {/*        <Dropdown.Item href="#/action-2">10 miles</Dropdown.Item> */}
-              {/*        <Dropdown.Item href="#/action-3">20 miles</Dropdown.Item> */}
-              {/*      </Dropdown.Menu> */}
-              {/*    </Dropdown> */}
-              {/*    <Dropdown> */}
-              {/*      <Dropdown.Toggle variant="secondary" id="dropdown-basic"> */}
-              {/*        Select Organization */}
-              {/*      </Dropdown.Toggle> */}
-              {/*      <Dropdown.Menu> */}
-              {/*        <Dropdown.Item href="#/action-1">Organization 1</Dropdown.Item> */}
-              {/*        <Dropdown.Item href="#/action-2">Organization 2</Dropdown.Item> */}
-              {/*        <Dropdown.Item href="#/action-3">Organization 3</Dropdown.Item> */}
-              {/*      </Dropdown.Menu> */}
-              {/*    </Dropdown> */}
-              {/*    <Button variant="secondary" type="submit" className="ml-2"> */}
-              {/*      Search */}
-              {/*    </Button> */}
-              {/*  </Form.Group> */}
-              {/* </Form> */}
             </Card.Body>
           </Card>
         </div>

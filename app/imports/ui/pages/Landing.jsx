@@ -6,7 +6,7 @@ const Landing = () => (
   <>
     <Container fluid id={PAGE_IDS.LANDING} className="landing-background p-0">
       <Row className="align-middle text-center">
-        <Col xs={12} className="justify-content-center">
+        <Col xs={12} className="justify-content-center mt-4">
           <Image src="/images/voluntree.png" alt="Voluntree Logo" className="mx-auto d-block" style={{ width: '75%' }} />
           <h2>Working together made simple</h2>
         </Col>
