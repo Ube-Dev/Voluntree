@@ -308,6 +308,7 @@ I20220713-10:33:55.530(-10)? --------------------------------
 I20220713-10:33:55.531(-10)? 
 I20220713-10:33:55.531(-10)? 
 I20220713-10:33:55.531(-10)? 
+I20220713-10:33:55.531(-10)?   SkillCollection
 I20220713-10:33:55.531(-10)?   EventCollection
 I20220713-10:33:55.544(-10)? Monti APM: completed instrumenting the app
 => Started your app.
@@ -396,6 +397,7 @@ I20220713-10:49:00.706(-10)? HeadlessChrome/104.0.5109.0
 W20220713-10:49:01.574(-10)? (STDERR) Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
 W20220713-10:49:02.092(-10)? (STDERR) HMR: connected
 W20220713-10:49:02.143(-10)? (STDERR) 
+W20220713-10:49:02.144(-10)? (STDERR)   SkillCollection Meteor Methods
 W20220713-10:49:02.144(-10)? (STDERR)   EventCollection Meteor Methods
 W20220713-10:49:02.670(-10)? (STDERR)     ✓ Can define, update, and removeIt (525ms)
 W20220713-10:49:02.671(-10)? (STDERR)   AdminProfileCollection Meteor Methods
@@ -420,7 +422,7 @@ I20220713-10:49:03.758(-10)? --------------------------------
 
 1. `test-acceptance-development` This script runs all the acceptance test against a running development system.
 2. `test-acceptance-development-single` This script runs a single acceptance test against a running development system.
-3. `test-acceptance-ci` This script runs all the acceptance test durning continuous integration.
+3. `test-acceptance-ci` This script runs all the acceptance test during continuous integration.
 
 In the development acceptance tests, TestCafe opens a browser and you can watch the tests.
 

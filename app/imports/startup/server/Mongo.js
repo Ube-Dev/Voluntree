@@ -1,17 +1,36 @@
 import { Meteor } from 'meteor/meteor';
 import { Events } from '../../api/event/EventCollection';
+import { addEventMethod } from '../both/Methods';
 /* eslint-disable no-console */
-
-// initialize the database with a default event document
-function addEvent(event) {
-  console.log(`  Adding: ${event.title}`);
-  Events.define(event);
-}
 
 // initialize the EventsCollection if empty
 if (Events.count() === 0) {
   if (Meteor.settings.defaultEvent) {
     console.log('Creating default event.');
-    Meteor.settings.defaultEvent.forEach(event => addEvent(event));
+    Meteor.settings.defaultEvent.forEach(({
+      title,
+      image,
+      description,
+      location,
+      time,
+      frequency,
+      accessibilities,
+      requirements,
+      impact,
+      eventPlanner,
+      requiredSkills,
+    }) => Meteor.call(addEventMethod, {
+      title,
+      image,
+      description,
+      location,
+      time,
+      frequency,
+      accessibilities,
+      requirements,
+      impact,
+      eventPlanner,
+      requiredSkills,
+    }));
   }
 }
