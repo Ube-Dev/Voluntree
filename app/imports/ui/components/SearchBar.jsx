@@ -1,28 +1,24 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, Form } from 'react-bootstrap';
+import { Dropdown, Form, Card, Row, Col, Container } from 'react-bootstrap'; // Import Col from react-bootstrap
 import Fuse from 'fuse.js';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Events } from '../../api/event/EventCollection';
 import LoadingSpinner from './LoadingSpinner';
+import CommitToEvent from './CommitToEvent';
 
 const SearchBar = () => {
-
   const [searchQuery, setSearchQuery] = useState('');
 
   const { ready, events } = useTracker(() => {
-    // Note that this subscription will get cleaned up
-    // when your component is unmounted or deps change.
-    // Get access to Event documents.
     const subscription = Events.subscribeEvent();
-    // Determine if the subscription is ready
     const rdy = subscription.ready();
-    // Get the event documents
     const items = Events.find({}).fetch();
     return {
       events: items,
       ready: rdy,
     };
   }, []);
+
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -42,13 +38,20 @@ const SearchBar = () => {
       const result = fuse.search(searchQuery);
 
       return (
-        <div>
+        <Container>
           <Form.Group controlId="formEventSearch" className="d-flex align-items-center">
-            <Form.Control type="text" placeholder="Search for events..." style={{ width: '500px' }} className="mr-2" value={searchQuery} onChange={handleSearchChange} />
+            <Form.Control
+              type="text"
+              placeholder="Search for events..."
+              style={{ width: '500px' }}
+              className="mr-2"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
             {/* Filter Dropdowns */}
-            <Dropdown>
+            <Dropdown className="px-2">
               <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                Select Distance
+                Distance
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">5 miles</Dropdown.Item>
@@ -56,39 +59,42 @@ const SearchBar = () => {
                 <Dropdown.Item href="#/action-3">20 miles</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Dropdown>
-              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                Select Organization
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Organization 1</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Organization 2</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Organization 3</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Button variant="secondary" type="submit" className="ml-2">
-              Search
-            </Button>
           </Form.Group>
-          <ul>
+          <Row className="p-3">
             {result.map((item) => (
-              <li key={item.item._id}>
-                <p>{item.item.title}</p>
-              </li>
+              <Col key={item.item._id} md={4} className="py-2">
+                <Card style={{ maxHeight: '400px' }}>
+                  <Card.Body>
+                    <Card.Img variant="top" src={item.item.image} />
+                    <Card.Title>{item.item.title}</Card.Title>
+                    <Card.Text style={{ height: '150px', overflow: 'auto' }}>{item.item.description}</Card.Text>
+                    <Row className="py-1">
+                      <Col>
+                        Location:
+                        <Card.Text>{item.item.location}</Card.Text>
+                      </Col>
+                      <Col>
+                        Date:
+                        <Card.Text>{item.item.time.date}</Card.Text>
+                      </Col>
+                    </Row>
+                    Required Skills:
+                    <Card.Text>{item.item.requirements}</Card.Text>
+                    <CommitToEvent event={item.item} />
+                  </Card.Body>
+                </Card>
+              </Col>
             ))}
-          </ul>
-        </div>
+          </Row>
+
+        </Container>
       );
     }
-    // Handle the case when the collection is empty
-    return (
-      <p>No events found</p>
-    );
+
+    return <p>No events found</p>;
   }
 
-  return (
-    <LoadingSpinner />
-  );
+  return <LoadingSpinner />;
 };
 
 export default SearchBar;
