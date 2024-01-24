@@ -1,5 +1,6 @@
-/* Use Open Sans as the default sans serif font. */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,700|Source+Code+Pro:300,400,500,700");
+/* Use Quicksand as the default sans serif font. */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 
 /* Set up some CSS variables to theme the application. */
 :root {
@@ -11,6 +12,11 @@
   --color4:#6EBF34;
   --color5:#f2f2f2;
 }
+
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
 
 /* Change bootstrap variable values.
  See https://getbootstrap.com/docs/5.2/customize/css-variables/
