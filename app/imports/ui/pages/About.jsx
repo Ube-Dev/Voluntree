@@ -9,7 +9,7 @@ const About = () => (
     <Container className="p-3">
       <Row>
         <Col className="align-middle text-center">
-          <h2>Transforming Volunteer Engagement</h2>
+          <h1>Rooted in the Mission to Spread Seeds of Giving Worldwide</h1>
         </Col>
         <Col>
           <p>
@@ -52,11 +52,16 @@ const About = () => (
         </Col>
       </Row>
     </Container>
-    <Container>
+    <Container className="p-3">
       <h1>Our Team</h1>
 
+      <h3>Sara Kenley</h3>
+      <p>Founder</p>
     </Container>
-    <h2> asdf</h2>
+    <Container>
+      <h1>Contact Us</h1>
+      <p>sarakenley@thevoluntree.com</p>
+    </Container>
   </>
 );
 
