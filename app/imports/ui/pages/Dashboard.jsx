@@ -1,13 +1,16 @@
 import React from 'react';
-import { Col, Container, Image, Row, Card, Nav, Navbar, NavItem } from 'react-bootstrap';
-import { Doughnut, Bar } from 'react-chartjs-2';
-import { Chart, ArcElement, CategoryScale, LinearScale, BarElement } from 'chart.js';
+import { Col, Container, Image, Row, Card, Nav, Navbar } from 'react-bootstrap';
+import { Doughnut, Bar, Line, Pie, PolarArea } from 'react-chartjs-2';
+import { Chart, ArcElement, CategoryScale, LinearScale, BarElement, PointElement, LineElement, RadialLinearScale } from 'chart.js';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
 Chart.register(ArcElement);
 Chart.register(CategoryScale);
 Chart.register(LinearScale);
 Chart.register(BarElement);
+Chart.register(PointElement);
+Chart.register(LineElement);
+Chart.register(RadialLinearScale);
 
 /* A simple static component to render some text for the landing page. */
 const color1 = 'rgb(2, 81, 89)';
@@ -28,6 +31,21 @@ const doughnutData = {
       color1,
       color2,
       color3,
+    ],
+    hoverOffset: 4,
+  }],
+};
+const lineData = {
+  labels: ['January', 'February', 'March', 'April', 'May'],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [55, 49, 44, 24, 15],
+    backgroundColor: [
+      color1,
+      color2,
+      color3,
+      color4,
+      color5,
     ],
     hoverOffset: 4,
   }],
@@ -93,14 +111,14 @@ const Dashboard = () => (
             <Col xs={12} md={4}>
               <Card>
                 <Card.Body>
-                  <Doughnut data={doughnutData} />
+                  <PolarArea data={barData} />
                 </Card.Body>
               </Card>
             </Col>
             <Col xs={12} md={4}>
               <Card>
                 <Card.Body>
-                  <Doughnut data={doughnutData} />
+                  <Pie data={doughnutData} />
                 </Card.Body>
               </Card>
             </Col>
@@ -117,7 +135,7 @@ const Dashboard = () => (
             <Col xs={12} md={6}>
               <Card>
                 <Card.Body>
-                  <Bar data={barData} />
+                  <Line data={lineData} />
                 </Card.Body>
               </Card>
             </Col>
