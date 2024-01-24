@@ -13,9 +13,8 @@ const NavBar = () => {
   const { currentUser } = useTracker(() => ({
     currentUser: Meteor.user() ? Meteor.user().username : '',
   }), []);
-  const menuStyle = { marginBottom: '10px' };
   return (
-    <Navbar className="color1" bg="light" expand="lg" style={menuStyle}>
+    <Navbar className="color1" bg="light" expand="lg">
       <Container>
         {currentUser ? (
           <Navbar.Brand id={COMPONENT_IDS.NAVBAR_HOME_PAGE} as={NavLink} to="/home" key="Home">
@@ -32,7 +31,7 @@ const NavBar = () => {
             {currentUser ? (
               <Nav.Link id={COMPONENT_IDS.NAVBAR_HOME_PAGE} as={NavLink} to="/home" key="Home">Home</Nav.Link>
             ) : ''}
-            <Nav.Link id={COMPONENT_IDS.NAVBAR_ABOUT_PAGE} as={NavLink} to="/About" key="About">About</Nav.Link>
+            <Nav.Link id={COMPONENT_IDS.NAVBAR_ABOUT_PAGE} as={NavLink} to="/about" key="About">About</Nav.Link>
             <Nav.Link id={COMPONENT_IDS.NAVBAR_FAQ} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>
             <Nav.Link id={COMPONENT_IDS.NAVBAR_EVENTS_PAGE} as={NavLink} to="/Events" key="Events">Find Events</Nav.Link>
             {currentUser ? ([

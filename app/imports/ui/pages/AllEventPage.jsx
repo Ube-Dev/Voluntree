@@ -5,6 +5,7 @@ import { Container, Card, Button, ButtonGroup, Row, Col } from 'react-bootstrap'
 // import EventCard from '../components/EventCard';
 import SearchBar from '../components/SearchBar';
 import '../css/AllEventPage.css';
+import CommitToEvent from '../components/CommitToEvent';
 // samples for display purposes.
 const events = {
   1: {
@@ -73,6 +74,7 @@ const AllEventPage = () => {
                   </ButtonGroup>
                 </Card.Body>
                 <Card.Footer>
+                  <CommitToEvent />
                   <small className="text-muted">{event.date}</small>
                 </Card.Footer>
               </Card>

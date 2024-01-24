@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 import { check } from 'meteor/check';
-import { Roles } from 'meteor/alanning:roles';
 import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
 
@@ -131,23 +130,15 @@ class EventCollection extends BaseCollection {
 
   /**
    * Default publication method for entities.
-   * It publishes the entire collection for admin and just the event associated to an owner.
+   * It publishes the entire collection for all users.
    */
   publish() {
     if (Meteor.isServer) {
       // get the EventCollection instance.
       const instance = this;
-      /** This subscription publishes only the documents associated with the logged in user */
+      // this subscription publishes the entire collection
       Meteor.publish(eventPublications.event, function publish() {
         return instance._collection.find();
-      });
-
-      /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
-      Meteor.publish(eventPublications.eventAdmin, function publish() {
-        if (this.userId && Roles.userIsInRole(this.userId, ROLE.ADMIN)) {
-          return instance._collection.find();
-        }
-        return this.ready();
       });
     }
   }
