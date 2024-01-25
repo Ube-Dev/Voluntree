@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdown, Form, Card, Row, Col, Container } from 'react-bootstrap'; // Import Col from react-bootstrap
+import { Form, Card, Row, Col, Container, Pagination } from 'react-bootstrap';
 import Fuse from 'fuse.js';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Events } from '../../api/event/EventCollection';
@@ -8,6 +8,8 @@ import CommitToEvent from './CommitToEvent';
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const eventsPerPage = 9;
 
   const { ready, events } = useTracker(() => {
     const subscription = Events.subscribeEvent();
@@ -21,6 +23,7 @@ const SearchBar = () => {
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+    setCurrentPage(1); // Reset to the first page when the search query changes
   };
 
   if (ready) {
@@ -30,16 +33,22 @@ const SearchBar = () => {
       includeMatches: true,
       findAllMatches: true,
       useExtendedSearch: false,
-      keys: ['title'],
+      keys: ['title', 'organization', 'description', 'location', 'requirements'],
     };
 
     if (events && events.length > 0) {
       const fuse = new Fuse(events, fuseOptions);
       const result = fuse.search(searchQuery);
 
+      const indexOfLastEvent = currentPage * eventsPerPage;
+      const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+      const currentEvents = result.slice(indexOfFirstEvent, indexOfLastEvent);
+
+      const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
       return (
         <Container>
-          <Form.Group controlId="formEventSearch" className="d-flex align-items-center">
+          <Form.Group controlId="formEventSearch">
             <Form.Control
               type="text"
               placeholder="Search for events..."
@@ -48,20 +57,9 @@ const SearchBar = () => {
               value={searchQuery}
               onChange={handleSearchChange}
             />
-            {/* Filter Dropdowns */}
-            <Dropdown className="px-2">
-              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                Distance
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">5 miles</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">10 miles</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">20 miles</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
           </Form.Group>
           <Row className="p-3">
-            {result.map((item) => (
+            {currentEvents.map((item) => (
               <Col key={item.item._id} md={4} className="py-2">
                 <Card style={{ maxHeight: '400px' }}>
                   <Card.Body>
@@ -86,7 +84,20 @@ const SearchBar = () => {
               </Col>
             ))}
           </Row>
-
+          {/* Pagination buttons */}
+          <Container>
+            <Pagination>
+              <Pagination.First onClick={() => paginate(1)} />
+              <Pagination.Prev onClick={() => paginate(currentPage - 1)} />
+              {Array.from({ length: Math.ceil(result.length / eventsPerPage) }, (_, index) => (
+                <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
+                  {index + 1}
+                </Pagination.Item>
+              ))}
+              <Pagination.Next onClick={() => paginate(currentPage + 1)} />
+              <Pagination.Last onClick={() => paginate(Math.ceil(result.length / eventsPerPage))} />
+            </Pagination>
+          </Container>
         </Container>
       );
     }
