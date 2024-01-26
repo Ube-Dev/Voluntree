@@ -48,16 +48,21 @@ const SearchBar = () => {
 
       return (
         <Container>
-          <Form.Group controlId="formEventSearch">
-            <Form.Control
-              type="text"
-              placeholder="Search for events..."
-              style={{ width: '500px' }}
-              className="mr-2"
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-          </Form.Group>
+          <Row className="d-flex justify-content-center text-center">
+            <h1>Search Events</h1>
+          </Row>
+          <Container className="d-flex justify-content-center">
+            <Form.Group controlId="formEventSearch">
+              <Form.Control
+                type="text"
+                placeholder="Let's help...."
+                style={{ width: '600px', minWidth: '300px' }}
+                className="align-content-center"
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+            </Form.Group>
+          </Container>
           <Row className="p-3">
             {currentEvents.map((item) => (
               <Col key={item.item._id} md={4} className="py-2">
@@ -85,7 +90,7 @@ const SearchBar = () => {
             ))}
           </Row>
           {/* Pagination buttons */}
-          <Container>
+          <Container className="d-flex justify-content-center">
             <Pagination>
               <Pagination.First onClick={() => paginate(1)} />
               <Pagination.Prev onClick={() => paginate(currentPage - 1)} />
