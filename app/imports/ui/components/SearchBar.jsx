@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
-import { Button, Dropdown, Form } from 'react-bootstrap';
+import { Form, Card, Row, Col, Container, Pagination } from 'react-bootstrap';
 import Fuse from 'fuse.js';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Events } from '../../api/event/EventCollection';
 import LoadingSpinner from './LoadingSpinner';
+import CommitToEvent from './CommitToEvent';
 
 const SearchBar = () => {
-
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const eventsPerPage = 9;
 
   const { ready, events } = useTracker(() => {
-    // Note that this subscription will get cleaned up
-    // when your component is unmounted or deps change.
-    // Get access to Event documents.
     const subscription = Events.subscribeEvent();
-    // Determine if the subscription is ready
     const rdy = subscription.ready();
-    // Get the event documents
     const items = Events.find({}).fetch();
     return {
       events: items,
       ready: rdy,
     };
   }, []);
+
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+    setCurrentPage(1); // Reset to the first page when the search query changes
   };
 
   if (ready) {
@@ -34,61 +33,84 @@ const SearchBar = () => {
       includeMatches: true,
       findAllMatches: true,
       useExtendedSearch: false,
-      keys: ['title'],
+      keys: ['title', 'organization', 'description', 'location', 'requirements'],
     };
 
     if (events && events.length > 0) {
       const fuse = new Fuse(events, fuseOptions);
       const result = fuse.search(searchQuery);
 
+      const indexOfLastEvent = currentPage * eventsPerPage;
+      const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+      const currentEvents = result.slice(indexOfFirstEvent, indexOfLastEvent);
+
+      const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
       return (
-        <div>
-          <Form.Group controlId="formEventSearch" className="d-flex align-items-center">
-            <Form.Control type="text" placeholder="Search for events..." style={{ width: '500px' }} className="mr-2" value={searchQuery} onChange={handleSearchChange} />
-            {/* Filter Dropdowns */}
-            <Dropdown>
-              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                Select Distance
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">5 miles</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">10 miles</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">20 miles</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown>
-              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                Select Organization
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Organization 1</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Organization 2</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Organization 3</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Button variant="secondary" type="submit" className="ml-2">
-              Search
-            </Button>
-          </Form.Group>
-          <ul>
-            {result.map((item) => (
-              <li key={item.item._id}>
-                <p>{item.item.title}</p>
-              </li>
+        <Container>
+          <Row className="d-flex justify-content-center text-center">
+            <h1>Search Events</h1>
+          </Row>
+          <Container className="d-flex justify-content-center">
+            <Form.Group controlId="formEventSearch">
+              <Form.Control
+                type="text"
+                placeholder="Let's help...."
+                style={{ width: '600px', minWidth: '300px' }}
+                className="align-content-center"
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+            </Form.Group>
+          </Container>
+          <Row className="p-3">
+            {currentEvents.map((item) => (
+              <Col key={item.item._id} md={4} className="py-2">
+                <Card style={{ maxHeight: '400px' }}>
+                  <Card.Body>
+                    <Card.Img variant="top" src={item.item.image} />
+                    <Card.Title>{item.item.title}</Card.Title>
+                    <Card.Text style={{ height: '150px', overflow: 'auto' }}>{item.item.description}</Card.Text>
+                    <Row className="py-1">
+                      <Col>
+                        Location:
+                        <Card.Text>{item.item.location}</Card.Text>
+                      </Col>
+                      <Col>
+                        Date:
+                        <Card.Text>{item.item.time.date}</Card.Text>
+                      </Col>
+                    </Row>
+                    Required Skills:
+                    <Card.Text>{item.item.requirements}</Card.Text>
+                    <CommitToEvent event={item.item} />
+                  </Card.Body>
+                </Card>
+              </Col>
             ))}
-          </ul>
-        </div>
+          </Row>
+          {/* Pagination buttons */}
+          <Container className="d-flex justify-content-center">
+            <Pagination>
+              <Pagination.First onClick={() => paginate(1)} />
+              <Pagination.Prev onClick={() => paginate(currentPage - 1)} />
+              {Array.from({ length: Math.ceil(result.length / eventsPerPage) }, (_, index) => (
+                <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
+                  {index + 1}
+                </Pagination.Item>
+              ))}
+              <Pagination.Next onClick={() => paginate(currentPage + 1)} />
+              <Pagination.Last onClick={() => paginate(Math.ceil(result.length / eventsPerPage))} />
+            </Pagination>
+          </Container>
+        </Container>
       );
     }
-    // Handle the case when the collection is empty
-    return (
-      <p>No events found</p>
-    );
+
+    return <p>No events found</p>;
   }
 
-  return (
-    <LoadingSpinner />
-  );
+  return <LoadingSpinner />;
 };
 
 export default SearchBar;
