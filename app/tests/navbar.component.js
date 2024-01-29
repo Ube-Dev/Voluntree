@@ -8,7 +8,7 @@ class NavBar {
     const loggedInUser = await Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists;
     if (loggedInUser) {
       await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
-      await t.click(`#${COMPONENT_IDS.NAVBAR_SIGN_OUT}`);
+      await t.click(`#${COMPONENT_IDS.NAVBAR_SIGN_OUT_PAGE}`);
     }
   }
 
@@ -40,7 +40,7 @@ class NavBar {
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
-    await t.click(`#${COMPONENT_IDS.NAVBAR_SIGN_OUT}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_SIGN_OUT_PAGE}`);
   }
 
   /* Pull down login menu, go to sign up page. */
@@ -82,7 +82,7 @@ class NavBar {
       await t.click('button.navbar-toggler');
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
-    await t.click(`#${COMPONENT_IDS.NAVBAR_DASHBOARD}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_DASHBOARD_PAGE}`);
   }
 
   /* Go to the FAQ page. */
@@ -92,7 +92,7 @@ class NavBar {
       await t.click('button.navbar-toggler');
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
-    await t.click(`#${COMPONENT_IDS.NAVBAR_FAQ}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_FAQ_PAGE}`);
   }
 
   /* Go to the Home page. */
