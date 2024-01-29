@@ -1,3 +1,8 @@
+/**
+ * Add comments for better understanding
+ * Add _PAGE to end of component IDs for consistency
+ */
+
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';

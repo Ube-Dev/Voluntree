@@ -1,3 +1,7 @@
+/**
+ * Delete commented lines
+ */
+
 import SimpleSchema from 'simpl-schema';
 import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
