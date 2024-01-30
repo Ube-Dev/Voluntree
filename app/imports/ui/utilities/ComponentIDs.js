@@ -13,6 +13,7 @@ export const COMPONENT_IDS = {
   NAVBAR_MANAGE_DROPDOWN_DATABASE: 'navbar-manage-dropdown-database',
   NAVBAR_DASHBOARD: 'navbar-dashboard',
   NAVBAR_MYEVENTS: 'navbar-myevents',
+  NAVBAR_PROFILE_PAGE: 'navbar-profile-page',
   NAVBAR_FAQ: 'navbar-faq',
   NAVBAR_ADMIN: 'navbar-admin',
   NAVBAR_SIGN_OUT: 'navbar-sign-out',
