@@ -2,55 +2,12 @@
 import React, { useState } from 'react';
 import { Container, Card, Button, ButtonGroup, Row, Col, Pagination } from 'react-bootstrap';
 import { TagFill } from 'react-bootstrap-icons';
-
-// import EventCard from '../components/EventCard';
+import { useTracker } from 'meteor/react-meteor-data';
 import SearchBar from '../components/SearchBar';
 import '../css/AllEventPage.css';
 import CommitToEvent from '../components/CommitToEvent';
 import { PAGE_IDS } from '../utilities/PageIDs';
-// samples for display purposes.
-const img_path = '/images/workTogetherAbout.png';
-const sample_data = {
-  events: {
-    1: {
-      key: 1,
-      img: img_path,
-      title: 'event',
-      description: 'this is a description',
-      date: '01-16-24',
-      requiredSkills: ['skill1', 'skill2', 'skill3'],
-    },
-    2: {
-      key: 2,
-      img: img_path,
-      title: 'event',
-      description: 'this is a description',
-      date: '01-16-24',
-      requiredSkills: ['skill1', 'skill2', 'skill3'],
-    },
-    3: {
-      key: 3,
-      img: img_path,
-      title: 'long event',
-      // eslint-disable-next-line max-len
-      description: 'this is a loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooon description',
-      date: '01-16-24',
-      // eslint-disable-next-line max-len
-      requiredSkills: ['skill1', 'skill2', 'skill3', 'skill1', 'skill2', 'skill3', 'skill1', 'skill2', 'skill3'],
-    },
-    4: {
-      key: 4,
-      img: img_path,
-      title: 'event',
-      description: 'this is a description',
-      date: '01-16-24',
-      requiredSkills: ['skill1', 'skill2', 'skill3'],
-    },
-  },
-  pagination: {
-    totalPages: 10,
-  },
-};
+import { Events } from '../../api/event/EventCollection';
 
 const AllEventPage = () => {
   // apply filter to the entire page when a specific skill is clicked.
@@ -59,6 +16,18 @@ const AllEventPage = () => {
     // console.log('triggered');
   };
 
+  const { ready, events } = useTracker(() => {
+  // Get access to events
+    const subscription = Events.subscribeEvent();
+    // Make sure its ready
+    const rdy = subscription.ready();
+    // fetch all events
+    const theEvents = Events.find({}).fetch();
+    return {
+      events: theEvents,
+      ready: rdy,
+    };
+  }, []);
   return (
     <Container id={PAGE_IDS.EVENTS}>
       <SearchBar />

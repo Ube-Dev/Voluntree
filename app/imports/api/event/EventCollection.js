@@ -12,7 +12,7 @@ export const eventPublications = {
 class EventCollection extends BaseCollection {
   constructor() {
     super('Events', new SimpleSchema({
-      title: { type: String, index: true, unique: true },
+      title: { type: String, index: true },
       image: { type: String, optional: true },
       description: { type: String, optional: true },
       location: { type: String, optional: true },
