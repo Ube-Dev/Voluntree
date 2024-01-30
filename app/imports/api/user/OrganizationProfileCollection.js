@@ -26,19 +26,14 @@ class OrganizationProfileCollection extends BaseProfileCollection {
    * @param contactInfo The contact information of the organization.
    */
   define({ email, password, name, image, location, mission, contactInfo }) {
-    // if (Meteor.isServer) {
     const username = email;
     const user = this.findOne({ email, name });
     if (!user) {
       const role = ROLE.ORGANIZATION;
       const userID = Users.define({ username, role, password });
-      const profileID = this._collection.insert({ email, name, image, location, mission, contactInfo, userID, role });
-      // this._collection.update(profileID, { $set: { userID } });
-      return profileID;
+      return this._collection.insert({ email, name, image, location, mission, contactInfo, userID, role });
     }
     return user._id;
-    // }
-    // return undefined;
   }
 
   /**
