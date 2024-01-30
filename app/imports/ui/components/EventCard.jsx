@@ -1,39 +1,37 @@
-// not ready yet. Don't use.
-/* eslint-disable no-undef */
 import React from 'react';
-import { Card, Button, ButtonGroup } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
 import '../css/EventCard.css';
 
-// template from https://react-bootstrap.netlify.app/docs/components/cards/#card-groups
-// eventId: event id in the db
-// img: static string link
-// title: string
-// description: title
-// date: string
-// requriedSkill: [skill, skill, skill, ...]
-const EventCard = ({ eventId, img, title, description, date, requiredSkills, filterSkill }) => {
-  <Card key={eventId} className="w-25">
-    <Card.Img variant="top" src={img} />
+const EventCard = ({ event }) => (
+  <Card key={event._id} className="h-100">
+    <Card.Header>
+      <Card.Img variant="top" src={event.image} style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+    </Card.Header>
     <Card.Body>
-      <Card.Title>{title}</Card.Title>
-      <Card.Text>
-        {description}
-      </Card.Text>
-    </Card.Body>
-    <Card.Body>
-      <ButtonGroup className="flex-wrap-buttons">
-        {requiredSkills.map((skill) => (
-          <Button className="mx-1 skill-button" onClick={() => filterSkill(skill)}>
-            {skill}
-          </Button>
-
-        ))}
-      </ButtonGroup>
+      <Card.Title>{event.title}</Card.Title>
     </Card.Body>
     <Card.Footer>
-      <small className="text-muted">{date}</small>
+      <small>{event.time.toDateString()}</small>
     </Card.Footer>
-  </Card>;
+  </Card>
+);
+
+// Require a document to be passed to this component.
+EventCard.propTypes = {
+  event: PropTypes.shape({
+    title: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.string,
+    location: PropTypes.string,
+    time: PropTypes.instanceOf(Date),
+    frequency: PropTypes.string,
+    accessibilities: PropTypes.instanceOf(Array),
+    requirements: PropTypes.instanceOf(Array),
+    impact: PropTypes.string,
+    eventPlanner: PropTypes.string,
+    _id: PropTypes.string,
+  }).isRequired,
 };
 
 export default EventCard;
