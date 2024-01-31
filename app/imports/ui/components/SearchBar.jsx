@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Form, Card, Row, Col, Container, Pagination } from 'react-bootstrap';
+import { Form, Row, Col, Container, Pagination } from 'react-bootstrap';
 import Fuse from 'fuse.js';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Events } from '../../api/event/EventCollection';
 import LoadingSpinner from './LoadingSpinner';
-import CommitToEvent from './CommitToEvent';
+import EventCard from './EventCard';
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,7 +48,7 @@ const SearchBar = () => {
 
       return (
         <Container>
-          <Row className="d-flex justify-content-center text-center">
+          <Row className="justify-content-center text-center">
             <h1>Search Events</h1>
           </Row>
           <Container className="d-flex justify-content-center">
@@ -56,7 +56,7 @@ const SearchBar = () => {
               <Form.Control
                 type="text"
                 placeholder="Let's help...."
-                style={{ width: '600px', minWidth: '300px' }}
+                style={{ maxWidth: '600px', minWidth: '275px' }}
                 className="align-content-center"
                 value={searchQuery}
                 onChange={handleSearchChange}
@@ -66,26 +66,7 @@ const SearchBar = () => {
           <Row className="p-3">
             {currentEvents.map((item) => (
               <Col key={item.item._id} md={4} className="py-2">
-                <Card style={{ maxHeight: '400px' }}>
-                  <Card.Body>
-                    <Card.Img variant="top" src={item.item.image} />
-                    <Card.Title>{item.item.title}</Card.Title>
-                    <Card.Text style={{ height: '150px', overflow: 'auto' }}>{item.item.description}</Card.Text>
-                    <Row className="py-1">
-                      <Col>
-                        Location:
-                        <Card.Text>{item.item.location}</Card.Text>
-                      </Col>
-                      <Col>
-                        Date:
-                        <Card.Text>{item.item.time.date}</Card.Text>
-                      </Col>
-                    </Row>
-                    Required Skills:
-                    <Card.Text>{item.item.requirements}</Card.Text>
-                    <CommitToEvent event={item.item} />
-                  </Card.Body>
-                </Card>
+                <EventCard event={item.item} />
               </Col>
             ))}
           </Row>
