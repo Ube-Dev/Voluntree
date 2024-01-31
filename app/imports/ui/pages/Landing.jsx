@@ -66,7 +66,7 @@ const Landing = () => (
           </p>
           <p>Ready to get started? Sign up now and let&apos;s grow The Voluntree together!</p>
           <p>
-            <a href="/signup">Sign Up</a> | <a href="/about">Learn More</a>
+            <a className="landing-link" href="/signup">Sign Up</a> | <a className="landing-link" href="/about">Learn More</a>
           </p>
         </Row>
       </Col>
