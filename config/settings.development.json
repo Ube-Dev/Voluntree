@@ -124,6 +124,18 @@
       "accessibilities": ["Group", "Child-friendly"],
       "requirements": ["Driver's license", "water bottle"],
       "impact": "You'll help feed the homeless!",
+      "eventPlanner": "Food Bank of Hawaii"},
+    {
+      "title": "Food Packing",
+      "image": "https://www.brafb.org/wp-content/uploads/2022/10/PXL_20221011_173207811-scaled-e1665757839628.jpg",
+      "description": "Help your local food bank!",
+      "location": "Honolulu, Hawaii",
+      "time": "2024-02-29",
+      "frequency": "once",
+      "requiredSkills": ["lift 15 pounds", "sorting"],
+      "accessibilities": ["Group", "Child-friendly"],
+      "requirements": ["Driver's license", "water bottle"],
+      "impact": "You'll help feed the homeless!",
       "eventPlanner": "Food Bank of Hawaii"}
   ]
 }

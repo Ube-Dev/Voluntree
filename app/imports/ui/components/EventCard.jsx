@@ -4,12 +4,13 @@ import { Card } from 'react-bootstrap';
 import '../css/EventCard.css';
 
 const EventCard = ({ event }) => (
-  <Card key={event._id} className="h-100">
+  <Card key={event._id} className="h-100" style={{ maxHeight: '475px' }}>
     <Card.Header>
       <Card.Img variant="top" src={event.image} style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
     </Card.Header>
     <Card.Body>
       <Card.Title>{event.title}</Card.Title>
+      <Card.Body style={{ height: '150px', overflow: 'auto' }}>{event.description}</Card.Body>
     </Card.Body>
     <Card.Footer>
       <small>{event.time.toDateString()}</small>
