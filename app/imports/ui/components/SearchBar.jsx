@@ -46,26 +46,32 @@ const SearchBar = () => {
 
       const totalPages = Math.ceil(result.length / eventsPerPage);
 
-      const paginate = (pageNumber) => setCurrentPage(pageNumber);
+      const paginate = (pageNumber) => {
+        // Ensure that the user cannot go past the pagination pages
+        if (pageNumber > 0 && pageNumber <= totalPages) {
+          setCurrentPage(pageNumber);
+        }
+      };
 
       return (
         <Container>
           <Row className="justify-content-center text-center">
             <h1>Search Events</h1>
-            <p>Total Results: {result.length}</p>
           </Row>
           <Container className="d-flex justify-content-center">
-            <Form.Group controlId="formEventSearch">
+            <Form.Group controlId="formEventSearch" className="w-75">
               <Form.Control
                 type="text"
                 placeholder="Let's help...."
-                style={{ maxWidth: '600px', minWidth: '275px' }}
                 className="align-content-center"
                 value={searchQuery}
                 onChange={handleSearchChange}
               />
             </Form.Group>
           </Container>
+          <Row className="justify-content-center text-center">
+            <p>Total Results: {result.length}</p>
+          </Row>
           <Row className="p-3">
             {currentEvents.map((item) => (
               <Col key={item.item._id} md={4} className="py-2">
