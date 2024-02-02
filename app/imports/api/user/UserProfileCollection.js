@@ -8,6 +8,35 @@ class UserProfileCollection extends BaseProfileCollection {
     super('UserProfile', new SimpleSchema({
       firstName: { type: String },
       lastName: { type: String },
+      image: { type: String, optional: true },
+      userId: { type: Number, optional: true },
+      phone: { type: Number, optional: true },
+      bookmarks: { type: Array, optional: true },
+      'bookmarks.$': { type: Number }, // eventId
+      viewingHistory: { type: Array, optional: true },
+      'viewingHistory.$': { type: Number }, // eventId
+      pastEvents: { type: Array, optional: true }, // eventId, past event user has participated in.
+      'pastEvents.$': { type: Number },
+      onGoingEvents: { type: Array, optional: true },
+      'onGoingEvents.$': { type: Number }, // eventId
+      userActivity: { type: Array, optional: true },
+      'userActivity.$': { type: Object },
+      'userActivity.$.eventId': { type: Number },
+      'userActivity.$.activity': { type: String },
+      'userActivity.$.timestamp': { type: Date },
+      totalHours: { type: Number, optional: true },
+      address: { type: String, optional: true },
+      zipCOde: { type: String, optional: true },
+      city: { type: String, optional: true },
+      state: { type: String, optional: true },
+      country: { type: String, optional: true },
+      feedbacks: { type: Array, optional: true },
+      'feedbacks.$': { type: Object },
+      'feedbacks.$.reviewer': { type: Number }, // reviewer userId
+      'feedbacks.$.review': { type: String },
+      skills: { type: Array, optional: true },
+      'skills.$': { type: String },
+
     }));
   }
 

@@ -6,12 +6,29 @@ import { Users } from './UserCollection';
 class OrganizationProfileCollection extends BaseProfileCollection {
   constructor() {
     super('OrganizationProfile', new SimpleSchema({
+      organizationId: { type: Number, optional: true },
       name: { type: String },
       image: { type: String },
       location: { type: String },
       mission: { type: String },
       contactInfo: { type: String },
       role: { type: String },
+      type: { type: String, allowedValues: ['organization', 'school', 'community'], optional: true },
+      description: { type: String, optional: true },
+      phone: { type: Number, optional: true },
+      email: { type: String, optional: true },
+      physicalAddress: { type: Boolean, optional: true },
+      address: { type: String, optional: true },
+      zipCode: { type: String, optional: true },
+      city: { type: String, optional: true },
+      state: { type: String, optional: true },
+      country: { type: String, optional: true },
+      pastEvents: { type: Array, optional: true },
+      'pastEvents.$': { type: Number },
+      onGoingEvents: { type: Array, optional: true },
+      'onGoingEvents.$': { type: Number },
+      members: { type: Number, optional: true },
+      leader: { type: Number, optional: true },
     }));
   }
 

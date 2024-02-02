@@ -12,6 +12,7 @@ export const eventPublications = {
 class EventCollection extends BaseCollection {
   constructor() {
     super('Events', new SimpleSchema({
+      eventId: { type: Number, optional: true },
       title: { type: String, index: true },
       image: { type: String, optional: true },
       description: { type: String, optional: true },
@@ -24,10 +25,33 @@ class EventCollection extends BaseCollection {
       frequency: { type: String, optional: true },
       accessibilities: { type: Array, unique: true, optional: true },
       'accessibilities.$': { type: String },
+      requiredSkills: { type: Array, optional: true },
+      'requiredSkills.$': { type: String },
       requirements: { type: Array, unique: true, optional: true },
       'requirements.$': { type: String },
       impact: { type: String, optional: true },
-      eventPlanner: { type: String, optional: true },
+      hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: true },
+      phone: { type: Number, optional: true },
+      activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], optional: true },
+      address: { type: String, optional: true },
+      zipCode: { type: String, optional: true },
+      city: { type: String, optional: true },
+      state: { type: String, optional: true },
+      country: { type: String, optional: true },
+      totalSpots: { type: Number, optional: true },
+      spotsFilled: { type: Array, optional: true },
+      'spotsFilled.$': { type: Number },
+      eventState: { type: String, allowedValues: ['ended', 'onGoing', 'canceled'], optional: true },
+      recruiting: { type: Boolean, optional: true },
+      equipments: { type: Object, optional: true },
+      'equipments.key': { type: String },
+      'equipments.value': { type: Array },
+      'equipments.value.$': { type: String },
+      equipmentsCount: { type: Object, optional: true },
+      'equipmentsCount.key': { type: String }, // name of the equipment
+      'equipmentsCount.value': { type: Object }, // a dictionary of different specification for each equipment
+      'equipmentsCount.value.key': { type: String }, // name of the specificaiton
+      'equipmentsCount.value.value': { type: Number }, // total numbers
     }));
   }
 
