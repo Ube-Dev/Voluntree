@@ -44,12 +44,15 @@ const SearchBar = () => {
       const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
       const currentEvents = result.slice(indexOfFirstEvent, indexOfLastEvent);
 
+      const totalPages = Math.ceil(result.length / eventsPerPage);
+
       const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
       return (
         <Container>
           <Row className="justify-content-center text-center">
             <h1>Search Events</h1>
+            <p>Total Results: {result.length}</p>
           </Row>
           <Container className="d-flex justify-content-center">
             <Form.Group controlId="formEventSearch">
@@ -71,19 +74,25 @@ const SearchBar = () => {
             ))}
           </Row>
           {/* Pagination buttons */}
-          <Container className="d-flex justify-content-center">
-            <Pagination>
-              <Pagination.First onClick={() => paginate(1)} />
-              <Pagination.Prev onClick={() => paginate(currentPage - 1)} />
-              {Array.from({ length: Math.ceil(result.length / eventsPerPage) }, (_, index) => (
-                <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
-                  {index + 1}
-                </Pagination.Item>
-              ))}
-              <Pagination.Next onClick={() => paginate(currentPage + 1)} />
-              <Pagination.Last onClick={() => paginate(Math.ceil(result.length / eventsPerPage))} />
-            </Pagination>
-          </Container>
+          {totalPages > 1 && (
+            <Container className="d-flex justify-content-center">
+              <Pagination>
+                <Pagination.First onClick={() => paginate(1)} />
+                <Pagination.Prev onClick={() => paginate(currentPage - 1)} />
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <Pagination.Item
+                    key={index + 1}
+                    active={index + 1 === currentPage}
+                    onClick={() => paginate(index + 1)}
+                  >
+                    {index + 1}
+                  </Pagination.Item>
+                ))}
+                <Pagination.Next onClick={() => paginate(currentPage + 1)} />
+                <Pagination.Last onClick={() => paginate(totalPages)} />
+              </Pagination>
+            </Container>
+          )}
         </Container>
       );
     }
