@@ -38,6 +38,7 @@ const SearchBar = () => {
         includeMatches: true,
         findAllMatches: true,
         useExtendedSearch: false,
+        threshold: 0.2,
         keys: ['title', 'organization', 'description', 'location', 'requirements'],
       };
 
