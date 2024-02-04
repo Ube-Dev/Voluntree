@@ -3,7 +3,7 @@ import { Col, Container, Row, Card } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import SearchBar from '../components/SearchBar';
 import UserDashboard from '../components/UserDashboard';
-import Calendar from '../components/Calendar';
+import UserCalendar from '../components/UserCalendar';
 
 const HomePage = () => (
   <Container id={PAGE_IDS.HOME_PAGE} className="py-3">
@@ -27,7 +27,7 @@ const HomePage = () => (
         <div className="my-3 d-flex justify-content-center">
           <Row>
             <Col>
-              <Calendar />
+              <UserCalendar />
             </Col>
           </Row>
         </div>

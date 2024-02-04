@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 
-const Calendar = () => {
+const UserCalendar = () => {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
@@ -157,4 +157,4 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+export default UserCalendar;
