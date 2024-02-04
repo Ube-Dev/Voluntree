@@ -9,6 +9,7 @@ const organizationType = Meteor.settings.environmentVariables.organizationTypes;
 class OrganizationCollection extends BaseProfileCollection {
   constructor() {
     super('Organizations', new SimpleSchema({
+      leader: { type: String },
       organizationID: { type: String },
       name: { type: String },
       image: { type: String, optional: true, defaultValue: defaultOrganizationImage },
@@ -31,7 +32,6 @@ class OrganizationCollection extends BaseProfileCollection {
       'onGoingEvents.$': { type: String },
       members: { type: Array, optional: true, defaultValue: [] },
       'members.$': { type: String },
-      leader: { type: String },
     }));
   }
 
@@ -64,7 +64,7 @@ class OrganizationCollection extends BaseProfileCollection {
     if (entity) {
       return console.error('entity already exists.');
     }
-    const userID = UserProfiles.findOne({ email: email });
+    const userID = UserProfiles.findOne({ email });
     if (!userID) {
       return console.error('Please create a user account with this email first.');
     }
@@ -142,23 +142,23 @@ class OrganizationCollection extends BaseProfileCollection {
   //   return problems;
   // }
 
-  /**
-   * Returns an object representing the OrganizationProfile docID in a format acceptable to define().
-   * @param docID The docID of a OrganizationProfile
-   * @returns { Object } An object representing the definition of docID.
-   */
-  dumpOne(docID) {
-    const doc = this.findDoc(docID);
-    const email = doc.email;
-    const name = doc.name;
-    const image = doc.image;
-    const location = doc.location;
-    const mission = doc.mission;
-    const contactInfo = doc.contactInfo;
-    const password = doc.password;
-    const role = doc.role;
-    return { email, name, image, location, mission, contactInfo, password, role }; // CAM this is not enough for the define method. We lose the password.
-  }
+  // /**
+  //  * Returns an object representing the OrganizationProfile docID in a format acceptable to define().
+  //  * @param docID The docID of a OrganizationProfile
+  //  * @returns { Object } An object representing the definition of docID.
+  //  */
+  // dumpOne(docID) {
+  //   const doc = this.findDoc(docID);
+  //   const email = doc.email;
+  //   const name = doc.name;
+  //   const image = doc.image;
+  //   const location = doc.location;
+  //   const mission = doc.mission;
+  //   const contactInfo = doc.contactInfo;
+  //   const password = doc.password;
+  //   const role = doc.role;
+  //   return { email, name, image, location, mission, contactInfo, password, role }; // CAM this is not enough for the define method. We lose the password.
+  // }
 }
 
 /**

@@ -111,7 +111,7 @@ Meteor.methods({
   'Organization.define': function (data) {
     check(data, Object);
     try {
-      return Organization.define()
+      return Organization.define(data);
     } catch (error) {
       throw new Meteor.Error('create-failed', 'Failed to create new organization: ', error);
     }
