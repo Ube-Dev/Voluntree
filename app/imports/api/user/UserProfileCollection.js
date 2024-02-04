@@ -1,42 +1,51 @@
+import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
+
+const defaultProfileImage = Meteor.settings.defaultProfileImage;
+
+export const userPublications = {
+  user: 'User',
+  userAdmin: 'Admin',
+};
 
 class UserProfileCollection extends BaseProfileCollection {
   constructor() {
     super('UserProfile', new SimpleSchema({
       firstName: { type: String },
       lastName: { type: String },
-      image: { type: String, optional: true },
-      userId: { type: Number, optional: true },
-      phone: { type: Number, optional: true },
-      bookmarks: { type: Array, optional: true },
-      'bookmarks.$': { type: Number }, // eventId
-      viewingHistory: { type: Array, optional: true },
-      'viewingHistory.$': { type: Number }, // eventId
-      pastEvents: { type: Array, optional: true }, // eventId, past event user has participated in.
-      'pastEvents.$': { type: Number },
-      onGoingEvents: { type: Array, optional: true },
-      'onGoingEvents.$': { type: Number }, // eventId
-      userActivity: { type: Array, optional: true },
+      image: { type: String, optional: true, defaultValue: defaultProfileImage },
+      userID: { type: String, unique: true },
+      phone: { type: String, optional: true, defaultValue: '' },
+      bookmarks: { type: Array, optional: true, defaultValue: [] },
+      'bookmarks.$': { type: String }, // eventId
+      viewingHistory: { type: Array, optional: true, defaultValue: [] },
+      'viewingHistory.$': { type: String }, // eventId
+      pastEvents: { type: Array, optional: true, defaultValue: [] }, // eventId, past event user has participated in.
+      'pastEvents.$': { type: String },
+      onGoingEvents: { type: Array, optional: true, defaultValue: [] },
+      'onGoingEvents.$': { type: String }, // eventId
+      userActivity: { type: Array, optional: true, defaultValue: [] },
       'userActivity.$': { type: Object },
-      'userActivity.$.eventId': { type: Number },
+      'userActivity.$.eventId': { type: String },
       'userActivity.$.activity': { type: String },
       'userActivity.$.timestamp': { type: Date },
-      totalHours: { type: Number, optional: true },
-      address: { type: String, optional: true },
-      zipCOde: { type: String, optional: true },
-      city: { type: String, optional: true },
-      state: { type: String, optional: true },
-      country: { type: String, optional: true },
-      feedbacks: { type: Array, optional: true },
+      totalHours: { type: Number, optional: true, defaultValue: 0 },
+      address: { type: String, optional: true, defaultValue: '' },
+      zipCode: { type: String, optional: true, defaultValue: '' },
+      city: { type: String, optional: true, defaultValue: '' },
+      state: { type: String, optional: true, defaultValue: '' },
+      country: { type: String, optional: true, defaultValue: '' },
+      feedbacks: { type: Array, optional: true, defaultValue: [] },
       'feedbacks.$': { type: Object },
-      'feedbacks.$.reviewer': { type: Number }, // reviewer userId
+      'feedbacks.$.reviewer': { type: String }, // reviewer userId
       'feedbacks.$.review': { type: String },
-      skills: { type: Array, optional: true },
+      skills: { type: Array, optional: true, defaultValue: [] },
       'skills.$': { type: String },
-
+      followers: { type: Array, optional: true, defaultValue: [] },
+      'followers.$': { type: String },
     }));
   }
 
@@ -47,14 +56,21 @@ class UserProfileCollection extends BaseProfileCollection {
    * @param firstName The first name.
    * @param lastName The last name.
    */
-  define({ email, firstName, lastName, password }) {
+  define({ email, firstName, lastName, password, image, phone, bookmarks,
+    viewingHistory, pastEvents, onGoingEvents, userActivity,
+    totalHours, address, zipCode, city, state, country, feedbacks, skills }) {
     // if (Meteor.isServer) {
     const username = email;
     const user = this.findOne({ email, firstName, lastName });
     if (!user) {
       const role = ROLE.USER;
       const userID = Users.define({ username, role, password });
-      const profileID = this._collection.insert({ email, firstName, lastName, userID, role });
+      const profileID = this._collection.insert({
+        email, firstName, lastName, userID, role,
+        image, phone, bookmarks,
+        viewingHistory, pastEvents, onGoingEvents, userActivity,
+        totalHours, address, zipCode, city, state, country, feedbacks, skills,
+      });
       // this._collection.update(profileID, { $set: { userID } });
       return profileID;
     }
@@ -69,15 +85,18 @@ class UserProfileCollection extends BaseProfileCollection {
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
    */
-  update(docID, { firstName, lastName }) {
+  update(docID, { firstName, lastName, image, phone, bookmarks,
+    viewingHistory, pastEvents, onGoingEvents, userActivity,
+    totalHours, address, zipCode, city, state, country, feedbacks, skills,
+    followers,
+  }) {
     this.assertDefined(docID);
-    const updateData = {};
-    if (firstName) {
-      updateData.firstName = firstName;
-    }
-    if (lastName) {
-      updateData.lastName = lastName;
-    }
+    const updateData = { firstName, lastName, image, phone, bookmarks,
+      viewingHistory, pastEvents, onGoingEvents, userActivity,
+      totalHours, address, zipCode, city, state, country, feedbacks, skills,
+      followers,
+    };
+    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
     this._collection.update(docID, { $set: updateData });
   }
 
@@ -89,6 +108,42 @@ class UserProfileCollection extends BaseProfileCollection {
   removeIt(profileID) {
     if (this.isDefined(profileID)) {
       return super.removeIt(profileID);
+    }
+    return null;
+  }
+
+  /**
+    * Default publication method for entities.
+    * It publishes the entire collection for all users.
+    */
+  publish() {
+    if (Meteor.isServer) {
+      // get the EventCollection instance.
+      const instance = this;
+      // this subscription publishes the entire collection
+      Meteor.publish(userPublications.user, function publish() {
+        return instance._collection.find();
+      });
+    }
+  }
+
+  /**
+   * Subscription method for event owned by the current user.
+   */
+  subscribeUser() {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(userPublications.user);
+    }
+    return null;
+  }
+
+  /**
+   * Subscription method for admin users.
+   * It subscribes to the entire collection.
+   */
+  subscribeUserAdmin() {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(userPublications.userAdmin);
     }
     return null;
   }
@@ -130,7 +185,8 @@ class UserProfileCollection extends BaseProfileCollection {
     const email = doc.email;
     const firstName = doc.firstName;
     const lastName = doc.lastName;
-    return { email, firstName, lastName }; // CAM this is not enough for the define method. We lose the password.
+    const totalHours = doc.totalHours;
+    return { email, firstName, lastName, totalHours }; // CAM this is not enough for the define method. We lose the password.
   }
 }
 

@@ -9,40 +9,44 @@ export const eventPublications = {
   eventAdmin: 'EventAdmin',
 };
 
+const defaultEventImage = Meteor.settings.defaultEventImage;
+
 class EventCollection extends BaseCollection {
   constructor() {
     super('Events', new SimpleSchema({
-      eventId: { type: Number, optional: true },
+      eventID: { type: String, unique: true },
       title: { type: String, index: true },
-      image: { type: String, optional: true },
-      description: { type: String, optional: true },
-      location: { type: String, optional: true },
+      image: { type: String, optional: true, defaultValue: defaultEventImage },
+      description: { type: String, optional: true, defaultValue: '' },
+      location: { type: String, optional: true, defaultValue: '' },
       time: {
         type: Date,
         defaultValue: new Date(),
         optional: true,
       },
-      frequency: { type: String, optional: true },
-      accessibilities: { type: Array, unique: true, optional: true },
+      frequency: { type: String, optional: true, defaultValue: 'Once' },
+      accessibilities: { type: Array, unique: true, optional: true, defaultValue: [] },
       'accessibilities.$': { type: String },
-      requiredSkills: { type: Array, optional: true },
+      requiredSkills: { type: Array, optional: true, defaultValue: [] },
       'requiredSkills.$': { type: String },
-      requirements: { type: Array, unique: true, optional: true },
+      requirements: { type: Array, unique: true, optional: true, defaultValue: [] },
       'requirements.$': { type: String },
-      impact: { type: String, optional: true },
-      hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: true },
-      phone: { type: Number, optional: true },
-      activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], optional: true },
-      address: { type: String, optional: true },
-      zipCode: { type: String, optional: true },
-      city: { type: String, optional: true },
-      state: { type: String, optional: true },
-      country: { type: String, optional: true },
-      totalSpots: { type: Number, optional: true },
-      spotsFilled: { type: Array, optional: true },
-      'spotsFilled.$': { type: Number },
-      eventState: { type: String, allowedValues: ['ended', 'onGoing', 'canceled'], optional: true },
-      recruiting: { type: Boolean, optional: true },
+      impact: { type: String, optional: true, defaultValue: '' },
+      hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: true, defaultValue: 'individual' },
+      hostBy: { type: String, defaultValue: '' }, // individual/organization ID
+      phone: { type: String, optional: true, defaultValue: '' },
+      activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], optional: true, defaultValue: 'in-person' },
+      activityCategory: { type: String, defaultValue: 'general' },
+      address: { type: String, optional: true, defaultValue: '' },
+      zipCode: { type: String, optional: true, defaultValue: '' },
+      city: { type: String, optional: true, defaultValue: '' },
+      state: { type: String, optional: true, defaultValue: '' },
+      country: { type: String, optional: true, defaultValue: '' },
+      totalSpots: { type: Number, optional: true, defaultValue: 1 },
+      spotsFilled: { type: Array, optional: true, defaultValue: [] },
+      'spotsFilled.$': { type: String },
+      eventState: { type: String, allowedValues: ['ended', 'onGoing', 'canceled'], optional: true, defaultValue: 'onGoing' },
+      recruiting: { type: Boolean, optional: true, defaultValue: true },
       equipments: { type: Object, optional: true },
       'equipments.key': { type: String },
       'equipments.value': { type: Array },
@@ -69,22 +73,30 @@ class EventCollection extends BaseCollection {
    * @param eventPlanner the organization who planned the event
    * @return {String} the docID of the new document.
    */
-  define({ title, image, description, location, time, frequency, accessibilities, requirements, impact, eventPlanner }) {
+  define({ title, image, description, location, time, frequency, accessibilities, requirements, impact,
+    requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
+    country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount,
+  }) {
     // Convert single values to arrays if they are not already
-    const accessibilityArray = Array.isArray(accessibilities) ? accessibilities : [accessibilities];
-    const requirementsArray = Array.isArray(requirements) ? requirements : [requirements];
+    // const accessibilityArray = Array.isArray(accessibilities) ? accessibilities : [accessibilities];
+    // const requirementsArray = Array.isArray(requirements) ? requirements : [requirements];
+    // adapted from: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+    let credential = '';
+    const maxPasswordLength = 30;
+    const minPasswordLength = 6;
+    const passwordLength = Math.floor(Math.random() * (maxPasswordLength - (minPasswordLength + 1))) + minPasswordLength;
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < passwordLength; i++) {
+      credential += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
 
     const docID = this._collection.insert({
-      title,
-      image,
-      description,
-      location,
-      time,
-      frequency,
-      accessibilities: accessibilityArray.join(', '),
-      requirements: requirementsArray.join(', '),
-      impact,
-      eventPlanner,
+      title, image, description, location, time, frequency,
+      accessibilities,
+      requirements,
+      impact, eventID: credential, requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address,
+      zipCode, city, state, country, totalSpots, spotsFilled, eventState, recruiting, equipments,
+      equipmentsCount,
     });
 
     return docID;
@@ -104,39 +116,16 @@ class EventCollection extends BaseCollection {
    * @param impact the impact of the event
    * @param eventPlanner the organization who planned the event
    */
-  update(docID, { title, image, description, location, time, frequency, accessibilities, requirements, impact, eventPlanner }) {
-    const updateData = {};
+  update(docID, { title, image, description, location, time, frequency, accessibilities, requirements, impact,
+    requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
+    country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount,
+  }) {
+    const updateData = { title, image, description, location, time, frequency, accessibilities, requirements, impact,
+      requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
+      country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount,
+    };
 
-    if (title) {
-      updateData.title = title;
-    }
-    if (image) {
-      updateData.image = image;
-    }
-    if (description) {
-      updateData.description = description;
-    }
-    if (location) {
-      updateData.location = location;
-    }
-    if (time) {
-      updateData.time = time;
-    }
-    if (frequency) {
-      updateData.frequency = frequency;
-    }
-    if (impact) {
-      updateData.impact = impact;
-    }
-    if (eventPlanner) {
-      updateData.eventPlanner = eventPlanner;
-    }
-    if (accessibilities) {
-      updateData.accessibilities = accessibilities;
-    }
-    if (requirements) {
-      updateData.requirements = requirements;
-    }
+    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
     this._collection.update(docID, { $set: updateData });
   }
 

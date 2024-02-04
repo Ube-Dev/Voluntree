@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Events } from '../../api/event/EventCollection';
-import { addEventMethod } from '../both/Methods';
+import { createEvent, createOrganization } from '../both/Methods';
+import { Organization } from '../../api/organization/OrganizationCollection';
 /* eslint-disable no-console */
 
 // initialize the EventsCollection if empty
@@ -19,7 +20,7 @@ if (Events.count() === 0) {
       impact,
       eventPlanner,
       requiredSkills,
-    }) => Meteor.call(addEventMethod, {
+    }) => Meteor.call(createEvent, {
       title,
       image,
       description,
@@ -33,4 +34,19 @@ if (Events.count() === 0) {
       requiredSkills,
     }));
   }
+}
+
+if (Organization.count() === 0) {
+  console.log('Creating default organization.');
+  Meteor.settings.defaultOrganizations.forEach(({
+    email, name, image, location, mission,
+    type, description, phone, physicalAddress, address,
+    zipCode, city, state, country, pastEvents, onGoingEvents,
+    members, leader, organizationID,
+  }) => Meteor.call(createOrganization, {
+    email, name, image, location, mission,
+    type, description, phone, physicalAddress, address,
+    zipCode, city, state, country, pastEvents, onGoingEvents,
+    members, leader, organizationID,
+  }));
 }
