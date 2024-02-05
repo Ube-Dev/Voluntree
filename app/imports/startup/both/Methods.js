@@ -5,25 +5,24 @@ import { Events } from '../../api/event/EventCollection';
 import { Skills } from '../../api/skill/SkillCollection';
 import { Organization } from '../../api/organization/OrganizationCollection';
 
-const updateUserProfile = 'userProfiles.update';
-
-/**
- * The server-side Profiles.update Meteor Method is called by the client-side Home page after pushing the update button.
- * Its purpose is to update the User, and UserSkill collections to reflect the
- * updated situation specified by the user.
- */
-// Meteor.methods({
-//   'userProfiles.update'({ profileId, email, firstName, lastName, skills }) {
-//     UserProfiles.update(profileId, { firstName, lastName });
-//     if (skills) {
-//       skills.map(skill => UserSkills.define({ skills: skill, user: email }));
-//       skills.map(skill => Skills.define({ skills: skill }));
-//     }
-//   },
-// });
+const createUserProfile = 'UserProfiles.define';
 
 Meteor.methods({
-  'userProfiles.update': function (docID, updateData) {
+  'UserProfiles.define': function (data) {
+    check(data, Object);
+    try {
+      return UserProfiles.define(data);
+    } catch (error) {
+      // Handle or log the error here
+      throw new Meteor.Error('create-failed', 'Failed to create user profile: ', error);
+    }
+  },
+});
+
+const updateUserProfile = 'UserProfiles.update';
+
+Meteor.methods({
+  'UserProfiles.update': function (docID, updateData) {
     check(docID, String);
     check(updateData, Object);
     try {
@@ -31,6 +30,19 @@ Meteor.methods({
     } catch (error) {
       // Handle or log the error here
       throw new Meteor.Error('update-failed', 'Failed to update user profile: ', error);
+    }
+  },
+});
+
+const removeUserProfile = 'UserProfiles.remove';
+
+Meteor.methods({
+  'UserProfiles.remove': function (docID) {
+    check(docID, String);
+    try {
+      return UserProfiles.removeIt(docID);
+    } catch (error) {
+      throw new Meteor.Error('delete-failed', 'Failed to delete user profile: ', error);
     }
   },
 });
@@ -146,6 +158,6 @@ Meteor.methods({
 });
 
 export {
-  updateUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
+  updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization,
 };

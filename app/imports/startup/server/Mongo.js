@@ -40,12 +40,12 @@ if (Organization.count() === 0) {
   console.log('Creating default organization.');
   Meteor.settings.defaultOrganizations.forEach(({
     email, name, image, location, mission,
-    type, description, phone, physicalAddress, address,
+    type, description, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members, leader, organizationID,
   }) => Meteor.call(createOrganization, {
     email, name, image, location, mission,
-    type, description, phone, physicalAddress, address,
+    type, description, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members, leader, organizationID,
   }));

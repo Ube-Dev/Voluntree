@@ -36,7 +36,7 @@ class EventCollection extends BaseCollection {
       hostBy: { type: String, defaultValue: '' }, // individual/organization ID
       phone: { type: String, optional: true, defaultValue: '' },
       activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], optional: true, defaultValue: 'in-person' },
-      activityCategory: { type: String, defaultValue: 'general' },
+      activityCategory: { type: String, optional: true, defaultValue: 'general' },
       address: { type: String, optional: true, defaultValue: '' },
       zipCode: { type: String, optional: true, defaultValue: '' },
       city: { type: String, optional: true, defaultValue: '' },
@@ -45,6 +45,8 @@ class EventCollection extends BaseCollection {
       totalSpots: { type: Number, optional: true, defaultValue: 1 },
       spotsFilled: { type: Array, optional: true, defaultValue: [] },
       'spotsFilled.$': { type: String },
+      canceledVolunteer: { type: Array, optional: true, defaultValue: [] },
+      'canceledVolunteer.$': { type: String },
       eventState: { type: String, allowedValues: ['ended', 'onGoing', 'canceled'], optional: true, defaultValue: 'onGoing' },
       recruiting: { type: Boolean, optional: true, defaultValue: true },
       equipments: { type: Object, optional: true },
@@ -75,7 +77,7 @@ class EventCollection extends BaseCollection {
    */
   define({ title, image, description, location, time, frequency, accessibilities, requirements, impact,
     requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
-    country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount,
+    country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
   }) {
     // Convert single values to arrays if they are not already
     // const accessibilityArray = Array.isArray(accessibilities) ? accessibilities : [accessibilities];
@@ -96,7 +98,7 @@ class EventCollection extends BaseCollection {
       requirements,
       impact, eventID: credential, requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address,
       zipCode, city, state, country, totalSpots, spotsFilled, eventState, recruiting, equipments,
-      equipmentsCount,
+      equipmentsCount, canceledVolunteer,
     });
 
     return docID;
@@ -118,11 +120,11 @@ class EventCollection extends BaseCollection {
    */
   update(docID, { title, image, description, location, time, frequency, accessibilities, requirements, impact,
     requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
-    country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount,
+    country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
   }) {
     const updateData = { title, image, description, location, time, frequency, accessibilities, requirements, impact,
       requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
-      country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount,
+      country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
     };
 
     Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);

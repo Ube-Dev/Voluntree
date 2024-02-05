@@ -1,12 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
-import BaseProfileCollection from '../user/BaseProfileCollection';
+import BaseCollection from '../base/BaseCollection';
 import { UserProfiles } from '../user/UserProfileCollection';
 
 const defaultOrganizationImage = Meteor.settings.defaultOrganizationImage;
 const organizationType = Meteor.settings.environmentVariables.organizationTypes;
+const organizationPublications = {
+  organization: 'Organizations',
+};
 
-class OrganizationCollection extends BaseProfileCollection {
+class OrganizationCollection extends BaseCollection {
   constructor() {
     super('Organizations', new SimpleSchema({
       leader: { type: String },
@@ -20,7 +23,7 @@ class OrganizationCollection extends BaseProfileCollection {
       description: { type: String, optional: true, defaultValue: '' },
       phone: { type: String, optional: true, defaultValue: '' },
       email: { type: String, optional: true, defaultValue: '' },
-      physicalAddress: { type: Boolean, optional: true, defaultValue: false },
+      hasPhysicalAddress: { type: Boolean, optional: true, defaultValue: false },
       address: { type: String, optional: true, defaultValue: '' },
       zipCode: { type: String, optional: true, defaultValue: '' },
       city: { type: String, optional: true, defaultValue: '' },
@@ -46,7 +49,7 @@ class OrganizationCollection extends BaseProfileCollection {
    * @param contactInfo The contact information of the organization.
    */
   define({ email, name, image, location, mission,
-    type, description, phone, physicalAddress, address,
+    type, description, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members,
   }) {
@@ -64,14 +67,14 @@ class OrganizationCollection extends BaseProfileCollection {
     if (entity) {
       return console.error('entity already exists.');
     }
-    const userID = UserProfiles.findOne({ email });
-    if (!userID) {
+    const id = UserProfiles.findOne({ email });
+    if (!id) {
       return console.error('Please create a user account with this email first.');
     }
-    const leaderID = userID._id;
+    const leaderID = id._id;
     return this._collection.insert({
       email, name, image, location, mission,
-      type, description, phone, physicalAddress, address,
+      type, description, phone, hasPhysicalAddress, address,
       zipCode, city, state, country, pastEvents, onGoingEvents,
       members, leader: leaderID, organizationID,
     });
@@ -88,20 +91,56 @@ class OrganizationCollection extends BaseProfileCollection {
    * @param contactInfo new contact information (optional)
    */
   update(docID, { email, name, image, location, mission,
-    type, description, phone, physicalAddress, address,
+    type, description, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members, leader,
   }) {
     this.assertDefined(docID);
     const updateData = {
       email, name, image, location, mission,
-      type, description, phone, physicalAddress, address,
+      type, description, phone, hasPhysicalAddress, address,
       zipCode, city, state, country, pastEvents, onGoingEvents,
       members, leader,
     };
 
     Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
     this._collection.update(docID, { $set: updateData });
+  }
+
+  /**
+   * Default publication method for entities.
+   * It publishes the entire collection for all users.
+   */
+  publish() {
+    if (Meteor.isServer) {
+      // get the EventCollection instance.
+      const instance = this;
+      // this subscription publishes the entire collection
+      Meteor.publish(organizationPublications.organization, function publish() {
+        return instance._collection.find();
+      });
+    }
+  }
+
+  /**
+   * Subscription method for event owned by the current user.
+   */
+  subscribeOrganization() {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(organizationPublications.organization);
+    }
+    return null;
+  }
+
+  /**
+   * Subscription method for admin users.
+   * It subscribes to the entire collection.
+   */
+  subscribeOrganizationAdmin() {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(organizationPublications.organization);
+    }
+    return null;
   }
 
   /**
