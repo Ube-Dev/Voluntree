@@ -1,11 +1,9 @@
 {
-  "environmentVariables": {
-    "organizationTypes": [
-      "COMMUNITY",
-      "SCHOOL",
-      "ORGANIZATION"
-    ]
-  },
+  "organizationTypes": [
+    "COMMUNITY",
+    "SCHOOL",
+    "ORGANIZATION"
+  ],
   "defaultAccounts": [
     {
       "email": "admin@foo.com",

@@ -4,7 +4,7 @@ import BaseCollection from '../base/BaseCollection';
 import { UserProfiles } from '../user/UserProfileCollection';
 
 const defaultOrganizationImage = Meteor.settings.defaultOrganizationImage;
-const organizationType = Meteor.settings.environmentVariables.organizationTypes;
+const organizationType = Meteor.settings.organizationType;
 const organizationPublications = {
   organization: 'Organizations',
 };
