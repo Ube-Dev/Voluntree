@@ -40,12 +40,13 @@ test('Test that FAQ page works', async () => {
   await faqPage.isDisplayed();
 });
 
-test('Test that Home page works', async () => {
+test.only('Test that Home page works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
+  await homePage.enterField();
 });
 
 test('Test that about page works', async () => {

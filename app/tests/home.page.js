@@ -16,6 +16,7 @@ class HomePage {
   /* Inputs text to determine if entry is valid */
   async enterField() {
     await this.isDisplayed();
+    await t.click(`#${COMPONENT_IDS.SEARCHBAR}`);
     await t.typeText(`#${COMPONENT_IDS.SEARCHBAR}`, 'clean up');
   }
 }
