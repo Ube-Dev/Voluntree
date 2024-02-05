@@ -8,7 +8,7 @@ import { Users } from './UserCollection';
 const rolesToCollectionNames = {};
 rolesToCollectionNames[ROLE.ADMIN] = 'AdminProfileCollection';
 rolesToCollectionNames[ROLE.USER] = 'UserProfileCollection';
-rolesToCollectionNames[ROLE.ORGANIZATION] = 'OrganizationProfileCollection';
+// rolesToCollectionNames[ROLE.ORGANIZATION] = 'OrganizationCollection';
 
 class BaseProfileCollection extends BaseCollection {
   constructor(type, schema) {

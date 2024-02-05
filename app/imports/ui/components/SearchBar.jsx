@@ -9,6 +9,7 @@ import EventCard from './EventCard';
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchPerformed, setSearchPerformed] = useState(false);
   const eventsPerPage = 9;
 
   const { ready, events } = useTracker(() => {
@@ -23,72 +24,97 @@ const SearchBar = () => {
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-    setCurrentPage(1); // Reset to the first page when the search query changes
+    setCurrentPage(1);
+    setSearchPerformed(!!event.target.value); // Set searchPerformed to true if search query is not empty
   };
 
   if (ready) {
-    const fuseOptions = {
-      isCaseSensitive: false,
-      shouldSort: true,
-      includeMatches: true,
-      findAllMatches: true,
-      useExtendedSearch: false,
-      keys: ['title', 'organization', 'description', 'location', 'requirements'],
-    };
+    let displayedEvents = events; // Default to all events
 
-    if (events && events.length > 0) {
+    if (searchPerformed && events.length > 0) {
+      const fuseOptions = {
+        isCaseSensitive: false,
+        shouldSort: true,
+        includeMatches: true,
+        findAllMatches: true,
+        useExtendedSearch: false,
+        keys: ['title', 'organization', 'description', 'location', 'requirements'],
+      };
+
       const fuse = new Fuse(events, fuseOptions);
       const result = fuse.search(searchQuery);
+      displayedEvents = result.map((item) => item.item);
+    } else {
+      // If no search is performed, take the first eventsPerPage events
+      displayedEvents = events.slice(0, eventsPerPage);
+    }
 
-      const indexOfLastEvent = currentPage * eventsPerPage;
-      const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
-      const currentEvents = result.slice(indexOfFirstEvent, indexOfLastEvent);
+    const indexOfLastEvent = currentPage * eventsPerPage;
+    const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+    const currentEvents = displayedEvents.slice(indexOfFirstEvent, indexOfLastEvent);
 
-      const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const totalPages = Math.ceil(displayedEvents.length / eventsPerPage);
 
-      return (
-        <Container>
-          <Row className="justify-content-center text-center">
-            <h1>Search Events</h1>
+    const paginate = (pageNumber) => {
+      if (pageNumber > 0 && pageNumber <= totalPages) {
+        setCurrentPage(pageNumber);
+      }
+    };
+
+    return (
+      <Container>
+        <Row className="justify-content-center text-center">
+          <h1>Find Events</h1>
+        </Row>
+        <Container className="d-flex justify-content-center">
+          <Form.Group controlId="formEventSearch" className="w-75">
+            <Form.Control
+              type="text"
+              placeholder="Let's help...."
+              className="align-content-center"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </Form.Group>
+        </Container>
+        {searchPerformed ? (
+          <Row className="justify-content-center text-center p-2">
+            <p>Total Results: {displayedEvents.length}</p>
           </Row>
-          <Container className="d-flex justify-content-center">
-            <Form.Group controlId="formEventSearch">
-              <Form.Control
-                type="text"
-                placeholder="Let's help...."
-                style={{ maxWidth: '600px', minWidth: '275px' }}
-                className="align-content-center"
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-            </Form.Group>
-          </Container>
-          <Row className="p-3">
-            {currentEvents.map((item) => (
-              <Col key={item.item._id} md={4} className="py-2">
-                <EventCard event={item.item} />
-              </Col>
-            ))}
+        ) : (
+          <Row className="justify-content-center text-center p-2">
+            <p>Latest Events</p>
           </Row>
-          {/* Pagination buttons */}
+        )}
+        <Row className="p-3">
+          {currentEvents.map((item) => (
+            <Col key={item._id} md={4} className="py-2">
+              <EventCard event={item} />
+            </Col>
+          ))}
+        </Row>
+        {/* Pagination buttons */}
+        {totalPages > 1 && (
           <Container className="d-flex justify-content-center">
             <Pagination>
               <Pagination.First onClick={() => paginate(1)} />
               <Pagination.Prev onClick={() => paginate(currentPage - 1)} />
-              {Array.from({ length: Math.ceil(result.length / eventsPerPage) }, (_, index) => (
-                <Pagination.Item key={index + 1} active={index + 1 === currentPage} onClick={() => paginate(index + 1)}>
+              {Array.from({ length: totalPages }, (_, index) => (
+                <Pagination.Item
+                  key={index + 1}
+                  active={index + 1 === currentPage}
+                  onClick={() => paginate(index + 1)}
+                >
                   {index + 1}
                 </Pagination.Item>
               ))}
               <Pagination.Next onClick={() => paginate(currentPage + 1)} />
-              <Pagination.Last onClick={() => paginate(Math.ceil(result.length / eventsPerPage))} />
+              <Pagination.Last onClick={() => paginate(totalPages)} />
             </Pagination>
           </Container>
-        </Container>
-      );
-    }
-
-    return <p>No events found</p>;
+        )}
+      </Container>
+    );
   }
 
   return <LoadingSpinner />;
