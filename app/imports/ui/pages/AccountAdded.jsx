@@ -1,9 +1,13 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 const AccountAdded = () => (
-  <Container>
-    <h1>Your account has been created successfully.</h1>
+  <Container className="py-3">
+    <Row className="align-items-center justify-content-center">
+      <Col className="text-center">
+        <h1>Account created successfully. Welcome to the Voluntree!</h1>
+      </Col>
+    </Row>
   </Container>
 );
 
