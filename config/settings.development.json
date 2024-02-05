@@ -33,6 +33,7 @@
       "email": "john@foo.com",
       "password": "changeme",
       "type": "ORGANIZATION",
+      "organizationID": "1SkcLcs",
       "name": "temp",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu, HI",
@@ -93,7 +94,9 @@
         "Background-check"
       ],
       "impact": "You'll change people's lives!",
-      "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS"
+      "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
+      "hostType": "individual",
+      "hostID": "grE2jpXRaEKNqJ2nk"
     },
     {
       "title": "Alamoana Beach Clean Up",
@@ -114,7 +117,9 @@
         "water bottle"
       ],
       "impact": "You'll make the beach more beautiful and safe",
-      "hostBy": "Ala Moana"
+      "hostBy": "Ala Moana",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
     },
     {
       "title": "Turtle Bay Beach Clean Up",
@@ -136,7 +141,9 @@
         "water bottle"
       ],
       "impact": "You'll make the beach more beautiful and safe",
-      "hostBy": "Turle Bay Beach Org"
+      "hostBy": "Turle Bay Beach Org",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
     },
     {
       "title": "Turtle Bay Beach Clean Up",
@@ -180,7 +187,9 @@
         "water bottle"
       ],
       "impact": "You'll make the beach more beautiful and safe",
-      "hostBy": "Lanikai Beach Org"
+      "hostBy": "Lanikai Beach Org",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
     },
     {
       "title": "Lanikai Beach Clean Up",
@@ -202,7 +211,9 @@
         "water bottle"
       ],
       "impact": "You'll make the beach more beautiful and safe",
-      "hostBy": "Lanikai Beach Org"
+      "hostBy": "Lanikai Beach Org",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
     },
     {
       "title": "Food Bank Of Hawaii",
@@ -224,7 +235,9 @@
         "water bottle"
       ],
       "impact": "You'll help feed the homeless!",
-      "hostBy": "Food Bank of Hawaii"
+      "hostBy": "Food Bank of Hawaii",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
     },
     {
       "title": "Elderly Home Talk",
@@ -245,7 +258,9 @@
         "background check"
       ],
       "impact": "You'll help take care of your local elderly",
-      "hostBy": "Catholic Charities Hawaii"
+      "hostBy": "Catholic Charities Hawaii",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
     },
     {
       "title": "Food Packing",
@@ -267,7 +282,9 @@
         "water bottle"
       ],
       "impact": "You'll help feed the homeless!",
-      "hostBy": "Food Bank of Hawaii"
+      "hostBy": "Food Bank of Hawaii",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
     }
   ]
 }
