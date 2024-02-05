@@ -10,21 +10,26 @@ export const skillPublications = {
 
 class SkillCollection extends BaseCollection {
   constructor() {
-    super('skills', new SimpleSchema({
-      skills: { type: String, index: true, unique: true },
+    super('Skills', new SimpleSchema({
+      skill: { type: String, index: true, unique: true },
     }));
   }
 
   /**
-   * Defines a new skill.
+   * Check if the skill exists, insert if not.
    * @param skills the name of the skill.
    * @return {String} the docID of the new document.
    */
-  define({ skills }) {
-    const docID = this._collection.insert({
-      skills,
+  define({ skill }) {
+    const docID = this._collection.find({ skill }).fetch();
+    // if skill exists in the db.
+    if (docID.length) {
+      return docID;
+    }
+
+    return this._collection.insert({
+      skill,
     });
-    return docID;
   }
 
   /**
@@ -87,7 +92,7 @@ class SkillCollection extends BaseCollection {
    * @throws { Meteor.Error } If there is no logged in user, or the user is not an Admin or User.
    */
   assertValidRoleForMethod(userId) {
-    this.assertRole(userId, [ROLE.ADMIN, ROLE.USER, ROLE.ORGANIZATION]);
+    this.assertRole(userId, [ROLE.ADMIN, ROLE.USER]);
   }
 
   /**

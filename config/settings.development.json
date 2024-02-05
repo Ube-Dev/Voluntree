@@ -1,34 +1,101 @@
 {
+  "organizationTypes": [
+    "COMMUNITY",
+    "SCHOOL",
+    "ORGANIZATION"
+  ],
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "ADMIN", "firstName": "Admin", "lastName": "MATRP"
+    {
+      "email": "admin@foo.com",
+      "password": "changeme",
+      "role": "ADMIN",
+      "firstName": "Admin",
+      "lastName": "MATRP"
     },
-    { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe",
-      "skills": ["communication", "reading", "writing"]
-    },
-    { "email": "organization@foo.com", "password": "changeme", "role": "ORGANIZATION", "name": "temp", "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png", "location": "Honolulu, HI", "mission": "mission", "contactInfo": "(808)-000-0000"}
+    {
+      "email": "john@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "firstName": "John",
+      "lastName": "Doe",
+      "skills": [
+        "communication",
+        "reading",
+        "writing",
+        "reading"
+      ]
+    }
   ],
-
+  "defaultOrganizations": [
+    {
+      "email": "john@foo.com",
+      "password": "changeme",
+      "type": "ORGANIZATION",
+      "organizationID": "1SkcLcs",
+      "name": "temp",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
+      "location": "Honolulu, HI",
+      "mission": "mission",
+      "contactInfo": "(808)-000-0000"
+    }
+  ],
   "defaultData": [
-    { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
-    { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
-    { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
-    { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+    {
+      "name": "Basket",
+      "quantity": 3,
+      "owner": "john@foo.com",
+      "condition": "excellent"
+    },
+    {
+      "name": "Bicycle",
+      "quantity": 2,
+      "owner": "john@foo.com",
+      "condition": "poor"
+    },
+    {
+      "name": "Banana",
+      "quantity": 2,
+      "owner": "admin@foo.com",
+      "condition": "good"
+    },
+    {
+      "name": "Boogie Board",
+      "quantity": 2,
+      "owner": "admin@foo.com",
+      "condition": "excellent"
+    }
   ],
+  "defaultProfileImage": "https://thevoluntree.com/wp-content/uploads/2024/01/cropped-logoNew-120x124.jpg",
+  "defaultEventImage": "https://lottie.org/_next/image/?url=https%3A%2F%2Fapi.prd.lottie.org%2Fimages%2FA_volunteer_helping_an_elderly_lady_walk_f57f195098.webp&w=2048&q=75",
+  "defaultOrganizationImage": "https://thevoluntree.com/wp-content/uploads/2024/01/cropped-logoNew-120x124.jpg",
   "public": {
     "development": true
   },
   "defaultEvent": [
     {
       "title": "Humanitarian Aid Vacation in Belize!",
-      "image": "https://ivhq.imgix.net/images/blog/grown-up-gap-year/grown-up-gap-year-who-with.jpg?w=850&fit=max&auto=compress%2Cformat,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png", "description": "This expedition is a chance for your family to step out of their comfort zone and discover a world beyond their own. As you immerse in a new culture, your children will learn firsthand about the diverse lives of others, helping them appreciate their blessings and understand the importance of giving back.",
+      "image": "https://ivhq.imgix.net/images/blog/grown-up-gap-year/grown-up-gap-year-who-with.jpg?w=850&fit=max&auto=compress%2Cformat,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
+      "description": "This expedition is a chance for your family to step out of their comfort zone and discover a world beyond their own. As you immerse in a new culture, your children will learn firsthand about the diverse lives of others, helping them appreciate their blessings and understand the importance of giving back.",
       "location": "Belize",
       "time": "2024-02-29",
       "frequency": "once",
-      "requiredSkills": ["Adaptability", "teaching abilities"],
-      "accessibilities": ["Group", "Child-friendly"],
-      "requirements": ["Driver's license", "Background-check"],
+      "requiredSkills": [
+        "Adaptability",
+        "teaching abilities"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "Background-check"
+      ],
       "impact": "You'll change people's lives!",
-      "eventPlanner": "GLOBAL EDUCATION PHILANTHROPISTS"},
+      "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
+      "hostType": "individual",
+      "hostID": "grE2jpXRaEKNqJ2nk"
+    },
     {
       "title": "Alamoana Beach Clean Up",
       "image": "https://lh3.googleusercontent.com/proxy/lrfNDENVJQWsuK2EaPKqGzgx43R7bVvXv4C9s8Uok8mZ0L7MeXXQcjSy4Viyn-LZKSD5li3GUlDoTGnMWC0ti_aubzQ0zowlLztORYr9d90xggAK9Vm2JloL6iDdRebkG8md04t9hsLSt4a2URQyQg-BVXLHRxCP2Rfe_7hntBc4A2axGErrnV4iYVYy113e",
@@ -36,11 +103,22 @@
       "location": "Ala Moana",
       "time": "2024-02-29",
       "frequency": "once",
-      "requiredSkills": ["lift 15 pounds", "cleaning"],
-      "accessibilities": ["Group", "Child-friendly"],
-      "requirements": ["water bottle"],
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "water bottle"
+      ],
       "impact": "You'll make the beach more beautiful and safe",
-      "eventPlanner": "Ala Moana"},
+      "hostBy": "Ala Moana",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
+    },
     {
       "title": "Turtle Bay Beach Clean Up",
       "image": "https://images.squarespace-cdn.com/content/5b231afb297114b57e11002d/1579574099361-2KUGNED7EHSF6KR6UEAJ/IMG_4160%2B%25281%2529.jpg?format=1500w&content-type=image%2Fjpeg",
@@ -48,11 +126,23 @@
       "location": "Turtle Bay Beach",
       "time": "2024-02-29",
       "frequency": "twice",
-      "requiredSkills": ["lift 15 pounds", "cleaning"],
-      "accessibilities": ["Group", "Child-friendly"],
-      "requirements": ["Driver's license", "water bottle"],
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "water bottle"
+      ],
       "impact": "You'll make the beach more beautiful and safe",
-      "eventPlanner": "Turle Bay Beach Org"},
+      "hostBy": "Turle Bay Beach Org",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
+    },
     {
       "title": "Turtle Bay Beach Clean Up",
       "image": "https://images.squarespace-cdn.com/content/5b231afb297114b57e11002d/1579574099361-2KUGNED7EHSF6KR6UEAJ/IMG_4160%2B%25281%2529.jpg?format=1500w&content-type=image%2Fjpeg",
@@ -60,11 +150,21 @@
       "location": "Turtle Bay Beach",
       "time": "2024-02-29",
       "frequency": "twice",
-      "requiredSkills": ["lift 15 pounds", "cleaning"],
-      "accessibilities": ["Group", "Child-friendly"],
-      "requirements": ["Driver's license", "water bottle"],
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "water bottle"
+      ],
       "impact": "You'll make the beach more beautiful and safe",
-      "eventPlanner": "Turle Bay Beach Org"},
+      "hostBy": "Turle Bay Beach Org"
+    },
     {
       "title": "Lanikai Beach Clean Up",
       "image": "https://www.fodors.com/wp-content/uploads/2019/01/trash1.gif",
@@ -72,11 +172,23 @@
       "location": "Lanikai Beach",
       "time": "2024-02-29",
       "frequency": "twice",
-      "requiredSkills": ["lift 15 pounds", "cleaning"],
-      "accessibilities": ["Group", "Child-friendly"],
-      "requirements": ["Driver's license", "water bottle"],
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "water bottle"
+      ],
       "impact": "You'll make the beach more beautiful and safe",
-      "eventPlanner": "Lanikai Beach Org"},
+      "hostBy": "Lanikai Beach Org",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
+    },
     {
       "title": "Lanikai Beach Clean Up",
       "image": "https://www.fodors.com/wp-content/uploads/2019/01/trash1.gif",
@@ -84,11 +196,23 @@
       "location": "Lanikai Beach",
       "time": "2024-02-29",
       "frequency": "twice",
-      "requiredSkills": ["lift 15 pounds", "cleaning"],
-      "accessibilities": ["Group", "Child-friendly"],
-      "requirements": ["Driver's license", "water bottle"],
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "water bottle"
+      ],
       "impact": "You'll make the beach more beautiful and safe",
-      "eventPlanner": "Lanikai Beach Org"},
+      "hostBy": "Lanikai Beach Org",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
+    },
     {
       "title": "Food Bank Of Hawaii",
       "image": "https://www.brafb.org/wp-content/uploads/2022/10/PXL_20221011_173207811-scaled-e1665757839628.jpg",
@@ -96,11 +220,23 @@
       "location": "Honolulu, Hawaii",
       "time": "2024-02-29",
       "frequency": "once",
-      "requiredSkills": ["lift 15 pounds", "sorting"],
-      "accessibilities": ["Group", "Child-friendly"],
-      "requirements": ["Driver's license", "water bottle"],
+      "requiredSkills": [
+        "lift 15 pounds",
+        "sorting"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "water bottle"
+      ],
       "impact": "You'll help feed the homeless!",
-      "eventPlanner": "Food Bank of Hawaii" },
+      "hostBy": "Food Bank of Hawaii",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
+    },
     {
       "title": "Elderly Home Talk",
       "image": "https://lottie.org/_next/image/?url=https%3A%2F%2Fapi.prd.lottie.org%2Fimages%2FA_volunteer_helping_an_elderly_lady_walk_f57f195098.webp&w=2048&q=75",
@@ -108,11 +244,22 @@
       "location": "Honolulu, Hawaii",
       "time": "2024-02-29",
       "frequency": "once",
-      "requiredSkills": ["communication"],
-      "accessibilities": ["Group", "Child-friendly"],
-      "requirements": ["Driver's license", "background check"],
+      "requiredSkills": [
+        "communication"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "background check"
+      ],
       "impact": "You'll help take care of your local elderly",
-      "eventPlanner": "Catholic Charities Hawaii"},
+      "hostBy": "Catholic Charities Hawaii",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
+    },
     {
       "title": "Food Packing",
       "image": "https://www.brafb.org/wp-content/uploads/2022/10/PXL_20221011_173207811-scaled-e1665757839628.jpg",
@@ -120,22 +267,22 @@
       "location": "Honolulu, Hawaii",
       "time": "2024-02-29",
       "frequency": "once",
-      "requiredSkills": ["lift 15 pounds", "sorting"],
-      "accessibilities": ["Group", "Child-friendly"],
-      "requirements": ["Driver's license", "water bottle"],
+      "requiredSkills": [
+        "lift 15 pounds",
+        "sorting"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "water bottle"
+      ],
       "impact": "You'll help feed the homeless!",
-      "eventPlanner": "Food Bank of Hawaii"},
-    {
-      "title": "Food Packing",
-      "image": "https://www.brafb.org/wp-content/uploads/2022/10/PXL_20221011_173207811-scaled-e1665757839628.jpg",
-      "description": "Help your local food bank!",
-      "location": "Honolulu, Hawaii",
-      "time": "2024-02-29",
-      "frequency": "once",
-      "requiredSkills": ["lift 15 pounds", "sorting"],
-      "accessibilities": ["Group", "Child-friendly"],
-      "requirements": ["Driver's license", "water bottle"],
-      "impact": "You'll help feed the homeless!",
-      "eventPlanner": "Food Bank of Hawaii"}
+      "hostBy": "Food Bank of Hawaii",
+      "hostType": "organization",
+      "hostID": "1SkcLcs"
+    }
   ]
 }
