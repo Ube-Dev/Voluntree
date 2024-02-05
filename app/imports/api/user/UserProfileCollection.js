@@ -63,16 +63,19 @@ class UserProfileCollection extends BaseProfileCollection {
   define({ email, firstName, lastName, password, image, phone, bookmarks,
     viewingHistory, pastEvents, onGoingEvents, userActivity,
     totalHours, address, zipCode, city, state, country, feedbacks, skills,
-    followers, organizationFollowed, memberOf,
+    followers, organizationFollowed, memberOf, userID,
   }) {
     // if (Meteor.isServer) {
     const username = email;
     const user = this.findOne({ email, firstName, lastName });
     if (!user) {
       const role = ROLE.USER;
-      const userID = Users.define({ username, role, password });
+      let newID = Users.define({ username, role, password });
+      if (userID) {
+        newID = userID;
+      }
       const profileID = this._collection.insert({
-        email, firstName, lastName, userID, role,
+        email, firstName, lastName, userID: newID, role,
         image, phone, bookmarks,
         viewingHistory, pastEvents, onGoingEvents, userActivity,
         totalHours, address, zipCode, city, state, country, feedbacks, skills,

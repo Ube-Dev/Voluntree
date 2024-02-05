@@ -3,6 +3,7 @@ import SimpleSchema from 'simpl-schema';
 import { check } from 'meteor/check';
 import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
+import { UserProfiles } from '../user/UserProfileCollection';
 
 export const eventPublications = {
   event: 'Event',
@@ -33,7 +34,8 @@ class EventCollection extends BaseCollection {
       'requirements.$': { type: String },
       impact: { type: String, optional: true, defaultValue: '' },
       hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: true, defaultValue: 'individual' },
-      hostBy: { type: String, defaultValue: '' }, // individual/organization ID
+      hostBy: { type: String, defaultValue: '' }, // organization/individual name
+      hostID: { type: String, defaultValue: '' }, // organization/individual ID
       phone: { type: String, optional: true, defaultValue: '' },
       activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], optional: true, defaultValue: 'in-person' },
       activityCategory: { type: String, optional: true, defaultValue: 'general' },
@@ -78,6 +80,7 @@ class EventCollection extends BaseCollection {
   define({ title, image, description, location, time, frequency, accessibilities, requirements, impact,
     requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
     country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
+    hostID,
   }) {
     // Convert single values to arrays if they are not already
     // const accessibilityArray = Array.isArray(accessibilities) ? accessibilities : [accessibilities];
@@ -91,10 +94,17 @@ class EventCollection extends BaseCollection {
     for (let i = 0; i < passwordLength; i++) {
       credential += possible.charAt(Math.floor(Math.random() * possible.length));
     }
+    // let hostID;
+    // if (hostType === 'individual') {
+    //   hostID = UserProfiles.find({ email: hostBy }).fetch();
+    //   if (hostID.length) {
+    //     return
+    //   }
 
+    // }
     const docID = this._collection.insert({
       title, image, description, location, time, frequency,
-      accessibilities,
+      accessibilities, hostID,
       requirements,
       impact, eventID: credential, requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address,
       zipCode, city, state, country, totalSpots, spotsFilled, eventState, recruiting, equipments,
