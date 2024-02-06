@@ -138,7 +138,6 @@ body {
 .login-background {
   background-color: var(--color6);
   height: 500px;
-  background-size: cover;
 }
 
 #signup-background {
