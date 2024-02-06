@@ -9,29 +9,15 @@ if (Events.count() === 0) {
   if (Meteor.settings.defaultEvent) {
     console.log('Creating default event.');
     Meteor.settings.defaultEvent.forEach(({
-      title,
-      image,
-      description,
-      location,
-      time,
-      frequency,
-      accessibilities,
-      requirements,
-      impact,
-      eventPlanner,
-      requiredSkills,
+      title, image, description, location, time, frequency, accessibilities, requirements, impact,
+      requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
+      country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
+      hostID, startTime, endTime,
     }) => Meteor.call(createEvent, {
-      title,
-      image,
-      description,
-      location,
-      time,
-      frequency,
-      accessibilities,
-      requirements,
-      impact,
-      eventPlanner,
-      requiredSkills,
+      title, image, description, location, time, frequency, accessibilities, requirements, impact,
+      requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
+      country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
+      hostID, startTime, endTime,
     }));
   }
 }
