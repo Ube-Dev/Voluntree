@@ -4,7 +4,7 @@ import { Container, Row } from 'react-bootstrap';
 const EditUserProfile = () => (
   <Container fluid className="justify-content-center">
     <Row className="text-center align-items-center">
-      <h1>User Profile</h1>
+      <h1>Edit User Profile</h1>
     </Row>
   </Container>
 );
