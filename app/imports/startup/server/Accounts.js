@@ -6,12 +6,30 @@ import { UserProfiles } from '../../api/user/UserProfileCollection';
 
 /* eslint-disable no-console */
 
-function createUser(email, role, firstName, lastName, skills, password) {
+function createUser(
+  email, firstName, lastName, password, image, phone, bookmarks,
+  viewingHistory, pastEvents, onGoingEvents, userActivity, role,
+  totalHours, address, zipCode, city, state, country, feedbacks, skills,
+  followers, organizationFollowed, memberOf, userID, hasOrganization,
+) {
+
   console.log(`  Creating user ${email} with role ${role}.`);
+
+  // create profiles based on ROLEs.
   if (role === ROLE.ADMIN) {
+    console.log(`  Creating admin ${email} with role ${role}.`);
     AdminProfiles.define({ email, firstName, lastName, password });
-  } else { // everyone else is just a user.
-    UserProfiles.define({ email, firstName, lastName, skills, password });
+  } else if (role === ROLE.USER) { // everyone else is just a user.
+    console.log(`  Creating user ${email} with role ${role}.`);
+    console.log(`hasOrganization is ${hasOrganization}`);
+    UserProfiles.define({
+      email, firstName, lastName, password, image, phone, bookmarks,
+      viewingHistory, pastEvents, onGoingEvents, userActivity, role,
+      totalHours, address, zipCode, city, state, country, feedbacks, skills,
+      followers, organizationFollowed, memberOf, userID, hasOrganization,
+    });
+
+    // create new skills to the skills collection.
     if (skills) {
       skills.map(skill => Skills.define({ skill: skill }));
       console.log(`skill added: ${skills}`);
@@ -24,29 +42,15 @@ if (Meteor.users.find().count() === 0) {
   if (Meteor.settings.defaultAccounts) {
     console.log('Creating the default user(s)');
     Meteor.settings.defaultAccounts.forEach(({
-      email,
-      role,
-      firstName,
-      lastName,
-      skills,
-      password,
-      name,
-      image,
-      location,
-      mission,
-      contactInfo,
+      email, firstName, lastName, password, image, phone, bookmarks,
+      viewingHistory, pastEvents, onGoingEvents, userActivity, role,
+      totalHours, address, zipCode, city, state, country, feedbacks, skills,
+      followers, organizationFollowed, memberOf, userID, hasOrganization,
     }) => createUser(
-      email,
-      role,
-      firstName,
-      lastName,
-      skills,
-      password,
-      name,
-      image,
-      location,
-      mission,
-      contactInfo,
+      email, firstName, lastName, password, image, phone, bookmarks,
+      viewingHistory, pastEvents, onGoingEvents, userActivity, role,
+      totalHours, address, zipCode, city, state, country, feedbacks, skills,
+      followers, organizationFollowed, memberOf, userID, hasOrganization,
     ));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');

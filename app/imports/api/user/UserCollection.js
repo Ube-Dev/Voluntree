@@ -48,7 +48,7 @@ class UserCollection {
    * @returns { String } The docID of the newly created user.
    * @throws { Meteor.Error } If the user exists.
    */
-  define({ username, role, password }) {
+  define({ username, role, password, hasOrganization }) {
     // if (Meteor.isServer) {
     Roles.createRole(role, { unlessExists: true });
     // In test Meteor.settings is not set from settings.development.json so we use _.get to see if it is set.
