@@ -35,10 +35,13 @@ const Event = ({ event }) => (
             <hr />
           </Row>
           <Row className="pb-1 pt-5">
-            <h3>Accessible to: {event.accessibilities}</h3>
+            <h3>Accessible to: {event.accessibilities.join(', ')}</h3>
           </Row>
           <Row className="pb-1 pt-5">
-            <h3>Requires: {event.requirements}</h3>
+            <h3>Required Skills: {event.requiredSkills.join(', ')}</h3>
+          </Row>
+          <Row className="pb-1 pt-5">
+            <h3>Requires: {event.requirements.join(', ')}</h3>
           </Row>
           <Row className="pb-1 pt-5">
             <h3>Impact: {event.impact}</h3>
@@ -62,6 +65,7 @@ Event.propTypes = {
     time: PropTypes.instanceOf(Date),
     frequency: PropTypes.string,
     accessibilities: PropTypes.instanceOf(Array),
+    requiredSkills: PropTypes.instanceOf(Array),
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
     eventPlanner: PropTypes.string,
