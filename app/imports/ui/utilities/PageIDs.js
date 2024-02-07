@@ -6,6 +6,7 @@ export const PAGE_IDS = {
   MANAGE_DATABASE: 'manage-database',
   ABOUT: 'about',
   EVENTS: 'events',
+  VIEW_EVENT: 'view-event',
   NOT_AUTHORIZED: 'not-authorized',
   NOT_FOUND: 'not-found',
   SIGN_IN: 'sign-in',

@@ -2,23 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import '../css/EventCard.css';
+import { Link } from 'react-router-dom';
 
 const EventCard = ({ event }) => (
-  <Card key={event._id} className="h-100" style={{ maxHeight: '475px' }}>
-    <Card.Header>
-      <Card.Img variant="top" src={event.image} style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
-    </Card.Header>
-    <Card.Body>
-      <Card.Title>{event.title}</Card.Title>
-      <Card.Body style={{ height: '150px', overflow: 'auto' }}>{event.description}</Card.Body>
-    </Card.Body>
-    <Card.Footer>
-      <small>{event.time.toDateString()}</small>
-    </Card.Footer>
-  </Card>
+  <Link className="text-decoration-none" to={`/view_event/${event._id}`}>
+    <Card key={event._id} className="h-100 event-card" style={{ maxHeight: '475px' }}>
+      <Card.Header>
+        <Card.Img variant="top" src={event.image} style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+      </Card.Header>
+      <Card.Body>
+        <Card.Title>{event.title}</Card.Title>
+        <Card.Text style={{ height: '150px', overflow: 'auto' }}>{event.description}</Card.Text>
+        <Link to="/"><Card.Text>{event.hostBy}</Card.Text></Link>
+      </Card.Body>
+      <Card.Footer>
+        <small>{event.time.toDateString()}</small>
+      </Card.Footer>
+    </Card>
+  </Link>
 );
 
-// Require a document to be passed to this component.
 EventCard.propTypes = {
   event: PropTypes.shape({
     title: PropTypes.string,
@@ -30,7 +33,7 @@ EventCard.propTypes = {
     accessibilities: PropTypes.instanceOf(Array),
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
-    eventPlanner: PropTypes.string,
+    hostBy: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
 };

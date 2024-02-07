@@ -11,7 +11,7 @@
   --color3:#04BF9D;
   --color4:#6EBF34;
   --color5:#f2f2f2;
-  --color6: #032f34;
+  --color6:#032f34;
 }
 
 * {
@@ -143,4 +143,8 @@ body {
 #signup-background {
   background-color: var(--color6);
   height: 600px;
+}
+
+.faq-header {
+  font-weight: bold;
 }

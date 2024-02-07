@@ -4,3 +4,5 @@ import '/imports/startup/server/Mongo';
 // be sure to import the methods.
 import '../imports/api/base/BaseCollection.methods';
 import '../imports/api/user/UserProfileCollection.methods';
+// below are temporary test files links.
+// import '../tests/backend-simple-test';
