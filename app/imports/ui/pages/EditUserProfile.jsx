@@ -1,7 +1,7 @@
 import React from 'react';
 import swal from 'sweetalert';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -9,7 +9,7 @@ import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 
-const bridge = new SimpleSchema2Bridge(UserProfiles._collection);
+const bridge = new SimpleSchema2Bridge(UserProfiles._schema);
 
 const EditUserProfile = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
@@ -50,16 +50,8 @@ const EditUserProfile = () => {
                   <Col><TextField name="firstName" label="First Name" /></Col>
                   <Col><TextField name="lastName" label="Last Name" /></Col>
                 </Row>
-                <Row>
-                  <Col><TextField name="username" /></Col>
-                  <Col><TextField name="profilePictureLink" label="Profile Picture" /></Col>
-                </Row>
-                <Row>
-                  <Col><LongTextField name="description" label="Your Bio" /></Col>
-                </Row>
                 <SubmitField value="Submit" />
                 <ErrorsField />
-                <HiddenField name="owner" />
               </Card.Body>
             </Card>
           </AutoForm>
