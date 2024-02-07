@@ -49,6 +49,7 @@ const EditUserProfile = () => {
                 <Row>
                   <Col><TextField name="firstName" label="First Name" /></Col>
                   <Col><TextField name="lastName" label="Last Name" /></Col>
+                  <Col><TextField name="image" label="Profile Picture URL" /></Col>
                 </Row>
                 <SubmitField value="Submit" />
                 <ErrorsField />
