@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Events } from '/imports/api/event/EventCollection';
 
+// AddEvent constructor
 class AddEvent extends Component {
   constructor(props) {
     super(props);
@@ -33,39 +34,51 @@ class AddEvent extends Component {
     // Call the EventCollection define method to insert a new event
     Events.define(newEvent);
     alert('Event added successfully!');
-    // Reset the form or navigate to another page
   }
 
+  // Renders AddEvent page
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Title:
-          <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
-        </label>
+      <div className="container mt-4">
+        <div className="card">
+          <div className="card-body">
+            <h3 className="card-title">Add New Event</h3>
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group mb-3">
+                <label>Title:</label>
+                <input className="form-control" type="text" name="title" value={this.state.title} onChange={this.handleChange} />
+              </div>
 
-        <label>
-          Description:
-          <textarea name="description" value={this.state.description} onChange={this.handleChange} />
-        </label>
+              <div className="form-group mb-3">
+                <label>Description:</label>
+                <textarea className="form-control" name="description" value={this.state.description} onChange={this.handleChange} />
+              </div>
 
-        <label>
-          Location:
-          <input type="text" name="location" value={this.state.location} onChange={this.handleChange} />
-        </label>
+              <div className="form-group mb-3">
+                <label>Location:</label>
+                <input className="form-control" type="text" name="location" value={this.state.location} onChange={this.handleChange} />
+              </div>
 
-        <label>
-          Start Time:
-          <input type="datetime-local" name="startTime" value={this.state.startTime} onChange={this.handleChange} />
-        </label>
+              <div className="row">
+                <div className="col">
+                  <div className="form-group mb-3">
+                    <label>Start Time:</label>
+                    <input className="form-control" type="datetime-local" name="startTime" value={this.state.startTime} onChange={this.handleChange} />
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="form-group mb-3">
+                    <label>End Time:</label>
+                    <input className="form-control" type="datetime-local" name="endTime" value={this.state.endTime} onChange={this.handleChange} />
+                  </div>
+                </div>
+              </div>
 
-        <label>
-          End Time:
-          <input type="datetime-local" name="endTime" value={this.state.endTime} onChange={this.handleChange} />
-        </label>
-
-        <input type="submit" value="Submit" />
-      </form>
+              <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
     );
   }
 }
