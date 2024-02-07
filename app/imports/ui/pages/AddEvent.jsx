@@ -30,16 +30,17 @@ class AddEvent extends Component {
       endTime: new Date(this.state.endTime)
     };
 
-    try {
-      Events.define(newEvent);
-      alert('Event added successfully!');
-      this.setState({ title: '', description: '', location: '', startTime: '', endTime: '' });
-      // Reset the form
-      // Optionally, redirect to the events list page
-    } catch (error) {
-      console.error("Error adding event:", error);
-      alert('Failed to add event. Please try again.');
-    }
+    Meteor.call('Events.define', newEvent, (error, response) => {
+      if (error) {
+        console.error("Error adding event:", error);
+        alert('Failed to add event. Please try again.');
+      } else {
+        alert('Event added successfully!');
+        this.setState({ title: '', description: '', location: '', startTime: '', endTime: '' });
+        // Reset form
+        // Optionally, redirect to the events list page
+      }
+    });
   }
 
   // Renders AddEvent page
