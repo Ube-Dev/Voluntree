@@ -17,11 +17,11 @@ const EditUserProfile = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { doc, ready } = useTracker(() => {
     // Get access to Profile documents.
-    const subscription = Meteor.subscribe(UserProfiles.userPublications);
+    const subscription = UserProfiles.subscribeUser();
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the document
-    const document = UserProfiles.collection.findOne(_id);
+    const document = UserProfiles.findOne(_id);
     return {
       doc: document,
       ready: rdy,
