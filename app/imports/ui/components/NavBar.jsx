@@ -43,9 +43,9 @@ const NavBar = () => {
             {/* AddEvent page */}
             <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_EVENT_PAGE} as={NavLink} to="/add-event" key="AddEvent">Add Event</Nav.Link>
             {/* If user is logged in, set links to My Events and Dashboard pages as visible; hide it otherwise */}
-            {currentUser ? (
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_MY_EVENTS_PAGE} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link>
-            ) : ''}
+            {/* {currentUser ? ( */}
+            {/*  <Nav.Link id={COMPONENT_IDS.NAVBAR_MY_EVENTS_PAGE} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link> */}
+            {/* ) : ''} */}
             {/* If user is organization, set Dashboard page as visible; hide it otherwise */}
             {Roles.userIsInRole(Meteor.userId(), userPrivileges.hasOrganization, ROLE.USER) ? (
               <Nav.Link id={COMPONENT_IDS.NAVBAR_DASHBOARD_PAGE} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>
