@@ -31,7 +31,7 @@ const UserProfile = () => {
         <Col md={6}>
           <h1>Profile:</h1>
           <Card>
-            <Card.Img variant="top" src={userProfile.picture} alt="Profile Picture" />
+            <Card.Img className="text-center" variant="top" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile Picture" style={{ width: '250px' }} />
           </Card>
           <Card className="mt-3">
             <Card.Body>
