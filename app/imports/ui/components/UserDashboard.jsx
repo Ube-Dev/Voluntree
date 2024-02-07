@@ -25,22 +25,24 @@ const UserDashboard = () => {
   }
 
   return (
-    <Card>
-      <Card.Body className="d-flex flex-column align-items-start">
-        <h2 className="mb-3">Overview</h2>
-        <Container className="d-flex flex-column align-items-start">
-          <Row>
-            <Col>
-              <Image src={userProfile.image} alt="ProfileImage" style={{ width: '150px', height: '150px', borderRadius: '50%', marginBottom: '20px' }} />
-            </Col>
-            <Col>
-              <h4>{userProfile.firstName} {userProfile.lastName}</h4>
-              <h4>Hours Recorded: {userProfile.totalHours}</h4>
-            </Col>
-          </Row>
-        </Container>
-      </Card.Body>
-    </Card>
+    <Container>
+      <Card>
+        <Card.Body className="d-flex flex-column align-items-start">
+          <h2 className="mb-3">Overview</h2>
+          <Container className="d-flex flex-column align-items-start">
+            <Row>
+              <Col>
+                <Image src={userProfile.image} alt="Profile Image" style={{ width: '150px', height: '150px', borderRadius: '50%', marginBottom: '20px' }} />
+              </Col>
+              <Col>
+                <h4>{userProfile.firstName} {userProfile.lastName}</h4>
+                <h4>Hours Recorded: {userProfile.totalHours}</h4>
+              </Col>
+            </Row>
+          </Container>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 };
 
