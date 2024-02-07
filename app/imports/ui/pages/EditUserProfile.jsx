@@ -5,7 +5,6 @@ import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextFie
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 
@@ -13,7 +12,6 @@ const bridge = new SimpleSchema2Bridge(UserProfiles.schema);
 
 const EditUserProfile = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const { _id } = useParams();
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   /* const { doc, ready } = useTracker(() => {
     // const currentUser = Meteor.user();
@@ -40,7 +38,7 @@ const EditUserProfile = () => {
   // On successful submit, insert the data.
   const submit = (data) => {
     const { firstName, lastName, username, description, profilePictureLink } = data;
-    UserProfiles.update(_id, { $set: { firstName, lastName, username, description, profilePictureLink } }, (error) => (error ?
+    UserProfiles.update({ $set: { firstName, lastName, username, description, profilePictureLink } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Profile updated successfully.', 'success')));
   };
