@@ -1,35 +1,24 @@
 import React from 'react';
-// import swal from 'sweetalert';
+import swal from 'sweetalert';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 
-const bridge = new SimpleSchema2Bridge(UserProfiles);
+const bridge = new SimpleSchema2Bridge(UserProfiles._collection);
 
 const EditUserProfile = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
+  const { _id } = useParams();
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-  /* const { doc, ready } = useTracker(() => {
-    // const currentUser = Meteor.user();
-    // Get access to Profile documents.
-    const subscription = UserProfiles.subscribeUser();
-    // Determine if the subscription is ready
-    const rdy = subscription.ready();
-    // Get the document
-    const document = UserProfiles.findOne(_id);
-    return {
-      doc: document,
-      ready: rdy,
-    };
-  }, [_id]); */
   const { ready, userProfile } = useTracker(() => {
     const currentUser = Meteor.user(); // Retrieve the current user
     const subscription = currentUser ? UserProfiles.subscribeUser() : null; // Subscribe to userProfile publication for the current user
-    const profile = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null; // Query user profile for the current user
+    const profile = currentUser ? UserProfiles.findOne(_id) : null; // Query user profile for the current user
     return {
       ready: subscription ? subscription.ready() : false,
       userProfile: profile,
@@ -37,12 +26,17 @@ const EditUserProfile = () => {
   });
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { firstName, lastName, image, phone } = data;
-    UserProfiles.update((error) => {
-      return (error ?
+    const { firstName, lastName, image, phone, bookmarks, viewingHistory, pastEvents, onGoingEvents, userActivity,
+      totalHours, address, zipCode, city, state, country, feedbacks, skills, followers, organizationFollowed, memberOf } = data;
+    UserProfiles.update(
+      _id,
+      { firstName, lastName, image, phone, bookmarks, viewingHistory, pastEvents, onGoingEvents, userActivity,
+        totalHours, address, zipCode, city, state, country, feedbacks, skills, followers, organizationFollowed, memberOf },
+      (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'Profile updated successfully.', 'success'));
-    });
+        swal('Success', 'Profile updated successfully.', 'success')
+      ),
+    );
   };
   return ready ? (
     <Container className="py-3 formCSS">
