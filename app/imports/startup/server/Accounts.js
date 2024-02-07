@@ -6,9 +6,33 @@ import { UserProfiles } from '../../api/user/UserProfileCollection';
 
 /* eslint-disable no-console */
 
-function createUser({ email, firstName, lastName, password, image, phone, bookmarks, viewingHistory,
-  pastEvents, onGoingEvents, userActivity, role, totalHours, address, zipCode, city, state,
-  country, feedbacks, skills, followers, organizationFollowed, memberOf, userID, hasOrganization }) {
+function createUser(
+  email,
+  firstName,
+  lastName,
+  password,
+  image,
+  phone,
+  bookmarks,
+  viewingHistory,
+  pastEvents,
+  onGoingEvents,
+  userActivity,
+  role,
+  totalHours,
+  address,
+  zipCode,
+  city,
+  state,
+  country,
+  feedbacks,
+  skills,
+  followers,
+  organizationFollowed,
+  memberOf,
+  userID,
+  hasOrganization,
+) {
   console.log(`  Creating user ${email} with role ${role}.`);
   if (role === ROLE.ADMIN) {
     AdminProfiles.define({ email, firstName, lastName, password });
@@ -33,12 +57,33 @@ if (Meteor.users.find().count() === 0) {
       viewingHistory, pastEvents, onGoingEvents, userActivity, role,
       totalHours, address, zipCode, city, state, country, feedbacks, skills,
       followers, organizationFollowed, memberOf, userID, hasOrganization,
-    }) => createUser({
-      email, firstName, lastName, password, image, phone, bookmarks,
-      viewingHistory, pastEvents, onGoingEvents, userActivity, role,
-      totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf, userID, hasOrganization,
-    }));
+    }) => createUser(
+      email,
+      firstName,
+      lastName,
+      password,
+      image,
+      phone,
+      bookmarks,
+      viewingHistory,
+      pastEvents,
+      onGoingEvents,
+      userActivity,
+      role,
+      totalHours,
+      address,
+      zipCode,
+      city,
+      state,
+      country,
+      feedbacks,
+      skills,
+      followers,
+      organizationFollowed,
+      memberOf,
+      userID,
+      hasOrganization,
+    ));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }
