@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col, Container, Row, Card } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import SearchBar from '../components/SearchBar';
 import UserDashboard from '../components/UserDashboard';
 import UserCalendar from '../components/UserCalendar';
 
@@ -19,7 +18,9 @@ const HomePage = () => (
         <div className="my-3 d-flex justify-content-center">
           <Row>
             <Col>
-              <UserCalendar />
+              <Card>
+                <UserCalendar />
+              </Card>
             </Col>
           </Row>
         </div>

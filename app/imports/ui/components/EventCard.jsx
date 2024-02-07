@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import '../css/EventCard.css';
 import { Link } from 'react-router-dom';
-
 const EventCard = ({ event }) => (
   <Link className="text-decoration-none" to={`/view_event/${event._id}`}>
     <Card key={event._id} className="h-100 event-card" style={{ maxHeight: '475px' }}>
