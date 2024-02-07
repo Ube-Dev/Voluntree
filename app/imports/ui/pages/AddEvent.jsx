@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Events } from '/imports/api/event/EventCollection';
 
-// AddEvent constructor
 class AddEvent extends Component {
   constructor(props) {
     super(props);
@@ -31,9 +30,16 @@ class AddEvent extends Component {
       endTime: new Date(this.state.endTime)
     };
 
-    // Call the EventCollection define method to insert a new event
-    Events.define(newEvent);
-    alert('Event added successfully!');
+    try {
+      Events.define(newEvent);
+      alert('Event added successfully!');
+      this.setState({ title: '', description: '', location: '', startTime: '', endTime: '' });
+      // Reset the form
+      // Optionally, redirect to the events list page
+    } catch (error) {
+      console.error("Error adding event:", error);
+      alert('Failed to add event. Please try again.');
+    }
   }
 
   // Renders AddEvent page
