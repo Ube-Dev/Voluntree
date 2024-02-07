@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { Events } from '/imports/api/event/EventCollection';
 
@@ -9,7 +10,7 @@ class AddEvent extends Component {
       description: '',
       location: '',
       startTime: '',
-      endTime: ''
+      endTime: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -27,12 +28,12 @@ class AddEvent extends Component {
       description: this.state.description,
       location: this.state.location,
       startTime: new Date(this.state.startTime),
-      endTime: new Date(this.state.endTime)
+      endTime: new Date(this.state.endTime),
     };
 
     Meteor.call('Events.define', newEvent, (error, response) => {
       if (error) {
-        console.error("Error adding event:", error);
+        console.error('Error adding event:', error);
         alert('Failed to add event. Please try again.');
       } else {
         alert('Event added successfully!');

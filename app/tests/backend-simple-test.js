@@ -1,13 +1,13 @@
-import { Meteor } from 'meteor/meteor'; // this must be imported to invoke meteor methods
+// import { Meteor } from 'meteor/meteor'; // this must be imported to invoke meteor methods
 // subscription and publication are inside the same class as CRUD operations, I will separate them in the future.
-import { UserProfiles } from '../imports/api/user/UserProfileCollection';
-import { Organization } from '../imports/api/organization/OrganizationCollection';
-import { Skills } from '../imports/api/skill/SkillCollection';
-import { Events } from '../imports/api/event/EventCollection';
-import { createEvent, removeEvent, removeOrganization, updateUserProfile } from '../imports/startup/both/Methods';
+// import { UserProfiles } from '../imports/api/user/UserProfileCollection';
+// import { Organization } from '../imports/api/organization/OrganizationCollection';
+// import { Skills } from '../imports/api/skill/SkillCollection';
+// import { Events } from '../imports/api/event/EventCollection';
+// import { createEvent, removeEvent, removeOrganization, updateUserProfile } from '../imports/startup/both/Methods';
 
 // only parameter is the _id of the event.
-Meteor.call(removeOrganization, '7pnjPhdB57Ass7Xuo');
+// Meteor.call(removeOrganization, '7pnjPhdB57Ass7Xuo');
 
 // const subscription = UserProfiles.subscribeUser();
 // const userProfiles = UserProfiles.find({}).fetch();

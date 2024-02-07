@@ -46,6 +46,4 @@ if (Meteor.isServer) {
   Object.values(adminPrivileges).forEach((childRole) => {
     Roles.addRolesToParent(childRole, ROLE.ADMIN);
   });
-
-
 }
