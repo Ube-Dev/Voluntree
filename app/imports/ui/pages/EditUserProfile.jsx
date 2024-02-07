@@ -4,11 +4,11 @@ import { Card, Col, Container, Row } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, LongTextField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+// import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 
-const bridge = new SimpleSchema2Bridge(UserProfiles.schema);
+// const bridge = new SimpleSchema2Bridge(UserProfiles.schema);
 
 const EditUserProfile = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
@@ -38,16 +38,16 @@ const EditUserProfile = () => {
   // On successful submit, insert the data.
   const submit = (data) => {
     const { firstName, lastName, username, description, profilePictureLink } = data;
-    UserProfiles.update({ $set: { firstName, lastName, username, description, profilePictureLink } }, (error) => (error ?
+    UserProfiles.update(userProfile, { $set: { firstName, lastName, username, description, profilePictureLink } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Profile updated successfully.', 'success')));
   };
   return ready ? (
-    <Container className="py-3 formCSS" id="edit-profile-page">
+    <Container className="py-3 formCSS">
       <Row className="justify-content-center">
         <Col xs={10}>
           <Col className="pb-2 text-center"><h2>Edit Profile</h2></Col>
-          <AutoForm schema={bridge} onSubmit={data => submit(data)} model={userProfile}>
+          <AutoForm onSubmit={data => submit(data)} model={userProfile}>
             <Card>
               <Card.Body>
                 <Row>
