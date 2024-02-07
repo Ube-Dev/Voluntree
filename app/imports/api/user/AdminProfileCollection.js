@@ -9,6 +9,8 @@ class AdminProfileCollection extends BaseProfileCollection {
     super('AdminProfile', new SimpleSchema({
       firstName: { type: String },
       lastName: { type: String },
+      privilege: { type: Array, optional: true, defaultValue: [] },
+      'privilege.$': { type: String },
     }));
   }
 
@@ -19,15 +21,15 @@ class AdminProfileCollection extends BaseProfileCollection {
    * @param firstName The first name.
    * @param lastName The last name.
    */
-  define({ email, firstName, lastName, password }) {
+  define({ email, firstName, lastName, password, privilege }) {
     if (Meteor.isServer) {
       // console.log('define', email, firstName, lastName, password);
       const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
         const role = ROLE.ADMIN;
-        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role });
-        const userID = Users.define({ username, role, password });
+        const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role, privilege });
+        const userID = Users.define({ username, role, password, privilege });
         this._collection.update(profileID, { $set: { userID } });
         return profileID;
       }
