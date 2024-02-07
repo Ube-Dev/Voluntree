@@ -22,7 +22,6 @@ const EventCard = ({ event }) => (
   </Link>
 );
 
-// Require a document to be passed to this component.
 EventCard.propTypes = {
   event: PropTypes.shape({
     title: PropTypes.string,

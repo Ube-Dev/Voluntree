@@ -38,7 +38,8 @@ const SearchBar = () => {
         includeMatches: true,
         findAllMatches: true,
         useExtendedSearch: false,
-        keys: ['title', 'organization', 'description', 'location', 'requirements'],
+        threshold: 0.2,
+        keys: ['title', 'eventPlanner', 'description', 'location', 'requirements'],
       };
 
       const fuse = new Fuse(events, fuseOptions);
