@@ -27,8 +27,10 @@ const UserDashboard = () => {
   return (
     <Container>
       <Card>
+        <Card.Header>
+          <h2>Overview</h2>
+        </Card.Header>
         <Card.Body className="d-flex flex-column align-items-start">
-          <h2 className="mb-3">Overview</h2>
           <Container className="d-flex flex-column align-items-start">
             <Row>
               <Col>
@@ -36,7 +38,7 @@ const UserDashboard = () => {
               </Col>
               <Col>
                 <h4>{userProfile.firstName} {userProfile.lastName}</h4>
-                <h4>Hours Recorded: {userProfile.totalHours}</h4>
+                <p>Hours Recorded: {userProfile.totalHours}</p>
               </Col>
             </Row>
           </Container>
