@@ -23,6 +23,7 @@ import AllEventPage from '../pages/AllEventPage';
 import UserProfile from '../pages/UserProfile';
 import ViewEventPage from '../pages/ViewEventPage';
 import AddEvent from '../pages/AddEvent';
+import EditUserProfile from '../pages/EditUserProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
+          <Route path="/edit-user-profile/:_id" element={<ProtectedRoute><EditUserProfile /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
           <Route path="/dashboard" element={<Dashboard />} />
