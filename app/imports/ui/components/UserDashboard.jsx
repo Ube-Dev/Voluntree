@@ -1,31 +1,44 @@
-import React, { useState } from 'react';
-import { Card } from 'react-bootstrap';
+import React from 'react';
+import { Container, Row, Col, Card, Image } from 'react-bootstrap';
+import { Meteor } from 'meteor/meteor';
+import { useTracker } from 'meteor/react-meteor-data';
+import { UserProfiles } from '../../api/user/UserProfileCollection';
+import LoadingSpinner from './LoadingSpinner';
 
 const UserDashboard = () => {
-  const defaultProfileImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
-  const [image, setImage] = useState(defaultProfileImage);
+  const { ready, userProfile } = useTracker(() => {
+    const currentUser = Meteor.user(); // Retrieve the current user
+    const subscription = currentUser ? UserProfiles.subscribeUser() : null; // Subscribe to userProfile publication for the current user
+    const profile = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null; // Query user profile for the current user
+    return {
+      ready: subscription ? subscription.ready() : false,
+      userProfile: profile,
+    };
+  });
 
-  const changeProfileImage = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  if (!ready) {
+    return (
+      <Container className="p-2">
+        <LoadingSpinner /> {/* Show loading spinner while data is loading */}
+      </Container>
+    );
+  }
 
   return (
-    <Card style={{ width: '50rem', height: '30rem' }}>
-      <Card.Body className="d-flex flex-column align-items-center">
-        <h2 className="mb-3">User Overview</h2>
-        <div className="d-flex flex-column align-items-center">
-          {image && (<img src={image} alt="ProfileImage" style={{ width: '150px', height: '150px', borderRadius: '50%', marginBottom: '20px' }} />)}
-          <h4>Name: John Doe</h4>
-          <h4>Hours Recorded: 20 hours</h4>
-          <input type="file" accept="image/*" onChange={changeProfileImage} style={{ marginBottom: '10px' }} />
-        </div>
+    <Card>
+      <Card.Body className="d-flex flex-column align-items-start">
+        <h2 className="mb-3">Overview</h2>
+        <Container className="d-flex flex-column align-items-start">
+          <Row>
+            <Col>
+              <Image src={userProfile.image} alt="ProfileImage" style={{ width: '150px', height: '150px', borderRadius: '50%', marginBottom: '20px' }} />
+            </Col>
+            <Col>
+              <h4>{userProfile.firstName} {userProfile.lastName}</h4>
+              <h4>Hours Recorded: {userProfile.totalHours}</h4>
+            </Col>
+          </Row>
+        </Container>
       </Card.Body>
     </Card>
   );
