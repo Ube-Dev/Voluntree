@@ -56,7 +56,7 @@ if (Meteor.users.find().count() === 0) {
       email, firstName, lastName, password, image, phone, bookmarks,
       viewingHistory, pastEvents, onGoingEvents, userActivity, role,
       totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf, userID, privilege
+      followers, organizationFollowed, memberOf, userID, privilege,
     }) => createUser(
       email,
       firstName,
