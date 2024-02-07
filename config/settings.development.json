@@ -41,33 +41,8 @@
       "contactInfo": "(808)-000-0000"
     }
   ],
-  "defaultData": [
-    {
-      "name": "Basket",
-      "quantity": 3,
-      "owner": "john@foo.com",
-      "condition": "excellent"
-    },
-    {
-      "name": "Bicycle",
-      "quantity": 2,
-      "owner": "john@foo.com",
-      "condition": "poor"
-    },
-    {
-      "name": "Banana",
-      "quantity": 2,
-      "owner": "admin@foo.com",
-      "condition": "good"
-    },
-    {
-      "name": "Boogie Board",
-      "quantity": 2,
-      "owner": "admin@foo.com",
-      "condition": "excellent"
-    }
-  ],
-  "defaultProfileImage": "https://thevoluntree.com/wp-content/uploads/2024/01/cropped-logoNew-120x124.jpg",
+
+  "defaultProfileImage": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
   "defaultEventImage": "https://lottie.org/_next/image/?url=https%3A%2F%2Fapi.prd.lottie.org%2Fimages%2FA_volunteer_helping_an_elderly_lady_walk_f57f195098.webp&w=2048&q=75",
   "defaultOrganizationImage": "https://thevoluntree.com/wp-content/uploads/2024/01/cropped-logoNew-120x124.jpg",
   "public": {
