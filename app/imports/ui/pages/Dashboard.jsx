@@ -3,6 +3,7 @@ import { Col, Container, Image, Row, Card, Nav, Navbar } from 'react-bootstrap';
 import { Doughnut, Bar, Line, Pie, PolarArea } from 'react-chartjs-2';
 import { Chart, ArcElement, CategoryScale, LinearScale, BarElement, PointElement, LineElement, RadialLinearScale } from 'chart.js';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import {Events} from "../../api/event/EventCollection";
 
 Chart.register(ArcElement);
 Chart.register(CategoryScale);
@@ -11,7 +12,25 @@ Chart.register(BarElement);
 Chart.register(PointElement);
 Chart.register(LineElement);
 Chart.register(RadialLinearScale);
+const eventData = () => {
+  // apply filter to the entire page when a specific skill is clicked.
+  // buttons inside <EventCard> will invoke this function.
+  const filterSkill = (skill) => {
+    // console.log('triggered');
+  };
 
+  const { ready, events } = useTracker(() => {
+    // Get access to events
+    const subscription = Events.subscribeEvent();
+    // Make sure its ready
+    const rdy = subscription.ready();
+    // fetch all events
+    const theEvents = Events.find({}).fetch();
+    return {
+      events: theEvents,
+      ready: rdy,
+    };
+  }, []);
 /* A simple static component to render some text for the landing page. */
 const color1 = 'rgb(2, 81, 89)';
 const color2 = 'rgb(3, 166, 150)';
