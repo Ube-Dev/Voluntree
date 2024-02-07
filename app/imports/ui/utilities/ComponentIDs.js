@@ -9,6 +9,7 @@ export const COMPONENT_IDS = {
   NAVBAR_LOGIN_DROPDOWN: 'navbar-login-dropdown',
   NAVBAR_LOGIN_DROPDOWN_SIGN_IN: 'navbar-login-dropdown-sign-in',
   NAVBAR_LOGIN_DROPDOWN_SIGN_UP: 'navbar-login-dropdown-sign-up',
+  NAVBAR_LOGIN_DROPDOWN_SIGN_UP_ORGANIZATION: 'navbar-login-dropdown-sign-up-organization',
   NAVBAR_MANAGE_DROPDOWN: 'navbar-manage-dropdown',
   NAVBAR_MANAGE_DROPDOWN_DATABASE: 'navbar-manage-dropdown-database',
   NAVBAR_DASHBOARD_PAGE: 'navbar-dashboard',
@@ -24,5 +25,7 @@ export const COMPONENT_IDS = {
   SIGN_UP_FORM_LAST_NAME: 'sign-up-form-last-name',
   SIGN_UP_FORM_EMAIL: 'sign-up-form-email',
   SIGN_UP_FORM_PASSWORD: 'sign-up-form-password',
+  SIGN_UP_FORM_ORGANIZATION_ID: 'sign-up-form-organization-id',
+  SIGN_UP_FORM_NAME: 'sign-up-form-name',
   SIGN_UP_FORM_SUBMIT: 'sign-up-form-submit',
 };
