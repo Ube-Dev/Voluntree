@@ -11,7 +11,7 @@ const Event = ({ event }) => (
         <Container>
           <Col>
             <h1>{event.title}</h1>
-            <h5>Organization: {event.eventPlanner}</h5>
+            <h5>Organization: {event.hostBy}</h5>
             <hr />
             <Col>
               <Image className="pt-5" src={event.image} width={600} style={{ objectFit: 'cover' }} />
@@ -63,12 +63,13 @@ Event.propTypes = {
     description: PropTypes.string,
     location: PropTypes.string,
     time: PropTypes.instanceOf(Date),
+    startTime: PropTypes.instanceOf(Date),
     frequency: PropTypes.string,
     accessibilities: PropTypes.instanceOf(Array),
     requiredSkills: PropTypes.instanceOf(Array),
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
-    eventPlanner: PropTypes.string,
+    hostBy: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
 };
