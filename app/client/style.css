@@ -148,3 +148,9 @@ body {
 .faq-header {
   font-weight: bold;
 }
+
+#edit-background {
+  background-color: var(--color2);
+  background-size: cover;
+  height: 500px;
+}

@@ -39,10 +39,10 @@ const EditUserProfile = () => {
     );
   };
   return ready ? (
-    <Container className="py-3 formCSS">
+    <Container fluid className="py-3" id="edit-background">
       <Row className="justify-content-center">
         <Col xs={10}>
-          <Col className="pb-2 text-center"><h2>Edit User Profile</h2></Col>
+          <Col className="pb-2 text-center login-text"><h2>Edit User Profile</h2></Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)} model={userProfile}>
             <Card>
               <Card.Body>
