@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import { Bell, Calendar, GeoAlt } from 'react-bootstrap-icons';
@@ -47,7 +48,7 @@ const Event = ({ event }) => (
             <h3>Impact: {event.impact}</h3>
           </Row>
           <Row className="pb-1 pt-5">
-            <CommitToEvent />
+            <CommitToEvent data={Meteor.user()} />
           </Row>
         </Container>
       </Col>
