@@ -3,7 +3,7 @@ import SimpleSchema from 'simpl-schema';
 import { check } from 'meteor/check';
 import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
-import { UserProfiles } from '../user/UserProfileCollection';
+// import { UserProfiles } from '../user/UserProfileCollection';
 
 export const eventPublications = {
   event: 'Event',

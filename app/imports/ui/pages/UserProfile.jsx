@@ -66,6 +66,8 @@ const UserProfile = () => {
               <p>{userProfile.phone}</p>
               <h4>Skills:</h4>
               <p>{userProfile.skills.join(', ')}</p>
+              <h4>Address:</h4>
+              <p>{userProfile.address}</p>
             </Card.Body>
             <Card.Footer>
               <Button className="btn btn-primary" href="/edit-user-profile">Edit</Button>

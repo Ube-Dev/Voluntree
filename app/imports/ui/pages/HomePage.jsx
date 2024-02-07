@@ -1,7 +1,6 @@
 import React from 'react';
-import { Col, Container, Row, Card } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import SearchBar from '../components/SearchBar';
 import UserDashboard from '../components/UserDashboard';
 import UserCalendar from '../components/UserCalendar';
 
