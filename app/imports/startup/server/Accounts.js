@@ -31,7 +31,7 @@ function createUser(
   organizationFollowed,
   memberOf,
   userID,
-  hasOrganization,
+  privilege,
 ) {
   console.log(`  Creating user ${email} with role ${role}.`);
   if (role === ROLE.ADMIN) {
@@ -40,7 +40,7 @@ function createUser(
     UserProfiles.define({ email, firstName, lastName, password, image, phone, bookmarks,
       viewingHistory, pastEvents, onGoingEvents, userActivity, role,
       totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf, userID, hasOrganization });
+      followers, organizationFollowed, memberOf, userID, privilege });
     if (skills) {
       skills.map(skill => Skills.define({ skill: skill }));
       console.log(`skill added: ${skills}`);
@@ -56,7 +56,7 @@ if (Meteor.users.find().count() === 0) {
       email, firstName, lastName, password, image, phone, bookmarks,
       viewingHistory, pastEvents, onGoingEvents, userActivity, role,
       totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf, userID, hasOrganization,
+      followers, organizationFollowed, memberOf, userID, privilege,
     }) => createUser(
       email,
       firstName,
@@ -82,7 +82,7 @@ if (Meteor.users.find().count() === 0) {
       organizationFollowed,
       memberOf,
       userID,
-      hasOrganization,
+      privilege,
     ));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');

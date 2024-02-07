@@ -9,6 +9,7 @@
       "email": "admin@foo.com",
       "password": "changeme",
       "role": "ADMIN",
+      "privilege": [],
       "firstName": "Admin",
       "lastName": "MATRP"
     },
@@ -16,6 +17,7 @@
       "email": "john@foo.com",
       "password": "changeme",
       "role": "USER",
+      "privilege": ["hasOrganization"],
       "firstName": "John",
       "lastName": "Doe",
       "skills": [

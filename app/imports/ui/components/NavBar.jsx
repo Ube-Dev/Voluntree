@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
 import { Container, Navbar, Nav, NavDropdown, Image } from 'react-bootstrap';
 import { BoxArrowRight, CloudDownload, PersonCircle, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
-import { ROLE } from '../../api/role/Role';
+import { ROLE, userPrivileges } from '../../api/role/Role';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const NavBar = () => {
@@ -45,7 +45,7 @@ const NavBar = () => {
               <Nav.Link id={COMPONENT_IDS.NAVBAR_MY_EVENTS_PAGE} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link>
             ) : ''}
             {/* If user is organization, set Dashboard page as visible; hide it otherwise */}
-            { currentUser.memberOf != null ? (
+            {Roles.userIsInRole(Meteor.userId(), userPrivileges.hasOrganization, ROLE.USER) ? (
               <Nav.Link id={COMPONENT_IDS.NAVBAR_DASHBOARD_PAGE} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>
             ) : '' }
             {/* If user is admin, set Manage Database dropdown as visible; hide it otherwise */}
