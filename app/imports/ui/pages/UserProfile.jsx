@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
@@ -30,8 +30,8 @@ const UserProfile = () => {
       <Row className="py-5">
         <Col md={6}>
           <h1>Profile:</h1>
-          <Card>
-            <Card.Img className="text-center" variant="top" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile Picture" style={{ width: '250px' }} />
+          <Card className="d-flex justify-content-center">
+            <Image src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile Picture" style={{ width: '250px' }} />
           </Card>
           <Card className="mt-3">
             <Card.Body>
@@ -59,11 +59,16 @@ const UserProfile = () => {
           <Card>
             <Card.Body>
               <h3>Basic Information:</h3>
-              <p>Email: {userProfile.email}</p>
-              <p>Phone Number: {userProfile.phone}</p>
+              <br />
+              <h4>Email:</h4>
+              <p>{userProfile.email}</p>
+              <h4>Phone Number:</h4>
+              <p>{userProfile.phone}</p>
+              <h4>Skills:</h4>
+              <p>{userProfile.skills.join(', ')}</p>
             </Card.Body>
             <Card.Footer>
-              <Button className="btn btn-primary" href="/edit-profile">Edit</Button>
+              <Button className="btn btn-primary" href="/edit-user-profile">Edit</Button>
             </Card.Footer>
           </Card>
         </Col>
