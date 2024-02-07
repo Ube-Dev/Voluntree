@@ -38,11 +38,11 @@ const EditUserProfile = () => {
   // On successful submit, insert the data.
   const submit = (data) => {
     const { firstName, lastName, image, phone } = data;
-    /* UserProfiles.update((error) => {
+    UserProfiles.update((error) => {
       return (error ?
         swal('Error', error.message, 'error') :
         swal('Success', 'Profile updated successfully.', 'success'));
-    });*/
+    });
   };
   return ready ? (
     <Container className="py-3 formCSS">
