@@ -1,7 +1,7 @@
 import React from 'react';
 import swal from 'sweetalert';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -39,9 +39,9 @@ const EditUserProfile = () => {
     );
   };
   return ready ? (
-    <Container fluid className="py-3" id="edit-background">
+    <Container fluid className="py-3 edit-page-background">
       <Row className="justify-content-center">
-        <Col xs={10}>
+        <Col xs={8}>
           <Col className="pb-2 text-center login-text"><h2>Edit User Profile</h2></Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)} model={userProfile}>
             <Card>
@@ -51,7 +51,20 @@ const EditUserProfile = () => {
                   <Col><TextField name="lastName" label="Last Name" /></Col>
                   <Col><TextField name="image" label="Profile Picture URL" /></Col>
                 </Row>
-                <SubmitField value="Submit" />
+                <Row>
+                  <Col><TextField name="address" label="Address" /></Col>
+                  <Col><TextField name="phone" label="Phone" /></Col>
+                  <Col><TextField name="email" label="Email" /></Col>
+                </Row>
+                <Row>
+                  <Col><TextField name="city" label="City" /></Col>
+                  <Col><TextField name="state" label="State" /></Col>
+                  <Col><TextField name="country" label="Country" /></Col>
+                  <Col><TextField name="zipCode" label="Zip Code" /></Col>
+                </Row>
+                <HiddenField name="role" />
+                <HiddenField name="userID" />
+                <SubmitField value="Update Profile" />
                 <ErrorsField />
               </Card.Body>
             </Card>

@@ -149,8 +149,9 @@ body {
   font-weight: bold;
 }
 
-#edit-background {
+.edit-page-background {
   background-color: var(--color2);
   background-size: cover;
-  height: 500px;
+  height: 600px;
 }
+
