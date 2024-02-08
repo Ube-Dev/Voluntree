@@ -5,7 +5,7 @@ import UserDashboard from '../components/UserDashboard';
 import UserCalendar from '../components/UserCalendar';
 
 const HomePage = () => (
-  <Container fluid className="color4">
+  <Container fluid className="color3">
     <Container id={PAGE_IDS.HOME_PAGE} className="py-3">
       <Row>
         <Col className="d-flex flex-column col-md-5 col-12">
