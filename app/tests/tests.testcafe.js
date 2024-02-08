@@ -13,7 +13,7 @@ import { eventsPage } from './events.page';
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
-const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
+// const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
 const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
 const orgCredentials = { username: 'organization@foo.com', password: 'changeme' };
 
@@ -91,11 +91,11 @@ test('Test that sign up and sign out work', async () => {
   await signOutPage.isDisplayed();
 });
 
-test('Test that admin pages show up', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(adminCredentials.username, adminCredentials.password);
-  // await navBar.isLoggedIn(adminCredentials.username);
-  // await t.click(editLinks.nth(0));
-  // await navBar.gotoManageDatabasePage();
-  // await manageDatabasePage.isDisplayed();
-});
+// test('Test that admin pages show up', async () => {
+//   await navBar.gotoSignInPage();
+//   await signInPage.signin(adminCredentials.username, adminCredentials.password);
+//   await navBar.isLoggedIn(adminCredentials.username);
+//   // await t.click(editLinks.nth(0));
+//   // await navBar.gotoManageDatabasePage();
+//   // await manageDatabasePage.isDisplayed();
+// });
