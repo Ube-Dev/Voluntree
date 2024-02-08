@@ -33,6 +33,19 @@
         "reading",
         "writing"
       ]
+    },
+    {
+      "email": "thomas@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Thomas",
+      "lastName": "Rivera",
+      "skills": [
+        "communication",
+        "driving",
+        "cleaning"
+      ]
     }
   ],
   "defaultOrganizations": [

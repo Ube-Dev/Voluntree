@@ -40,16 +40,15 @@ const NavBar = () => {
             <Nav.Link id={COMPONENT_IDS.NAVBAR_FAQ_PAGE} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>
             {/* Find Events page */}
             <Nav.Link id={COMPONENT_IDS.NAVBAR_EVENTS_PAGE} as={NavLink} to="/Events" key="Events">Find Events</Nav.Link>
-            {/* AddEvent page */}
-            <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_EVENT_PAGE} as={NavLink} to="/add-event" key="AddEvent">Add Event</Nav.Link>
             {/* If user is logged in, set links to My Events and Dashboard pages as visible; hide it otherwise */}
             {/* {currentUser ? ( */}
             {/*  <Nav.Link id={COMPONENT_IDS.NAVBAR_MY_EVENTS_PAGE} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link> */}
             {/* ) : ''} */}
             {/* If user is organization, set Dashboard page as visible; hide it otherwise */}
-            {Roles.userIsInRole(Meteor.userId(), userPrivileges.hasOrganization, ROLE.USER) ? (
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_DASHBOARD_PAGE} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>
-            ) : '' }
+            {Roles.userIsInRole(Meteor.userId(), userPrivileges.hasOrganization, ROLE.USER) ? ([
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_EVENT_PAGE} as={NavLink} to="/add-event" key="AddEvent">Add Event</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_DASHBOARD_PAGE} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>,
+            ]) : ''}
             {/* If user is admin, set Manage Database dropdown as visible; hide it otherwise */}
             {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? ([
               <Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN_PAGE} as={NavLink} to="/admin" key="admin">Admin</Nav.Link>,

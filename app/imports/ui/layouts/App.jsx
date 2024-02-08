@@ -14,7 +14,7 @@ import SignOut from '../pages/SignOut';
 import NavBar from '../components/NavBar';
 import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
-import { ROLE } from '../../api/role/Role';
+import { ROLE, userPrivileges } from '../../api/role/Role';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ManageDatabase from '../pages/ManageDatabase';
 import Dashboard from '../pages/Dashboard';
@@ -51,8 +51,8 @@ const App = () => {
           <Route path="/edit-user-profile/:_id" element={<ProtectedRoute><EditUserProfile /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/add-event" element={<AddEvent />} />
+          <Route path="/dashboard" element={<OrganizationProtectedRoute ready={ready}><Dashboard /></OrganizationProtectedRoute>} />
+          <Route path="/add-event" element={<OrganizationProtectedRoute ready={ready}><AddEvent /></OrganizationProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
@@ -72,6 +72,24 @@ const ProtectedRoute = ({ children }) => {
   const isLogged = Meteor.userId() !== null;
   console.log('ProtectedRoute', isLogged);
   return isLogged ? children : <Navigate to="/signin" />;
+};
+
+/**
+ * OrganizationProtectedRoute (see React Router v6 sample)
+ * Checks for Meteor login and admin role before routing to the requested page, otherwise goes to signin page.
+ * @param {any} { component: Component, ...rest }
+ */
+const OrganizationProtectedRoute = ({ ready, children }) => {
+  const isLogged = Meteor.userId() !== null;
+  if (!isLogged) {
+    return <Navigate to="/signin" />;
+  }
+  if (!ready) {
+    return <LoadingSpinner />;
+  }
+  const isOrganization = Roles.userIsInRole(Meteor.userId(), userPrivileges.hasOrganization, ROLE.USER);
+  console.log('OrganizationProtectedRoute', isLogged, isOrganization);
+  return (isLogged && isOrganization) ? children : <Navigate to="/notauthorized" />;
 };
 
 /**
@@ -98,6 +116,17 @@ ProtectedRoute.propTypes = {
 };
 
 ProtectedRoute.defaultProps = {
+  children: <Landing />,
+};
+
+// Require a component and location to be passed to each OrganizationProtectedRoute.
+OrganizationProtectedRoute.propTypes = {
+  ready: PropTypes.bool,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+};
+
+OrganizationProtectedRoute.defaultProps = {
+  ready: false,
   children: <Landing />,
 };
 
