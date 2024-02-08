@@ -49,8 +49,8 @@ const App = () => {
           <Route path="/edit-user-profile/:_id" element={<ProtectedRoute><EditUserProfile /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/add-event" element={<AddEvent />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/add-event" element={<ProtectedRoute><AddEvent /></ProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
