@@ -35,16 +35,16 @@
       ]
     },
     {
-      "email": "user@foo.com",
+      "email": "thomas@foo.com",
       "password": "changeme",
       "role": "USER",
       "privilege": [],
-      "firstName": "John",
-      "lastName": "Doe",
+      "firstName": "Thomas",
+      "lastName": "Rivera",
       "skills": [
         "communication",
-        "reading",
-        "writing"
+        "driving",
+        "cleaning"
       ]
     }
   ],
