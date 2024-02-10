@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { Container, Card, Button, ButtonGroup, Row, Col, Pagination, Image } from 'react-bootstrap';
 import { TagFill } from 'react-bootstrap-icons';
 import { useTracker } from 'meteor/react-meteor-data';
-import SearchBar from '../components/SearchBar';
+import EventList from '../components/EventList';
 import CommitToEvent from '../components/CommitToEvent';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { Events } from '../../api/event/EventCollection';
