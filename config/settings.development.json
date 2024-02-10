@@ -6,6 +6,14 @@
   ],
   "defaultAccounts": [
     {
+      "email": "organization@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": ["hasOrganization"],
+      "firstName": "Temp",
+      "lastName": "Org"
+    },
+    {
       "email": "admin@foo.com",
       "password": "changeme",
       "role": "ADMIN",
@@ -23,15 +31,26 @@
       "skills": [
         "communication",
         "reading",
-        "writing",
-        "reading"
-      ],
-      "memberOf": "1SkcLcs"
+        "writing"
+      ]
+    },
+    {
+      "email": "thomas@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Thomas",
+      "lastName": "Rivera",
+      "skills": [
+        "communication",
+        "driving",
+        "cleaning"
+      ]
     }
   ],
   "defaultOrganizations": [
     {
-      "email": "john@foo.com",
+      "email": "organization@foo.com",
       "password": "changeme",
       "type": "ORGANIZATION",
       "organizationID": "1SkcLcs",

@@ -70,7 +70,7 @@ const UserProfile = () => {
               <p>{userProfile.address}</p>
             </Card.Body>
             <Card.Footer>
-              <Button className="btn btn-primary" href="/edit-user-profile">Edit</Button>
+              <Button className="btn btn-primary" href={`/edit-user-profile/${userProfile._id}`}>Edit</Button>
             </Card.Footer>
           </Card>
         </Col>
