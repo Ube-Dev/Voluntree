@@ -93,6 +93,10 @@ body {
   text-decoration: none !important;
 }
 
+.landing-link:hover {
+  color: darkgoldenrod !important;
+}
+
 .btn-outline-light-landing {
   color: white !important;
   border-color: white !important;
