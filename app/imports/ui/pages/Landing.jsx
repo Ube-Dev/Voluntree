@@ -31,9 +31,9 @@ const Landing = () => (
           Ready to make a positive impact on the world? Welcome to The Voluntree – your gateway to meaningful volunteer opportunities.
         </p>
         <Row className="justify-content-center py-2">
-          <Image src="/images/landing-img1.jpg" alt="Voluntree Logo" className="d-block" style={{ width: '32%' }} />
-          <Image src="/images/landing-img2.jpg" alt="Voluntree Logo" className="d-block" style={{ width: '32%' }} />
-          <Image src="/images/landing-img3.jpg" alt="Voluntree Logo" className="d-block" style={{ width: '32%' }} />
+          <Image src="/images/landing-img1.jpg" alt="Landing Image 1" className="d-block" style={{ width: '32%' }} />
+          <Image src="/images/landing-img2.jpg" alt="Landing Image 2" className="d-block" style={{ width: '32%' }} />
+          <Image src="/images/landing-img3.jpg" alt="Landing Image 3" className="d-block" style={{ width: '32%' }} />
         </Row>
         <p>
           Designed to connect passionate individuals like you with organizations.
@@ -64,7 +64,9 @@ const Landing = () => (
           <p>
             Join The Voluntree community and embark on a journey of purposeful volunteering. Together, we can create a world where every act of kindness leaves a lasting impact.
           </p>
-          <p>Ready to get started? Sign up now and let&apos;s grow The Voluntree together!</p>
+          <p>
+            Ready to get started? Sign up now and let&apos;s grow The Voluntree together!
+          </p>
           <p>
             <a className="landing-link" href="/signup">Sign Up</a> | <a className="landing-link" href="/about">Learn More</a>
           </p>
