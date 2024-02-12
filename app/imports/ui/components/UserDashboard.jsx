@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, Image } from 'react-bootstrap';
+import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
@@ -16,22 +16,14 @@ const UserDashboard = () => {
     };
   });
 
-  if (!ready) {
-    return (
-      <Container className="p-2">
-        <LoadingSpinner /> {/* Show loading spinner while data is loading */}
-      </Container>
-    );
-  }
-
   return (
-    <Container>
-      <Card>
-        <Card.Header>
-          <h2>Overview</h2>
-        </Card.Header>
-        <Card.Body className="d-flex flex-column align-items-start">
-          <Container className="d-flex flex-column align-items-start">
+    ready ? (
+      <Container>
+        <Card>
+          <Card.Header>
+            <h2>Overview</h2>
+          </Card.Header>
+          <Card.Body className="d-flex flex-column align-items-start">
             <Row>
               <Col>
                 <Image src={userProfile.image} alt="Profile Image" style={{ width: '150px', height: '150px', borderRadius: '50%', marginBottom: '20px' }} />
@@ -41,10 +33,22 @@ const UserDashboard = () => {
                 <p>Hours Recorded: {userProfile.totalHours}</p>
               </Col>
             </Row>
-          </Container>
-        </Card.Body>
-      </Card>
-    </Container>
+          </Card.Body>
+          <Card.Footer className="d-flex justify-content-end p-2">
+            <Button className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
+              <a href="/profile" style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>View Profile</a>
+            </Button>
+            <Button className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
+              <a href={`/edit-user-profile/${userProfile._id}`} style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>Edit</a>
+            </Button>
+          </Card.Footer>
+        </Card>
+      </Container>
+    ) : (
+      <Container className="p-2">
+        <LoadingSpinner />
+      </Container>
+    )
   );
 };
 
