@@ -1,38 +1,39 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Container, Card, Button, ButtonGroup, Row, Col, Pagination } from 'react-bootstrap';
+import { useParams } from 'react-router';
+import { Container, Card, Button, ButtonGroup, Row, Col, Pagination, Image } from 'react-bootstrap';
 import { TagFill } from 'react-bootstrap-icons';
 import { useTracker } from 'meteor/react-meteor-data';
 import EventList from '../components/EventList';
-import '../css/AllEventPage.css';
 import CommitToEvent from '../components/CommitToEvent';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { Events } from '../../api/event/EventCollection';
+import LoadingSpinner from '../components/LoadingSpinner';
+import Event from '../components/Event';
+import NotFound from './NotFound';
 
-const AllEventPage = () => {
-  // apply filter to the entire page when a specific skill is clicked.
-  // buttons inside <EventCard> will invoke this function.
-  const filterSkill = (skill) => {
-    // console.log('triggered');
-  };
-
+const ViewEventPage = () => {
+  // get event id
+  const _id = useParams();
   const { ready, events } = useTracker(() => {
   // Get access to events
     const subscription = Events.subscribeEvent();
     // Make sure its ready
     const rdy = subscription.ready();
     // fetch all events
-    const theEvents = Events.find({}).fetch();
+    const theEvents = Events.findOne(_id);
     return {
       events: theEvents,
       ready: rdy,
     };
   }, []);
-  return (
-    <Container id={PAGE_IDS.EVENTS}>
-      <EventList theEvents={events} />
-    </Container>
-  );
+  if (ready) {
+    if (events) {
+      return <Event event={events} />;
+    }
+    return <NotFound />;
+  }
+  return <LoadingSpinner />;
 };
 
-export default AllEventPage;
+export default ViewEventPage;

@@ -17,7 +17,7 @@ class UserProfileCollection extends BaseProfileCollection {
       firstName: { type: String },
       lastName: { type: String },
       image: { type: String, optional: true, defaultValue: defaultProfileImage },
-      userID: { type: String, unique: true },
+      // userID: { type: String, unique: true },
       phone: { type: String, optional: true, defaultValue: '' },
       bookmarks: { type: Array, optional: true, defaultValue: [] },
       'bookmarks.$': { type: String }, // eventId
@@ -50,6 +50,8 @@ class UserProfileCollection extends BaseProfileCollection {
       'organizationFollowed.$': { type: String },
       memberOf: { type: Array, optional: true, defaultValue: [] },
       'memberOf.$': { type: String },
+      privilege: { type: Array, optional: true, defaultValue: [] },
+      'privilege.$': { type: String },
     }));
   }
 
@@ -63,14 +65,14 @@ class UserProfileCollection extends BaseProfileCollection {
   define({ email, firstName, lastName, password, image, phone, bookmarks,
     viewingHistory, pastEvents, onGoingEvents, userActivity,
     totalHours, address, zipCode, city, state, country, feedbacks, skills,
-    followers, organizationFollowed, memberOf, userID,
+    followers, organizationFollowed, memberOf, userID, privilege,
   }) {
     // if (Meteor.isServer) {
     const username = email;
     const user = this.findOne({ email, firstName, lastName });
     if (!user) {
       const role = ROLE.USER;
-      let newID = Users.define({ username, role, password });
+      let newID = Users.define({ username, role, privilege, password });
       if (userID) {
         newID = userID;
       }
@@ -79,7 +81,7 @@ class UserProfileCollection extends BaseProfileCollection {
         image, phone, bookmarks,
         viewingHistory, pastEvents, onGoingEvents, userActivity,
         totalHours, address, zipCode, city, state, country, feedbacks, skills,
-        followers, organizationFollowed, memberOf,
+        followers, organizationFollowed, memberOf, privilege,
       });
       // this._collection.update(profileID, { $set: { userID } });
       return profileID;

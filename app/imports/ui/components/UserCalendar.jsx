@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { Table, Button, Modal, Form, Card, Container } from 'react-bootstrap';
 
 const UserCalendar = () => {
 
@@ -146,14 +146,16 @@ const UserCalendar = () => {
   );
 
   return (
-    <div>
-      {renderHeader()}
-      <Table bordered size="lg">
-        {renderDaysOfWeekHeader()}
-        {renderCalendarBody()}
-      </Table>
-      {renderModal()}
-    </div>
+    <Container fluid>
+      <Card className="p-3">
+        {renderHeader()}
+        <Table bordered responsive="md" size="sm">
+          {renderDaysOfWeekHeader()}
+          {renderCalendarBody()}
+        </Table>
+        {renderModal()}
+      </Card>
+    </Container>
   );
 };
 

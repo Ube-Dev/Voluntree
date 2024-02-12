@@ -6,9 +6,18 @@
   ],
   "defaultAccounts": [
     {
+      "email": "organization@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": ["hasOrganization"],
+      "firstName": "Temp",
+      "lastName": "Org"
+    },
+    {
       "email": "admin@foo.com",
       "password": "changeme",
       "role": "ADMIN",
+      "privilege": [],
       "firstName": "Admin",
       "lastName": "MATRP"
     },
@@ -16,19 +25,32 @@
       "email": "john@foo.com",
       "password": "changeme",
       "role": "USER",
+      "privilege": ["hasOrganization"],
       "firstName": "John",
       "lastName": "Doe",
       "skills": [
         "communication",
         "reading",
-        "writing",
-        "reading"
+        "writing"
+      ]
+    },
+    {
+      "email": "thomas@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Thomas",
+      "lastName": "Rivera",
+      "skills": [
+        "communication",
+        "driving",
+        "cleaning"
       ]
     }
   ],
   "defaultOrganizations": [
     {
-      "email": "john@foo.com",
+      "email": "organization@foo.com",
       "password": "changeme",
       "type": "ORGANIZATION",
       "organizationID": "1SkcLcs",
@@ -39,33 +61,8 @@
       "contactInfo": "(808)-000-0000"
     }
   ],
-  "defaultData": [
-    {
-      "name": "Basket",
-      "quantity": 3,
-      "owner": "john@foo.com",
-      "condition": "excellent"
-    },
-    {
-      "name": "Bicycle",
-      "quantity": 2,
-      "owner": "john@foo.com",
-      "condition": "poor"
-    },
-    {
-      "name": "Banana",
-      "quantity": 2,
-      "owner": "admin@foo.com",
-      "condition": "good"
-    },
-    {
-      "name": "Boogie Board",
-      "quantity": 2,
-      "owner": "admin@foo.com",
-      "condition": "excellent"
-    }
-  ],
-  "defaultProfileImage": "https://thevoluntree.com/wp-content/uploads/2024/01/cropped-logoNew-120x124.jpg",
+
+  "defaultProfileImage": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
   "defaultEventImage": "https://lottie.org/_next/image/?url=https%3A%2F%2Fapi.prd.lottie.org%2Fimages%2FA_volunteer_helping_an_elderly_lady_walk_f57f195098.webp&w=2048&q=75",
   "defaultOrganizationImage": "https://thevoluntree.com/wp-content/uploads/2024/01/cropped-logoNew-120x124.jpg",
   "public": {
@@ -97,8 +94,8 @@
       "hostID": "grE2jpXRaEKNqJ2nk"
     },
     {
-      "title": "Alamoana Beach Clean Up",
-      "image": "https://lh3.googleusercontent.com/proxy/lrfNDENVJQWsuK2EaPKqGzgx43R7bVvXv4C9s8Uok8mZ0L7MeXXQcjSy4Viyn-LZKSD5li3GUlDoTGnMWC0ti_aubzQ0zowlLztORYr9d90xggAK9Vm2JloL6iDdRebkG8md04t9hsLSt4a2URQyQg-BVXLHRxCP2Rfe_7hntBc4A2axGErrnV4iYVYy113e",
+      "title": "Ala Moana Beach Clean Up",
+      "image": "https://www.wildhawaii.org/wp-content/uploads/2020/08/kamilo-community-coastal-cleanup-event-2015-hawaii-wildlife-fund.jpg",
       "description": "Help clean up your local beach!",
       "location": "Ala Moana",
       "time": "2024-02-29",

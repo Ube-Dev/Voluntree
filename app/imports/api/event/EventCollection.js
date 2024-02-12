@@ -3,7 +3,7 @@ import SimpleSchema from 'simpl-schema';
 import { check } from 'meteor/check';
 import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
-import { UserProfiles } from '../user/UserProfileCollection';
+// import { UserProfiles } from '../user/UserProfileCollection';
 
 export const eventPublications = {
   event: 'Event',
@@ -60,6 +60,8 @@ class EventCollection extends BaseCollection {
       'equipmentsCount.value': { type: Object }, // a dictionary of different specification for each equipment
       'equipmentsCount.value.key': { type: String }, // name of the specificaiton
       'equipmentsCount.value.value': { type: Number }, // total numbers
+      startTime: { type: Date, optional: true, defaultValue: new Date() },
+      endTime: { type: Date, optional: true, defaultValue: new Date() },
     }));
   }
 
@@ -80,7 +82,7 @@ class EventCollection extends BaseCollection {
   define({ title, image, description, location, time, frequency, accessibilities, requirements, impact,
     requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
     country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
-    hostID,
+    hostID, startTime, endTime,
   }) {
     // Convert single values to arrays if they are not already
     // const accessibilityArray = Array.isArray(accessibilities) ? accessibilities : [accessibilities];
@@ -108,7 +110,7 @@ class EventCollection extends BaseCollection {
       requirements,
       impact, eventID: credential, requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address,
       zipCode, city, state, country, totalSpots, spotsFilled, eventState, recruiting, equipments,
-      equipmentsCount, canceledVolunteer,
+      equipmentsCount, canceledVolunteer, startTime, endTime,
     });
 
     return docID;
@@ -131,10 +133,12 @@ class EventCollection extends BaseCollection {
   update(docID, { title, image, description, location, time, frequency, accessibilities, requirements, impact,
     requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
     country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
+    startTime, endTime,
   }) {
     const updateData = { title, image, description, location, time, frequency, accessibilities, requirements, impact,
       requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
       country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
+      startTime, endTime,
     };
 
     Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
