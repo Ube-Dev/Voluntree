@@ -73,7 +73,6 @@ const Landing = () => (
         </Row>
       </Col>
     </Container>
-
   </>
 );
 
