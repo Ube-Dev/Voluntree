@@ -8,11 +8,11 @@ const Footer = () => {
     <footer className="mt-1 mb-3 bg-light">
       <Container style={divStyle}>
         <Row>
-          <Col sm={12} md={4}>
+          <Col sm={12} md={3}>
             <hr />
-            <Image src="/images/voluntreeLanding1.png" width="150px" />
+            <Image src="/images/voluntreeLanding1.png" width="150px" /> <br />
           </Col>
-          <Col sm={12} md={4}>
+          <Col sm={12} md={3}>
             <hr />
             <h5>Quick Links</h5>
             <a href="/">Landing</a> <br />
@@ -20,9 +20,13 @@ const Footer = () => {
             <a href="/FAQ">FAQ</a> <br />
             <a href="/home">Home</a> <br />
             <a href="/Events">Find Events</a> <br />
-            <a href="/about/contact">Contact Us</a> <br />
           </Col>
-          <Col sm={12} md={4} className="text-start">
+          <Col sm={12} md={3}>
+            <hr />
+            <h6>Contact Us</h6>
+            <p>sarakenley@thevoluntree.com</p>
+          </Col>
+          <Col sm={12} md={3} className="text-start">
             <hr />
             Created by <a href="https://ube-dev.github.io/">Ube-Dev</a> <br />
             Based on a template provided by <br />
