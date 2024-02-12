@@ -26,7 +26,7 @@ const UserDashboard = () => {
           <Card.Body className="d-flex flex-column align-items-start">
             <Row>
               <Col>
-                <Image src={userProfile.image} alt="Profile Image" style={{ width: '150px', height: '150px', borderRadius: '50%', marginBottom: '20px' }} />
+                <Image src={userProfile.image} alt="Profile Image" style={{ width: '150px', height: '150px', borderRadius: '50%' }} />
               </Col>
               <Col>
                 <h4>{userProfile.firstName} {userProfile.lastName}</h4>
