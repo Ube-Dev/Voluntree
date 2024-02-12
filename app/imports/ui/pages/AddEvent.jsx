@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, DateField, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, DateField, ErrorsField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -9,52 +9,28 @@ import { Events } from '../../api/event/EventCollection';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
-  title: { type: String, index: true },
+  title: { type: String, optional: false },
   image: { type: String, optional: true },
-  description: { type: String, optional: true, defaultValue: '' },
-  location: { type: String, optional: true, defaultValue: '' },
-  time: {
-    type: Date,
-    defaultValue: new Date(),
-    optional: true,
+  description: { type: String, optional: false },
+  location: { type: String, optional: false },
+  startTime: { type: Date, optional: false },
+  endTime: { type: Date, optional: false },
+  frequency: {
+    type: String,
+    allowedValues: ['Once', 'Daily', 'Weekly', 'Monthly', 'Yearly'],
+    defaultValue: 'Once',
+    optional: false,
   },
-  frequency: { type: String, optional: true, defaultValue: 'Once' },
-  accessibilities: { type: Array, unique: true, optional: true, defaultValue: [] },
-  'accessibilities.$': { type: String },
-  requiredSkills: { type: Array, optional: true, defaultValue: [] },
-  'requiredSkills.$': { type: String },
-  requirements: { type: Array, unique: true, optional: true, defaultValue: [] },
-  'requirements.$': { type: String },
-  impact: { type: String, optional: true, defaultValue: '' },
-  hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: true, defaultValue: 'individual' },
-  hostBy: { type: String, defaultValue: '' }, // organization/individual name
-  hostID: { type: String, defaultValue: '' }, // organization/individual ID
-  phone: { type: String, optional: true, defaultValue: '' },
-  activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], optional: true, defaultValue: 'in-person' },
-  activityCategory: { type: String, optional: true, defaultValue: 'general' },
-  address: { type: String, optional: true, defaultValue: '' },
-  zipCode: { type: String, optional: true, defaultValue: '' },
-  city: { type: String, optional: true, defaultValue: '' },
-  state: { type: String, optional: true, defaultValue: '' },
-  country: { type: String, optional: true, defaultValue: '' },
-  totalSpots: { type: Number, optional: true, defaultValue: 1 },
-  spotsFilled: { type: Array, optional: true, defaultValue: [] },
-  'spotsFilled.$': { type: String },
-  canceledVolunteer: { type: Array, optional: true, defaultValue: [] },
-  'canceledVolunteer.$': { type: String },
-  eventState: { type: String, allowedValues: ['ended', 'onGoing', 'canceled'], optional: true, defaultValue: 'onGoing' },
-  recruiting: { type: Boolean, optional: true, defaultValue: true },
-  equipments: { type: Object, optional: true },
-  'equipments.key': { type: String },
-  'equipments.value': { type: Array },
-  'equipments.value.$': { type: String },
-  equipmentsCount: { type: Object, optional: true },
-  'equipmentsCount.key': { type: String }, // name of the equipment
-  'equipmentsCount.value': { type: Object }, // a dictionary of different specification for each equipment
-  'equipmentsCount.value.key': { type: String }, // name of the specificaiton
-  'equipmentsCount.value.value': { type: Number }, // total numbers
-  startTime: { type: Date, optional: true, defaultValue: new Date() },
-  endTime: { type: Date, optional: true, defaultValue: new Date() },
+  accessibilities: {
+    type: Array,
+    unique: true,
+    optional: true,
+    defaultValue: [],
+  },
+  'accessibilities.$': {
+    type: String,
+    allowedValues: ['Wheelchair', 'Elevator', 'Ramp', 'Braille', 'SignLanguage', 'Quiet'],
+  },
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
@@ -82,21 +58,32 @@ const AddEvent = () => {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
-    <Container className="py-3">
+    <Container className="p-3">
       <Row className="justify-content-center">
-        <Col xs={5}>
+        <Col xs={8}> {/* Increased the column width to xs={8} */}
           <Col className="text-center"><h2>Create Event</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
+              <Card.Header>Event Details</Card.Header>
               <Card.Body>
-                <TextField name="title" />
-                <TextField name="description" />
-                <TextField name="location" />
-                <DateField name="startTime" />
-                <DateField name="endTime" />
-                <SubmitField value="Submit" />
-                <ErrorsField />
+                <Row>
+                  <Col>
+                    <TextField name="title" />
+                    <TextField name="image" />
+                    <TextField name="location" />
+                    <SelectField name="frequency" />
+                    <DateField name="startTime" />
+                    <DateField name="endTime" />
+                  </Col>
+                  <Col>
+                    <TextField name="description" />
+                  </Col>
+                </Row>
               </Card.Body>
+              <Card.Footer>
+                <SubmitField />
+                <ErrorsField />
+              </Card.Footer>
             </Card>
           </AutoForm>
         </Col>
