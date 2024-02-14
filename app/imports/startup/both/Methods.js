@@ -4,6 +4,8 @@ import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Events } from '../../api/event/EventCollection';
 import { Skills } from '../../api/skill/SkillCollection';
 import { Organization } from '../../api/organization/OrganizationCollection';
+import { MainCategory } from '../../api/category/MainCategoryCollection';
+import { SubCategory } from '../../api/category/SubCategoryCollection';
 
 const createUserProfile = 'UserProfiles.define';
 
@@ -157,7 +159,31 @@ Meteor.methods({
   },
 });
 
+const loadDefaultCategories = 'loadDefaultCategories';
+
+Meteor.methods({
+  loadDefaultCategories: function (data) {
+    check(data, Object);
+    try {
+      Object.entries(data).forEach(([mainCategory, subCategories]) => {
+        // Define the main category and get its ID.
+        console.log(mainCategory);
+        console.log(subCategories);
+        const mainCategoryId = MainCategory.define({ name: mainCategory });
+
+        // Iterate over each subcategory in the array.
+        subCategories.forEach(subCategory => {
+          // Define the subcategory with the main category ID.
+          SubCategory.define({ name: subCategory, parentID: mainCategoryId });
+        });
+      });
+    } catch (error) {
+      throw new Meteor.Error('loadDefaultCategories-failed', 'Failed to load default categories: ', error);
+    }
+  },
+});
+
 export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
-  createOrganization, updateOrganization, removeOrganization,
+  createOrganization, updateOrganization, removeOrganization, loadDefaultCategories,
 };

@@ -4,6 +4,8 @@ import { UserProfiles } from '../user/UserProfileCollection';
 import { Events } from '../event/EventCollection';
 import { Organization } from '../organization/OrganizationCollection';
 import { Skills } from '../skill/SkillCollection';
+import { MainCategory } from '../category/MainCategoryCollection';
+import { SubCategory } from '../category/SubCategoryCollection';
 
 class MATPClass {
   collections;
@@ -20,6 +22,8 @@ class MATPClass {
       Events,
       Organization,
       Skills,
+      MainCategory,
+      SubCategory,
     ];
     /*
      * A list of collection class instances in the order required for them to be sequentially loaded from a file.
@@ -29,6 +33,8 @@ class MATPClass {
       UserProfiles,
       Organization,
       Skills,
+      MainCategory,
+      SubCategory,
       Events,
     ];
 
