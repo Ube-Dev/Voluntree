@@ -105,11 +105,20 @@ body {
   transition: all 0.3s ease-out !important;
 }
 
+.btn-outline-light-landing:hover {
+  border-color: #f8f9fa !important;
+  background-color: #f8f9fa !important;
+  color: black !important;
+}
+
+/*
 .btn-light {
+  border-color: #f8f9fa !important;
   font-size: 20px !important;
   padding: 12px 26px !important;
   transition: all 0.3s ease-out !important;
 }
+*/
 
 .about-background {
   background: url('/images/beachCleanAbout.jpg') center;

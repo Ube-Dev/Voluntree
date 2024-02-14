@@ -11,14 +11,14 @@ const Landing = () => (
           <h2>Working together made simple</h2>
         </Col>
       </Row>
-      <Row className="mb-5 g-0 justify-content-center">
+      <Row className="mt-2 mb-5 g-0 justify-content-center">
         <Col xs="auto">
           <Button className="rounded-0" variant="outline-light-landing" size="lg" href="/signin">
             Sign In
           </Button>
         </Col>
         <Col xs="auto">
-          <Button className="rounded-0" variant="light" size="lg" href="/signup">
+          <Button className="rounded-0" variant="outline-light-landing" size="lg" href="/signup">
             Register
           </Button>
         </Col>
