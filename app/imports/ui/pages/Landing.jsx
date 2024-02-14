@@ -30,7 +30,7 @@ const Landing = () => (
         <p>
           Ready to make a positive impact on the world? Welcome to The Voluntree – your gateway to meaningful volunteer opportunities.
         </p>
-        <Row className="justify-content-center py-2">
+        <Row className="justify-content-center pt-1 pb-3">
           <Image src="/images/landing-img1.jpg" alt="Landing Image 1" className="d-block" style={{ width: '32%' }} />
           <Image src="/images/landing-img2.jpg" alt="Landing Image 2" className="d-block" style={{ width: '32%' }} />
           <Image src="/images/landing-img3.jpg" alt="Landing Image 3" className="d-block" style={{ width: '32%' }} />

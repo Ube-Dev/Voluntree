@@ -111,7 +111,6 @@ body {
   color: black !important;
 }
 
-/*
 .btn-light {
   border-color: #f8f9fa !important;
   font-size: 20px !important;
@@ -124,7 +123,6 @@ body {
   background-color: rgba(0, 0, 0, 0) !important;
   border-color: #f8f9fa !important;
 }
-*/
 
 .about-background {
   background: url('/images/beachCleanAbout.jpg') center;
