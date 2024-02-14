@@ -162,9 +162,9 @@ body {
   height: 600px;
 }
 
-#signup-background {
+.signup-background {
   background-color: var(--color6);
-  height: 600px;
+  height: 800px;
 }
 
 .faq-header {

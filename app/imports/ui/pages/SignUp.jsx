@@ -53,26 +53,26 @@ const SignUp = () => {
     return <Navigate to="/add" />;
   }
   return (
-    <Container id={PAGE_IDS.SIGN_UP} fluid>
-      <Row className="justify-content-center py-3" id="signup-background">
+    <Container id={PAGE_IDS.SIGN_UP} fluid className="formCSS">
+      <Row className="justify-content-center py-3 signup-background">
         <Col xs={5}>
           <Col className="text-center py-2 login-text">
             <h2>Register your account</h2>
           </Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
-              <Card.Body className="rounded login">
+              <Card.Body>
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_FIRST_NAME} name="firstName" placeholder="First name" />
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_LAST_NAME} name="lastName" placeholder="Last name" />
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Email address" />
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
-                <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} className="login" />
+                <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
               </Card.Body>
             </Card>
           </AutoForm>
-          <Alert variant="secondary" className="under-login">
-            Already have an account? Login <Link to="/signin" className="under-login">here</Link>
+          <Alert variant="secondary">
+            Already have an account? Login <Link to="/signin" className="login-text">here</Link>
           </Alert>
           {error === '' ? (
             ''
