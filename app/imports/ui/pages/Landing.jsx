@@ -18,7 +18,7 @@ const Landing = () => (
           </Button>
         </Col>
         <Col xs="auto">
-          <Button className="rounded-0" variant="outline-light-landing" size="lg" href="/signup">
+          <Button className="rounded-0" variant="light" size="lg" href="/signup">
             Register
           </Button>
         </Col>

@@ -119,7 +119,7 @@ body {
 }
 
 .btn-light:hover {
-  color: black !important;
+  color: white !important;
   background-color: rgba(0, 0, 0, 0) !important;
   border-color: #f8f9fa !important;
 }
