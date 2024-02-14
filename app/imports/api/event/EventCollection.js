@@ -15,7 +15,7 @@ const defaultEventImage = Meteor.settings.defaultEventImage;
 class EventCollection extends BaseCollection {
   constructor() {
     super('Events', new SimpleSchema({
-      eventID: { type: String, unique: true },
+      eventID: { type: String, unique: true, optional: true },
       title: { type: String, index: true },
       image: { type: String, optional: true, defaultValue: defaultEventImage },
       description: { type: String, optional: true, defaultValue: '' },
@@ -67,16 +67,7 @@ class EventCollection extends BaseCollection {
 
   /**
    * Defines a new Event item.
-   * @param title the title of the event
-   * @param image the link to the image of the event
-   * @param description the description of the event
-   * @param location the location of the event
-   * @param time the time of the event
-   * @param frequency the frequency of the event
-   * @param accessibilities how accessible the event is (can be a string or an array of strings)
-   * @param requirements what is required for the event (can be a string or an array of strings)
-   * @param impact the impact of the event
-   * @param eventPlanner the organization who planned the event
+   * @param Object See database diagram for specifics.
    * @return {String} the docID of the new document.
    */
   define({ title, image, description, location, time, frequency, accessibilities, requirements, impact,
@@ -84,10 +75,8 @@ class EventCollection extends BaseCollection {
     country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
     hostID, startTime, endTime,
   }) {
-    // Convert single values to arrays if they are not already
-    // const accessibilityArray = Array.isArray(accessibilities) ? accessibilities : [accessibilities];
-    // const requirementsArray = Array.isArray(requirements) ? requirements : [requirements];
     // adapted from: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+    // generate eventID
     let credential = '';
     const maxPasswordLength = 30;
     const minPasswordLength = 6;
@@ -96,14 +85,7 @@ class EventCollection extends BaseCollection {
     for (let i = 0; i < passwordLength; i++) {
       credential += possible.charAt(Math.floor(Math.random() * possible.length));
     }
-    // let hostID;
-    // if (hostType === 'individual') {
-    //   hostID = UserProfiles.find({ email: hostBy }).fetch();
-    //   if (hostID.length) {
-    //     return
-    //   }
-
-    // }
+    // insert new event entity
     const docID = this._collection.insert({
       title, image, description, location, time, frequency,
       accessibilities, hostID,
@@ -119,16 +101,7 @@ class EventCollection extends BaseCollection {
   /**
    * Updates the given document.
    * @param docID the id of the document to update.
-   * @param title the title of the event
-   * @param image the link to the image of the event
-   * @param description the description of the event
-   * @param location the location of the event
-   * @param time the time of the event
-   * @param frequency the frequency of the event
-   * @param accessibility how accessible the event is (can be a string or an array of strings)
-   * @param requirements what is required for the event (can be a string or an array of strings)
-   * @param impact the impact of the event
-   * @param eventPlanner the organization who planned the event
+   * @param Object See database diagram for specifics.
    */
   update(docID, { title, image, description, location, time, frequency, accessibilities, requirements, impact,
     requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
@@ -140,7 +113,7 @@ class EventCollection extends BaseCollection {
       country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
       startTime, endTime,
     };
-
+    // Map non undefined values to keys then insert.
     Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
     this._collection.update(docID, { $set: updateData });
   }
