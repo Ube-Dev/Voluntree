@@ -12,7 +12,6 @@
   --color4:#6EBF34;
   --color5:#f2f2f2;
   --color6:#032f34;
-  --bs-success-rgb: gold !important;
 }
 
 * {
@@ -146,6 +145,11 @@ body {
 
 .login-text {
   color: white !important;
+  text-decoration: none;
+}
+
+.login-text:hover {
+  text-decoration: underline;
 }
 
 .under-login {
@@ -155,7 +159,7 @@ body {
 
 .login-background {
   background-color: var(--color6);
-  height: 500px;
+  height: 600px;
 }
 
 #signup-background {
@@ -181,11 +185,18 @@ body {
   --bs-btn-hover-border-color: darkgoldenrod !important;
 }
 
+.formCSS .btn:disabled {
+  --bs-btn-disabled-bg: darkgoldenrod !important;
+  --bs-btn-disabled-border-color: darkgoldenrod !important;
+  --bs-btn-disabled-opacity: 0.5 !important;
+}
+
 .formCSS .card {
   background-color: var(--color2) !important;
-  color: black;
+  color: white;
   border-color: rgba(0, 0, 0, 0) !important;
   border-radius: 0;
+  --bs-success-rgb: gold;
 }
 
 .formCSS .alert {
