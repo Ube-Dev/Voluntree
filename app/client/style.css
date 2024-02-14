@@ -148,13 +148,13 @@ body {
   text-decoration: none;
 }
 
-.login-text:hover {
-  text-decoration: underline;
+.under-login {
+  color: white !important;
+  text-decoration: none;
 }
 
-.under-login {
-  background-color: var(--color2) !important;
-  color: white !important;
+.under-login:hover {
+  text-decoration: underline;
 }
 
 .login-background {
