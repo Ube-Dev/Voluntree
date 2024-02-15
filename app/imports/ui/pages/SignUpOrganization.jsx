@@ -72,7 +72,7 @@ const SignUpOrganization = () => {
             </Card>
           </AutoForm>
           <Alert variant="secondary" className="under-login">
-            Already have an account? Login <Link to="/signin" className="under-login">here</Link>
+            <Link to="/signin" className="under-login">Already have an account? Login here</Link>
           </Alert>
           {error === '' ? (
             ''
