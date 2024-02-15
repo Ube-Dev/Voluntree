@@ -195,7 +195,7 @@ body {
   background-color: var(--color2) !important;
   color: white;
   border-color: rgba(0, 0, 0, 0) !important;
-  border-radius: 0;
+  border-radius: 20px 20px 0 0;
   --bs-success-rgb: gold;
 }
 
@@ -203,6 +203,6 @@ body {
   background-color: var(--color1) !important;
   color: white;
   border-color: var(--color1) !important;
-  border-radius: 0;
+  border-radius: 0 0 20px 20px;
   --bs-link-hover-color: white;
 }
