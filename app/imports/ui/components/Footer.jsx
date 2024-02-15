@@ -5,9 +5,9 @@ import { Container, Col, Row, Image } from 'react-bootstrap';
 const Footer = () => {
   const divStyle = { paddingTop: '15px' };
   return (
-    <footer className="mt-1 mb-3 bg-light">
+    <footer className="mt-1 bg-light">
       <Container style={divStyle}>
-        <Row>
+        <Row className="mb-3">
           <Col sm={12} md={3}>
             <hr />
             <Image src="/images/voluntreeLanding1.png" width="150px" /> <br />
