@@ -163,8 +163,6 @@ Meteor.methods({
   'MyEvents.update': function (userId, eventId, { user }, { event }) {
     check(userId, String);
     check(eventId, String);
-    check(user, Object);
-    check(event, Object);
     user.onGoingEvents.push(eventId);
     event.spotsFilled.push(userId);
     try {
