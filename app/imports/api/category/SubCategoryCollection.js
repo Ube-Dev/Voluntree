@@ -10,24 +10,24 @@ export const subCategoryPublications = {
 class SubCategoryCollection extends BaseCollection {
   constructor() {
     super('SubCategory', new SimpleSchema({
-      name: { type: String, index: true, unique: true },
+      category: { type: String, index: true, unique: true },
       parentID: { type: String, optional: true, defaultValue: '' },
     }));
   }
 
   /**
    * Check if this sub category exists, insert if not.
-   * @param name the name of the sub category.
+   * @param category the name of the sub category.
    * @return {String} the docID of the new document.
    */
-  define({ name, parentID }) {
-    const docID = this._collection.find({ name }).fetch();
+  define({ category, parentID }) {
+    const docID = this._collection.find({ category }).fetch();
     // if this sub category exists in the db.
     if (docID.length) {
       return docID;
     }
     return this._collection.insert({
-      name,
+      category,
       parentID,
     });
   }
@@ -35,12 +35,12 @@ class SubCategoryCollection extends BaseCollection {
   /**
    * Updates the given document.
    * @param docID the id of the document to update.
-   * @param name the new sub category name.
+   * @param category the new sub category name.
    */
-  update(docID, { name }) {
+  update(docID, { category }) {
     const updateData = {};
-    if (name) {
-      updateData.name = name;
+    if (category) {
+      updateData.category = category;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -88,12 +88,12 @@ class SubCategoryCollection extends BaseCollection {
   /**
    * Returns an object representing the definition of docID in a format appropriate to the restoreOne or define function.
    * @param docID
-   * @return { name }
+   * @return { category }
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const name = doc.name;
-    return { name };
+    const category = doc.category;
+    return { category };
   }
 }
 

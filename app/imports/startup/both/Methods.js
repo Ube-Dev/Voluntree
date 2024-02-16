@@ -169,12 +169,12 @@ Meteor.methods({
         // Define the main category and get its ID.
         console.log(mainCategory);
         console.log(subCategories);
-        const mainCategoryId = MainCategory.define({ name: mainCategory });
+        const mainCategoryId = MainCategory.define({ category: mainCategory });
 
         // Iterate over each subcategory in the array.
         subCategories.forEach(subCategory => {
           // Define the subcategory with the main category ID.
-          SubCategory.define({ name: subCategory, parentID: mainCategoryId });
+          SubCategory.define({ category: subCategory, parentID: mainCategoryId });
         });
       });
     } catch (error) {
@@ -183,7 +183,84 @@ Meteor.methods({
   },
 });
 
+// define
+// update
+// remove cascade
+const createMainCategory = 'MainCategory.define';
+
+Meteor.methods({
+  'MainCategory.define': function (data) {
+    check(data, Object);
+    try {
+      return MainCategory.define(data);
+    } catch (error) {
+      throw new Meteor.Error('MainCategory.define', 'Failed to create new main categories: ', error);
+    }
+  },
+});
+
+const removeMainCategory = 'MainCategory.remove';
+
+Meteor.methods({
+  'MainCategory.remove': function (docID) {
+    check(docID, String);
+    try {
+      const parentID = MainCategory.removeIt(docID);
+      // cascade to subcategory
+      // Update documents with matching parentID
+      SubCategory._collection.update(
+        { parentID: parentID },
+        { $set: { parentID: undefined } },
+        { multi: true },
+      );
+    } catch (error) {
+      // revert
+      throw new Meteor.Error('remove-failed', 'Either failed to remove category or cascade: ', error);
+    }
+  },
+});
+
+const createSubcategory = 'Subcategory.define';
+
+Meteor.methods({
+  'Subcategory.define': function (data) {
+    check(data, Object);
+    try {
+      return SubCategory.define(data);
+    } catch (error) {
+      throw new Meteor.Error('create-failed', 'Failed to create new sub category: ', error);
+    }
+  },
+});
+
+const updateSubcategory = 'Subcategory.update';
+
+Meteor.methods({
+  'Subcategory.update': function (data) {
+    check(data, Object);
+    try {
+      SubCategory.update(data);
+    } catch (error) {
+      throw new Meteor.Error('update-failed', 'Failed to update sub category: ', error);
+    }
+  },
+});
+
+const removeSubcategory = 'Subcategory.remvoe';
+
+Meteor.methods({
+  'Subcategory.remove': function (docID) {
+    check(docID, String);
+    try {
+      SubCategory.removeIt(docID);
+    } catch (error) {
+      throw new Meteor.Error('remove-failed', 'Failed to remove sub category: ', error);
+    }
+  },
+});
+
 export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
-  createOrganization, updateOrganization, removeOrganization, loadDefaultCategories,
+  createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
+  createSubcategory, updateSubcategory, removeSubcategory,
 };
