@@ -5,10 +5,14 @@ import swal from 'sweetalert';
 import { Button, Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
+import LoadingSpinner from './LoadingSpinner';
+import { updateMyEvents } from '../../startup/both/Methods';
 
 /* Component will allow volunteers to commit/submit to an event and update the events page for the organization. */
 const commitSubmission = ({ user, event }) => {
-  swal('Success', 'Successfully registered for event.', 'success');
+  Meteor.call(updateMyEvents, user._id, event._id, { user }, { event }, (error) => (error ?
+    swal('Error', error.message, 'error') :
+    swal('Success', `Successfully registered for ${event.title}`, 'success')));
 };
 const CommitToEvent = ({ event }) => {
   const { ready, user } = useTracker(() => {
@@ -17,22 +21,23 @@ const CommitToEvent = ({ event }) => {
     // subscribe to UserProfile collection
     const subscription = UserProfiles.subscribeUser();
     // fetch the corresponding user
-    const theUser = UserProfiles.findOne({ email: currentUser });
+    const theUser = UserProfiles.findOne({ email: currentUser.username });
     return {
       ready: subscription ? subscription.ready() : false,
       user: theUser,
     };
   });
-  return (
+  return ready ? (
     <Container className="d-flex justify-content-end">
       <Button id="commit-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Commit</Button>
       <Button id="connect-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Connect</Button>
     </Container>
-  );
+  ) :
+    <LoadingSpinner />;
 };
 
 CommitToEvent.propTypes = {
-  event: PropTypes.arrayOf(PropTypes.shape({
+  event: (PropTypes.shape({
     title: PropTypes.string,
     image: PropTypes.string,
     description: PropTypes.string,
