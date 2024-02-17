@@ -5,7 +5,6 @@ import { TagFill } from 'react-bootstrap-icons';
 import { useTracker } from 'meteor/react-meteor-data';
 import EventList from '../components/EventList';
 import '../css/AllEventPage.css';
-import CommitToEvent from '../components/CommitToEvent';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { Events } from '../../api/event/EventCollection';
 

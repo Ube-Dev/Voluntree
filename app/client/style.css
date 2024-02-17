@@ -145,21 +145,26 @@ body {
 
 .login-text {
   color: white !important;
+  text-decoration: none;
 }
 
 .under-login {
-  background-color: var(--color2) !important;
   color: white !important;
+  text-decoration: none;
+}
+
+.under-login:hover {
+  text-decoration: underline;
 }
 
 .login-background {
   background-color: var(--color6);
-  height: 500px;
+  height: 600px;
 }
 
-#signup-background {
+.signup-background {
   background-color: var(--color6);
-  height: 600px;
+  height: 800px;
 }
 
 .faq-header {
@@ -172,3 +177,32 @@ body {
   height: 600px;
 }
 
+.formCSS .btn {
+  --bs-btn-color: black !important;
+  --bs-btn-bg: gold !important;
+  --bs-btn-border-color: gold !important;
+  --bs-btn-hover-bg: darkgoldenrod !important;
+  --bs-btn-hover-border-color: darkgoldenrod !important;
+}
+
+.formCSS .btn:disabled {
+  --bs-btn-disabled-bg: darkgoldenrod !important;
+  --bs-btn-disabled-border-color: darkgoldenrod !important;
+  --bs-btn-disabled-opacity: 0.5 !important;
+}
+
+.formCSS .card {
+  background-color: var(--color2) !important;
+  color: white;
+  border-color: rgba(0, 0, 0, 0) !important;
+  border-radius: 20px 20px 0 0;
+  --bs-success-rgb: gold;
+}
+
+.formCSS .alert {
+  background-color: var(--color1) !important;
+  color: white;
+  border-color: var(--color1) !important;
+  border-radius: 0 0 20px 20px;
+  --bs-link-hover-color: white;
+}
