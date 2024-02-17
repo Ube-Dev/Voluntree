@@ -8,19 +8,19 @@ import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
-import { UserProfiles } from '../../api/user/UserProfileCollection';
+import { Organization } from '../../api/organization/OrganizationCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 
 /**
  * SignUp component is similar to signin component, but we create a new user instead.
  */
-const SignUp = () => {
+const SignUpOrganization = () => {
   const [error, setError] = useState('');
   const [redirectToReferer, setRedirectToRef] = useState(false);
 
   const schema = new SimpleSchema({
-    firstName: String,
-    lastName: String,
+    organizationID: String,
+    name: String,
     email: String,
     password: String,
   });
@@ -28,7 +28,7 @@ const SignUp = () => {
 
   /* Handle SignUp submission. Create user account and a profile entry, then redirect to the home page. */
   const submit = (doc) => {
-    const collectionName = UserProfiles.getCollectionName();
+    const collectionName = Organization.getCollectionName();
     const definitionData = doc;
     // create the new UserProfile
     defineMethod.callPromise({ collectionName, definitionData })
@@ -53,17 +53,17 @@ const SignUp = () => {
     return <Navigate to="/add" />;
   }
   return (
-    <Container id={PAGE_IDS.SIGN_UP} fluid className="formCSS">
+    <Container id={PAGE_IDS.SIGN_UP_ORGANIZATION} fluid className="formCSS">
       <Row className="justify-content-center py-3 signup-background">
         <Col xs={5}>
           <Col className="text-center py-2 login-text">
-            <h2>Register your account</h2>
+            <h2>Register Organization</h2>
           </Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
-                <TextField id={COMPONENT_IDS.SIGN_UP_FORM_FIRST_NAME} name="firstName" placeholder="First name" />
-                <TextField id={COMPONENT_IDS.SIGN_UP_FORM_LAST_NAME} name="lastName" placeholder="Last name" />
+                <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ORGANIZATION_ID} name="organizationID" placeholder="Organization ID" />
+                <TextField id={COMPONENT_IDS.SIGN_UP_FORM_NAME} name="name" placeholder="Name" />
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Email address" />
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
@@ -71,7 +71,7 @@ const SignUp = () => {
               </Card.Body>
             </Card>
           </AutoForm>
-          <Alert variant="secondary">
+          <Alert variant="secondary" className="under-login">
             <Link to="/signin" className="under-login">Already have an account? Login here</Link>
           </Alert>
           {error === '' ? (
@@ -88,4 +88,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpOrganization;

@@ -157,7 +157,24 @@ Meteor.methods({
   },
 });
 
+const updateMyEvents = 'MyEvents.update';
+
+Meteor.methods({
+  'MyEvents.update': function (userId, eventId, { user }, { event }) {
+    check(userId, String);
+    check(eventId, String);
+    user.onGoingEvents.push(eventId);
+    event.spotsFilled.push(userId);
+    try {
+      UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
+      Events.update(eventId, { spotsFilled: event.spotsFilled });
+    } catch (error) {
+      throw new Meteor.Error('update-failed', 'Failed to update User and Event information ', error);
+    }
+  },
+});
+
 export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
-  createOrganization, updateOrganization, removeOrganization,
+  createOrganization, updateOrganization, removeOrganization, updateMyEvents,
 };

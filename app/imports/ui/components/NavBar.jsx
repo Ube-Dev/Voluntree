@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Roles } from 'meteor/alanning:roles';
 import { Container, Navbar, Nav, NavDropdown, Image } from 'react-bootstrap';
 import { BoxArrowRight, CloudDownload, PersonCircle, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
-import { ROLE } from '../../api/role/Role';
+import { ROLE, userPrivileges } from '../../api/role/Role';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const NavBar = () => {
@@ -41,13 +41,14 @@ const NavBar = () => {
             {/* Find Events page */}
             <Nav.Link id={COMPONENT_IDS.NAVBAR_EVENTS_PAGE} as={NavLink} to="/Events" key="Events">Find Events</Nav.Link>
             {/* If user is logged in, set links to My Events and Dashboard pages as visible; hide it otherwise */}
-            {currentUser ? (
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_MY_EVENTS_PAGE} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link>
-            ) : ''}
+            {/* {currentUser ? ( */}
+            {/*  <Nav.Link id={COMPONENT_IDS.NAVBAR_MY_EVENTS_PAGE} as={NavLink} to="/MyEvents" key="MyEvents">My Events</Nav.Link> */}
+            {/* ) : ''} */}
             {/* If user is organization, set Dashboard page as visible; hide it otherwise */}
-            {Roles.userIsInRole(Meteor.userId(), [ROLE.ORGANIZATION]) ? (
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_DASHBOARD_PAGE} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>
-            ) : '' }
+            {Roles.userIsInRole(Meteor.userId(), userPrivileges.hasOrganization, ROLE.USER) ? ([
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_EVENT_PAGE} as={NavLink} to="/add-event" key="AddEvent">Add Event</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_DASHBOARD_PAGE} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>,
+            ]) : ''}
             {/* If user is admin, set Manage Database dropdown as visible; hide it otherwise */}
             {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? ([
               <Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN_PAGE} as={NavLink} to="/admin" key="admin">Admin</Nav.Link>,
@@ -65,11 +66,12 @@ const NavBar = () => {
               <NavDropdown id={COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN} title="Login">
                 <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN_SIGN_IN} as={NavLink} to="/signin"><PersonFill />Sign in</NavDropdown.Item>
                 <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN_SIGN_UP} as={NavLink} to="/signup"><PersonPlusFill />Sign up</NavDropdown.Item>
+                <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN_SIGN_UP_ORGANIZATION} as={NavLink} to="/signupOrganization"><PersonPlusFill />Sign up Organization</NavDropdown.Item>
               </NavDropdown>
             ) : (
               <NavDropdown id={COMPONENT_IDS.NAVBAR_CURRENT_USER} title={currentUser}>
                 {/* Profile page; still need to create the page(s) */}
-                <NavDropdown.Item><PersonCircle /> Profile</NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to="/profile"><PersonCircle /> Profile</NavDropdown.Item>
                 <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_SIGN_OUT_PAGE} as={NavLink} to="/signout">
                   <BoxArrowRight /> Sign out
                 </NavDropdown.Item>

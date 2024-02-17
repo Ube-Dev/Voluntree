@@ -1,30 +1,29 @@
 import React from 'react';
-import { Col, Container, Row, Card } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import SearchBar from '../components/SearchBar';
 import UserDashboard from '../components/UserDashboard';
 import UserCalendar from '../components/UserCalendar';
+import UpcomingEventCard from '../components/UpcomingEventCard';
 
 const HomePage = () => (
-  <Container id={PAGE_IDS.HOME_PAGE} className="py-3">
-    <Row className="justify-content-center">
-      <Col xs={12} md={8} className="d-flex flex-column align-items-center justify-content-center">
-        <div className="my-3 d-flex justify-content-center">
-          <Row>
-            <Col>
-              <UserDashboard />
-            </Col>
-          </Row>
-        </div>
-        <div className="my-3 d-flex justify-content-center">
-          <Row>
-            <Col>
-              <UserCalendar />
-            </Col>
-          </Row>
-        </div>
-      </Col>
-    </Row>
+  <Container fluid className="color3">
+    <Container id={PAGE_IDS.HOME_PAGE} className="py-3">
+      <Row>
+        <Col className="d-flex flex-column col-md-5 col-12">
+          <UserDashboard />
+          <Container className="d-flex flex-column h-100">
+            <Row className="flex-grow-1">
+              <Col className="d-flex flex-column">
+                <UpcomingEventCard />
+              </Col>
+            </Row>
+          </Container>
+        </Col>
+        <Col className="d-flex flex-column col-md-7 col-12 mt-3 mt-md-0">
+          <UserCalendar />
+        </Col>
+      </Row>
+    </Container>
   </Container>
 );
 
