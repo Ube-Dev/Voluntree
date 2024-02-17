@@ -47,7 +47,7 @@ const Event = ({ event }) => (
             <h3>Impact: {event.impact}</h3>
           </Row>
           <Row className="pb-1 pt-5">
-            <CommitToEvent />
+            <CommitToEvent event={event} />
           </Row>
         </Container>
       </Col>
