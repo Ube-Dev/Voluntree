@@ -5,8 +5,8 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Events } from '../../api/event/EventCollection';
-import { defineMethod } from '../../api/base/BaseCollection.methods';
+// import { Events } from '../../api/event/EventCollection';
+import { createEvent } from '../../startup/both/Methods';
 // import { PAGE_IDS } from '../utilities/PageIDs';
 
 // Create a schema to specify the structure of the data to appear in the form.
@@ -58,92 +58,99 @@ const AddEvent = () => {
   const submit = (data, formRef) => {
     const { title, image, description, impact, address, zipCode, city, state, country, totalSpots, startTime, endTime, accessibilities, requiredSkills } = data;
     const owner = Meteor.user().username;
-    const collectionName = Events.getCollectionName();
     const definitionData = { title, image, description, impact, address, zipCode, city, state, country, totalSpots, startTime, endTime, accessibilities, requiredSkills, owner };
-    defineMethod.callPromise({ collectionName, definitionData })
-      .catch(error => swal('Error', error.message, 'error'))
-      .then(() => {
-        swal('Success', 'Item added successfully', 'success');
-        formRef.reset();
-      });
+    Meteor.call(createEvent, definitionData, (error) => (error ?
+      swal('Error', error.message, 'error') :
+      swal('Success', `Successfully added ${title}`, 'success')));
+    formRef.reset();
   };
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
-    <Container className="color2 p-3">
-      <Row className="justify-content-center">
-        <Col xs={8}>
-          <Col className="text-center"><h2>Create Event</h2></Col>
-          <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-            <Card>
-              <Card.Header>Event Details</Card.Header>
-              <Card.Body>
-                <Row>
-                  <Col>
-                    <TextField name="title" />
-                  </Col>
-                  <Col>
-                    <TextField name="image" />
-                  </Col>
-                  <LongTextField name="description" placeholder="What's happening?" />
-                  <LongTextField name="impact" placeholder="How will this help?" />
-                  <NumField name="totalSpots" placeholder="25" />
-                </Row>
-              </Card.Body>
-              <Card.Header>Location</Card.Header>
-              <Card.Body>
-                <Row>
-                  <Col>
-                    <TextField name="address" />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <TextField name="zipCode" />
-                  </Col>
-                  <Col>
-                    <TextField name="city" />
-                  </Col>
-                  <Col>
-                    <TextField name="state" />
-                  </Col>
-                  <Col>
-                    <TextField name="country" />
-                  </Col>
-                </Row>
-              </Card.Body>
-              <Card.Header>Time of Event</Card.Header>
-              <Card.Body>
-                <Row>
-                  <Col>
-                    <DateField name="startTime" />
-                    <DateField name="endTime" />
-                  </Col>
-                  <Col>
-                    <SelectField name="frequency" />
-                  </Col>
-                </Row>
-              </Card.Body>
-              <Card.Header>Required Skills & Accessibilitys</Card.Header>
-              <Card.Body>
-                <Row>
-                  <Col>
-                    <SelectField name="requiredSkills" />
-                  </Col>
-                  <Col>
-                    <SelectField name="accessibilities" />
-                  </Col>
-                </Row>
-              </Card.Body>
-              <Card.Footer>
-                <SubmitField />
-                <ErrorsField />
-              </Card.Footer>
-            </Card>
-          </AutoForm>
-        </Col>
-      </Row>
+    <Container fluid className="color2">
+      <Container className="mb-5 mt-3">
+        <Row className="justify-content-center">
+          <Col xs={8}>
+            <Row className="text-center">
+              <h1>Create Event</h1>
+            </Row>
+            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
+              <Card className="rounded-4">
+                <Card.Header className="color1">Event Details</Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <TextField name="title" />
+                    </Col>
+                    <Col>
+                      <TextField name="image" />
+                    </Col>
+                    <LongTextField name="description" placeholder="What's happening?" />
+                    <LongTextField name="impact" placeholder="How will this help?" />
+                    <NumField name="totalSpots" placeholder="0" />
+                  </Row>
+                </Card.Body>
+              </Card>
+              <Card className="rounded-4 mt-2">
+                <Card.Header>Location</Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <TextField name="address" />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <TextField name="zipCode" />
+                    </Col>
+                    <Col>
+                      <TextField name="city" />
+                    </Col>
+                    <Col>
+                      <TextField name="state" />
+                    </Col>
+                    <Col>
+                      <TextField name="country" />
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+              <Card className="rounded-4 mt-2">
+                <Card.Header>Time of Event</Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <DateField name="startTime" />
+                      <DateField name="endTime" />
+                    </Col>
+                    <Col>
+                      <SelectField name="frequency" />
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+              <Card className="rounded-4 mt-2">
+                <Card.Header>Required Skills & Accessibilitys</Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <SelectField name="requiredSkills" />
+                    </Col>
+                    <Col>
+                      <SelectField name="accessibilities" />
+                    </Col>
+                  </Row>
+                </Card.Body>
+                <Card.Footer>
+                  <SubmitField />
+                  <ErrorsField />
+                </Card.Footer>
+              </Card>
+            </AutoForm>
+          </Col>
+        </Row>
+      </Container>
     </Container>
   );
 };
