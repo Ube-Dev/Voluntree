@@ -206,3 +206,8 @@ body {
   border-radius: 0 0 20px 20px;
   --bs-link-hover-color: white;
 }
+
+.section-header {
+  color: black;
+  font-size: 26px;
+}

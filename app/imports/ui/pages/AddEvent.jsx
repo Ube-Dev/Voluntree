@@ -71,13 +71,13 @@ const AddEvent = () => {
     <Container fluid className="color2">
       <Container className="mb-5 mt-3">
         <Row className="justify-content-center">
-          <Col xs={8}>
+          <Col md={8} xs={12}>
             <Row className="text-center">
               <h1>Create Event</h1>
             </Row>
             <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
               <Card className="rounded-4">
-                <Card.Header className="color1">Event Details</Card.Header>
+                <Card.Header className="section-header">Event Details</Card.Header>
                 <Card.Body>
                   <Row>
                     <Col>
@@ -92,8 +92,8 @@ const AddEvent = () => {
                   </Row>
                 </Card.Body>
               </Card>
-              <Card className="rounded-4 mt-2">
-                <Card.Header>Location</Card.Header>
+              <Card className="rounded-4 mt-3">
+                <Card.Header className="section-header">Location</Card.Header>
                 <Card.Body>
                   <Row>
                     <Col>
@@ -116,8 +116,8 @@ const AddEvent = () => {
                   </Row>
                 </Card.Body>
               </Card>
-              <Card className="rounded-4 mt-2">
-                <Card.Header>Time of Event</Card.Header>
+              <Card className="rounded-4 mt-3">
+                <Card.Header className="section-header">Time of Event</Card.Header>
                 <Card.Body>
                   <Row>
                     <Col>
@@ -130,8 +130,8 @@ const AddEvent = () => {
                   </Row>
                 </Card.Body>
               </Card>
-              <Card className="rounded-4 mt-2">
-                <Card.Header>Required Skills & Accessibilitys</Card.Header>
+              <Card className="rounded-4 mt-3">
+                <Card.Header className="section-header">Required Skills & Accessibilitys</Card.Header>
                 <Card.Body>
                   <Row>
                     <Col>
