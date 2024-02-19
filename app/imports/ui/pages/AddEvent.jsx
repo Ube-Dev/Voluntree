@@ -15,6 +15,10 @@ const formSchema = new SimpleSchema({
   image: { type: String, optional: true },
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
+  hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: false },
+  hostBy: { type: String, optional: false },
+  phone: { type: String, optional: false },
+  activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], optional: false },
   address: { type: String, optional: false },
   zipCode: { type: String, optional: false },
   city: { type: String, optional: false },
@@ -86,9 +90,28 @@ const AddEvent = () => {
                     <Col>
                       <TextField name="image" />
                     </Col>
-                    <LongTextField name="description" placeholder="What's happening?" />
-                    <LongTextField name="impact" placeholder="How will this help?" />
-                    <NumField name="totalSpots" placeholder="0" />
+                  </Row>
+                  <LongTextField name="description" placeholder="What's happening?" />
+                  <LongTextField name="impact" placeholder="How will this help?" />
+                  <Row>
+                    <Col>
+                      <NumField name="totalSpots" placeholder="0" />
+                    </Col>
+                    <Col>
+                      <SelectField name="activityType" />
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+              <Card className="rounded-4 mt-3">
+                <Card.Header className="section-header">Host Details</Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <TextField name="hostBy" />
+                      <SelectField name="hostType" />
+                      <TextField name="phone" />
+                    </Col>
                   </Row>
                 </Card.Body>
               </Card>
