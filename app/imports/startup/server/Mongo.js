@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Events } from '../../api/event/EventCollection';
-import { createEvent, createOrganization } from '../both/Methods';
+import { createEvent, createOrganization, loadDefaultCategories } from '../both/Methods';
 import { Organization } from '../../api/organization/OrganizationCollection';
+import { MainCategory } from '../../api/category/MainCategoryCollection';
 /* eslint-disable no-console */
 
 // initialize the EventsCollection if empty
@@ -35,4 +36,9 @@ if (Organization.count() === 0) {
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members, leader, organizationID,
   }));
+}
+
+if (MainCategory.count() === 0) {
+  console.log('Creating default categories.');
+  Meteor.call(loadDefaultCategories, Meteor.settings.defaultCategory);
 }

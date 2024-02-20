@@ -42,10 +42,11 @@ class UserCollection {
   /**
    * Define a new user, which means creating an entry in Meteor.Accounts.
    * This is called in the various Profile define() methods.
-   * @param username The username to be defined (must be an email address).
-   * @param password The password for the user.
-   * @param role The role.
-   * @returns { String } The docID of the newly created user.
+   * @param { string } username The username to be defined (must be an email address).
+   * @param { string } password The password for the user.
+   * @param { string } role The role.
+   * @param { Array } privilege privilege of that role in arrays.
+   * @returns { string } The docID of the newly created user.
    * @throws { Meteor.Error } If the user exists.
    */
   define({ username, role, password, privilege }) {

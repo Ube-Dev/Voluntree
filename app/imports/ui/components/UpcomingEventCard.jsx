@@ -3,16 +3,18 @@ import { Card, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
+import { Events, eventPublications } from '../../api/event/EventCollection';
 import LoadingSpinner from './LoadingSpinner';
 
 const UpcomingEventCard = () => {
   const { ready, userProfile } = useTracker(() => {
     const currentUser = Meteor.user();
-    const subscription = currentUser ? UserProfiles.subscribeUser() : null;
-    const profile = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null;
+    const userProfileSubscription = currentUser ? UserProfiles.subscribeUser() : null;
+    const userProfileData = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null;
+    const eventSubscription = Meteor.subscribe(eventPublications.event);
     return {
-      ready: subscription ? subscription.ready() : false,
-      userProfile: profile,
+      ready: userProfileSubscription ? userProfileSubscription.ready() && eventSubscription.ready() : false,
+      userProfile: userProfileData,
     };
   });
 
@@ -26,12 +28,14 @@ const UpcomingEventCard = () => {
       <Card.Body className="d-flex justify-content-start align-items-start p-2">
         {userProfile && userProfile.onGoingEvents && userProfile.onGoingEvents.length > 0 ? (
           <ul>
-            {userProfile.onGoingEvents.map(eventId => (
-              <li key={eventId}>
-                {/* eslint-disable-next-line no-restricted-globals */}
-                <a href={`/view_event/${eventId}`}>{event.title}</a>
-              </li>
-            ))}
+            {userProfile.onGoingEvents.map(eventId => {
+              const event = Events.findOne({ _id: eventId });
+              return event ? (
+                <li key={eventId}>
+                  <a href={`/view_event/${eventId}`}>{event.title}</a>
+                </li>
+              ) : null;
+            })}
           </ul>
         ) : (
           <p className="m-0">Hmmm... No Events...</p>

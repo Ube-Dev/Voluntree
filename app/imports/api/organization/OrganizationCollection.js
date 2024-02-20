@@ -13,12 +13,11 @@ class OrganizationCollection extends BaseCollection {
   constructor() {
     super('Organizations', new SimpleSchema({
       leader: { type: String },
-      organizationID: { type: String },
+      organizationID: { type: String, optional: true },
       name: { type: String },
       image: { type: String, optional: true, defaultValue: defaultOrganizationImage },
       location: { type: String, defaultValue: '' },
       mission: { type: String, defaultValue: '' },
-      // contactInfo: { type: String, defaultValue: '' },
       type: { type: String, allowedValues: organizationType, optional: true },
       description: { type: String, optional: true, defaultValue: '' },
       phone: { type: String, optional: true, defaultValue: '' },
@@ -40,13 +39,8 @@ class OrganizationCollection extends BaseCollection {
 
   /**
    * Defines the profile associated with an User and the associated Meteor account.
-   * @param email The email associated with this profile. Will be the username.
-   * @param password The password for this user.
-   * @param name The name of the organization.
-   * @param image The image of the organization.
-   * @param location The location of the organization.
-   * @param mission The mission statement of the organization.
-   * @param contactInfo The contact information of the organization.
+   * @param Object See database diagram
+   * @return _id
    */
   define({ email, name, image, location, mission,
     type, description, phone, hasPhysicalAddress, address,
@@ -55,6 +49,7 @@ class OrganizationCollection extends BaseCollection {
   }) {
     const entity = this.findOne({ email, name });
     // adapted from: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+    // generate ID
     let credential = '';
     const maxPasswordLength = 30;
     const minPasswordLength = 6;
@@ -71,6 +66,7 @@ class OrganizationCollection extends BaseCollection {
     if (!id) {
       return console.error('Please create a user account with this email first.');
     }
+    // insert new organization if user exists.
     const leaderID = id._id;
     return this._collection.insert({
       email, name, image, location, mission,
@@ -83,12 +79,7 @@ class OrganizationCollection extends BaseCollection {
 
   /**
    * Updates the OrganizationProfile. You cannot change the email or role.
-   * @param docID the id of the OrganizationProfile
-   * @param name new name (optional)
-   * @param image new image (optional)
-   * @param location new location (optional)
-   * @param mission new mission statement (optional)
-   * @param contactInfo new contact information (optional)
+   * @param Object
    */
   update(docID, { email, name, image, location, mission,
     type, description, phone, hasPhysicalAddress, address,
@@ -102,7 +93,7 @@ class OrganizationCollection extends BaseCollection {
       zipCode, city, state, country, pastEvents, onGoingEvents,
       members, leader,
     };
-
+    // Map non undefined values to keys then insert.
     Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
     this._collection.update(docID, { $set: updateData });
   }
