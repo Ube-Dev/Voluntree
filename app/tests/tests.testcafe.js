@@ -33,13 +33,11 @@ test('Test that dashboard works', async () => {
 });
 
 test('Test that FAQ page works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
   await navBar.gotoFAQPage();
   await faqPage.isDisplayed();
-});
-
-test('Test that about page works', async () => {
-  await navBar.gotoAboutPage();
-  await aboutPage.isDisplayed();
 });
 
 test('Test that Home page works', async () => {
@@ -48,6 +46,14 @@ test('Test that Home page works', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
+});
+
+test('Test that about page works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoAboutPage();
+  await aboutPage.isDisplayed();
 });
 
 test('Test that events page works', async () => {
