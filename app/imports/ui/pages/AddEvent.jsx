@@ -106,14 +106,14 @@ const AddEvent = () => {
                 <Card.Header className="section-header">Host Details</Card.Header>
                 <Card.Body>
                   <Row>
-                    <TextField name="hostBy" />
+                    <TextField name="hostBy" placeholder="Name or Organization" />
                   </Row>
                   <Row>
                     <Col>
                       <SelectField name="hostType" />
                     </Col>
                     <Col>
-                      <NumField name="phone" placeholder="111-1111-111" />
+                      <TextField name="phone" placeholder="111-1111-111" />
                     </Col>
                   </Row>
                 </Card.Body>
@@ -160,10 +160,10 @@ const AddEvent = () => {
                 <Card.Header className="section-header">Required Skills & Accessibilitys</Card.Header>
                 <Card.Body>
                   <Row>
-                    <Col>
+                    <Col md={3}>
                       <SelectField name="requiredSkills" />
                     </Col>
-                    <Col>
+                    <Col md={3}>
                       <SelectField name="accessibilities" />
                     </Col>
                   </Row>
