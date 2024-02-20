@@ -57,17 +57,13 @@ class UserProfileCollection extends BaseProfileCollection {
 
   /**
    * Defines the profile associated with an User and the associated Meteor account.
-   * @param email The email associated with this profile. Will be the username.
-   * @param password The password for this user.
-   * @param firstName The first name.
-   * @param lastName The last name.
+   * @param Object see db diagram.
    */
   define({ email, firstName, lastName, password, image, phone, bookmarks,
     viewingHistory, pastEvents, onGoingEvents, userActivity,
     totalHours, address, zipCode, city, state, country, feedbacks, skills,
     followers, organizationFollowed, memberOf, userID, privilege,
   }) {
-    // if (Meteor.isServer) {
     const username = email;
     const user = this.findOne({ email, firstName, lastName });
     if (!user) {
@@ -83,19 +79,16 @@ class UserProfileCollection extends BaseProfileCollection {
         totalHours, address, zipCode, city, state, country, feedbacks, skills,
         followers, organizationFollowed, memberOf, privilege,
       });
-      // this._collection.update(profileID, { $set: { userID } });
       return profileID;
     }
     return user._id;
-    // }
-    // return undefined;
   }
 
   /**
    * Updates the UserProfile. You cannot change the email or role.
    * @param docID the id of the UserProfile
-   * @param firstName new first name (optional).
-   * @param lastName new last name (optional).
+   * @param Object
+   * @returns void
    */
   update(docID, { firstName, lastName, image, phone, bookmarks,
     viewingHistory, pastEvents, onGoingEvents, userActivity,
