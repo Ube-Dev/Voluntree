@@ -159,11 +159,11 @@ const AddEvent = () => {
               <Card className="rounded-4 mt-3">
                 <Card.Header className="section-header">Required Skills & Accessibilitys</Card.Header>
                 <Card.Body>
-                  <Row>
-                    <Col md={3}>
+                  <Row className="justify-content-center">
+                    <Col md={4} lg={4}>
                       <SelectField name="requiredSkills" />
                     </Col>
-                    <Col md={3}>
+                    <Col md={4} lg={4}>
                       <SelectField name="accessibilities" />
                     </Col>
                   </Row>
