@@ -204,18 +204,41 @@ const removeMainCategory = 'MainCategory.remove';
 Meteor.methods({
   'MainCategory.remove': function (docID) {
     check(docID, String);
+
+    // Define variables to store the state before the transaction
+    let mainCategoryBeforeRemove;
+    let subCategoryBeforeUpdate;
+
     try {
+      // Store the state before the transaction begins
+      mainCategoryBeforeRemove = MainCategory.findOne(docID);
+      subCategoryBeforeUpdate = SubCategory.find({ parentID: mainCategoryBeforeRemove._id }).fetch();
+
+      // Perform the transaction
       const parentID = MainCategory.removeIt(docID);
-      // cascade to subcategory
+
       // Update documents with matching parentID
       SubCategory._collection.update(
         { parentID: parentID },
-        { $set: { parentID: undefined } },
+        { $set: { parentID: '' } },
         { multi: true },
       );
     } catch (error) {
-      // revert
-      throw new Meteor.Error('remove-failed', 'Either failed to remove category or cascade: ', error);
+      // If any error occurs during the transaction, revert the changes
+      if (mainCategoryBeforeRemove) {
+        MainCategory._collection.insert(mainCategoryBeforeRemove);
+      }
+      if (subCategoryBeforeUpdate) {
+        subCategoryBeforeUpdate.forEach(category => {
+          SubCategory._collection.update(
+            { _id: category._id },
+            { $set: { parentID: category.parentID } },
+          );
+        });
+      }
+
+      // Throw an error indicating the removal failed and rollback was performed
+      throw new Meteor.Error('remove-failed', 'Either failed to remove category or transaction: ', error);
     }
   },
 });
@@ -246,7 +269,7 @@ Meteor.methods({
   },
 });
 
-const removeSubcategory = 'Subcategory.remvoe';
+const removeSubcategory = 'Subcategory.remove';
 
 Meteor.methods({
   'Subcategory.remove': function (docID) {

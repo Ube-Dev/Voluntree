@@ -11,7 +11,7 @@ import { UserProfiles } from '../imports/api/user/UserProfileCollection';
 import { Organization } from '../imports/api/organization/OrganizationCollection';
 import { Skills } from '../imports/api/skill/SkillCollection';
 import { Events } from '../imports/api/event/EventCollection';
-import { createEvent, removeEvent, removeMainCategory, removeOrganization, updateUserProfile } from '../imports/startup/both/Methods';
+import { createEvent, createSubcategory, removeEvent, removeMainCategory, removeOrganization, removeSubcategory, updateSubcategory, updateUserProfile } from '../imports/startup/both/Methods';
 import { MainCategory } from '../imports/api/category/MainCategoryCollection';
 import { SubCategory } from '../imports/api/category/SubCategoryCollection';
 
@@ -21,24 +21,49 @@ const subSubScription = SubCategory.subscribe();
 const mainCategories = MainCategory.find({}).fetch();
 const subCategories = SubCategory.find({}).fetch();
 
-function getFormattedCategories() {
-  let formattedCategories = {};
-  // console.log(mainCategories);
+function getFormattedCategories() { 
+  const formattedCategories = {};
+
   mainCategories.forEach((entity) => {
+    // group sub categories by its parent category ID.
     formattedCategories[entity.category] = SubCategory.find({ parentID: entity.categoryID }).fetch().map((obj) => obj.category);
-    formattedCategories["others"] = SubCategory.find({ parentID: '' }).fetch().map((obj) => obj.category);
   });
+  // group orphan sub categories.
+  formattedCategories.others = SubCategory.find({
+    $or: [
+      { parentID: { $exists: false } },
+      { parentID: '' },
+    ],
+  }).fetch().map((obj) => obj.category);
   console.log(formattedCategories);
 }
-// { maincategories: [], }
+
+console.log('Output formatted categories: ');
 getFormattedCategories();
-const docID = MainCategory.find({ category: 'Education' }).fetch()[0]._id;
-if (docID) {
-  Meteor.call(removeMainCategory, docID);
+const docID = MainCategory.find({ category: 'Education' });
+if (docID.count()) {
+  Meteor.call(removeMainCategory, docID.fetch()[0]._id);
+  console.log('When Education main category is removed: ');
+  getFormattedCategories();
 }
+console.log('remove sub category first entity: ');
+Meteor.call(removeSubcategory, subCategories[0]._id);
+getFormattedCategories();
+// u can also do { category: 'Pollution Control', parentID: parentID } to assign it to a parent.
+console.log('create a orphan sub category: ');
+Meteor.call(createSubcategory, { category: 'Pollution Control' });
+getFormattedCategories();
+
+
+
+
+
+
+
+
 
 // Meteor.call(removeMainCategory, docID);
-getFormattedCategories();
+
 // only parameter is the _id of the event.
 // Meteor.call(removeOrganization, '7pnjPhdB57Ass7Xuo');
 
