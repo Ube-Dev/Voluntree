@@ -9,6 +9,7 @@ export const PAGE_IDS = {
   VIEW_EVENT: 'view-event',
   NOT_AUTHORIZED: 'not-authorized',
   NOT_FOUND: 'not-found',
+  ADD_EVENT: 'add-event',
   SIGN_IN: 'sign-in',
   SIGN_OUT: 'sign-out',
   SIGN_UP: 'sign-up',

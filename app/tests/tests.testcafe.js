@@ -8,6 +8,7 @@ import { faqPage } from './faq.page';
 import { homePage } from './home.page';
 import { aboutPage } from './about.page';
 import { eventsPage } from './events.page';
+import { addEventPage } from './addevent.page';
 
 /* global fixture:false, test:false */
 
@@ -40,7 +41,7 @@ test('Test that FAQ page works', async () => {
   await faqPage.isDisplayed();
 });
 
-test.only('Test that Home page works', async () => {
+test('Test that Home page works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -100,3 +101,11 @@ test('Test that sign up and sign out work', async () => {
 //   // await navBar.gotoManageDatabasePage();
 //   // await manageDatabasePage.isDisplayed();
 // });
+
+test.only('Test that add event page works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(orgCredentials.username, orgCredentials.password);
+  await navBar.isLoggedIn(orgCredentials.username);
+  await navBar.gotoAddEventPage();
+  await addEventPage.addEvent();
+});

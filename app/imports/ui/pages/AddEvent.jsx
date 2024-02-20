@@ -84,20 +84,20 @@ const AddEvent = () => {
                 <Card.Body>
                   <Row>
                     <Col>
-                      <TextField name="title" />
+                      <TextField name="title" id="title" />
                     </Col>
                     <Col>
-                      <TextField name="image" />
+                      <TextField name="image" id="image" />
                     </Col>
                   </Row>
-                  <LongTextField name="description" placeholder="What's happening?" />
-                  <LongTextField name="impact" placeholder="How will this help?" />
+                  <LongTextField name="description" placeholder="What's happening?" id="description" />
+                  <LongTextField name="impact" placeholder="How will this help?" id="impact" />
                   <Row>
                     <Col>
-                      <NumField name="totalSpots" placeholder="0" />
+                      <NumField name="totalSpots" placeholder="0" id="totalSpots" />
                     </Col>
                     <Col>
-                      <SelectField name="activityType" />
+                      <SelectField name="activityType" id="activityType" />
                     </Col>
                   </Row>
                 </Card.Body>
@@ -169,7 +169,7 @@ const AddEvent = () => {
                   </Row>
                 </Card.Body>
                 <Card.Footer>
-                  <SubmitField />
+                  <SubmitField id="submit-button" />
                   <ErrorsField />
                 </Card.Footer>
               </Card>
