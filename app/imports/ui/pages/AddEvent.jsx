@@ -5,7 +5,6 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-// import { Events } from '../../api/event/EventCollection';
 import { createEvent } from '../../startup/both/Methods';
 // import { PAGE_IDS } from '../utilities/PageIDs';
 
@@ -15,10 +14,10 @@ const formSchema = new SimpleSchema({
   image: { type: String, optional: true },
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
-  hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: false },
+  hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], defaultValue: 'organization', optional: false },
   hostBy: { type: String, optional: false },
   phone: { type: String, optional: false },
-  activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], optional: false },
+  activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
   address: { type: String, optional: false },
   zipCode: { type: String, optional: false },
   city: { type: String, optional: false },
@@ -107,10 +106,14 @@ const AddEvent = () => {
                 <Card.Header className="section-header">Host Details</Card.Header>
                 <Card.Body>
                   <Row>
+                    <TextField name="hostBy" />
+                  </Row>
+                  <Row>
                     <Col>
-                      <TextField name="hostBy" />
                       <SelectField name="hostType" />
-                      <TextField name="phone" />
+                    </Col>
+                    <Col>
+                      <NumField name="phone" placeholder="111-1111-111" />
                     </Col>
                   </Row>
                 </Card.Body>
@@ -119,21 +122,21 @@ const AddEvent = () => {
                 <Card.Header className="section-header">Location</Card.Header>
                 <Card.Body>
                   <Row>
-                    <Col>
+                    <Col md={12}>
                       <TextField name="address" />
                     </Col>
                   </Row>
                   <Row>
-                    <Col>
+                    <Col md={3}>
                       <TextField name="zipCode" />
                     </Col>
-                    <Col>
+                    <Col md={3}>
                       <TextField name="city" />
                     </Col>
-                    <Col>
+                    <Col md={3}>
                       <TextField name="state" />
                     </Col>
-                    <Col>
+                    <Col md={3}>
                       <TextField name="country" />
                     </Col>
                   </Row>
