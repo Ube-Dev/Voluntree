@@ -17,6 +17,7 @@ import EventList from '../components/EventList';
 
 const MyEventPage = () => {
   const { ready, events } = useTracker(() => {
+    // Get the current user
     const currentUser = Meteor.user();
     if (!currentUser) {
       return {
@@ -25,12 +26,16 @@ const MyEventPage = () => {
       };
     }
 
+    // Subscribe to events and userProfile
     const eventSubscription = Events.subscribeEvent();
     const userSubscription = UserProfiles.subscribeUser();
     const rdy = eventSubscription.ready() && userSubscription.ready();
 
+    // Get user info
     const theUser = UserProfiles.findOne({ email: currentUser.username });
-    const onGoingEvents = theUser ? theUser.onGoingEvents : [];
+    // Ensure onGoingEvents is an array
+    const onGoingEvents = Array.isArray(theUser?.onGoingEvents) ? theUser.onGoingEvents : [];
+    // Fetch all events that the user is attending/registered for
     const userEvents = Events.find({ _id: { $in: onGoingEvents } }).fetch();
 
     return {
