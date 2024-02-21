@@ -183,6 +183,8 @@ body {
   --bs-btn-border-color: gold !important;
   --bs-btn-hover-bg: darkgoldenrod !important;
   --bs-btn-hover-border-color: darkgoldenrod !important;
+  --bs-btn-active-bg: var(--color6) !important;
+  --bs-btn-active-border-color: var(--color6) !important;
 }
 
 .formCSS .btn:disabled {
