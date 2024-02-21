@@ -27,15 +27,15 @@ const MyEventPage = () => {
         ready: false,
       };
     }
-    // Get access to events and userProfile
+    // get access to events and userProfile
     const eventSubscription = Events.subscribeEvent();
     const userSubscription = UserProfiles.subscribeUser();
-    // Make sure its ready
+    // make sure its ready
     const rdy = eventSubscription.ready() && userSubscription.ready();
     // get user info
     const theUser = UserProfiles.findOne({ email: currentUser.username });
     // get the user's onGoing events
-    const onGoingEvents = theUser ? theUser.onGoingEvents : [];
+    const onGoingEvents = Array.isArray(theUser?.onGoingEvents) ? theUser.onGoingEvents : [];
     // fetch all events that the user is attending/registered for
     const userEvents = Events.find({ _id: { $in: onGoingEvents } }).fetch();
     return {
@@ -45,12 +45,12 @@ const MyEventPage = () => {
   }, []);
 
   if (!ready) {
-    // Show a loading indicator or any placeholder content while the data is loading
+    // show a loading indicator or any placeholder content while the data is loading
     return <LoadingSpinner />;
   }
 
   // render the event cards once it is ready
-  if (events && events.length > 0) {
+  if (events.length > 0) {
     return <EventList theEvents={events} />;
   }
 
