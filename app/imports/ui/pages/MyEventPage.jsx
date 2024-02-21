@@ -54,7 +54,7 @@ const MyEventPage = () => {
     return <EventList theEvents={events} />;
   }
 
-  // if not, render page not found
+  // if not, render page not found 
   return <NotFound />;
 };
 
