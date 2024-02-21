@@ -10,14 +10,31 @@ export const userPublications = {
   user: 'User',
   userAdmin: 'Admin',
 };
-
+/**
+ * The UserProfileCollection class represents a collection of user profiles in the system.
+ * It provides methods for defining, updating, and managing user profiles, as well as publishing
+ * and subscribing to user profile data for regular users and administrators(to be implenmented).
+ * This class extends the BaseProfileCollection and inherits its functionality for basic profile operations.
+ *
+ * The schema defines the structure of user profiles in the collection, including fields such as
+ * first name, last name, image URL, phone number, bookmarks, viewing history, past events,
+ * ongoing events, user activity, total hours, address, zip code, city, state, country,
+ * feedbacks, skills, followers, organization followed, member of, and privilege.
+ * Open this class file to check the field types or see the db diagram.
+ */
 class UserProfileCollection extends BaseProfileCollection {
+  /**
+    * Constructs a new UserProfileCollection with the specified collection name and schema.
+    * The schema defines the structure of user profiles in the collection, including fields such as
+    * first name, last name, image URL, phone number, bookmarks, viewing history, past events,
+    * ongoing events, user activity, total hours, address, zip code, city, state, country,
+    * feedbacks, skills, followers, organization followed, member of, and privilege.
+    */
   constructor() {
     super('UserProfile', new SimpleSchema({
       firstName: { type: String },
       lastName: { type: String },
       image: { type: String, optional: true, defaultValue: defaultProfileImage },
-      // userID: { type: String, unique: true },
       phone: { type: String, optional: true, defaultValue: '' },
       bookmarks: { type: Array, optional: true, defaultValue: [] },
       'bookmarks.$': { type: String }, // eventId
@@ -56,8 +73,9 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
-   * Defines the profile associated with an User and the associated Meteor account.
-   * @param Object see db diagram.
+   * Defines a new user profile.
+   * @param {Object} data - The data for user profile creation.
+   * @returns {string} - The ID of the created profile.
    */
   define({ email, firstName, lastName, password, image, phone, bookmarks,
     viewingHistory, pastEvents, onGoingEvents, userActivity,
@@ -72,23 +90,21 @@ class UserProfileCollection extends BaseProfileCollection {
       if (userID) {
         newID = userID;
       }
-      const profileID = this._collection.insert({
+      return this._collection.insert({
         email, firstName, lastName, userID: newID, role,
         image, phone, bookmarks,
         viewingHistory, pastEvents, onGoingEvents, userActivity,
         totalHours, address, zipCode, city, state, country, feedbacks, skills,
         followers, organizationFollowed, memberOf, privilege,
       });
-      return profileID;
     }
     return user._id;
   }
 
   /**
-   * Updates the UserProfile. You cannot change the email or role.
-   * @param docID the id of the UserProfile
-   * @param Object
-   * @returns void
+   * Updates an existing user profile.
+   * @param {string} docID - The ID of the profile to update.
+   * @param {Object} data - The data to update the profile with.
    */
   update(docID, { firstName, lastName, image, phone, bookmarks,
     viewingHistory, pastEvents, onGoingEvents, userActivity,
@@ -107,10 +123,10 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
-   * Removes this profile, given its profile ID.
-   * Also removes this user from Meteor Accounts.
-   * @param profileID The ID for this profile object.
-   */
+ * Removes a user profile and associated user account.
+ * @param {string} profileID - The ID of the user profile to remove.
+ * @returns {string|null} - The ID of the removed user profile, or null if it doesn't exist.
+ */
   removeIt(profileID) {
     if (this.isDefined(profileID)) {
       return super.removeIt(profileID);
@@ -119,12 +135,10 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
-    * Default publication method for entities.
-    * It publishes the entire collection for all users.
-    */
+  * Publishes user profiles to clients.
+  */
   publish() {
     if (Meteor.isServer) {
-      // get the EventCollection instance.
       const instance = this;
       // this subscription publishes the entire collection
       Meteor.publish(userPublications.user, function publish() {
@@ -134,8 +148,9 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
-   * Subscription method for event owned by the current user.
-   */
+ * Subscribes to user profiles for regular users.
+ * @returns {object|null} - The subscription handle if on the client, or null otherwise.
+ */
   subscribeUser() {
     if (Meteor.isClient) {
       return Meteor.subscribe(userPublications.user);
@@ -144,9 +159,9 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
-   * Subscription method for admin users.
-   * It subscribes to the entire collection.
-   */
+ * Subscribes to user profiles for admin users.
+ * @returns {object|null} - The subscription handle if on the client, or null otherwise.
+ */
   subscribeUserAdmin() {
     if (Meteor.isClient) {
       return Meteor.subscribe(userPublications.userAdmin);
@@ -155,26 +170,13 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
-   * TODO CAM: Update this documentation since we want to be able to sign up new users.
-   * Implementation of assertValidRoleForMethod. Asserts that userId is logged in as an Admin or User.
-   * This is used in the define, update, and removeIt Meteor methods associated with each class.
-   * @throws { Meteor.Error } If there is no logged in user, or the user is not an Admin or User.
-   */
-  assertValidRoleForMethod() {
-    // this.assertRole(userId, [ROLE.ADMIN, ROLE.USER]);
-    return true;
-  }
-
-  /**
-   * Returns an array of strings, each one representing an integrity problem with this collection.
-   * Returns an empty array if no problems were found.
-   * Checks the profile common fields and the role..
-   * @returns {Array} A (possibly empty) array of strings indicating integrity issues.
-   */
+ * Checks the integrity of user profiles.
+ * @returns {Array} - An array of strings indicating integrity issues, if any.
+ */
   checkIntegrity() {
     const problems = [];
     this.find().forEach((doc) => {
-      if (doc.role !== ROLE.User) {
+      if (doc.role !== ROLE.USER) {
         problems.push(`UserProfile instance does not have ROLE.USER: ${doc}`);
       }
     });
@@ -182,10 +184,10 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
-   * Returns an object representing the UserProfile docID in a format acceptable to define().
-   * @param docID The docID of a UserProfile
-   * @returns { Object } An object representing the definition of docID.
-   */
+ * Retrieves data from a user profile for exporting.
+ * @param {string} docID - The ID of the user profile to extract data from.
+ * @returns {Object} - An object representing the extracted user profile data.
+ */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
     const email = doc.email;
@@ -197,7 +199,7 @@ class UserProfileCollection extends BaseProfileCollection {
 }
 
 /**
- * Profides the singleton instance of this class to all other entities.
+ * Provides the singleton instance of this class to all other entities.
  * @type {UserProfileCollection}
  */
 export const UserProfiles = new UserProfileCollection();
