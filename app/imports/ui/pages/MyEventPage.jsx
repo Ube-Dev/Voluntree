@@ -15,7 +15,6 @@ import { UserProfiles } from '../../api/user/UserProfileCollection';
 import EventCard from '../components/EventCard';
 import EventList from '../components/EventList';
 
-
 const MyEventPage = () => {
   const { ready, events } = useTracker(() => {
     // get current user
@@ -54,7 +53,7 @@ const MyEventPage = () => {
     return <EventList theEvents={events} />;
   }
 
-  // if not, render page not found 
+  // if not, render page not found
   return <NotFound />;
 };
 
