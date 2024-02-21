@@ -29,6 +29,9 @@ const AllEventPage = () => {
   }, []);
   return (
     <Container id={PAGE_IDS.EVENTS}>
+      <Row className="justify-content-center text-center">
+        <h1>Find Events</h1>
+      </Row>
       <EventList theEvents={events} />
     </Container>
   );

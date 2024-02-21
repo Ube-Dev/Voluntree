@@ -50,11 +50,27 @@ const MyEventPage = () => {
 
   // render the event cards once it is ready
   if (events.length > 0) {
-    return <EventList theEvents={events} />;
+    return (
+      <Container>
+        <Row className="justify-content-center text-center">
+          <h1>Your Events</h1>
+        </Row>
+        <EventList theEvents={events} />
+      </Container>
+    );
   }
 
   // if not, render page not found
-  return <NotFound />;
+  return (
+    <>
+      <Container className="d-flex justify-content-center">
+        <h2>You haven&apos;t registered for any events yet!</h2>
+      </Container>
+      <Container className="d-flex justify-content-center">
+        <Button href="/Events">Go Find Events</Button>
+      </Container>
+    </>
+  );
 };
 
 export default MyEventPage;

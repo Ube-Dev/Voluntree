@@ -47,10 +47,10 @@ const SignUp = () => {
       .catch((err) => setError(err.reason));
   };
 
-  /* Display the signup form. Redirect to add page after successful registration and login. */
+  /* Display the signup form. Redirect to home page after successful registration and login. */
   // if correct authentication, redirect to from: page instead of signup screen
   if (redirectToReferer) {
-    return <Navigate to="/add" />;
+    return <Navigate to="/home" />;
   }
   return (
     <Container id={PAGE_IDS.SIGN_UP} fluid className="formCSS">

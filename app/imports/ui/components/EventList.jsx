@@ -51,9 +51,6 @@ const EventList = ({ theEvents }) => {
 
   return (
     <Container>
-      <Row className="justify-content-center text-center">
-        <h1>Find Events</h1>
-      </Row>
       <Container className="d-flex justify-content-center">
         <Form.Group controlId="formEventSearch" className="w-75">
           <Form.Control
