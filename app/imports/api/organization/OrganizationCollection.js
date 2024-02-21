@@ -16,7 +16,6 @@ class OrganizationCollection extends BaseCollection {
       organizationID: { type: String, optional: true },
       name: { type: String },
       image: { type: String, optional: true, defaultValue: defaultOrganizationImage },
-      location: { type: String, defaultValue: '' },
       mission: { type: String, defaultValue: '' },
       type: { type: String, allowedValues: organizationType, optional: true },
       description: { type: String, optional: true, defaultValue: '' },
@@ -42,7 +41,7 @@ class OrganizationCollection extends BaseCollection {
    * @param Object See database diagram
    * @return _id
    */
-  define({ email, name, image, location, mission,
+  define({ email, name, image, mission,
     type, description, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members,
@@ -69,7 +68,7 @@ class OrganizationCollection extends BaseCollection {
     // insert new organization if user exists.
     const leaderID = id._id;
     return this._collection.insert({
-      email, name, image, location, mission,
+      email, name, image, mission,
       type, description, phone, hasPhysicalAddress, address,
       zipCode, city, state, country, pastEvents, onGoingEvents,
       members, leader: leaderID, organizationID,
@@ -81,14 +80,14 @@ class OrganizationCollection extends BaseCollection {
    * Updates the OrganizationProfile. You cannot change the email or role.
    * @param Object
    */
-  update(docID, { email, name, image, location, mission,
+  update(docID, { email, name, image, mission,
     type, description, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members, leader,
   }) {
     this.assertDefined(docID);
     const updateData = {
-      email, name, image, location, mission,
+      email, name, image, mission,
       type, description, phone, hasPhysicalAddress, address,
       zipCode, city, state, country, pastEvents, onGoingEvents,
       members, leader,
