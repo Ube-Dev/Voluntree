@@ -27,6 +27,7 @@ class UserCollection {
     if (Meteor.isTest || Meteor.isAppTest || Meteor.settings.public.development) {
       return 'changeme';
     }
+    // adapted from: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
     let credential = '';
     const maxPasswordLength = 30;
     const minPasswordLength = 6;
@@ -49,6 +50,7 @@ class UserCollection {
    * @throws { Meteor.Error } If the user exists.
    */
   define({ username, role, password, privilege }) {
+    // if (Meteor.isServer) {
     Roles.createRole(role, { unlessExists: true });
     // In test Meteor.settings is not set from settings.development.json so we use _.get to see if it is set.
     const credential = password || this._generateCredential();
@@ -68,6 +70,8 @@ class UserCollection {
     const userID = Accounts.createUser({ username, email: username, password: credential });
     Roles.addUsersToRoles(userID, privilege, role);
     return userID;
+    // }
+    // return undefined;
   }
 
   /**
@@ -77,6 +81,7 @@ class UserCollection {
    * @throws { Meteor.Error } If the user does not have the role, or if user or role is not valid.
    */
   assertInRole(user, role) {
+    // console.log('assertInRole(%o, %o)', user, role);
     const userID = this.getID(user);
     const profile = this.getProfile(userID);
     if (Array.isArray(role)) {
