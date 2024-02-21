@@ -9,7 +9,7 @@ import Landing from '../pages/Landing';
 import Faq from '../pages/Faq';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
-import SignUpOrganization from '../pages/SignUpOrganization';
+import CreateOrganization from '../pages/CreateOrganization';
 import SignOut from '../pages/SignOut';
 import NavBar from '../components/NavBar';
 import SignIn from '../pages/SignIn';
@@ -48,7 +48,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/signupOrganization" element={<SignUpOrganization />} />
+          <Route path="/signupOrganization" element={<CreateOrganization />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/edit-user-profile/:_id" element={<ProtectedRoute><EditUserProfile /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />

@@ -10,47 +10,60 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
+import { createEvent } from '../../startup/both/Methods';
+import swal from 'sweetalert';
 
 /**
  * SignUp component is similar to signin component, but we create a new user instead.
  */
-const SignUpOrganization = () => {
+const CreateOrganization = () => {
   const [error, setError] = useState('');
   const [redirectToReferer, setRedirectToRef] = useState(false);
 
   const schema = new SimpleSchema({
-    organizationID: String,
-    name: String,
-    email: String,
-    password: String,
+    leader: { type: String },
+    organizationID: { type: String, optional: true },
+    name: { type: String },
+    image: { type: String, optional: true, defaultValue: defaultOrganizationImage },
+    location: { type: String, defaultValue: '' },
+    mission: { type: String, defaultValue: '' },
+    type: { type: String, allowedValues: organizationType, optional: true },
+    description: { type: String, optional: true, defaultValue: '' },
+    phone: { type: String, optional: true, defaultValue: '' },
+    email: { type: String, optional: true, defaultValue: '' },
+    hasPhysicalAddress: { type: Boolean, optional: true, defaultValue: false },
+    address: { type: String, optional: true, defaultValue: '' },
+    zipCode: { type: String, optional: true, defaultValue: '' },
+    city: { type: String, optional: true, defaultValue: '' },
+    state: { type: String, optional: true, defaultValue: '' },
+    country: { type: String, optional: true, defaultValue: '' },
+    pastEvents: { type: Array, optional: true, defaultValue: [] },
+    'pastEvents.$': { type: String },
+    onGoingEvents: { type: Array, optional: true, defaultValue: [] },
+    'onGoingEvents.$': { type: String },
+    members: { type: Array, optional: true, defaultValue: [] },
+    'members.$': { type: String },
   });
   const bridge = new SimpleSchema2Bridge(schema);
 
-  /* Handle SignUp submission. Create user account and a profile entry, then redirect to the home page. */
+  /* Handle Organization creation submission. Create user account and a profile entry, then redirect to the home page. */
   const submit = (doc) => {
-    const collectionName = Organization.getCollectionName();
-    const definitionData = doc;
-    // create the new UserProfile
-    defineMethod.callPromise({ collectionName, definitionData })
-      .then(() => {
-        // log the new user in.
-        const { email, password } = doc;
-        Meteor.loginWithPassword(email, password, (err) => {
-          if (err) {
-            setError(err.reason);
-          } else {
-            setError('');
-            setRedirectToRef(true);
-          }
-        });
-      })
-      .catch((err) => setError(err.reason));
-  };
+    // On submit, insert the data.
+    const submit = (data, formRef) => {
+      const { organizationID, name, image, location, mission, type, description, phone, email, hasPhysicalAddress, address, zipCode, city, state, country } = data;
+      const leader = Meteor.user();
+      const definitionData = { leader, organizationID, name, image, location, mission, type, description, phone, email, hasPhysicalAddress, address, zipCode, city, state, country };
+      Meteor.call(createEvent, definitionData, (error) => (error ?
+        swal('Error', error.message, 'error') :
+        swal('Success', `Welcome to Voluntree, ${name}`, 'success')));
+      formRef.reset();
+    };
+  }
 
   /* Display the signup form. Redirect to add page after successful registration and login. */
   // if correct authentication, redirect to from: page instead of signup screen
   if (redirectToReferer) {
-    return <Navigate to="/add" />;
+    return <Navigate to="/Dashboard" />;
   }
   return (
     <Container id={PAGE_IDS.SIGN_UP_ORGANIZATION} fluid className="formCSS">
@@ -88,4 +101,4 @@ const SignUpOrganization = () => {
   );
 };
 
-export default SignUpOrganization;
+export default CreateOrganization;
