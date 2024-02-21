@@ -17,6 +17,54 @@ import EventList from '../components/EventList';
 
 const MyEventPage = () => {
   const { ready, events } = useTracker(() => {
+    const currentUser = Meteor.user();
+    if (!currentUser) {
+      return {
+        events: [],
+        ready: false,
+      };
+    }
+
+    const eventSubscription = Events.subscribeEvent();
+    const userSubscription = UserProfiles.subscribeUser();
+    const rdy = eventSubscription.ready() && userSubscription.ready();
+
+    const theUser = UserProfiles.findOne({ email: currentUser.username });
+    const onGoingEvents = theUser ? theUser.onGoingEvents : [];
+    const userEvents = Events.find({ _id: { $in: onGoingEvents } }).fetch();
+
+    return {
+      events: userEvents,
+      ready: rdy,
+    };
+  }, []);
+
+  // Show a loading indicator or any placeholder content while the data is loading
+  if (!ready) {
+    return <LoadingSpinner />;
+  }
+
+  // Render the event cards once it is ready
+  if (events && events.length > 0) {
+    return (
+      <Container>
+        {events.map(event => (
+          <EventCardWithActions key={event._id} event={event} />
+        ))}
+      </Container>
+    );
+  }
+
+  // If not, render page not found
+  return <NotFound />;
+};
+
+export default MyEventPage;
+
+
+/*
+const MyEventPage = () => {
+  const { ready, events } = useTracker(() => {
     // get current user
     const currentUser = Meteor.user();
     // check the user info
@@ -57,3 +105,4 @@ const MyEventPage = () => {
 };
 
 export default MyEventPage;
+ */
