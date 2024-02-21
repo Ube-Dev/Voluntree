@@ -182,17 +182,6 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
- * TODO CAM: Update this documentation since we want to be able to sign up new users.
- * Implementation of assertValidRoleForMethod. Asserts that userId is logged in as an Admin or User.
- * This is used in the define, update, and removeIt Meteor methods associated with each class.
- * @throws { Meteor.Error } If there is no logged in user, or the user is not an Admin or User.
- */
-  assertValidRoleForMethod() {
-    // this.assertRole(userId, [ROLE.ADMIN, ROLE.USER]);
-    return true;
-  }
-
-  /**
    * Returns an object representing the UserProfile docID in a format acceptable to define().
    * @param docID The docID of a UserProfile
    * @returns { Object } An object representing the definition of docID.
