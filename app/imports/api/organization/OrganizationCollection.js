@@ -18,7 +18,6 @@ class OrganizationCollection extends BaseCollection {
       image: { type: String, optional: true, defaultValue: defaultOrganizationImage },
       mission: { type: String, defaultValue: '' },
       type: { type: String, allowedValues: organizationType, optional: true },
-      description: { type: String, optional: true, defaultValue: '' },
       phone: { type: String, optional: true, defaultValue: '' },
       email: { type: String, optional: true, defaultValue: '' },
       hasPhysicalAddress: { type: Boolean, optional: true, defaultValue: false },
@@ -42,7 +41,7 @@ class OrganizationCollection extends BaseCollection {
    * @return _id
    */
   define({ email, name, image, mission,
-    type, description, phone, hasPhysicalAddress, address,
+    type, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members,
   }) {
@@ -69,7 +68,7 @@ class OrganizationCollection extends BaseCollection {
     const leaderID = id._id;
     return this._collection.insert({
       email, name, image, mission,
-      type, description, phone, hasPhysicalAddress, address,
+      type, phone, hasPhysicalAddress, address,
       zipCode, city, state, country, pastEvents, onGoingEvents,
       members, leader: leaderID, organizationID,
     });
@@ -81,14 +80,14 @@ class OrganizationCollection extends BaseCollection {
    * @param Object
    */
   update(docID, { email, name, image, mission,
-    type, description, phone, hasPhysicalAddress, address,
+    type, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members, leader,
   }) {
     this.assertDefined(docID);
     const updateData = {
       email, name, image, mission,
-      type, description, phone, hasPhysicalAddress, address,
+      type, phone, hasPhysicalAddress, address,
       zipCode, city, state, country, pastEvents, onGoingEvents,
       members, leader,
     };
