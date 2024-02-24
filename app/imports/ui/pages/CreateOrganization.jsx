@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, LongTextField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
@@ -12,18 +12,18 @@ import { createOrganization } from '../../startup/both/Methods';
 const formSchema = new SimpleSchema({
   leader: { type: String },
   organizationID: { type: String, optional: false },
-  name: { type: String },
+  name: { type: String, optional: false },
   image: { type: String, optional: true },
-  mission: { type: String, defaultValue: '' },
+  mission: { type: String, optional: false },
   type: { type: String, allowedValues: ['Organization', 'School', 'Individual'], optional: false },
-  phone: { type: String, optional: true, defaultValue: '' },
-  email: { type: String, optional: true, defaultValue: '' },
-  hasPhysicalAddress: { type: Boolean, optional: true, defaultValue: false },
-  address: { type: String, optional: true, defaultValue: '' },
-  zipCode: { type: String, optional: true, defaultValue: '' },
-  city: { type: String, optional: true, defaultValue: '' },
-  state: { type: String, optional: true, defaultValue: '' },
-  country: { type: String, optional: true, defaultValue: '' },
+  phone: { type: String, optional: false },
+  email: { type: String, optional: false },
+  hasPhysicalAddress: { type: Boolean, optional: false, allowedValues: ['true', 'false'] },
+  address: { type: String, optional: true },
+  zipCode: { type: String, optional: true },
+  city: { type: String, optional: true },
+  state: { type: String, optional: true },
+  country: { type: String, optional: true },
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
@@ -32,7 +32,7 @@ const bridge = new SimpleSchema2Bridge(formSchema);
  * SignUp component is similar to signin component, but we create a new user instead.
  */
 const CreateOrganization = () => {
-  /* Handle Organization creation submission. Create user account and a profile entry, then redirect to the home page. */
+  const [hasAddress, setHasPhysicalAddress] = useState(false);
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
@@ -48,7 +48,7 @@ const CreateOrganization = () => {
   // if correct authentication, redirect to from: page instead of signup screen
   let fRef = null;
   return (
-    <Container id={PAGE_IDS.SIGN_UP_ORGANIZATION} fluid className="formCSS">
+    <Container id={PAGE_IDS.SIGN_UP_ORGANIZATION} fluid className="color2">
       <Container className="mb-5 mt-3">
         <Row className="justify-content-center">
           <Col md={8} xs={12}>
@@ -57,30 +57,70 @@ const CreateOrganization = () => {
                 <Card.Header className="section-header">Organization Details</Card.Header>
                 <Card.Body>
                   <HiddenField id={COMPONENT_IDS.SIGN_UP_FORM_LEADER} name="leader" value={Meteor.user.userID} />
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ORGANIZATION_ID} name="organizationID" placeholder="OrganizationID" />
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_NAME} name="name" placeholder="Name" />
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_IMAGE} name="image" placeholder="Image" />
+                  <Row>
+                    <Col>
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_NAME} name="name" placeholder="Name" />
+                    </Col>
+                    <Col>
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_IMAGE} name="image" placeholder="Image" />
+                    </Col>
+                  </Row>
                   <LongTextField id={COMPONENT_IDS.SIGN_UP_FORM_MISSION} name="mission" placeholder="Mission" />
-                  <SelectField id={COMPONENT_IDS.SIGN_UP_FORM_TYPE} name="type" placeholder="Type" />
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PHONE} name="phone" placeholder="Phone" />
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Email" />
+                  <Row>
+                    <Col>
+                      <SelectField id={COMPONENT_IDS.SIGN_UP_FORM_TYPE} name="type" placeholder="Type" />
+                    </Col>
+                    <Col>
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PHONE} name="phone" placeholder="Phone" />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Email" />
+                    </Col>
+                    <Col>
+                      <SelectField
+                        id={COMPONENT_IDS.SIGN_UP_FORM_HAS_PHYSICAL_ADDRESS}
+                        name="hasPhysicalAddress"
+                        onChange={(value) => setHasPhysicalAddress(value)}
+                        placeholder={hasAddress === 'true' ? 'true' : 'false  '}
+                      />
+                    </Col>
+                  </Row>
                 </Card.Body>
+                {hasAddress === 'false' && (
+                  <Card.Footer>
+                    <ErrorsField />
+                    <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
+                  </Card.Footer>
+                )}
               </Card>
-              <Card className="mt-3 rounded-4">
-                <Card.Header className="section-header">Location</Card.Header>
-                <Card.Body>
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_HAS_PHYSICAL_ADDRESS} name="hasPhysicalAddress" placeholder="Has Physical Address" />
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ADDRESS} name="address" placeholder="Address" />
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_CITY} name="city" placeholder="City" />
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_STATE} name="state" placeholder="State" />
-                  <TextField id={COMPONENT_IDS.SIGN_UP_FORM_COUNTRY} name="country" placeholder="Country" />
-                </Card.Body>
-                <Card.Footer>
-                  <ErrorsField />
-                  <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
-                </Card.Footer>
-              </Card>
+              {hasAddress === 'true' && (
+                <Card className="mt-3 rounded-4">
+                  <Card.Header className="section-header">Location</Card.Header>
+                  <Card.Body>
+                    <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ADDRESS} name="address" placeholder="Address" />
+                    <Row>
+                      <Col>
+                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
+                      </Col>
+                      <Col>
+                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_CITY} name="city" placeholder="City" />
+                      </Col>
+                      <Col>
+                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_STATE} name="state" placeholder="State" />
+                      </Col>
+                      <Col>
+                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_COUNTRY} name="country" placeholder="Country" />
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                  <Card.Footer>
+                    <ErrorsField />
+                    <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
+                  </Card.Footer>
+                </Card>
+              )}
             </AutoForm>
           </Col>
         </Row>
