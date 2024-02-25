@@ -48,11 +48,11 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/signupOrganization" element={<CreateOrganization />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/edit-user-profile/:_id" element={<ProtectedRoute><EditUserProfile /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+          <Route path="/createOrganization" element={<ProtectedRoute><CreateOrganization /></ProtectedRoute>} />
           <Route path="/dashboard" element={<OrganizationProtectedRoute ready={ready}><Dashboard /></OrganizationProtectedRoute>} />
           <Route path="/add-event" element={<OrganizationProtectedRoute ready={ready}><AddEvent /></OrganizationProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
