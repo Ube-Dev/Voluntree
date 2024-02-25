@@ -25,6 +25,9 @@ const Footer = () => {
             <hr />
             <h6>Contact Us</h6>
             <p>sarakenley@thevoluntree.com</p>
+            <hr />
+            <h6>Become an Organization</h6>
+            <a href="/createOrganization">Create Organization</a>
           </Col>
           <Col sm={12} md={3} className="text-start">
             <hr />
