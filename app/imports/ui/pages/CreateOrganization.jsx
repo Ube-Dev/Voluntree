@@ -10,15 +10,15 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { createOrganization } from '../../startup/both/Methods';
 
 const formSchema = new SimpleSchema({
-  leader: { type: String },
-  organizationID: { type: String, optional: false },
+  leader: { type: String, optional: true },
+  organizationID: { type: String, optional: true },
   name: { type: String, optional: false },
   image: { type: String, optional: true },
   mission: { type: String, optional: false },
   type: { type: String, allowedValues: ['Organization', 'School', 'Individual'], optional: false },
   phone: { type: String, optional: false },
   email: { type: String, optional: false },
-  hasPhysicalAddress: { type: Boolean, optional: false, allowedValues: ['true', 'false'] },
+  hasPhysicalAddress: { type: Boolean, optional: false, defaultValue: false },
   address: { type: String, optional: true },
   zipCode: { type: String, optional: true },
   city: { type: String, optional: true },
@@ -28,24 +28,20 @@ const formSchema = new SimpleSchema({
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
-/**
- * SignUp component is similar to signin component, but we create a new user instead.
- */
 const CreateOrganization = () => {
-  const [hasAddress, setHasPhysicalAddress] = useState(false);
+  const [hasPhysicalAddress, setHasPhysicalAddress] = useState(false);
 
-  // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { leader, organizationID, name, image, location, mission, type, phone, email, hasPhysicalAddress, address, zipCode, city, state, country } = data;
-    const definitionData = { leader, organizationID, name, image, location, mission, type, phone, email, hasPhysicalAddress, address, zipCode, city, state, country };
+    const { organizationID, name, image, mission, type, phone, email, address, zipCode, city, state, country } = data;
+    const leader = Meteor.user().userID;
+    console.log(leader);
+    const definitionData = { leader, organizationID, name, image, mission, type, phone, email, hasPhysicalAddress, address, zipCode, city, state, country };
     Meteor.call(createOrganization, definitionData, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', `Welcome to Voluntree, ${name}`, 'success')));
     formRef.reset();
   };
 
-  /* Display the signup form. Redirect to add page after successful registration and login. */
-  // if correct authentication, redirect to from: page instead of signup screen
   let fRef = null;
   return (
     <Container id={PAGE_IDS.SIGN_UP_ORGANIZATION} fluid className="color2">
@@ -56,7 +52,7 @@ const CreateOrganization = () => {
               <Card className="rounded-4">
                 <Card.Header className="section-header">Organization Details</Card.Header>
                 <Card.Body>
-                  <HiddenField id={COMPONENT_IDS.SIGN_UP_FORM_LEADER} name="leader" value={Meteor.user.userID} />
+                  <HiddenField id={COMPONENT_IDS.SIGN_UP_FORM_LEADER} name="leader" />
                   <Row>
                     <Col>
                       <TextField id={COMPONENT_IDS.SIGN_UP_FORM_NAME} name="name" placeholder="Name" />
@@ -79,23 +75,25 @@ const CreateOrganization = () => {
                       <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Email" />
                     </Col>
                     <Col>
-                      <SelectField
+                      <label htmlFor="hasPhysicalAddress">Has Physical Address?</label>
+                      <input
+                        type="checkbox"
                         id={COMPONENT_IDS.SIGN_UP_FORM_HAS_PHYSICAL_ADDRESS}
                         name="hasPhysicalAddress"
-                        onChange={(value) => setHasPhysicalAddress(value)}
-                        placeholder={hasAddress === 'true' ? 'true' : 'false  '}
+                        checked={hasPhysicalAddress}
+                        onChange={() => setHasPhysicalAddress(!hasPhysicalAddress)}
                       />
                     </Col>
                   </Row>
                 </Card.Body>
-                {hasAddress === 'false' && (
+                {!hasPhysicalAddress && (
                   <Card.Footer>
                     <ErrorsField />
                     <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
                   </Card.Footer>
                 )}
               </Card>
-              {hasAddress === 'true' && (
+              {hasPhysicalAddress && (
                 <Card className="mt-3 rounded-4">
                   <Card.Header className="section-header">Location</Card.Header>
                   <Card.Body>
