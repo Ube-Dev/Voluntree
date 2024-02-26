@@ -14,6 +14,7 @@ const commitSubmission = ({ user, event }) => {
     swal('Error', error.message, 'error') :
     swal('Success', `Successfully registered for ${event.title}`, 'success')));
 };
+
 const CommitToEvent = ({ event }) => {
   const { ready, user } = useTracker(() => {
     // get the current user
@@ -27,6 +28,7 @@ const CommitToEvent = ({ event }) => {
       user: theUser,
     };
   });
+
   return ready ? (
     <Container className="d-flex justify-content-end">
       <Button id="commit-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Commit</Button>
@@ -51,4 +53,5 @@ CommitToEvent.propTypes = {
     _id: PropTypes.string,
   })).isRequired,
 };
+
 export default CommitToEvent;
