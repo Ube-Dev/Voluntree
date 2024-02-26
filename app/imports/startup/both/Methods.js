@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Accounts } from 'meteor/accounts-base';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Events } from '../../api/event/EventCollection';
 import { Skills } from '../../api/skill/SkillCollection';
@@ -298,6 +297,25 @@ Meteor.methods({
   },
 });
 
+const deleteMyEvents = 'MyEvents.delete';
+
+Meteor.methods({
+  'MyEvents.delete': function (userId, eventId, { user }, { event }) {
+    check(userId, String);
+    check(eventId, String);
+    const eventIndex = user.onGoingEvents.indexOf(eventId);
+    user.onGoingEvents.splice(eventIndex, 1);
+    const userIndex = event.spotsFilled.indexOf(userId);
+    event.spotsFilled.splice(userIndex, 1);
+    try {
+      UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
+      Events.update(eventId, { spotsFilled: event.spotsFilled });
+    } catch (error) {
+      throw new Meteor.Error('removal-failed', 'Failed to unregister from event ', error);
+    }
+  },
+});
+
 // website console error: Accounts.findUserByUsername is not a function.
 // but no errors if i stored in server/method.js
 // Meteor.methods({
@@ -331,5 +349,5 @@ const sendVerification = 'sendVerification';
 export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
-  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, sendVerification
+  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, sendVerification, deleteMyEvents,
 };

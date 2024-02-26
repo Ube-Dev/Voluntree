@@ -6,7 +6,7 @@ import { Button, Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from './LoadingSpinner';
-import { updateMyEvents } from '../../startup/both/Methods';
+import { deleteMyEvents, updateMyEvents } from '../../startup/both/Methods';
 
 /*
  * calls the meteor method to update both UserProfile and Events collection.
@@ -17,6 +17,11 @@ const commitSubmission = ({ user, event }) => {
   Meteor.call(updateMyEvents, user._id, event._id, { user }, { event }, (error) => (error ?
     swal('Error', error.message, 'error') :
     swal('Success', `Successfully registered for ${event.title}`, 'success')));
+};
+const uncommitSubmission = ({ user, event }) => {
+  Meteor.call(deleteMyEvents, user._id, event._id, { user }, { event }, (error) => (error ?
+    swal('Error', error.message, 'error') :
+    swal('Success', `Successfully unregistered for ${event.title}`, 'success')));
 };
 
 /*
@@ -41,9 +46,9 @@ const CommitToEvent = ({ event }) => {
     return (
       event.spotsFilled.includes(user._id) ? (
         <Container className="d-flex justify-content-end">
-          <Button id="commit-button" className="mx-2" variant="danger" onClick={() => commitSubmission({ user, event })}>Uncommit
+          <Button id="commit-button" className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Uncommit
           </Button>
-          <Button id="connect-button" className="mx-2" variant="danger" onClick={() => commitSubmission({ user, event })}>Disconnect
+          <Button id="connect-button" className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Disconnect
           </Button>
         </Container>
       ) : (
