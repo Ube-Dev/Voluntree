@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, LongTextField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, LongTextField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -10,8 +10,8 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { createOrganization } from '../../startup/both/Methods';
 
 const formSchema = new SimpleSchema({
-  leader: { type: String, optional: true },
-  organizationID: { type: String, optional: true },
+  // leader: { type: String, optional: true },
+  // organizationID: { type: String, optional: true },
   name: { type: String, optional: false },
   image: { type: String, optional: true },
   mission: { type: String, optional: false },
@@ -29,13 +29,13 @@ const formSchema = new SimpleSchema({
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 const CreateOrganization = () => {
-  const [hasPhysicalAddress, setHasPhysicalAddress] = useState(false);
+  const [hasAddress, setHasAddress] = useState(false);
 
   const submit = (data, formRef) => {
-    const { organizationID, name, image, mission, type, phone, email, address, zipCode, city, state, country } = data;
-    const leader = Meteor.user().userID;
-    console.log(leader);
-    const definitionData = { leader, organizationID, name, image, mission, type, phone, email, hasPhysicalAddress, address, zipCode, city, state, country };
+    const { email, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country } = data;
+    // const leader = Meteor.user().username;
+    // console.log(leader);
+    const definitionData = { email, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
     Meteor.call(createOrganization, definitionData, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', `Welcome to Voluntree, ${name}`, 'success')));
@@ -52,13 +52,13 @@ const CreateOrganization = () => {
               <Card className="rounded-4">
                 <Card.Header className="section-header">Organization Details</Card.Header>
                 <Card.Body>
-                  <HiddenField id={COMPONENT_IDS.SIGN_UP_FORM_LEADER} name="leader" />
+                  {/* <HiddenField id={COMPONENT_IDS.SIGN_UP_FORM_LEADER} name="leader" /> */}
                   <Row>
                     <Col>
                       <TextField id={COMPONENT_IDS.SIGN_UP_FORM_NAME} name="name" placeholder="Name" />
                     </Col>
                     <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_IMAGE} name="image" placeholder="Image" />
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_IMAGE} name="image" placeholder="Image" required />
                     </Col>
                   </Row>
                   <LongTextField id={COMPONENT_IDS.SIGN_UP_FORM_MISSION} name="mission" placeholder="Mission" />
@@ -80,20 +80,20 @@ const CreateOrganization = () => {
                         type="checkbox"
                         id={COMPONENT_IDS.SIGN_UP_FORM_HAS_PHYSICAL_ADDRESS}
                         name="hasPhysicalAddress"
-                        checked={hasPhysicalAddress}
-                        onChange={() => setHasPhysicalAddress(!hasPhysicalAddress)}
+                        checked={hasAddress}
+                        onChange={() => setHasAddress(!hasAddress)}
                       />
                     </Col>
                   </Row>
                 </Card.Body>
-                {!hasPhysicalAddress && (
+                {!hasAddress && (
                   <Card.Footer>
                     <ErrorsField />
                     <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
                   </Card.Footer>
                 )}
               </Card>
-              {hasPhysicalAddress && (
+              {hasAddress && (
                 <Card className="mt-3 rounded-4">
                   <Card.Header className="section-header">Location</Card.Header>
                   <Card.Body>
