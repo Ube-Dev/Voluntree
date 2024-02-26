@@ -36,6 +36,7 @@ const CommitToEvent = ({ event }) => {
       user: theUser,
     };
   });
+
   return ready ? (
     <Container className="d-flex justify-content-end">
       <Button id="commit-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Commit
@@ -62,4 +63,5 @@ CommitToEvent.propTypes = {
     _id: PropTypes.string,
   })).isRequired,
 };
+
 export default CommitToEvent;
