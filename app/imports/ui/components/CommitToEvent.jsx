@@ -8,12 +8,21 @@ import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from './LoadingSpinner';
 import { updateMyEvents } from '../../startup/both/Methods';
 
-/* Component will allow volunteers to commit/submit to an event and update the events page for the organization. */
+/*
+ * calls the meteor method to update both UserProfile and Events collection.
+ * @param user the User
+ * @param event the Event
+ */
 const commitSubmission = ({ user, event }) => {
   Meteor.call(updateMyEvents, user._id, event._id, { user }, { event }, (error) => (error ?
     swal('Error', error.message, 'error') :
     swal('Success', `Successfully registered for ${event.title}`, 'success')));
 };
+
+/*
+ * renders the connect and commit buttons for the user, if they are clicked, call the submission function.
+ * @param event the Event they are committing/connecting to
+ */
 const CommitToEvent = ({ event }) => {
   const { ready, user } = useTracker(() => {
     // get the current user
@@ -29,8 +38,10 @@ const CommitToEvent = ({ event }) => {
   });
   return ready ? (
     <Container className="d-flex justify-content-end">
-      <Button id="commit-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Commit</Button>
-      <Button id="connect-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Connect</Button>
+      <Button id="commit-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Commit
+      </Button>
+      <Button id="connect-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Connect
+      </Button>
     </Container>
   ) :
     <LoadingSpinner />;
