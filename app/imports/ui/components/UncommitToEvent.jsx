@@ -13,7 +13,7 @@ import { updateMyEvents } from '../../startup/both/Methods';
  * @param user the User
  * @param event the Event
  */
-const commitSubmission = ({ user, event }) => {
+const uncommitSubmission = ({ user, event }) => {
   Meteor.call(updateMyEvents, user._id, event._id, { user }, { event }, (error) => (error ?
     swal('Error', error.message, 'error') :
     swal('Success', `Successfully registered for ${event.title}`, 'success')));
@@ -23,7 +23,7 @@ const commitSubmission = ({ user, event }) => {
  * renders the connect and commit buttons for the user, if they are clicked, call the submission function.
  * @param event the Event they are committing/connecting to
  */
-const CommitToEvent = ({ event }) => {
+const UncommitToEvent = ({ event }) => {
   const { ready, user } = useTracker(() => {
     // get the current user
     const currentUser = Meteor.user();
@@ -37,29 +37,18 @@ const CommitToEvent = ({ event }) => {
     };
   });
 
-  if (ready) {
-    return (
-      event.spotsFilled.includes(user._id) ? (
-        <Container className="d-flex justify-content-end">
-          <Button id="commit-button" className="mx-2" variant="danger" onClick={() => commitSubmission({ user, event })}>Uncommit
-          </Button>
-          <Button id="connect-button" className="mx-2" variant="danger" onClick={() => commitSubmission({ user, event })}>Disconnect
-          </Button>
-        </Container>
-      ) : (
-        <Container className="d-flex justify-content-end">
-          <Button id="commit-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Commit
-          </Button>
-          <Button id="connect-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Connect
-          </Button>
-        </Container>
-      )
-    );
-  }
-  return <LoadingSpinner />;
+  return ready ? (
+    <Container className="d-flex justify-content-end">
+      <Button id="commit-button" className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Uncommit
+      </Button>
+      <Button id="connect-button" className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Disconnect
+      </Button>
+    </Container>
+  ) :
+    <LoadingSpinner />;
 };
 
-CommitToEvent.propTypes = {
+UncommitToEvent.propTypes = {
   event: (PropTypes.shape({
     title: PropTypes.string,
     image: PropTypes.string,
@@ -68,7 +57,6 @@ CommitToEvent.propTypes = {
     time: PropTypes.instanceOf(Date),
     frequency: PropTypes.string,
     accessibilities: PropTypes.instanceOf(Array),
-    spotsFilled: PropTypes.instanceOf(Array),
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
     hostBy: PropTypes.string,
@@ -76,4 +64,4 @@ CommitToEvent.propTypes = {
   })).isRequired,
 };
 
-export default CommitToEvent;
+export default UncommitToEvent;
