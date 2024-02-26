@@ -61,7 +61,7 @@ class OrganizationCollection extends BaseCollection {
       return console.error('entity already exists.');
     }
     const id = UserProfiles.findOne({ email: email });
-    console.log(id);
+    console.log('email: ', id);
     if (!id) {
       return console.error('Please create a user account with this email first.');
     }

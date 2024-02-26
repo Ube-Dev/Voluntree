@@ -75,6 +75,7 @@ const CreateOrganization = () => {
                       <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Email" />
                     </Col>
                     <Col>
+                      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                       <label htmlFor="hasPhysicalAddress">Has Physical Address?</label>
                       <input
                         type="checkbox"
