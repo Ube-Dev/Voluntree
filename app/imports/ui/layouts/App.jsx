@@ -26,6 +26,7 @@ import ViewEventPage from '../pages/ViewEventPage';
 import AddEvent from '../pages/AddEvent';
 import EditUserProfile from '../pages/EditUserProfile';
 import MyEventPage from '../pages/MyEventPage';
+import VerifyEmailPage from '../pages/verifyEmailPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signupOrganization" element={<SignUpOrganization />} />
           <Route path="/signout" element={<SignOut />} />
+          <Route path="/verify-email/:token" element={<VerifyEmailPage />} />
           <Route path="/edit-user-profile/:_id" element={<ProtectedRoute><EditUserProfile /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
