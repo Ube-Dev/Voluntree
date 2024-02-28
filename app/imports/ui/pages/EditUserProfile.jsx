@@ -28,13 +28,11 @@ const EditUserProfile = () => {
   });
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { firstName, lastName, image, phone, bookmarks, viewingHistory, pastEvents, onGoingEvents, userActivity,
-      totalHours, address, zipCode, city, state, country, feedbacks, skills, followers, organizationFollowed, memberOf } = data;
+    const { firstName, lastName, image, phone, address, zipCode, city, state, country, skills } = data;
     Meteor.call(
       updateUserProfile,
       _id,
-      { firstName, lastName, image, phone, bookmarks, viewingHistory, pastEvents, onGoingEvents, userActivity,
-        totalHours, address, zipCode, city, state, country, feedbacks, skills, followers, organizationFollowed, memberOf },
+      { firstName, lastName, image, phone, address, zipCode, city, state, country, skills },
       (error) => (error ?
         swal('Error', error.message, 'error') :
         swal('Success', 'Profile updated successfully.', 'success')
