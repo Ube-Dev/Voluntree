@@ -33,6 +33,10 @@ const AllEventPage = () => {
         <h1>Find Events</h1>
       </Row>
       <EventList theEvents={events} />
+      <Container className="text-center p-3">
+        <h4>Need Volunteers?</h4>
+        <Button variant="outline-primary" href="/createOrganization">Create An Organization</Button>
+      </Container>
     </Container>
   );
 };
