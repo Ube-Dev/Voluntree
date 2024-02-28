@@ -89,9 +89,15 @@ class UserProfileCollection extends BaseProfileCollection {
    * @param Object
    * @returns void
    */
-  updateByUser(docID, { firstName, lastName, image, phone, address, zipCode, city, state, country, skills }) {
+  update(docID, { firstName, lastName, image, phone, bookmarks,
+    viewingHistory, pastEvents, onGoingEvents, userActivity,
+    totalHours, address, zipCode, city, state, country, feedbacks, skills,
+    followers, organizationFollowed, memberOf }) {
     this.assertDefined(docID);
-    const updateData = { firstName, lastName, image, phone, address, zipCode, city, state, country, skills };
+    const updateData = { firstName, lastName, image, phone, bookmarks,
+      viewingHistory, pastEvents, onGoingEvents, userActivity,
+      totalHours, address, zipCode, city, state, country, feedbacks, skills,
+      followers, organizationFollowed, memberOf };
     Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
     this._collection.update(docID, { $set: updateData });
   }
