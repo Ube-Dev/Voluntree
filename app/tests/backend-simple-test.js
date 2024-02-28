@@ -89,4 +89,4 @@ import { updateUserAccount, updateUserProfile } from "../imports/startup/both/Me
 // });
 
 
-Meteor.call(updateUserAccount, "rCiKJ4dFoBS4aR7n4", { privilege: [userPrivileges.hasOrganization] } )
+Meteor.call(updateUserAccount, "9vfWrfBveezxRGs2j", { privilege: [userPrivileges.hasOrganization] } )
