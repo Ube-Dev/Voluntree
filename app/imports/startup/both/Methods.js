@@ -7,6 +7,32 @@ import { Skills } from '../../api/skill/SkillCollection';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
 import { SubCategory } from '../../api/category/SubCategoryCollection';
+import { ROLE } from '../../api/role/Role';
+import { Roles } from 'meteor/alanning:roles';
+
+
+const updateUserAccount = 'UserAccount.update';
+
+Meteor.methods({
+  'UserAccount.update': function (docID, data) {
+    check(docID, String);
+    check(data, Object);
+    try {
+      if (data.privilege) {
+        Roles.addUsersToRoles(docID, data.privilege, ROLE.USER);
+      }
+      Meteor.users.update(docID, {
+        $set: {
+          "privilege": data.privilege,
+        }
+      });
+    } catch (error) {
+      throw new Meteor.Error('update-failed', 'Failed to update user account: ', error);
+    }
+  },
+});
+
+
 
 const createUserProfile = 'UserProfiles.define';
 
@@ -29,7 +55,10 @@ Meteor.methods({
     check(docID, String);
     check(data, Object);
     try {
-      UserProfiles.update(docID, data);
+      if (data.privilege) {
+        Roles.addUsersToRoles(docID, data.privilege, ROLE.USER);
+      }
+      // UserProfiles.update(docID, data);
     } catch (error) {
       // Handle or log the error here
       throw new Meteor.Error('update-failed', 'Failed to update user profile: ', error);
@@ -306,5 +335,5 @@ const sendResetPasswordEmail_ = 'sendResetPasswordEmail_';
 export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
-  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, sendVerification, sendResetPasswordEmail_,
+  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, updateUserAccount, sendVerification, sendResetPasswordEmail_, 
 };
