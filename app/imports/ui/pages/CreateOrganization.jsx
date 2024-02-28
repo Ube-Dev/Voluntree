@@ -10,8 +10,6 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { createOrganization } from '../../startup/both/Methods';
 
 const formSchema = new SimpleSchema({
-  // leader: { type: String, optional: true },
-  // organizationID: { type: String, optional: true },
   name: { type: String, optional: false },
   image: { type: String, optional: true },
   mission: { type: String, optional: false },
@@ -33,8 +31,6 @@ const CreateOrganization = () => {
 
   const submit = (data, formRef) => {
     const { email, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country } = data;
-    // const leader = Meteor.user().username;
-    // console.log(leader);
     const definitionData = { email, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
     Meteor.call(createOrganization, definitionData, (error) => (error ?
       swal('Error', error.message, 'error') :
@@ -52,7 +48,6 @@ const CreateOrganization = () => {
               <Card className="rounded-4">
                 <Card.Header className="section-header">Organization Details</Card.Header>
                 <Card.Body>
-                  {/* <HiddenField id={COMPONENT_IDS.SIGN_UP_FORM_LEADER} name="leader" /> */}
                   <Row>
                     <Col>
                       <TextField id={COMPONENT_IDS.SIGN_UP_FORM_NAME} name="name" placeholder="Name" />
@@ -83,6 +78,7 @@ const CreateOrganization = () => {
                         name="hasPhysicalAddress"
                         checked={hasAddress}
                         onChange={() => setHasAddress(!hasAddress)}
+                        className="m-4"
                       />
                     </Col>
                   </Row>
