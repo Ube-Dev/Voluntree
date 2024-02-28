@@ -18,10 +18,10 @@ const EventCard = ({ event }) => (
       </Card.Body>
       <Card.Footer>
         <Row>
-          <Col>
+          <Col className="text-start">
             <small>{event.time.toDateString()}</small>
           </Col>
-          <Col>
+          <Col className="text-end">
             <small>Slots: {event.spotsFilled.length}/{event.totalSpots}</small>
           </Col>
         </Row>
