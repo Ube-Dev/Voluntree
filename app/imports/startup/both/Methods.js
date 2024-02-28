@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Accounts } from 'meteor/accounts-base';
+// import { Accounts } from 'meteor/accounts-base';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Events } from '../../api/event/EventCollection';
 import { Skills } from '../../api/skill/SkillCollection';
@@ -306,5 +306,5 @@ const sendResetPasswordEmail_ = 'sendResetPasswordEmail_';
 export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
-  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, sendVerification, sendResetPasswordEmail_
+  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, sendVerification, sendResetPasswordEmail_,
 };

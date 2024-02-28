@@ -7,8 +7,10 @@ import { AdminProfiles } from '../../api/user/AdminProfileCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 
 /* eslint-disable no-console */
+/* eslint-disable function-call-argument-newline */
+/* eslint-disable function-paren-newline */
 Meteor.startup(function () {
-  
+
   const settings = Meteor.settings.packages.email;
   process.env.MAIL_URL = `smtp://${settings.user}:${settings.password}@${settings.service}`;
   Accounts.config({ sendVerificationEmail: true });
