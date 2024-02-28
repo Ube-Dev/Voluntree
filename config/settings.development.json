@@ -132,7 +132,8 @@
       "title": "Humanitarian Aid Vacation in Belize!",
       "image": "https://ivhq.imgix.net/images/blog/grown-up-gap-year/grown-up-gap-year-who-with.jpg?w=850&fit=max&auto=compress%2Cformat,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "description": "This expedition is a chance for your family to step out of their comfort zone and discover a world beyond their own. As you immerse in a new culture, your children will learn firsthand about the diverse lives of others, helping them appreciate their blessings and understand the importance of giving back.",
-      "location": "Belize",
+      "city": " Belmopan",
+      "totalSpots": "10",
       "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
@@ -156,7 +157,8 @@
       "title": "Ala Moana Beach Clean Up",
       "image": "https://www.wildhawaii.org/wp-content/uploads/2020/08/kamilo-community-coastal-cleanup-event-2015-hawaii-wildlife-fund.jpg",
       "description": "Help clean up your local beach!",
-      "location": "Ala Moana",
+      "city": "Honolulu",
+      "totalSpots": "15",
       "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
@@ -179,7 +181,8 @@
       "title": "Turtle Bay Beach Clean Up",
       "image": "https://images.squarespace-cdn.com/content/5b231afb297114b57e11002d/1579574099361-2KUGNED7EHSF6KR6UEAJ/IMG_4160%2B%25281%2529.jpg?format=1500w&content-type=image%2Fjpeg",
       "description": "Help clean up your local beach!",
-      "location": "Turtle Bay Beach",
+      "city": "Kahuku",
+      "totalSpots": "10",
       "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
@@ -203,7 +206,8 @@
       "title": "Turtle Bay Beach Clean Up",
       "image": "https://images.squarespace-cdn.com/content/5b231afb297114b57e11002d/1579574099361-2KUGNED7EHSF6KR6UEAJ/IMG_4160%2B%25281%2529.jpg?format=1500w&content-type=image%2Fjpeg",
       "description": "Help clean up your local beach!",
-      "location": "Turtle Bay Beach",
+      "city": "Kahuku",
+      "totalSpots": "5",
       "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
@@ -225,7 +229,8 @@
       "title": "Lanikai Beach Clean Up",
       "image": "https://www.fodors.com/wp-content/uploads/2019/01/trash1.gif",
       "description": "Help clean up your local beach!",
-      "location": "Lanikai Beach",
+      "city": "Kailua",
+      "totalSpots": "7",
       "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
@@ -250,6 +255,7 @@
       "image": "https://www.fodors.com/wp-content/uploads/2019/01/trash1.gif",
       "description": "Help clean up your local beach!",
       "location": "Lanikai Beach",
+      "totalSpots": "5",
       "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
@@ -273,7 +279,8 @@
       "title": "Food Bank Of Hawaii",
       "image": "https://www.brafb.org/wp-content/uploads/2022/10/PXL_20221011_173207811-scaled-e1665757839628.jpg",
       "description": "Help your local food bank!",
-      "location": "Honolulu, Hawaii",
+      "city": "Honolulu",
+      "totalSpots": "35",
       "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
@@ -297,7 +304,8 @@
       "title": "Elderly Home Talk",
       "image": "https://lottie.org/_next/image/?url=https%3A%2F%2Fapi.prd.lottie.org%2Fimages%2FA_volunteer_helping_an_elderly_lady_walk_f57f195098.webp&w=2048&q=75",
       "description": "Talk to your local elders",
-      "location": "Honolulu, Hawaii",
+      "city": "Honolulu",
+      "totalSpots": "5",
       "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
@@ -320,7 +328,8 @@
       "title": "Food Packing",
       "image": "https://www.brafb.org/wp-content/uploads/2022/10/PXL_20221011_173207811-scaled-e1665757839628.jpg",
       "description": "Help your local food bank!",
-      "location": "Honolulu, Hawaii",
+      "city": "Honolulu",
+      "totalSpots": "5",
       "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
