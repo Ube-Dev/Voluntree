@@ -1,4 +1,11 @@
 {
+  "packages": {
+    "email": {
+      "service": "smtp.gmail.com",
+      "user": "voluntree0@gmail.com",
+      "password": "kdsz nncn wqxp nflg"
+    }
+  },
   "organizationTypes": [
     "COMMUNITY",
     "SCHOOL",

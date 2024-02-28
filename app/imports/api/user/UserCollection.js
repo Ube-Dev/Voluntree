@@ -56,7 +56,6 @@ class UserCollection {
     const credential = password || this._generateCredential();
     if (_.get(Meteor, 'settings.public.development', false)) {
       const userID = Accounts.createUser({ username, email: username, password: credential });
-      // add user to a certain role with the privilege this user has.
       if (privilege) {
         Roles.addUsersToRoles(userID, privilege, role);
       } else {
@@ -68,6 +67,7 @@ class UserCollection {
     // Otherwise define this user with a Meteor login and randomly generated password.
     console.log(`Defining ${role} ${username} with password ${credential}. Priviledge: ${privilege}.`);
     const userID = Accounts.createUser({ username, email: username, password: credential });
+    console.log(`userID: ${userID}`);
     Roles.addUsersToRoles(userID, privilege, role);
     return userID;
     // }

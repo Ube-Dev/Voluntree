@@ -73,8 +73,7 @@ class UserProfileCollection extends BaseProfileCollection {
         newID = userID;
       }
       const profileID = this._collection.insert({
-        email, firstName, lastName, userID: newID, role,
-        image, phone, bookmarks,
+        email, firstName, lastName, userID: newID, role, image, phone, bookmarks,
         viewingHistory, pastEvents, onGoingEvents, userActivity,
         totalHours, address, zipCode, city, state, country, feedbacks, skills,
         followers, organizationFollowed, memberOf, privilege,
@@ -93,15 +92,12 @@ class UserProfileCollection extends BaseProfileCollection {
   update(docID, { firstName, lastName, image, phone, bookmarks,
     viewingHistory, pastEvents, onGoingEvents, userActivity,
     totalHours, address, zipCode, city, state, country, feedbacks, skills,
-    followers, organizationFollowed, memberOf,
-  }) {
+    followers, organizationFollowed, memberOf }) {
     this.assertDefined(docID);
-    const updateData = {
-      firstName, lastName, image, phone, bookmarks,
+    const updateData = { firstName, lastName, image, phone, bookmarks,
       viewingHistory, pastEvents, onGoingEvents, userActivity,
       totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf,
-    };
+      followers, organizationFollowed, memberOf };
     Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
     this._collection.update(docID, { $set: updateData });
   }

@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
+// import { Accounts } from 'meteor/accounts-base';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Events } from '../../api/event/EventCollection';
 import { Skills } from '../../api/skill/SkillCollection';
@@ -24,11 +25,11 @@ Meteor.methods({
 const updateUserProfile = 'UserProfiles.update';
 
 Meteor.methods({
-  'UserProfiles.update': function (docID, updateData) {
+  'UserProfiles.update': function (docID, data) {
     check(docID, String);
-    check(updateData, Object);
+    check(data, Object);
     try {
-      UserProfiles.update(docID, updateData);
+      UserProfiles.update(docID, data);
     } catch (error) {
       // Handle or log the error here
       throw new Meteor.Error('update-failed', 'Failed to update user profile: ', error);
@@ -167,8 +168,6 @@ Meteor.methods({
     try {
       Object.entries(data).forEach(([mainCategory, subCategories]) => {
         // Define the main category and get its ID.
-        console.log(mainCategory);
-        console.log(subCategories);
         const mainCategoryId = MainCategory.define({ category: mainCategory });
 
         // Iterate over each subcategory in the array.
@@ -299,8 +298,13 @@ Meteor.methods({
   },
 });
 
+// don't remove lines below, these methods are stored elsewhere.
+// app/server/methods.js
+const sendVerification = 'sendVerification';
+const sendResetPasswordEmail_ = 'sendResetPasswordEmail_';
+
 export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
-  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents,
+  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, sendVerification, sendResetPasswordEmail_,
 };
