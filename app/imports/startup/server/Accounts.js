@@ -7,8 +7,10 @@ import { AdminProfiles } from '../../api/user/AdminProfileCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 
 /* eslint-disable no-console */
+/* eslint-disable function-call-argument-newline */
+/* eslint-disable function-paren-newline */
 Meteor.startup(function () {
-  
+
   const settings = Meteor.settings.packages.email;
   process.env.MAIL_URL = `smtp://${settings.user}:${settings.password}@${settings.service}`;
   Accounts.config({ sendVerificationEmail: true });
@@ -21,8 +23,22 @@ Meteor.startup(function () {
       return 'Verify Your Email Address';
     },
     text(user, url) {
-      const emailWithoutHash = url.replace('#/', '');
-      return `Welcome to our application! To verify your email address (${user.emails[0].address}), simply click the link below:\n\n${emailWithoutHash}\n\nIf you did not request this verification, please ignore this email. Thanks!`;
+      const urlWithoutHash = url.replace('#/', '');
+      return `Welcome to our application! To verify your email address (${user.emails[0].address}), simply click the link below:\n\n${urlWithoutHash}\n\nIf you did not request this verification, please ignore this email. Thanks!`;
+    },
+  };
+  Accounts.emailTemplates.resetPassword = {
+    from() {
+      return 'Voluntree';
+    },
+    subject() {
+      return 'Reset Your Account Password';
+    },
+    text(user, url) {
+      const urlWithoutHash = url.replace('#/', '');
+      return `Hello,
+
+      To reset your password, simply click the link below. simply click the link below:\n\n${urlWithoutHash}\n\nIf you did not request this, please ignore this email. Thanks!`;
     },
   };
 });

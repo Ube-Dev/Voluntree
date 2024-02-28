@@ -1,5 +1,7 @@
+// needs restyling
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
-import { redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
 import { Container } from 'react-bootstrap';
 
@@ -14,7 +16,6 @@ const VerifyEmailPage = () => {
         setVerificationError(error.reason || "Verification failed.");
       } else {
         console.log('verified');
-        redirect('/');
       }
     });
   }, [token, history]);
