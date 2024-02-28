@@ -25,11 +25,11 @@ Meteor.methods({
 const updateUserProfile = 'UserProfiles.update';
 
 Meteor.methods({
-  'UserProfiles.update': function (docID, updateData) {
+  'UserProfiles.update': function (docID, data) {
     check(docID, String);
-    check(updateData, Object);
+    check(data, Object);
     try {
-      UserProfiles.update(docID, updateData);
+      UserProfiles.update(docID, data);
     } catch (error) {
       // Handle or log the error here
       throw new Meteor.Error('update-failed', 'Failed to update user profile: ', error);
