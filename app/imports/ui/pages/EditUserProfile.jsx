@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
+import { updateUserProfile } from '../../startup/both/Methods';
 
 const bridge = new SimpleSchema2Bridge(UserProfiles._schema);
 
@@ -29,7 +30,8 @@ const EditUserProfile = () => {
   const submit = (data) => {
     const { firstName, lastName, image, phone, bookmarks, viewingHistory, pastEvents, onGoingEvents, userActivity,
       totalHours, address, zipCode, city, state, country, feedbacks, skills, followers, organizationFollowed, memberOf } = data;
-    UserProfiles.update(
+    Meteor.call(
+      updateUserProfile,
       _id,
       { firstName, lastName, image, phone, bookmarks, viewingHistory, pastEvents, onGoingEvents, userActivity,
         totalHours, address, zipCode, city, state, country, feedbacks, skills, followers, organizationFollowed, memberOf },
