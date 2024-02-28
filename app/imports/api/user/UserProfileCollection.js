@@ -92,12 +92,12 @@ class UserProfileCollection extends BaseProfileCollection {
   update(docID, { firstName, lastName, image, phone, bookmarks,
     viewingHistory, pastEvents, onGoingEvents, userActivity,
     totalHours, address, zipCode, city, state, country, feedbacks, skills,
-    followers, organizationFollowed, memberOf, privilege, }) {
+    followers, organizationFollowed, memberOf, }) {
     this.assertDefined(docID);
     const updateData = { firstName, lastName, image, phone, bookmarks,
       viewingHistory, pastEvents, onGoingEvents, userActivity,
       totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf, privilege, };
+      followers, organizationFollowed, memberOf, };
     Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
     this._collection.update(docID, { $set: updateData });
   }

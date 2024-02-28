@@ -55,10 +55,7 @@ Meteor.methods({
     check(docID, String);
     check(data, Object);
     try {
-      if (data.privilege) {
-        Roles.addUsersToRoles(docID, data.privilege, ROLE.USER);
-      }
-      // UserProfiles.update(docID, data);
+      UserProfiles.update(docID, data);
     } catch (error) {
       // Handle or log the error here
       throw new Meteor.Error('update-failed', 'Failed to update user profile: ', error);
