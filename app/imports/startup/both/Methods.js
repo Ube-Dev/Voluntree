@@ -298,38 +298,13 @@ Meteor.methods({
   },
 });
 
-// website console error: Accounts.findUserByUsername is not a function.
-// but no errors if i stored in server/method.js
-// Meteor.methods({
-//   'sendVerification': function(email) {
-//     const user = Accounts.findUserByUsername(email);
-
-//     if (!user) {
-//       throw new Meteor.Error('user-not-found', 'User not found');
-//     }
-
-//     // Extract user ID and email address
-//     const _id = user._id;
-//     const userEmail = user.emails[0].address;
-
-//     // Send verification email
-//     Accounts.sendVerificationEmail(_id, userEmail, (error) => {
-//       if (error) {
-//         console.error('Error sending verification email:', error.reason);
-//         throw new Meteor.Error('verification-email-failed', 'Verification email could not be sent');
-//       } else {
-//         console.log('Verification email sent successfully!');
-//       }
-//     });
-
-//     console.log('Email sent. Refer to the URL sent through email or remove the hash above.');
-//   }
-// });
-
+// don't remove lines below, these methods are stored elsewhere.
+// app/server/methods.js
 const sendVerification = 'sendVerification';
+const sendResetPasswordEmail_ = 'sendResetPasswordEmail_';
 
 export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
-  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, sendVerification
+  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, sendVerification, sendResetPasswordEmail_
 };
