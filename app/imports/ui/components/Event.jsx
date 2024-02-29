@@ -23,7 +23,7 @@ const Event = ({ event }) => (
       <Col>
         <Container className="pt-5">
           <Row className="pb-1">
-            <h3><GeoAlt /> {event.location}</h3>
+            <h3><GeoAlt /> {event.address}, {event.zipCode}, {event.city}, {event.state}, {event.country}</h3>
             <br />
           </Row>
           <Row className="pb-1">
@@ -61,7 +61,11 @@ Event.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
     description: PropTypes.string,
-    location: PropTypes.string,
+    address: PropTypes.string,
+    zipCode: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    country: PropTypes.string,
     time: PropTypes.instanceOf(Date),
     startTime: PropTypes.instanceOf(Date),
     frequency: PropTypes.string,
