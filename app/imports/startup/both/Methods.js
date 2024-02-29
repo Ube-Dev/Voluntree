@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-// import { Accounts } from 'meteor/accounts-base';
+import { Roles } from 'meteor/alanning:roles';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Events } from '../../api/event/EventCollection';
 import { Skills } from '../../api/skill/SkillCollection';
@@ -8,8 +8,6 @@ import { Organization } from '../../api/organization/OrganizationCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
 import { SubCategory } from '../../api/category/SubCategoryCollection';
 import { ROLE } from '../../api/role/Role';
-import { Roles } from 'meteor/alanning:roles';
-
 
 const updateUserAccount = 'UserAccount.update';
 
@@ -23,16 +21,14 @@ Meteor.methods({
       }
       Meteor.users.update(docID, {
         $set: {
-          "privilege": data.privilege,
-        }
+          privilege: data.privilege,
+        },
       });
     } catch (error) {
       throw new Meteor.Error('update-failed', 'Failed to update user account: ', error);
     }
   },
 });
-
-
 
 const createUserProfile = 'UserProfiles.define';
 
@@ -324,6 +320,25 @@ Meteor.methods({
   },
 });
 
+const deleteMyEvents = 'MyEvents.delete';
+
+Meteor.methods({
+  'MyEvents.delete': function (userId, eventId, { user }, { event }) {
+    check(userId, String);
+    check(eventId, String);
+    const eventIndex = user.onGoingEvents.indexOf(eventId);
+    user.onGoingEvents.splice(eventIndex, 1);
+    const userIndex = event.spotsFilled.indexOf(userId);
+    event.spotsFilled.splice(userIndex, 1);
+    try {
+      UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
+      Events.update(eventId, { spotsFilled: event.spotsFilled });
+    } catch (error) {
+      throw new Meteor.Error('removal-failed', 'Failed to unregister from event ', error);
+    }
+  },
+});
+
 // don't remove lines below, these methods are stored elsewhere.
 // app/server/methods.js
 const sendVerification = 'sendVerification';
@@ -332,5 +347,5 @@ const sendResetPasswordEmail_ = 'sendResetPasswordEmail_';
 export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
-  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, updateUserAccount, sendVerification, sendResetPasswordEmail_, 
+  createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, updateUserAccount, sendVerification, sendResetPasswordEmail_, deleteMyEvents,
 };
