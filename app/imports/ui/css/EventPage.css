@@ -1,0 +1,15 @@
+.centeredImage {
+  width: 95%;
+  margin: 0 auto;
+  display: block;
+}
+
+.eventDetailsLeft {
+  background: #f2f2f2;
+  border-radius: 20px 0 0 20px;
+}
+
+.eventDetailsRight {
+  background: gold;
+  border-radius: 0 20px 20px 0;
+}

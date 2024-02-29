@@ -2,65 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Container, Image, Row, Card } from 'react-bootstrap';
 import { Bell, Calendar, GeoAlt } from 'react-bootstrap-icons';
+import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
 
 const Event = ({ event }) => (
-  <Container id="view-event-page" className="py-3 d-flex">
-    <Card className="rounded-4">
-      <Container className="p-1">
-        <Row className="justify-content-center pt-3">
-          <Col>
-            <Container>
-              <Col>
-                <h1>{event.title}</h1>
-                <h5>Organization: {event.hostBy}</h5>
-                <hr />
-                <Col>
-                  <Image className="pt-1 justify-content-center" src={event.image} width="500" />
-                  <h5>{event.description}</h5>
-                </Col>
-              </Col>
-            </Container>
+  <Container fluid className="color2">
+    <Container id="view-event-page" className="py-5 justify-content-center">
+      <Card className="rounded-4">
+        <Row>
+          <Col className="col-lg-6 col-sm-6">
+            <Card.Body className="eventDetailsLeft">
+              <h3>{event.title}</h3>
+              <Card.Text>Hosted by: {event.hostBy}</Card.Text>
+              <Image className="centeredImage" src={event.image} />
+            </Card.Body>
           </Col>
-          <Col>
-            <Container className="pt-1">
-              <Row className="pt-1">
-                <h3><GeoAlt /> {event.address}, {event.zipCode}, {event.city}, {event.state}, {event.country}</h3>
-                <br />
-              </Row>
-              <Row className="pt-1">
-                <h3><Calendar /> {event.time.toLocaleDateString()}</h3>
-                <br />
-              </Row>
-              <Row className="pt-1">
-                <h3><Bell /> Frequency: {event.frequency}</h3>
-              </Row>
-              <Row className="pt-1">
-                <h3>Accessible to:</h3>
-                <h5>{event.accessibilities.join(', ')}</h5>
-              </Row>
-              <Row className="pt-1">
-                <h3>Required Skills:</h3>
-                <h5>{event.requiredSkills.join(', ')}</h5>
-              </Row>
-              <Row className="pt-1">
-                <h3>Requires:</h3>
-                <h5>{event.requirements.join(', ')}</h5>
-              </Row>
-              <Row className="pt-1">
-                <h3>Impact:</h3>
-                <h5>{event.impact}</h5>
-              </Row>
-              <Row className="p-1">
-                <Col className="align-content-center justify-content-start center">
-                  <CommitToEvent event={event} />
-                </Col>
-              </Row>
-            </Container>
+          <Col className="col-lg-6 col-sm-6">
+            <Card.Body className="eventDetailsRight">
+              <Card.Text>{event.description}</Card.Text>
+              <hr />
+              <Card.Text>Impact: {event.impact}</Card.Text>
+              <Card.Text><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</Card.Text>
+              <Card.Text><Calendar /> {event.time.toLocaleString()}</Card.Text>
+              <Card.Text><Bell />Fequency: {event.frequency}</Card.Text>
+            </Card.Body>
           </Col>
         </Row>
-      </Container>
-    </Card>
+        <Card.Footer><CommitToEvent event={event} /></Card.Footer>
+      </Card>
+    </Container>
   </Container>
 );
 
