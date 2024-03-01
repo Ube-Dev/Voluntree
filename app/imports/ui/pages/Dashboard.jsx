@@ -7,13 +7,14 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { Organization } from '../../api/organization/OrganizationCollection';
+import { MATPCollections } from '../../api/matp/MATPCollections';
 
 const Dashboard = () => {
   const { ready, organization } = useTracker(() => {
     const currentUser = Meteor.user(); // Retrieve the current user
     const subscription = currentUser ? UserProfiles.subscribeUser() : null; // Subscribe to userProfile publication for the current user
-    const org = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null; // Query user profile for the current user
+    const org = MATPCollections.getCollection('OrganizationCollection');
+
     return {
       ready: subscription ? subscription.ready() : false,
       organization: org,
