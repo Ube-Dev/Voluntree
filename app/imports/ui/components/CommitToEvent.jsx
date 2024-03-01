@@ -3,10 +3,11 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import swal from 'sweetalert';
 import { Button, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from './LoadingSpinner';
-import { updateMyEvents } from '../../startup/both/Methods';
+import { deleteMyEvents, updateMyEvents } from '../../startup/both/Methods';
 
 /*
  * calls the meteor method to update both UserProfile and Events collection.
@@ -18,6 +19,11 @@ const commitSubmission = ({ user, event }) => {
     swal('Error', error.message, 'error') :
     swal('Success', `Successfully registered for ${event.title}`, 'success')));
 };
+const uncommitSubmission = ({ user, event }) => {
+  Meteor.call(deleteMyEvents, user._id, event._id, { user }, { event }, (error) => (error ?
+    swal('Error', error.message, 'error') :
+    swal('Success', `Successfully unregistered for ${event.title}`, 'success')));
+};
 
 /*
  * renders the connect and commit buttons for the user, if they are clicked, call the submission function.
@@ -27,25 +33,51 @@ const CommitToEvent = ({ event }) => {
   const { ready, user } = useTracker(() => {
     // get the current user
     const currentUser = Meteor.user();
-    // subscribe to UserProfile collection
-    const subscription = UserProfiles.subscribeUser();
-    // fetch the corresponding user
-    const theUser = UserProfiles.findOne({ email: currentUser.username });
+    // if user is logged in
+    if (currentUser) {
+      // subscribe to UserProfile collection
+      const subscription = UserProfiles.subscribeUser();
+      // fetch the corresponding user
+      const theUser = UserProfiles.findOne({ email: currentUser.username });
+      return {
+        ready: subscription ? subscription.ready() : false,
+        user: theUser,
+      };
+    }
+    // if user is not logged in, return null value for if statement
     return {
-      ready: subscription ? subscription.ready() : false,
-      user: theUser,
+      user: currentUser,
     };
   });
-
-  return ready ? (
+  // if user is logged in, commit and connect buttons will perform commitSubmission
+  if (user) {
+    if (ready) {
+      return (
+        event.spotsFilled.includes(user._id) ? (
+          <Container className="d-flex justify-content-end">
+            <Button id="commit-button" className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Uncommit
+            </Button>
+            <Button id="connect-button" className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Disconnect
+            </Button>
+          </Container>
+        ) : (
+          <Container className="d-flex justify-content-end">
+            <Button id="commit-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Commit
+            </Button>
+            <Button id="connect-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Connect
+            </Button>
+          </Container>
+        ));
+    }
+    return <LoadingSpinner />;
+  }
+  // otherwise, they will redirect to the sign-in page
+  return (
     <Container className="d-flex justify-content-end">
-      <Button id="commit-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Commit
-      </Button>
-      <Button id="connect-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Connect
-      </Button>
+      <Link to="/signin"><Button className="mx-2" variant="success">Commit</Button></Link>
+      <Link to="/signin"><Button className="mx-2" variant="success">Connect</Button></Link>
     </Container>
-  ) :
-    <LoadingSpinner />;
+  );
 };
 
 CommitToEvent.propTypes = {
@@ -57,6 +89,7 @@ CommitToEvent.propTypes = {
     time: PropTypes.instanceOf(Date),
     frequency: PropTypes.string,
     accessibilities: PropTypes.instanceOf(Array),
+    spotsFilled: PropTypes.instanceOf(Array),
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
     hostBy: PropTypes.string,

@@ -2,24 +2,24 @@ import { Roles } from 'meteor/alanning:roles';
 import _ from 'lodash';
 import { Meteor } from 'meteor/meteor';
 
-export const ROLE = {
+const ROLE = {
   ADMIN: 'ADMIN',
   USER: 'USER',
 };
 
-export const userPrivileges = {
+const userPrivileges = {
   hasOrganization: 'hasOrganization',
 };
 
-export const adminPrivileges = {
+const adminPrivileges = {
 
 };
 
-export const ROLES = _.values(ROLE);
+const ROLES = _.values(ROLE);
 
-export const isRole = (role) => (typeof role) === 'string' && (_.values(ROLE)).includes(role);
+const isRole = (role) => (typeof role) === 'string' && (_.values(ROLE)).includes(role);
 
-export const assertRole = (role) => {
+const assertRole = (role) => {
   const roleArray = (Array.isArray(role)) ? role : [role];
   roleArray.forEach((theRole) => {
     if (!isRole(theRole)) {
@@ -47,3 +47,5 @@ if (Meteor.isServer) {
     Roles.addRolesToParent(childRole, ROLE.ADMIN);
   });
 }
+
+export { ROLE, userPrivileges, };
