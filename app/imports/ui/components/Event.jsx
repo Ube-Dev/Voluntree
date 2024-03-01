@@ -8,27 +8,36 @@ import CommitToEvent from './CommitToEvent';
 const Event = ({ event }) => (
   <Container fluid className="color2">
     <Container id="view-event-page" className="py-5 justify-content-center">
-      <Card className="rounded-4">
+      <Card className="card">
         <Row>
-          <Col className="col-lg-6 col-sm-6">
+          <Col md="auto" className="col-lg-6 col-sm-6">
             <Card.Body className="eventDetailsLeft">
               <h3>{event.title}</h3>
-              <Card.Text>Hosted by: {event.hostBy}</Card.Text>
               <Image className="centeredImage" src={event.image} />
-            </Card.Body>
-          </Col>
-          <Col className="col-lg-6 col-sm-6">
-            <Card.Body className="eventDetailsRight">
-              <Card.Text>{event.description}</Card.Text>
               <hr />
-              <Card.Text>Impact: {event.impact}</Card.Text>
               <Card.Text><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</Card.Text>
               <Card.Text><Calendar /> {event.time.toLocaleString()}</Card.Text>
               <Card.Text><Bell />Fequency: {event.frequency}</Card.Text>
             </Card.Body>
           </Col>
+          <Col md="auto" className="col-lg-6 col-sm-6">
+            <Card.Body className="eventDetailsRight">
+              <Card.Text>Impact: {event.impact}</Card.Text>
+              <hr />
+              <Card.Text>{event.description}</Card.Text>
+            </Card.Body>
+          </Col>
         </Row>
-        <Card.Footer><CommitToEvent event={event} /></Card.Footer>
+        <Card.Footer>
+          <Row>
+            <Col>
+              <Card.Text>Hosted by: {event.hostBy}</Card.Text>
+            </Col>
+            <Col>
+              <CommitToEvent event={event} />
+            </Col>
+          </Row>
+        </Card.Footer>
       </Card>
     </Container>
   </Container>
