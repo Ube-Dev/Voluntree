@@ -18,6 +18,7 @@ const Dashboard = () => {
       organizations: org,
     };
   });
+
   if (ready) {
     console.log(`the organization is ${organizations}`);
     console.log(organizations);
@@ -83,6 +84,9 @@ const Dashboard = () => {
 
       }],
     };
+    const renderMenuItems = () => (
+      organizations.map((org) => (<DropdownItem href="Dashboard"> {org.name} </DropdownItem>))
+    );
     return (
       <Container fluid id={PAGE_IDS.DASHBOARD} className="py-3 color2 justify-content-center">
         <Container>
@@ -95,12 +99,7 @@ const Dashboard = () => {
                       My Organizations
                     </DropdownToggle>
                     <Dropdown.Menu>
-                      <DropdownItem href="./_id:"> {organizations[0].name} </DropdownItem>
-                      <DropdownItem href="./_id:"> {organizations[1].name} </DropdownItem>
-                      <DropdownItem href="./_id:"> {organizations[2].name} </DropdownItem>
-                      <DropdownItem href="./_id:"> {organizations[3].name} </DropdownItem>
-                      <DropdownItem href="./_id:"> {organizations[4].name} </DropdownItem>
-                      <DropdownItem href="./_id:"> {organizations[5].name} </DropdownItem>
+                      {renderMenuItems()}
                     </Dropdown.Menu>
                   </Dropdown>
                   <Nav.Link><a href="/">Campaigns</a></Nav.Link>
