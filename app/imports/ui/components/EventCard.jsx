@@ -22,7 +22,7 @@ const EventCard = ({ event }) => (
             <small>{event.time.toDateString()}</small>
           </Col>
           <Col className="text-end">
-            <small>Slots: {event.spotsFilled.length}/{event.totalSpots}</small>
+            <small>Seats: {event.spotsFilled.length}/{event.totalSpots}</small>
           </Col>
         </Row>
       </Card.Footer>

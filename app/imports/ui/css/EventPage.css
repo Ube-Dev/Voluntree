@@ -1,0 +1,42 @@
+/*
+  css file for Event.jsx component
+*/
+
+.pageCard {
+  background-color: var(--color2) !important;
+  display: block;
+  border-radius: 20px !important;
+  margin: 0 auto;
+}
+
+.pageCardImage {
+  border-radius: 20px 20px 20px 20px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 6px 10px 12px 0 rgba(0,0,0,0.15);
+}
+
+.pageCardHeader {
+  color: white !important;
+}
+
+.eventDetailsLeft {
+  background-color: white !important;
+  border-radius: 20px 20px 20px 20px;
+  color: black !important;
+  margin: 10px 10px 10px 10px;
+  box-shadow: 6px 10px 12px 0 rgba(0,0,0,0.15);
+}
+
+.eventDetailsRight {
+  background-color: white !important;
+  border-radius: 20px 20px 20px 20px;
+  color: black !important;
+  margin: 15px 10px 10px 10px;
+  box-shadow: 6px 10px 12px 0 rgba(0,0,0,0.15);
+}
+
+.pageCardFooter {
+  color: white !important;
+}

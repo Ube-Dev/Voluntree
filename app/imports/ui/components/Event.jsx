@@ -1,57 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Container, Image, Row } from 'react-bootstrap';
-import { Bell, Calendar, GeoAlt } from 'react-bootstrap-icons';
+import { Col, Container, Image, Row, Card } from 'react-bootstrap';
+import { Bell, Calendar, GeoAlt, People } from 'react-bootstrap-icons';
+import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
 
 const Event = ({ event }) => (
-  <Container id="view-event-page" className="py-3 d-flex">
-    <Row className="justify-content-center pt-3">
-      <Col>
-        <Container>
-          <Col>
-            <h1>{event.title}</h1>
-            <h5>Organization: {event.hostBy}</h5>
-            <hr />
-            <Col>
-              <Image className="pt-5" src={event.image} width={600} style={{ objectFit: 'cover' }} />
-              <h5 className="pt-3">{event.description}</h5>
-            </Col>
+  <Container fluid className="color1">
+    <Container id="view-event-page" className="py-5 justify-content-center">
+      <Card className="pageCard">
+        <Card.Header className="pageCardHeader">
+          <h1>{event.title}</h1>
+        </Card.Header>
+        <Row>
+          <Col md="auto" className="col-lg-6 col-sm-6 my-auto">
+            <Card.Body>
+              <Image className="pageCardImage" src={event.image} />
+            </Card.Body>
+            <Card.Body className="eventDetailsLeft">
+              <h5>Host: {event.hostBy}</h5>
+              <hr />
+              <h5><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</h5>
+              <h5><Calendar /> {event.time.toLocaleString()}</h5>
+              <h5><Bell /> Frequency: {event.frequency}</h5>
+              <h5><People /> Seats: {event.spotsFilled.length}/{event.totalSpots}</h5>
+            </Card.Body>
           </Col>
-        </Container>
-      </Col>
-      <Col>
-        <Container className="pt-5">
-          <Row className="pb-1">
-            <h3><GeoAlt /> {event.location}</h3>
-            <br />
-          </Row>
-          <Row className="pb-1">
-            <h3><Calendar /> {event.time.toLocaleDateString()}</h3>
-            <br />
-          </Row>
-          <Row className="pb-1">
-            <h3><Bell /> Frequency: {event.frequency}</h3>
-            <hr />
-          </Row>
-          <Row className="pb-1 pt-5">
-            <h3>Accessible to: {event.accessibilities.join(', ')}</h3>
-          </Row>
-          <Row className="pb-1 pt-5">
-            <h3>Required Skills: {event.requiredSkills.join(', ')}</h3>
-          </Row>
-          <Row className="pb-1 pt-5">
-            <h3>Requires: {event.requirements.join(', ')}</h3>
-          </Row>
-          <Row className="pb-1 pt-5">
-            <h3>Impact: {event.impact}</h3>
-          </Row>
-          <Row className="pb-1 pt-5">
-            <CommitToEvent event={event} />
-          </Row>
-        </Container>
-      </Col>
-    </Row>
+          <Col md="auto" className="col-lg-6 col-sm-6 my-auto">
+            <Card.Body className="eventDetailsRight">
+              <h5>Description:</h5>
+              <p>{event.description}</p>
+              <hr />
+              <h5>Impact:</h5>
+              <p>{event.impact}</p>
+            </Card.Body>
+            <Card.Body className="eventDetailsRight">
+              <h5>Requirements:</h5>
+              <p>{event.requirements.join(', ')}</p>
+              <hr />
+              <h5>Needed Skills:</h5>
+              <p>{event.requiredSkills.join(', ')}</p>
+              <hr />
+              <h5>Accessibilities:</h5>
+              <p>{event.accessibilities.join(', ')}</p>
+            </Card.Body>
+          </Col>
+        </Row>
+        <Card.Footer className="pageCardFooter">
+          <CommitToEvent event={event} />
+        </Card.Footer>
+      </Card>
+    </Container>
   </Container>
 );
 
@@ -61,7 +60,13 @@ Event.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
     description: PropTypes.string,
-    location: PropTypes.string,
+    address: PropTypes.string,
+    zipCode: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    country: PropTypes.string,
+    totalSpots: PropTypes.number,
+    spotsFilled: PropTypes.instanceOf(Array),
     time: PropTypes.instanceOf(Date),
     startTime: PropTypes.instanceOf(Date),
     frequency: PropTypes.string,

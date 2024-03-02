@@ -57,6 +57,9 @@ Meteor.call(createSubcategory, { category: 'Pollution Control' });
 getFormattedCategories();
 */
 
+import { Role, userPrivileges } from "../imports/api/role/Role";
+import { updateUserAccount, updateUserProfile } from "../imports/startup/both/Methods";
+
 // Meteor.call(removeMainCategory, docID);
 
 // only parameter is the _id of the event.
@@ -84,3 +87,6 @@ getFormattedCategories();
 //     // Handle successful update if needed
 //   }
 // });
+
+
+Meteor.call(updateUserAccount, "9vfWrfBveezxRGs2j", { privilege: [userPrivileges.hasOrganization] } )

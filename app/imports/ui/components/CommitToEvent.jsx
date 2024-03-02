@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from './LoadingSpinner';
-import { updateMyEvents } from '../../startup/both/Methods';
+import { deleteMyEvents, updateMyEvents } from '../../startup/both/Methods';
 
 /*
  * calls the meteor method to update both UserProfile and Events collection.
@@ -18,6 +18,11 @@ const commitSubmission = ({ user, event }) => {
   Meteor.call(updateMyEvents, user._id, event._id, { user }, { event }, (error) => (error ?
     swal('Error', error.message, 'error') :
     swal('Success', `Successfully registered for ${event.title}`, 'success')));
+};
+const uncommitSubmission = ({ user, event }) => {
+  Meteor.call(deleteMyEvents, user._id, event._id, { user }, { event }, (error) => (error ?
+    swal('Error', error.message, 'error') :
+    swal('Success', `Successfully unregistered for ${event.title}`, 'success')));
 };
 
 /*
@@ -49,9 +54,9 @@ const CommitToEvent = ({ event }) => {
     if (ready) {
       return (
         <Container className="d-flex justify-content-end">
-          <Button id="commit-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Commit
+          <Button id="commit-button" className="mx-2 commit-btn" variant="danger" onClick={() => commitSubmission({ user, event })}>Commit
           </Button>
-          <Button id="connect-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Connect
+          <Button id="connect-button" className="mx-2 commit-btn" variant="success" onClick={() => commitSubmission({ user, event })}>Connect
           </Button>
         </Container>
       );
@@ -61,8 +66,8 @@ const CommitToEvent = ({ event }) => {
   // otherwise, they will redirect to the sign-in page
   return (
     <Container className="d-flex justify-content-end">
-      <Link to="/signin"><Button className="mx-2" variant="success">Commit</Button></Link>
-      <Link to="/signin"><Button className="mx-2" variant="success">Connect</Button></Link>
+      <Link to="/signin"><Button className="mx-2 commit-btn" variant="sucess">Commit</Button></Link>
+      <Link to="/signin"><Button className="mx-2 commit-btn" variant="success">Connect</Button></Link>
     </Container>
   );
 };
@@ -76,6 +81,7 @@ CommitToEvent.propTypes = {
     time: PropTypes.instanceOf(Date),
     frequency: PropTypes.string,
     accessibilities: PropTypes.instanceOf(Array),
+    spotsFilled: PropTypes.instanceOf(Array),
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
     hostBy: PropTypes.string,
