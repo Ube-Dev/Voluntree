@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Container } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
@@ -32,7 +32,9 @@ const UpcomingEventCard = () => {
               const event = Events.findOne({ _id: eventId });
               return event ? (
                 <li key={eventId}>
-                  <a href={`/view_event/${eventId}`}>{event.title}</a>
+                  <Container><a href={`/view_event/${eventId}`}>{event.title}</a>
+                    <div className="py-2">{event.startTime.toLocaleString()}</div>
+                  </Container>
                 </li>
               ) : null;
             })}
@@ -41,8 +43,8 @@ const UpcomingEventCard = () => {
           <p className="m-0">Hmmm... No Events...</p>
         )}
       </Card.Body>
-      <Card.Footer className="d-flex justify-content-center p-2">
-        <Button className="justify-content-center m-auto" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
+      <Card.Footer className="d-flex justify-content-end p-2">
+        <Button className="justify-content-end" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
           <a href="/Events" style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>Find Events</a>
         </Button>
       </Card.Footer>
