@@ -53,29 +53,21 @@ const CommitToEvent = ({ event }) => {
   if (user) {
     if (ready) {
       return (
-        event.spotsFilled.includes(user._id) ? (
-          <Container className="d-flex justify-content-end">
-            <Button id="commit-button" className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Uncommit
-            </Button>
-            <Button id="connect-button" className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Disconnect
-            </Button>
-          </Container>
-        ) : (
-          <Container className="d-flex justify-content-end">
-            <Button id="commit-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Commit
-            </Button>
-            <Button id="connect-button" className="mx-2" variant="success" onClick={() => commitSubmission({ user, event })}>Connect
-            </Button>
-          </Container>
-        ));
+        <Container className="d-flex justify-content-end">
+          <Button id="commit-button" className="mx-2 commit-btn" variant="danger" onClick={() => commitSubmission({ user, event })}>Commit
+          </Button>
+          <Button id="connect-button" className="mx-2 commit-btn" variant="success" onClick={() => commitSubmission({ user, event })}>Connect
+          </Button>
+        </Container>
+      );
     }
     return <LoadingSpinner />;
   }
   // otherwise, they will redirect to the sign-in page
   return (
     <Container className="d-flex justify-content-end">
-      <Link to="/signin"><Button className="mx-2" variant="success">Commit</Button></Link>
-      <Link to="/signin"><Button className="mx-2" variant="success">Connect</Button></Link>
+      <Link to="/signin"><Button className="mx-2 commit-btn" variant="sucess">Commit</Button></Link>
+      <Link to="/signin"><Button className="mx-2 commit-btn" variant="success">Connect</Button></Link>
     </Container>
   );
 };
