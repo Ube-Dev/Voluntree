@@ -23,7 +23,7 @@ const Event = ({ event }) => (
               <h5><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</h5>
               <h5><Calendar /> {event.time.toLocaleString()}</h5>
               <h5><Bell /> Frequency: {event.frequency}</h5>
-              <h5><People /> Slots: {event.spotsFilled.length}/{event.totalSpots}</h5>
+              <h5><People /> Seats: {event.spotsFilled.length}/{event.totalSpots}</h5>
             </Card.Body>
           </Col>
           <Col md="auto" className="col-lg-6 col-sm-6 my-auto">
