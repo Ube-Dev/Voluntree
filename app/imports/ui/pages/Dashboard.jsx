@@ -2,7 +2,6 @@ import React from 'react';
 import { Col, Container, Image, Row, Card, Nav, Navbar, Dropdown } from 'react-bootstrap';
 import { Doughnut, Bar, Line, Pie, PolarArea } from 'react-chartjs-2';
 import { Chart, ArcElement, CategoryScale, LinearScale, BarElement, PointElement, LineElement, RadialLinearScale } from 'chart.js';
-import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import DropdownToggle from 'react-bootstrap/DropdownToggle';
 import DropdownItem from 'react-bootstrap/DropdownItem';
