@@ -18,7 +18,7 @@ const Event = ({ event }) => (
               <Image className="pageCardImage" src={event.image} />
             </Card.Body>
             <Card.Body className="eventDetailsLeft">
-              <h5>Hosted by: {event.hostBy}</h5>
+              <h5>Host: {event.hostBy}</h5>
               <hr />
               <h5><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</h5>
               <h5><Calendar /> {event.time.toLocaleString()}</h5>
