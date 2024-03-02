@@ -1,26 +1,27 @@
 import React from 'react';
-import { Col, Container, Image, Row, Card, Nav, Navbar } from 'react-bootstrap';
+import { Col, Container, Image, Row, Card, Nav, Navbar, Dropdown } from 'react-bootstrap';
 import { Doughnut, Bar, Line, Pie, PolarArea } from 'react-chartjs-2';
 import { Chart, ArcElement, CategoryScale, LinearScale, BarElement, PointElement, LineElement, RadialLinearScale } from 'chart.js';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
+import DropdownToggle from 'react-bootstrap/DropdownToggle';
+import DropdownItem from 'react-bootstrap/DropdownItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { MATPCollections } from '../../api/matp/MATPCollections';
+import { Organization } from '../../api/organization/OrganizationCollection';
 
 const Dashboard = () => {
-  const { ready, organization } = useTracker(() => {
-    const currentUser = Meteor.user(); // Retrieve the current user
-    const subscription = currentUser ? UserProfiles.subscribeUser() : null; // Subscribe to userProfile publication for the current user
-    const org = MATPCollections.getCollection('OrganizationCollection');
-
+  const { ready, organizations } = useTracker(() => {
+    const subscription = Organization.subscribeOrganization(); // Subscribe to userProfile publication for the current user
+    const org = Organization.find({}).fetch();
     return {
       ready: subscription ? subscription.ready() : false,
-      organization: org,
+      organizations: org,
     };
   });
   if (ready) {
+    console.log(`the organization is ${organizations}`);
+    console.log(organizations);
 
     Chart.register(ArcElement);
     Chart.register(CategoryScale);
@@ -90,6 +91,19 @@ const Dashboard = () => {
             <Col xs={12}>
               <Navbar expand="md">
                 <Nav className="me-auto">
+                  <Dropdown>
+                    <DropdownToggle>
+                      My Organizations
+                    </DropdownToggle>
+                    <Dropdown.Menu>
+                      <DropdownItem href="./_id:"> {organizations[0].name} </DropdownItem>
+                      <DropdownItem href="./_id:"> {organizations[1].name} </DropdownItem>
+                      <DropdownItem href="./_id:"> {organizations[2].name} </DropdownItem>
+                      <DropdownItem href="./_id:"> {organizations[3].name} </DropdownItem>
+                      <DropdownItem href="./_id:"> {organizations[4].name} </DropdownItem>
+                      <DropdownItem href="./_id:"> {organizations[5].name} </DropdownItem>
+                    </Dropdown.Menu>
+                  </Dropdown>
                   <Nav.Link><a href="/">Campaigns</a></Nav.Link>
                   <Nav.Link><a href="/">Volunteer Opportunities</a></Nav.Link>
                   <Nav.Link><a href="/">Events</a></Nav.Link>
@@ -103,15 +117,15 @@ const Dashboard = () => {
               <Row className="justify-content-center">
                 <Col md={4} className="">
                   <Image
-                    src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0022/1594/brand.gif?itok=z5CHdxN7"
+                    src={organizations.image}
                     alt="habitat for humanity"
                     className="circle"
                   />
                 </Col>
                 <Col md={8}>
-                  <h2>{organization.name}</h2>
+                  <h2>{organizations.name}</h2>
                   <h3> Company Summary:</h3>
-                  <p>{organization.description}
+                  <p>{organizations.description}
                   </p>
                 </Col>
               </Row>
