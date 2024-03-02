@@ -6,37 +6,47 @@ import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
 
 const Event = ({ event }) => (
-  <Container fluid className="color2">
+  <Container fluid className="color1">
     <Container id="view-event-page" className="py-5 justify-content-center">
-      <Card className="card">
+      <Card className="pageCard">
+        <Card.Header className="pageCardHeader">
+          <h2>{event.title}</h2>
+        </Card.Header>
         <Row>
           <Col md="auto" className="col-lg-6 col-sm-6">
+            <Card.Body>
+              <Image className="pageCardImage" src={event.image} />
+            </Card.Body>
             <Card.Body className="eventDetailsLeft">
-              <h3>{event.title}</h3>
-              <Image className="centeredImage" src={event.image} />
+              <h5>Hosted by: {event.hostBy}</h5>
               <hr />
-              <Card.Text><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</Card.Text>
-              <Card.Text><Calendar /> {event.time.toLocaleString()}</Card.Text>
-              <Card.Text><Bell />Fequency: {event.frequency}</Card.Text>
+              <h5><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</h5>
+              <h5><Calendar /> {event.time.toLocaleString()}</h5>
+              <h5><Bell />Frequency: {event.frequency}</h5>
             </Card.Body>
           </Col>
           <Col md="auto" className="col-lg-6 col-sm-6">
             <Card.Body className="eventDetailsRight">
-              <Card.Text>Impact: {event.impact}</Card.Text>
+              <h5>Description:</h5>
+              <p>{event.description}</p>
               <hr />
-              <Card.Text>{event.description}</Card.Text>
+              <h5>Impact:</h5>
+              <p>{event.impact}</p>
+            </Card.Body>
+            <Card.Body className="eventDetailsRight">
+              <h5>Needed Skills:</h5>
+              <p>{event.requiredSkills.join(', ')}</p>
+              <hr />
+              <h5>Accessibilities:</h5>
+              <p>{event.accessibilities.join(', ')}</p>
+              <hr />
+              <h5>Requirements:</h5>
+              <p>{event.requirements.join(', ')}</p>
             </Card.Body>
           </Col>
         </Row>
-        <Card.Footer>
-          <Row>
-            <Col>
-              <Card.Text>Hosted by: {event.hostBy}</Card.Text>
-            </Col>
-            <Col>
-              <CommitToEvent event={event} />
-            </Col>
-          </Row>
+        <Card.Footer className="pageCardFooter">
+          <CommitToEvent event={event} />
         </Card.Footer>
       </Card>
     </Container>
