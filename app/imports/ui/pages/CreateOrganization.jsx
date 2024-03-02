@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { AutoForm, ErrorsField, LongTextField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { Navigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
-import { createOrganization } from '../../startup/both/Methods';
+import { createOrganization, updateUserAccount } from '../../startup/both/Methods';
+import { userPrivileges } from '../../api/role/Role';
 
 const formSchema = new SimpleSchema({
   name: { type: String, optional: false },
@@ -28,23 +30,36 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 const CreateOrganization = () => {
   const [hasAddress, setHasAddress] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
-  const submit = (data, formRef) => {
+  const submit = (data) => {
     const { email, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country } = data;
     const definitionData = { email, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
-    Meteor.call(createOrganization, definitionData, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', `Welcome to Voluntree, ${name}`, 'success')));
-    formRef.reset();
+    Meteor.call(createOrganization, definitionData, (error) => {
+      if (error) {
+        swal('Error', error.message, 'error');
+      } else {
+        swal('Success', `Welcome to Voluntree, ${name}`, 'success')
+          .then(() => {
+            // Route to another page upon successful submission
+            const id = Meteor.userId();
+            Meteor.call(updateUserAccount, id, { privilege: [userPrivileges.hasOrganization] });
+            setRedirect(true); // Set submitted to true upon successful submission
+          });
+      }
+    });
   };
 
-  let fRef = null;
+  if (redirect) {
+    return (<Navigate to="/Dashboard" />); // Redirect to Dashboard upon successful submission
+  }
+
   return (
     <Container id={PAGE_IDS.SIGN_UP_ORGANIZATION} fluid className="color2">
       <Container className="mb-5 mt-3">
         <Row className="justify-content-center">
           <Col md={8} xs={12}>
-            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
+            <AutoForm schema={bridge} onSubmit={data => submit(data)}>
               <Card className="rounded-4">
                 <Card.Header className="section-header">Organization Details</Card.Header>
                 <Card.Body>
