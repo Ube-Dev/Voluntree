@@ -16,10 +16,8 @@ class OrganizationCollection extends BaseCollection {
       organizationID: { type: String, optional: true },
       name: { type: String },
       image: { type: String, optional: true, defaultValue: defaultOrganizationImage },
-      location: { type: String, defaultValue: '' },
       mission: { type: String, defaultValue: '' },
       type: { type: String, allowedValues: organizationType, optional: true },
-      description: { type: String, optional: true, defaultValue: '' },
       phone: { type: String, optional: true, defaultValue: '' },
       email: { type: String, optional: true, defaultValue: '' },
       hasPhysicalAddress: { type: Boolean, optional: true, defaultValue: false },
@@ -42,8 +40,8 @@ class OrganizationCollection extends BaseCollection {
    * @param Object See database diagram
    * @return _id
    */
-  define({ email, name, image, location, mission,
-    type, description, phone, hasPhysicalAddress, address,
+  define({ email, name, image, mission,
+    type, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members,
   }) {
@@ -62,15 +60,16 @@ class OrganizationCollection extends BaseCollection {
     if (entity) {
       return console.error('entity already exists.');
     }
-    const id = UserProfiles.findOne({ email });
-    if (!id) {
-      return console.error('Please create a user account with this email first.');
-    }
+    const id = UserProfiles.findOne({ email: email });
+    // console.log('email: ', id);
+    // if (!id) {
+    //   return console.error('Please create a user account with this email first.');
+    // }
     // insert new organization if user exists.
     const leaderID = id._id;
     return this._collection.insert({
-      email, name, image, location, mission,
-      type, description, phone, hasPhysicalAddress, address,
+      email, name, image, mission,
+      type, phone, hasPhysicalAddress, address,
       zipCode, city, state, country, pastEvents, onGoingEvents,
       members, leader: leaderID, organizationID,
     });
@@ -81,15 +80,15 @@ class OrganizationCollection extends BaseCollection {
    * Updates the OrganizationProfile. You cannot change the email or role.
    * @param Object
    */
-  update(docID, { email, name, image, location, mission,
-    type, description, phone, hasPhysicalAddress, address,
+  update(docID, { email, name, image, mission,
+    type, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
     members, leader,
   }) {
     this.assertDefined(docID);
     const updateData = {
-      email, name, image, location, mission,
-      type, description, phone, hasPhysicalAddress, address,
+      email, name, image, mission,
+      type, phone, hasPhysicalAddress, address,
       zipCode, city, state, country, pastEvents, onGoingEvents,
       members, leader,
     };
