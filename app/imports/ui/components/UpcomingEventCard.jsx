@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Container } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
@@ -32,9 +32,8 @@ const UpcomingEventCard = () => {
               const event = Events.findOne({ _id: eventId });
               return event ? (
                 <li key={eventId}>
-                  <Container><a href={`/view_event/${eventId}`}>{event.title}</a>
-                    <div className="py-2">{event.startTime.toLocaleString()}</div>
-                  </Container>
+                  <a href={`/view_event/${eventId}`}>{event.title}</a>
+                  <p>{event.startTime.toLocaleDateString()}</p>
                 </li>
               ) : null;
             })}

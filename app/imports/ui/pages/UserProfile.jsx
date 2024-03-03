@@ -71,7 +71,7 @@ const UserProfile = () => {
               <p>{userProfile.address}</p>
             </Card.Body>
             <Card.Footer>
-              <Button className="btn btn-primary justify-content-start" href={`/edit-user-profile/${userProfile._id}`}>Edit</Button>
+              <Button style={{ backgroundColor: 'gold', color: 'black', border: 'none' }} className="btn btn-primary justify-content-start" href={`/edit-user-profile/${userProfile._id}`}>Edit</Button>
             </Card.Footer>
           </Card>
         </Col>

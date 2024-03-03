@@ -48,4 +48,4 @@ if (Meteor.isServer) {
   });
 }
 
-export { ROLE, userPrivileges, };
+export { ROLE, userPrivileges };
