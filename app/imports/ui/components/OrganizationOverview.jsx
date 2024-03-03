@@ -1,43 +1,41 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Meteor } from 'meteor/meteor';
-import { useTracker } from 'meteor/react-meteor-data';
-import { Organization } from '../../api/organization/OrganizationCollection';
+import PropTypes from 'prop-types';
 import LoadingSpinner from './LoadingSpinner';
 
-const UserDashboard = () => {
-  const { ready, organization } = useTracker(() => {
-    const currentUser = Meteor.user(); // Retrieve the current user
-    const subscription = currentUser ? Organization.subscribeOrganization() : null; // Subscribe to organization publication for the current user
-    const profile = currentUser ? Organization.findOne({ userID: currentUser._id }) : null; // Query user profile for the current user
-    return {
-      ready: subscription ? subscription.ready() : false,
-      organization: profile,
-    };
-  });
+const OrganizationOverview = ({ organization }) => (
+  organization ? (
+    <Container>
+      <Card>
+        <Card.Header>
+          <h2>Overview</h2>
+        </Card.Header>
+        <Card.Body>
+          <Row>
+            <Col>
+              <h4>{organization.name}</h4>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+    </Container>
+  ) : (
+    <Container className="p-2">
+      <LoadingSpinner /> {/* Show loading spinner while data is loading */}
+    </Container>
+  ));
 
-  return (
-    ready ? (
-      <Container>
-        <Card>
-          <Card.Header>
-            <h2>Overview</h2>
-          </Card.Header>
-          <Card.Body>
-            <Row>
-              <Col>
-                <h4>{organization.name}</h4>
-              </Col>
-            </Row>
-          </Card.Body>
-        </Card>
-      </Container>
-    ) : (
-      <Container className="p-2">
-        <LoadingSpinner />
-      </Container>
-    )
-  );
+OrganizationOverview.propTypes = {
+  organization: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    location: PropTypes.string,
+    contact: PropTypes.string,
+    website: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+    _id: PropTypes.string,
+  }).isRequired,
 };
 
-export default UserDashboard;
+export default OrganizationOverview;
