@@ -10,6 +10,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { createOrganization, updateUserAccount } from '../../startup/both/Methods';
 import { userPrivileges } from '../../api/role/Role';
+// import UserProfile from './UserProfile';
 
 const formSchema = new SimpleSchema({
   name: { type: String, optional: false },
@@ -17,7 +18,7 @@ const formSchema = new SimpleSchema({
   mission: { type: String, optional: false },
   type: { type: String, allowedValues: ['Organization', 'School', 'Individual'], optional: false },
   phone: { type: String, optional: false },
-  email: { type: String, optional: false },
+  contactEmail: { type: String, optional: false },
   hasPhysicalAddress: { type: Boolean, optional: false, defaultValue: false },
   address: { type: String, optional: true },
   zipCode: { type: String, optional: true },
@@ -33,8 +34,9 @@ const CreateOrganization = () => {
   const [redirect, setRedirect] = useState(false);
 
   const submit = (data) => {
-    const { email, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country } = data;
-    const definitionData = { email, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
+    const { contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country } = data;
+    const username = Meteor.user().username;
+    const definitionData = { username, contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
     Meteor.call(createOrganization, definitionData, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
@@ -82,7 +84,7 @@ const CreateOrganization = () => {
                   </Row>
                   <Row>
                     <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Email" />
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="contactEmail" placeholder="Email" />
                     </Col>
                     <Col>
                       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
