@@ -23,7 +23,7 @@ const ManageDatabase = () => {
   };
   return (
     <Container id={PAGE_IDS.MANAGE_DATABASE}>
-      <Button id={COMPONENT_IDS.MANGAGE_DATABASE_DUMP} onClick={() => submit()}>Dump Database</Button>
+      <Button id={COMPONENT_IDS.MANAGE_DATABASE_DUMP} onClick={() => submit()}>Dump Database</Button>
     </Container>
   );
 };

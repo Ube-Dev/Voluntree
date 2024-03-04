@@ -2,7 +2,6 @@ import { Selector, t } from 'testcafe';
 import { PAGE_IDS } from '../imports/ui/utilities/PageIDs';
 import { COMPONENT_IDS } from '../imports/ui/utilities/ComponentIDs';
 
-
 class AddEventPage {
   constructor() {
     this.pageId = `#${PAGE_IDS.ADD_EVENT}`;

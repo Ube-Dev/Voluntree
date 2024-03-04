@@ -1,5 +1,5 @@
 export const COMPONENT_IDS = {
-  MANGAGE_DATABASE_DUMP: 'manage-database-dump',
+  MANAGE_DATABASE_DUMP: 'manage-database-dump',
   NAVBAR_HOME_PAGE: 'navbar-home-page',
   NAVBAR_ABOUT_PAGE: 'navbar-about-page',
   NAVBAR_EVENTS_PAGE: 'navbar-events-page',
@@ -18,6 +18,7 @@ export const COMPONENT_IDS = {
   NAVBAR_FAQ_PAGE: 'navbar-faq',
   NAVBAR_ADMIN_PAGE: 'navbar-admin',
   NAVBAR_SIGN_OUT_PAGE: 'navbar-sign-out',
+  NAVBAR_USER_PROFILE_PAGE: 'navbar-user-profile',
   SIGN_IN_FORM_EMAIL: 'sign-in-form-email',
   SIGN_IN_FORM_PASSWORD: 'sign-in-form-password',
   SIGN_IN_FORM_SUBMIT: 'sign-in-form-submit',

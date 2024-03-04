@@ -5,6 +5,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
 import UpcomingEventCard from '../components/UpcomingEventCard';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 const UserProfile = () => {
   const { ready, userProfile } = useTracker(() => {
@@ -27,7 +28,7 @@ const UserProfile = () => {
 
   // Once data is ready, render the user profile
   return (
-    <Container>
+    <Container id={PAGE_IDS.USER_PROFILE}>
       <Row className="py-5">
         <Col md={6}>
           <h1>Profile:</h1>
