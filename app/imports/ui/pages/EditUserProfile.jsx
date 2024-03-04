@@ -16,6 +16,7 @@ const bridge = new SimpleSchema2Bridge(UserProfiles._schema);
 const EditUserProfile = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { _id } = useParams();
+
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { ready, userProfile } = useTracker(() => {
     const currentUser = Meteor.user(); // Retrieve the current user
@@ -26,6 +27,7 @@ const EditUserProfile = () => {
       userProfile: profile,
     };
   });
+
   // On successful submit, insert the data.
   const submit = (data) => {
     const { firstName, lastName, image, phone, address, zipCode, city, state, country, skills } = data;
@@ -39,6 +41,7 @@ const EditUserProfile = () => {
       ),
     );
   };
+
   return ready ? (
     <Container fluid className="py-3 edit-page-background editCSS">
       <Row className="justify-content-center">

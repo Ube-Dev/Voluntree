@@ -56,7 +56,6 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddEvent page for adding a document. */
 const AddEvent = () => {
-
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { title, image, description, impact, address, zipCode, city, state, country, totalSpots, startTime, endTime, accessibilities, requiredSkills } = data;
@@ -113,7 +112,7 @@ const AddEvent = () => {
                       <SelectField name="hostType" />
                     </Col>
                     <Col>
-                      <TextField name="phone" placeholder="111-1111-111" />
+                      <TextField name="phone" placeholder="111-111-1111" />
                     </Col>
                   </Row>
                 </Card.Body>
@@ -157,7 +156,7 @@ const AddEvent = () => {
                 </Card.Body>
               </Card>
               <Card className="rounded-4 mt-3">
-                <Card.Header className="section-header">Required Skills & Accessibilitys</Card.Header>
+                <Card.Header className="section-header">Required Skills & Accessibilities</Card.Header>
                 <Card.Body>
                   <Row className="justify-content-center">
                     <Col md={4} lg={4}>
