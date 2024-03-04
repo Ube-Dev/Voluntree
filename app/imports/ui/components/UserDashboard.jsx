@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from './LoadingSpinner';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const UserDashboard = () => {
   const { ready, userProfile } = useTracker(() => {
@@ -35,7 +36,7 @@ const UserDashboard = () => {
             </Row>
           </Card.Body>
           <Card.Footer className="d-flex justify-content-end p-2">
-            <Button className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
+            <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_PROFILE} className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
               <a href="/profile" style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>View Profile</a>
             </Button>
             <Button className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>

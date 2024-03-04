@@ -10,6 +10,7 @@ import { aboutPage } from './about.page';
 import { eventsPage } from './events.page';
 import { addEventPage } from './addevent.page';
 import { userProfilePage } from './userprofile.page';
+import { userDashboard } from './userdashboard.component';
 
 /* global fixture:false, test:false */
 
@@ -48,7 +49,6 @@ test('Test that Home page works', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
-  // await homePage.enterField();
 });
 
 test('Test that about page works', async () => {
@@ -117,5 +117,15 @@ test('Test that user profile page exists', async () => {
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+});
+
+test.only('Test that view user profile can be accessed from home page', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoHomePage();
+  await homePage.isDisplayed();
+  await userDashboard.gotoUserProfilePage();
   await userProfilePage.isDisplayed();
 });

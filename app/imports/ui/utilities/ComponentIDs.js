@@ -50,4 +50,5 @@ export const COMPONENT_IDS = {
   ADD_EVENT_FORM_ACCESSIBILITIES: 'add-event-form-accessibilities',
   ADD_EVENT_FORM_SUBMIT: 'add-event-form-submit',
   EVENTS_SEARCHBAR: 'events-searchbar',
+  USER_DASHBOARD_VIEW_PROFILE: 'user-dashboard-view-profile',
 };
