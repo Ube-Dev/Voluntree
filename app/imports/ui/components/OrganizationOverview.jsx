@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -7,16 +7,20 @@ const OrganizationOverview = ({ organization }) => (
   organization ? (
     <Container>
       <Card>
-        <Card.Header>
-          <h2>Overview</h2>
-        </Card.Header>
         <Card.Body>
           <Row>
             <Col>
-              <h4>{organization.name}</h4>
+              <Image src={organization.image} alt={organization.name} />
+            </Col>
+            <Col>
+              <h3>{organization.name}</h3>
+              <p>{organization.mission}</p>
             </Col>
           </Row>
         </Card.Body>
+        <Card.Footer>
+          <Button className="btn btn-primary" href={`/edit-organization-profile/${organization._id}`}>Edit</Button>
+        </Card.Footer>
       </Card>
     </Container>
   ) : (
@@ -28,7 +32,8 @@ const OrganizationOverview = ({ organization }) => (
 OrganizationOverview.propTypes = {
   organization: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    description: PropTypes.string,
+    image: PropTypes.string,
+    mission: PropTypes.string,
     location: PropTypes.string,
     contact: PropTypes.string,
     website: PropTypes.string,
