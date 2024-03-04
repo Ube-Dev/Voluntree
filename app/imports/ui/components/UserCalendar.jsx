@@ -47,7 +47,6 @@ Toolbar.propTypes = {
 };
 
 const UserCalendar = () => {
-
   const { ready, userProfile } = useTracker(() => {
     const currentUser = Meteor.user();
     const userProfileSubscription = currentUser ? UserProfiles.subscribeUser() : null;
@@ -68,6 +67,11 @@ const UserCalendar = () => {
     return eventsData.filter(event => event);
   };
 
+  // Function to handle event click
+  const handleEventSelect = event => {
+    window.location.href = `/view_event/${event._id}`;
+  };
+
   return (
     <Card style={{ width: 'calc(100% - 20px)', height: 'calc(100% - 20px)', padding: '10px' }}>
       <div style={{ width: '100%', height: '100%', backgroundColor: 'white', color: 'black' }}>
@@ -77,6 +81,7 @@ const UserCalendar = () => {
           startAccessor="startTime"
           endAccessor="endTime"
           selectable
+          onSelectEvent={handleEventSelect} // Handle event selection (click)
           components={{
             toolbar: Toolbar,
           }}
