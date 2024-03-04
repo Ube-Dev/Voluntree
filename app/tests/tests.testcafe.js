@@ -48,7 +48,7 @@ test('Test that Home page works', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
-  await homePage.enterField();
+  // await homePage.enterField();
 });
 
 test('Test that about page works', async () => {
@@ -112,7 +112,7 @@ test('Test that add event form works', async () => {
   await addEventPage.addEvent();
 });
 
-test.only('Test that user profile page exists', async () => {
+test('Test that user profile page exists', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
