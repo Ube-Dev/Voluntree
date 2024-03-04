@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Card } from 'react-bootstrap';
+import { useTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
+import { UserProfiles } from '../../api/user/UserProfileCollection';
+import { Events, eventPublications } from '../../api/event/EventCollection';
+import LoadingSpinner from './LoadingSpinner';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localize = momentLocalizer(moment);
 
+// Define custom toolbar component for the calendar with navigation buttons and label
 const Toolbar = ({ label, onNavigate, onView }) => (
   <div className="rbc-toolbar">
     <span className="rbc-btn-group">
@@ -41,14 +47,25 @@ Toolbar.propTypes = {
 };
 
 const UserCalendar = () => {
-  const [events, setEvents] = useState([]);
 
-  const handleSelect = ({ start, end }) => {
-    const title = window.prompt('Add event');
-    if (title) {
-      const newEvent = { start, end, title };
-      setEvents([...events, newEvent]);
-    }
+  const { ready, userProfile } = useTracker(() => {
+    const currentUser = Meteor.user();
+    const userProfileSubscription = currentUser ? UserProfiles.subscribeUser() : null;
+    const userProfileData = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null;
+    const eventSubscription = Meteor.subscribe(eventPublications.event);
+    return {
+      ready: userProfileSubscription ? userProfileSubscription.ready() && eventSubscription.ready() : false,
+      userProfile: userProfileData,
+    };
+  });
+
+  if (!ready) return <LoadingSpinner />;
+
+  // Function to get committed events and fetch the details
+  const getCommittedEvents = () => {
+    const committedEvents = userProfile && userProfile.onGoingEvents ? userProfile.onGoingEvents : [];
+    const eventsData = committedEvents.map(eventId => Events.findOne({ _id: eventId }));
+    return eventsData.filter(event => event);
   };
 
   return (
@@ -56,11 +73,10 @@ const UserCalendar = () => {
       <div style={{ width: '100%', height: '100%', backgroundColor: 'white', color: 'black' }}>
         <Calendar
           localizer={localize}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
+          events={getCommittedEvents()}
+          startAccessor="startTime"
+          endAccessor="endTime"
           selectable
-          onSelectSlot={handleSelect}
           components={{
             toolbar: Toolbar,
           }}
