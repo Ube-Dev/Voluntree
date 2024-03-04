@@ -15,4 +15,6 @@ export const PAGE_IDS = {
   SIGN_UP: 'sign-up',
   SIGN_UP_ORGANIZATION: 'sign-up-organization',
   FAQ: 'faq',
+  USER_PROFILE: 'user-profile',
+  EDIT_USER_PROFILE: 'edit-user-profile',
 };

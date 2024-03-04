@@ -9,6 +9,7 @@ import { homePage } from './home.page';
 import { aboutPage } from './about.page';
 import { eventsPage } from './events.page';
 import { addEventPage } from './addevent.page';
+import { userProfilePage } from './userprofile.page';
 
 /* global fixture:false, test:false */
 
@@ -111,9 +112,10 @@ test('Test that add event form works', async () => {
   await addEventPage.addEvent();
 });
 
-test('Test that user profile page works', async () => {
+test.only('Test that user profile page exists', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
 });
