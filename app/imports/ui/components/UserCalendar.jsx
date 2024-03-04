@@ -12,7 +12,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localize = momentLocalizer(moment);
 
-// Define custom toolbar component for the calendar with navigation buttons and label
+// Custom toolbar component
 const Toolbar = ({ label, onNavigate, onView }) => (
   <div className="rbc-toolbar">
     <span className="rbc-btn-group">
@@ -60,14 +60,14 @@ const UserCalendar = () => {
 
   if (!ready) return <LoadingSpinner />;
 
-  // Function to get committed events and fetch the details
+  // Get committed events
   const getCommittedEvents = () => {
     const committedEvents = userProfile && userProfile.onGoingEvents ? userProfile.onGoingEvents : [];
     const eventsData = committedEvents.map(eventId => Events.findOne({ _id: eventId }));
     return eventsData.filter(event => event);
   };
 
-  // Function to handle event click
+  // Handle event click
   const handleEventSelect = event => {
     window.location.href = `/view_event/${event._id}`;
   };
@@ -81,10 +81,9 @@ const UserCalendar = () => {
           startAccessor="startTime"
           endAccessor="endTime"
           selectable
-          onSelectEvent={handleEventSelect} // Handle event selection (click)
-          components={{
-            toolbar: Toolbar,
-          }}
+          onSelectEvent={handleEventSelect}
+          components={{ toolbar: Toolbar }}
+          eventPropGetter={() => ({ style: { backgroundColor: '#03A696' } })}
           style={{ color: 'black', width: 'calc(100% - 20px)', height: 'calc(100% - 20px)', margin: '10px' }}
         />
       </div>
