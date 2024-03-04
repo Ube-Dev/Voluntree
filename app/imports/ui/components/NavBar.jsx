@@ -69,8 +69,8 @@ const NavBar = () => {
               </NavDropdown>
             ) : (
               <NavDropdown id={COMPONENT_IDS.NAVBAR_CURRENT_USER} title={currentUser}>
-                {/* Profile page; still need to create the page(s) */}
-                <NavDropdown.Item as={NavLink} to="/profile"><PersonCircle /> Profile</NavDropdown.Item>
+                {/* Profile page */}
+                <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_USER_PROFILE_PAGE} as={NavLink} to="/profile"><PersonCircle /> Profile</NavDropdown.Item>
                 <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_SIGN_OUT_PAGE} as={NavLink} to="/signout">
                   <BoxArrowRight /> Sign out
                 </NavDropdown.Item>

@@ -67,7 +67,7 @@ test.only('Test that events page works', async () => {
   await eventsPage.enterField();
 });
 
-test('Test that signin and signout work', async () => {
+test('Test that sign in and sign out work', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -109,4 +109,11 @@ test('Test that add event form works', async () => {
   await navBar.isLoggedIn(orgCredentials.username);
   await navBar.gotoAddEventPage();
   await addEventPage.addEvent();
+});
+
+test('Test that user profile page works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
 });

@@ -111,7 +111,7 @@ const AddEvent = () => {
                   </Row>
                   <Row>
                     <Col>
-                      <SelectField name="hostType" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_TYPE}/>
+                      <SelectField name="hostType" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_TYPE} />
                     </Col>
                     <Col>
                       <TextField name="phone" placeholder="111-1111-111" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_PHONE} />
