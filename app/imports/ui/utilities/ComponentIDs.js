@@ -52,4 +52,5 @@ export const COMPONENT_IDS = {
   EVENTS_SEARCHBAR: 'events-searchbar',
   USER_DASHBOARD_VIEW_PROFILE: 'user-dashboard-view-profile',
   USER_DASHBOARD_EDIT_PROFILE: 'user-dashboard-edit-profile',
+  USER_PROFILE_EDIT_PROFILE: 'user-profile-edit-profile',
 };
