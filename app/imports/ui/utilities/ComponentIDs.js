@@ -48,5 +48,5 @@ export const COMPONENT_IDS = {
   ADD_EVENT_FORM_REQUIRED_SKILLS: 'add-event-form-required-skills',
   ADD_EVENT_FORM_ACCESSIBILITIES: 'add-event-form-accessibilities',
   ADD_EVENT_FORM_SUBMIT: 'add-event-form-submit',
-  SEARCHBAR: 'search-bar',
+  EVENTS_SEARCHBAR: 'events-searchbar',
 };

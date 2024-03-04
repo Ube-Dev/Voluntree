@@ -58,12 +58,13 @@ test('Test that about page works', async () => {
   await aboutPage.isDisplayed();
 });
 
-test('Test that events page works', async () => {
+test.only('Test that events page works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoEventsPage();
   await eventsPage.isDisplayed();
+  await eventsPage.enterField();
 });
 
 test('Test that signin and signout work', async () => {
@@ -102,7 +103,7 @@ test('Test that sign up and sign out work', async () => {
 //   // await manageDatabasePage.isDisplayed();
 // });
 
-test.only('Test that add event form works', async () => {
+test('Test that add event form works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(orgCredentials.username, orgCredentials.password);
   await navBar.isLoggedIn(orgCredentials.username);

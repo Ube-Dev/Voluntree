@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Form, Row, Col, Container, Pagination } from 'react-bootstrap';
 import Fuse from 'fuse.js';
 import EventCard from './EventCard';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /*
  * renders the searchBar, the events passed in, as well as the pagination for the page.
@@ -58,6 +59,7 @@ const EventList = ({ theEvents }) => {
       <Container className="d-flex justify-content-center">
         <Form.Group controlId="formEventSearch" className="w-75">
           <Form.Control
+            id={COMPONENT_IDS.EVENTS_SEARCHBAR}
             type="text"
             placeholder="Let's help...."
             className="align-content-center"

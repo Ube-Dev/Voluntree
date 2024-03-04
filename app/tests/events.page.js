@@ -16,7 +16,7 @@ class EventsPage {
   /* Inputs text to determine if entry is valid */
   async enterField() {
     await this.isDisplayed();
-    await t.typeText(`#${COMPONENT_IDS.SEARCHBAR}`, 'clean up');
+    await t.typeText(`#${COMPONENT_IDS.EVENTS_SEARCHBAR}`, 'clean up');
   }
 }
 
