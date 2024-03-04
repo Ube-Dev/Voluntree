@@ -10,6 +10,7 @@ import { aboutPage } from './about.page';
 import { eventsPage } from './events.page';
 import { addEventPage } from './addevent.page';
 import { userProfilePage } from './userprofile.page';
+import { editUserProfilePage } from './edituserprofile.page';
 import { userDashboard } from './userdashboard.component';
 
 /* global fixture:false, test:false */
@@ -112,7 +113,7 @@ test('Test that add event form works', async () => {
   await addEventPage.addEvent();
 });
 
-test('Test that user profile page exists', async () => {
+test('Test that view user profile can be accessed from navbar', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -120,7 +121,7 @@ test('Test that user profile page exists', async () => {
   await userProfilePage.isDisplayed();
 });
 
-test.only('Test that view user profile can be accessed from home page', async () => {
+test('Test that view user profile can be accessed from home page', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -128,4 +129,14 @@ test.only('Test that view user profile can be accessed from home page', async ()
   await homePage.isDisplayed();
   await userDashboard.gotoUserProfilePage();
   await userProfilePage.isDisplayed();
+});
+
+test.only('Test that edit user profile can be accessed from home page', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoHomePage();
+  await homePage.isDisplayed();
+  await userDashboard.gotoEditUserProfilePage();
+  await editUserProfilePage.isDisplayed();
 });

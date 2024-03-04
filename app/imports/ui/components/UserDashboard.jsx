@@ -39,7 +39,7 @@ const UserDashboard = () => {
             <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_PROFILE} className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
               <a href="/profile" style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>View Profile</a>
             </Button>
-            <Button className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
+            <Button id={COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE} className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
               <a href={`/edit-user-profile/${userProfile._id}`} style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>Edit</a>
             </Button>
           </Card.Footer>

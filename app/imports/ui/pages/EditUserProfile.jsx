@@ -10,6 +10,7 @@ import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { updateUserProfile } from '../../startup/both/Methods';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 const bridge = new SimpleSchema2Bridge(UserProfiles._schema);
 
@@ -40,7 +41,7 @@ const EditUserProfile = () => {
     );
   };
   return ready ? (
-    <Container fluid className="py-3 edit-page-background editCSS">
+    <Container id={PAGE_IDS.EDIT_USER_PROFILE} fluid className="py-3 edit-page-background editCSS">
       <Row className="justify-content-center">
         <Col xs={8}>
           <Col className="pb-2 text-center login-text"><h2>Edit User Profile</h2></Col>
