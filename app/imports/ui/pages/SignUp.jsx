@@ -10,6 +10,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
+import { sendResetPasswordEmail_ } from '../../startup/both/Methods';
 
 /**
  * SignUp component is similar to signin component, but we create a new user instead.
@@ -45,12 +46,15 @@ const SignUp = () => {
         });
       })
       .catch((err) => setError(err.reason));
+    // remove this meteor call if dont want to send verification email when user registered.
+    // Meteor.call(sendVerification, doc.email);
+    Meteor.call(sendResetPasswordEmail_, doc.email);
   };
 
-  /* Display the signup form. Redirect to add page after successful registration and login. */
+  /* Display the signup form. Redirect to home page after successful registration and login. */
   // if correct authentication, redirect to from: page instead of signup screen
   if (redirectToReferer) {
-    return <Navigate to="/add" />;
+    return <Navigate to="/home" />;
   }
   return (
     <Container id={PAGE_IDS.SIGN_UP} fluid className="formCSS">

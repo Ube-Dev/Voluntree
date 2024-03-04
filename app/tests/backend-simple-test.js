@@ -5,8 +5,10 @@
 // import { Skills } from '../imports/api/skill/SkillCollection';
 // import { Events } from '../imports/api/event/EventCollection';
 // import { createEvent, removeEvent, removeOrganization, updateUserProfile } from '../imports/startup/both/Methods';
+/*
 import { Meteor } from 'meteor/meteor'; // this must be imported to invoke meteor methods
 // subscription and publication are inside the same class as CRUD operations, I will separate them in the future.
+
 import { UserProfiles } from '../imports/api/user/UserProfileCollection';
 import { Organization } from '../imports/api/organization/OrganizationCollection';
 import { Skills } from '../imports/api/skill/SkillCollection';
@@ -21,7 +23,7 @@ const subSubScription = SubCategory.subscribe();
 const mainCategories = MainCategory.find({}).fetch();
 const subCategories = SubCategory.find({}).fetch();
 
-function getFormattedCategories() { 
+function getFormattedCategories() {
   const formattedCategories = {};
 
   mainCategories.forEach((entity) => {
@@ -53,14 +55,10 @@ getFormattedCategories();
 console.log('create a orphan sub category: ');
 Meteor.call(createSubcategory, { category: 'Pollution Control' });
 getFormattedCategories();
+*/
 
-
-
-
-
-
-
-
+import { Role, userPrivileges } from "../imports/api/role/Role";
+import { updateUserAccount, updateUserProfile } from "../imports/startup/both/Methods";
 
 // Meteor.call(removeMainCategory, docID);
 
@@ -89,3 +87,6 @@ getFormattedCategories();
 //     // Handle successful update if needed
 //   }
 // });
+
+
+Meteor.call(updateUserAccount, "9vfWrfBveezxRGs2j", { privilege: [userPrivileges.hasOrganization] } )

@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
+import { updateUserProfile } from '../../startup/both/Methods';
 
 const bridge = new SimpleSchema2Bridge(UserProfiles._schema);
 
@@ -27,12 +28,11 @@ const EditUserProfile = () => {
   });
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { firstName, lastName, image, phone, bookmarks, viewingHistory, pastEvents, onGoingEvents, userActivity,
-      totalHours, address, zipCode, city, state, country, feedbacks, skills, followers, organizationFollowed, memberOf } = data;
-    UserProfiles.update(
+    const { firstName, lastName, image, phone, address, zipCode, city, state, country, skills } = data;
+    Meteor.call(
+      updateUserProfile,
       _id,
-      { firstName, lastName, image, phone, bookmarks, viewingHistory, pastEvents, onGoingEvents, userActivity,
-        totalHours, address, zipCode, city, state, country, feedbacks, skills, followers, organizationFollowed, memberOf },
+      { firstName, lastName, image, phone, address, zipCode, city, state, country, skills },
       (error) => (error ?
         swal('Error', error.message, 'error') :
         swal('Success', 'Profile updated successfully.', 'success')
@@ -40,7 +40,7 @@ const EditUserProfile = () => {
     );
   };
   return ready ? (
-    <Container fluid className="py-3 edit-page-background">
+    <Container fluid className="py-3 edit-page-background editCSS">
       <Row className="justify-content-center">
         <Col xs={8}>
           <Col className="pb-2 text-center login-text"><h2>Edit User Profile</h2></Col>

@@ -4,6 +4,10 @@ import { Form, Row, Col, Container, Pagination } from 'react-bootstrap';
 import Fuse from 'fuse.js';
 import EventCard from './EventCard';
 
+/*
+ * renders the searchBar, the events passed in, as well as the pagination for the page.
+ * @param theEvents the events that needs to be rendered.
+ */
 const EventList = ({ theEvents }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,7 +17,7 @@ const EventList = ({ theEvents }) => {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
     setCurrentPage(1);
-    setSearchPerformed(!!event.target.value); // Set searchPerformed to true if search query is not empty
+    setSearchPerformed(event.target.value); // Set searchPerformed to true if search query is not empty
   };
 
   let displayedEvents = theEvents; // Default to all events
@@ -51,9 +55,6 @@ const EventList = ({ theEvents }) => {
 
   return (
     <Container>
-      <Row className="justify-content-center text-center">
-        <h1>Find Events</h1>
-      </Row>
       <Container className="d-flex justify-content-center">
         <Form.Group controlId="formEventSearch" className="w-75">
           <Form.Control

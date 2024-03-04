@@ -1,3 +1,4 @@
+/* All publication are stored here */
 import { Meteor } from 'meteor/meteor';
 import { MATPCollections } from '../../api/matp/MATPCollections';
 

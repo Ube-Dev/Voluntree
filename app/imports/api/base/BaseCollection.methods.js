@@ -19,7 +19,7 @@ export const defineMethod = new ValidatedMethod({
   validate: null,
   run({ collectionName, definitionData }) {
     if (Meteor.isServer) {
-      // console.log(collectionName, this.userId, definitionData);
+      console.log(collectionName, this.userId, definitionData);
       const collection = MATPCollections.getCollection(collectionName);
       collection.assertValidRoleForMethod(this.userId);
       return collection.define(definitionData);
