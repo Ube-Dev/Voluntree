@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { Organization } from '../../api/organization/OrganizationCollection';
-// import OrganizationOverview from '../components/OrganizationOverview';
+import OrganizationOverview from '../components/OrganizationOverview';
 // import UserCalendar from '../components/UserCalendar';
 import OrganizationDropdown from '../components/OrganizationDropdown';
 

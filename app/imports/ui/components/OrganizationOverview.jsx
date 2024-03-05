@@ -3,23 +3,23 @@ import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import LoadingSpinner from './LoadingSpinner';
 
-const OrganizationOverview = ({ organization }) => (
-  organization ? (
+const OrganizationOverview = ({ theOrganization }) => (
+  theOrganization ? (
     <Container>
       <Card>
         <Card.Body>
           <Row>
             <Col>
-              <Image src={organization.image} alt={organization.name} />
+              <Image src={theOrganization.image} alt={theOrganization.name} />
             </Col>
             <Col>
-              <h3>{organization.name}</h3>
-              <p>{organization.mission}</p>
+              <h3>{theOrganization.name}</h3>
+              <p>{theOrganization.mission}</p>
             </Col>
           </Row>
         </Card.Body>
         <Card.Footer>
-          <Button className="btn btn-primary" href={`/edit-organization-profile/${organization._id}`}>Edit</Button>
+          <Button className="btn btn-primary" href={`/edit-organization-profile/${theOrganization._id}`}>Edit</Button>
         </Card.Footer>
       </Card>
     </Container>
@@ -30,12 +30,12 @@ const OrganizationOverview = ({ organization }) => (
   ));
 
 OrganizationOverview.propTypes = {
-  organization: PropTypes.shape({
+  theOrganization: PropTypes.shape({
     name: PropTypes.string.isRequired,
     image: PropTypes.string,
     mission: PropTypes.string,
     location: PropTypes.string,
-    contact: PropTypes.string,
+    contactEmail: PropTypes.string,
     website: PropTypes.string,
     email: PropTypes.string,
     phone: PropTypes.string,
