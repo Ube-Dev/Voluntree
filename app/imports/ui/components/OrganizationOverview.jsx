@@ -14,7 +14,24 @@ const OrganizationOverview = ({ theOrganization }) => (
             </Col>
             <Col className="col-md-9">
               <h3>{theOrganization.name}</h3>
+              <hr />
+              <h5>Mission:</h5>
               <p>{theOrganization.mission}</p>
+              <h5>Location:</h5>
+              <p>{theOrganization.hasPhysicalAddress ? theOrganization.address : 'N/A'}</p>
+              {theOrganization.hasPhysicalAddress && (
+                <p>{theOrganization.address}, {theOrganization.zipCode}, {theOrganization.city}, {theOrganization.state}, {theOrganization.country}</p>
+              )}
+              <Row>
+                <Col>
+                  <h5>Contact Email:</h5>
+                  <p>{theOrganization.contactEmail}</p>
+                </Col>
+                <Col>
+                  <h5>Phone:</h5>
+                  <p>{theOrganization.phone}</p>
+                </Col>
+              </Row>
             </Col>
           </Row>
         </Card.Body>
@@ -34,10 +51,13 @@ OrganizationOverview.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string,
     mission: PropTypes.string,
-    location: PropTypes.string,
+    hasPhysicalAddress: PropTypes.bool.isRequired,
+    address: PropTypes.string,
+    zipCode: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    country: PropTypes.string,
     contactEmail: PropTypes.string,
-    website: PropTypes.string,
-    email: PropTypes.string,
     phone: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
