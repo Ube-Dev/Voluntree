@@ -10,6 +10,7 @@ import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { updateUserProfile } from '../../startup/both/Methods';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
 const bridge = new SimpleSchema2Bridge(UserProfiles._schema);
@@ -49,24 +50,24 @@ const EditUserProfile = () => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col><TextField name="firstName" label="First Name" /></Col>
-                  <Col><TextField name="lastName" label="Last Name" /></Col>
-                  <Col><TextField name="image" label="Profile Picture URL" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_FIRST_NAME} name="firstName" label="First Name" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_LAST_NAME} name="lastName" label="Last Name" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_PROFILE_PICTURE_URL} name="image" label="Profile Picture URL" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="address" label="Address" /></Col>
-                  <Col><TextField name="phone" label="Phone" /></Col>
-                  <Col><TextField name="email" label="Email" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ADDRESS} name="address" label="Address" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_PHONE} name="phone" label="Phone" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_EMAIL} name="email" label="Email" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="city" label="City" /></Col>
-                  <Col><TextField name="state" label="State" /></Col>
-                  <Col><TextField name="country" label="Country" /></Col>
-                  <Col><TextField name="zipCode" label="Zip Code" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_CITY} name="city" label="City" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_STATE} name="state" label="State" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_COUNTRY} name="country" label="Country" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ZIP_CODE} name="zipCode" label="Zip Code" /></Col>
                 </Row>
                 <HiddenField name="role" />
                 <HiddenField name="userID" />
-                <SubmitField value="Update" />
+                <SubmitField id={COMPONENT_IDS.EDIT_USER_PROFILE_SUBMIT} value="Update" />
                 <ErrorsField />
               </Card.Body>
             </Card>

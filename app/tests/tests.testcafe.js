@@ -141,7 +141,7 @@ test('Test that edit user profile can be accessed from home page', async () => {
   await editUserProfilePage.isDisplayed();
 });
 
-test.only('Test that edit user profile can be accessed from view user profile', async () => {
+test('Test that edit user profile can be accessed from view user profile', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -149,4 +149,14 @@ test.only('Test that edit user profile can be accessed from view user profile', 
   await userProfilePage.isDisplayed();
   await userProfilePage.gotoEditUserProfile();
   await editUserProfilePage.isDisplayed();
+});
+
+test.only('Test that user profile can be updated', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+  await userProfilePage.gotoEditUserProfile();
+  await editUserProfilePage.updateProfile();
 });
