@@ -9,10 +9,10 @@ const OrganizationOverview = ({ theOrganization }) => (
       <Card>
         <Card.Body>
           <Row>
-            <Col>
+            <Col className="col-md-3">
               <Image src={theOrganization.image} alt={theOrganization.name} />
             </Col>
-            <Col>
+            <Col className="col-md-9">
               <h3>{theOrganization.name}</h3>
               <p>{theOrganization.mission}</p>
             </Col>

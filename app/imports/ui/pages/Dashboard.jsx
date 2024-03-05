@@ -7,16 +7,13 @@ import { Meteor } from 'meteor/meteor';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { Organization } from '../../api/organization/OrganizationCollection';
-import OrganizationOverview from '../components/OrganizationOverview';
-// import UserCalendar from '../components/UserCalendar';
 import OrganizationDropdown from '../components/OrganizationDropdown';
 
 const Dashboard = () => {
   const { ready, organization } = useTracker(() => {
     const currentUser = Meteor.user()._id; // Retrieve the current user
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication for the current user
-    const profile = Organization.find({ leader: currentUser }); // Query user profile for the current user
-    console.log('profile:', profile);
+    const profile = Organization.find({ leader: currentUser }).fetch(); // Query user profile for the current user
     return {
       ready: subscription ? subscription.ready() : false,
       organization: profile,
@@ -26,13 +23,14 @@ const Dashboard = () => {
   return (
     ready ? (
       <Container fluid id={PAGE_IDS.DASHBOARD} className="py-3 color2 justify-content-center">
-        <Container>
-          <Row>
-            <Col>
-              <OrganizationDropdown myOrganization={organization} />
-            </Col>
-          </Row>
-        </Container>
+        <Row className="py-1 text-center">
+          <h1>Dashboard</h1>
+        </Row>
+        <Row>
+          <Col>
+            <OrganizationDropdown myOrganization={organization} />
+          </Col>
+        </Row>
       </Container>
     ) : (
       <Container className="p-2">
