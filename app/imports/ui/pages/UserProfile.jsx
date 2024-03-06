@@ -5,6 +5,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
 import UpcomingEventCard from '../components/UpcomingEventCard';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
 const UserProfile = () => {
@@ -72,7 +73,7 @@ const UserProfile = () => {
               <p>{userProfile.address}</p>
             </Card.Body>
             <Card.Footer>
-              <Button style={{ backgroundColor: 'gold', color: 'black', border: 'none' }} className="btn btn-primary justify-content-start" href={`/edit-user-profile/${userProfile._id}`}>Edit</Button>
+              <Button id={COMPONENT_IDS.USER_PROFILE_EDIT_PROFILE} style={{ backgroundColor: 'gold', color: 'black', border: 'none' }} className="btn btn-primary justify-content-start" href={`/edit-user-profile/${userProfile._id}`}>Edit</Button>
             </Card.Footer>
           </Card>
         </Col>

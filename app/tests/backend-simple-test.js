@@ -1,3 +1,4 @@
+/* eslint-disable */
 // import { Meteor } from 'meteor/meteor'; // this must be imported to invoke meteor methods
 // subscription and publication are inside the same class as CRUD operations, I will separate them in the future.
 // import { UserProfiles } from '../imports/api/user/UserProfileCollection';

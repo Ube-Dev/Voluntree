@@ -10,6 +10,9 @@ import { aboutPage } from './about.page';
 import { eventsPage } from './events.page';
 import { addEventPage } from './addevent.page';
 import { userProfilePage } from './userprofile.page';
+import { upcomingEventCard } from './upcomingeventcard.component';
+import { editUserProfilePage } from './edituserprofile.page';
+import { userDashboard } from './userdashboard.component';
 
 /* global fixture:false, test:false */
 
@@ -48,7 +51,6 @@ test('Test that Home page works', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
-  // await homePage.enterField();
 });
 
 test('Test that about page works', async () => {
@@ -112,10 +114,60 @@ test('Test that add event form works', async () => {
   await addEventPage.addEvent();
 });
 
-test('Test that user profile page exists', async () => {
+test('Test that view user profile can be accessed from NavBar', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoUserProfilePage();
   await userProfilePage.isDisplayed();
+});
+
+test('Test that view user profile can be accessed from Home', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoHomePage();
+  await homePage.isDisplayed();
+  await userDashboard.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+});
+
+test('Test that edit user profile can be accessed from Home', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoHomePage();
+  await homePage.isDisplayed();
+  await userDashboard.gotoEditUserProfilePage();
+  await editUserProfilePage.isDisplayed();
+});
+
+test('Test that edit user profile can be accessed from view user profile', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+  await userProfilePage.gotoEditUserProfile();
+  await editUserProfilePage.isDisplayed();
+});
+
+test('Test that find events can be accessed from user profile', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+  await upcomingEventCard.gotoEventsPage();
+  await eventsPage.isDisplayed();
+});
+
+test('Test that user profile can be updated', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+  await userProfilePage.gotoEditUserProfile();
+  await editUserProfilePage.updateProfile();
 });
