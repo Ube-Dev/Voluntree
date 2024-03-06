@@ -65,4 +65,5 @@ export const COMPONENT_IDS = {
   EDIT_USER_PROFILE_COUNTRY: 'edit-user-profile-country',
   EDIT_USER_PROFILE_ZIP_CODE: 'edit-user-profile-zip-code',
   EDIT_USER_PROFILE_SUBMIT: 'edit-user-profile-submit',
+  ORGANIZATION_PROFILE_EDIT_PROFILE: 'organization-profile-edit-profile',
 };

@@ -22,9 +22,10 @@ import HomePage from '../pages/HomePage';
 import About from '../pages/About';
 import AllEventPage from '../pages/AllEventPage';
 import UserProfile from '../pages/UserProfile';
+import EditUserProfile from '../pages/EditUserProfile';
+import OrganizationProfile from '../pages/OrganizationProfile';
 import ViewEventPage from '../pages/ViewEventPage';
 import AddEvent from '../pages/AddEvent';
-import EditUserProfile from '../pages/EditUserProfile';
 import MyEventPage from '../pages/MyEventPage';
 import VerifyEmailPage from '../pages/verifyEmailPage';
 import ResetPasswordPage from '../pages/ResetPassword';
@@ -61,6 +62,7 @@ const App = () => {
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+          <Route path="/org-profile" element={<OrganizationProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

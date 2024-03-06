@@ -17,4 +17,6 @@ export const PAGE_IDS = {
   FAQ: 'faq',
   USER_PROFILE: 'user-profile',
   EDIT_USER_PROFILE: 'edit-user-profile',
+  ORGANIZATION_PROFILE: 'organization-profile',
+  EDIT_ORGANIZATION_PROFILE: 'edit-organization-profile',
 };
