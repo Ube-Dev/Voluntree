@@ -74,7 +74,7 @@ body {
 }
 
 .landing-background {
-  background: url('/images/Doing-Volunteer-Work.jpg') fixed center;
+  background: url('/images/landingPage/Doing-Volunteer-Work.jpg') fixed center;
   background-size: cover;
   color: white;
   min-height: 65vh;
