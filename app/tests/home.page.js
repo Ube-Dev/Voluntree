@@ -11,6 +11,7 @@ class HomePage {
   async isDisplayed() {
     await t.expect(this.pageSelector.exists).ok();
   }
+
 }
 
 export const homePage = new HomePage();

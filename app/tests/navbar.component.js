@@ -8,7 +8,7 @@ class NavBar {
     const loggedInUser = await Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists;
     if (loggedInUser) {
       await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
-      await t.click(`#${COMPONENT_IDS.NAVBAR_SIGN_OUT}`);
+      await t.click(`#${COMPONENT_IDS.NAVBAR_SIGN_OUT_PAGE}`);
     }
   }
 
@@ -40,7 +40,7 @@ class NavBar {
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
-    await t.click(`#${COMPONENT_IDS.NAVBAR_SIGN_OUT}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_SIGN_OUT_PAGE}`);
   }
 
   /* Pull down login menu, go to sign up page. */
@@ -52,6 +52,16 @@ class NavBar {
     }
     await t.click(`#${COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN}`);
     await t.click(`#${COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN_SIGN_UP}`);
+  }
+
+  async gotoSignUpOrganizationPage() {
+    await this.ensureLogout(t);
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.click(`#${COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN_SIGN_UP_ORGANIZATION}`);
   }
 
   /* Go to the user page */
@@ -82,7 +92,7 @@ class NavBar {
       await t.click('button.navbar-toggler');
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
-    await t.click(`#${COMPONENT_IDS.NAVBAR_DASHBOARD}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_DASHBOARD_PAGE}`);
   }
 
   /* Go to the FAQ page. */
@@ -92,7 +102,7 @@ class NavBar {
       await t.click('button.navbar-toggler');
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
-    await t.click(`#${COMPONENT_IDS.NAVBAR_FAQ}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_FAQ_PAGE}`);
   }
 
   /* Go to the Home page. */
@@ -123,6 +133,27 @@ class NavBar {
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_EVENTS_PAGE}`);
+  }
+
+  /* Go to the add event page. */
+  async gotoAddEventPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADD_EVENT_PAGE}`);
+  }
+
+  /* Go to the Profile page. */
+  async gotoUserProfilePage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_USER_PROFILE_PAGE}`);
   }
 }
 

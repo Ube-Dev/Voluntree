@@ -6,3 +6,20 @@
 .flex-wrap-buttons {
   flex-wrap: wrap;
 }
+
+.event-card {
+  transition: 0.25s;
+  box-shadow: 6px 6px 6px 0 rgba(0, 0, 0, 0.15);
+}
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 10px 12px 0 rgba(0,0,0,0.15);
+}
+
+.event-description {
+  height: 100px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+}

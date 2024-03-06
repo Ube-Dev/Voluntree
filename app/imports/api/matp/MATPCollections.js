@@ -2,10 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import { AdminProfiles } from '../user/AdminProfileCollection';
 import { UserProfiles } from '../user/UserProfileCollection';
 import { Events } from '../event/EventCollection';
-import { OrganizationProfiles } from '../user/OrganizationProfileCollection';
+import { Organization } from '../organization/OrganizationCollection';
 import { Skills } from '../skill/SkillCollection';
-import { UserSkills } from '../skill/UserSkillCollection';
-import { RequiredSkills } from '../skill/RequiredSkillCollection';
+import { MainCategory } from '../category/MainCategoryCollection';
+import { SubCategory } from '../category/SubCategoryCollection';
 
 class MATPClass {
   collections;
@@ -20,10 +20,10 @@ class MATPClass {
       AdminProfiles,
       UserProfiles,
       Events,
-      OrganizationProfiles,
+      Organization,
       Skills,
-      UserSkills,
-      RequiredSkills,
+      MainCategory,
+      SubCategory,
     ];
     /*
      * A list of collection class instances in the order required for them to be sequentially loaded from a file.
@@ -31,10 +31,10 @@ class MATPClass {
     this.collectionLoadSequence = [
       AdminProfiles,
       UserProfiles,
-      OrganizationProfiles,
+      Organization,
       Skills,
-      UserSkills,
-      RequiredSkills,
+      MainCategory,
+      SubCategory,
       Events,
     ];
 

@@ -1,18 +1,26 @@
+/* eslint-disable */
 import { Roles } from 'meteor/alanning:roles';
 import _ from 'lodash';
 import { Meteor } from 'meteor/meteor';
 
-export const ROLE = {
+const ROLE = {
   ADMIN: 'ADMIN',
   USER: 'USER',
-  ORGANIZATION: 'ORGANIZATION',
 };
 
-export const ROLES = _.values(ROLE);
+const userPrivileges = {
+  hasOrganization: 'hasOrganization',
+};
 
-export const isRole = (role) => (typeof role) === 'string' && (_.values(ROLE)).includes(role);
+const adminPrivileges = {
 
-export const assertRole = (role) => {
+};
+
+const ROLES = _.values(ROLE);
+
+const isRole = (role) => (typeof role) === 'string' && (_.values(ROLE)).includes(role);
+
+const assertRole = (role) => {
   const roleArray = (Array.isArray(role)) ? role : [role];
   roleArray.forEach((theRole) => {
     if (!isRole(theRole)) {
@@ -24,9 +32,21 @@ export const assertRole = (role) => {
 if (Meteor.isServer) {
   const allDefinedRoles = Roles.getAllRoles().fetch();
   const definedRoleNames = allDefinedRoles.map((role) => role.name);
-  _.values(ROLE).forEach((role) => {
+  const allRoles = { ...ROLE, ...userPrivileges, ...adminPrivileges };
+  // define all roles.
+  _.values(allRoles).forEach((role) => {
     if (!(definedRoleNames.includes(role))) {
       Roles.createRole(role, { unlessExists: true });
     }
   });
+  // define user privileges.
+  Object.values(userPrivileges).forEach((childRole) => {
+    Roles.addRolesToParent(childRole, ROLE.USER);
+  });
+  // define admin privileges.
+  Object.values(adminPrivileges).forEach((childRole) => {
+    Roles.addRolesToParent(childRole, ROLE.ADMIN);
+  });
 }
+
+export { ROLE, userPrivileges };

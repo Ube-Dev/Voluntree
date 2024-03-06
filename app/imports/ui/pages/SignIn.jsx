@@ -23,7 +23,6 @@ const SignIn = () => {
 
   // Handle Signin submission using Meteor's account mechanism.
   const submit = (doc) => {
-    // console.log('submit', doc, redirect);
     const { email, password } = doc;
     Meteor.loginWithPassword(email, password, (err) => {
       if (err) {
@@ -32,18 +31,16 @@ const SignIn = () => {
         setRedirect(true);
       }
     });
-    // console.log('submit2', email, password, error, redirect);
   };
 
   // Render the signin form.
-  // console.log('render', error, redirect);
   // if correct authentication, redirect to page instead of login screen
   if (redirect) {
     return (<Navigate to="/home" />);
   }
   // Otherwise return the Login form.
   return (
-    <Container id={PAGE_IDS.SIGN_IN} fluid>
+    <Container id={PAGE_IDS.SIGN_IN} fluid className="formCSS">
       <Row className="justify-content-center py-3 login-background">
         <Col xs={5}>
           <Col className="text-center py-2 login-text">
@@ -51,7 +48,7 @@ const SignIn = () => {
           </Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
-              <Card.Body className="rounded login login-card">
+              <Card.Body>
                 <TextField id={COMPONENT_IDS.SIGN_IN_FORM_EMAIL} name="email" placeholder="Email address" />
                 <TextField id={COMPONENT_IDS.SIGN_IN_FORM_PASSWORD} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
@@ -59,7 +56,7 @@ const SignIn = () => {
               </Card.Body>
             </Card>
           </AutoForm>
-          <Alert variant="secondary" className="under-login">
+          <Alert variant="secondary">
             <Link to="/signup" className="under-login">Click here to Register</Link>
           </Alert>
           {error === '' ? (

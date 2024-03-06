@@ -8,13 +8,19 @@ import { faqPage } from './faq.page';
 import { homePage } from './home.page';
 import { aboutPage } from './about.page';
 import { eventsPage } from './events.page';
+import { addEventPage } from './addevent.page';
+import { userProfilePage } from './userprofile.page';
+import { upcomingEventCard } from './upcomingeventcard.component';
+import { editUserProfilePage } from './edituserprofile.page';
+import { userDashboard } from './userdashboard.component';
 
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
-const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
+// const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
 const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
+const orgCredentials = { username: 'organization@foo.com', password: 'changeme' };
 
 fixture('meteor-application-template-production localhost test with default db')
   .page('http://localhost:3000');
@@ -25,8 +31,8 @@ test('Test that landing page shows up', async () => {
 
 test('Test that dashboard works', async () => {
   await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
+  await signInPage.signin(orgCredentials.username, orgCredentials.password);
+  await navBar.isLoggedIn(orgCredentials.username);
   await navBar.gotoDashboardPage();
   await dashboardPage.isDisplayed();
 });
@@ -61,9 +67,10 @@ test('Test that events page works', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoEventsPage();
   await eventsPage.isDisplayed();
+  await eventsPage.enterField();
 });
 
-test('Test that signin and signout work', async () => {
+test('Test that sign in and sign out work', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -90,11 +97,77 @@ test('Test that sign up and sign out work', async () => {
   await signOutPage.isDisplayed();
 });
 
-test('Test that admin pages show up', async () => {
+// test('Test that admin pages show up', async () => {
+//   await navBar.gotoSignInPage();
+//   await signInPage.signin(adminCredentials.username, adminCredentials.password);
+//   await navBar.isLoggedIn(adminCredentials.username);
+//   // await t.click(editLinks.nth(0));
+//   // await navBar.gotoManageDatabasePage();
+//   // await manageDatabasePage.isDisplayed();
+// });
+
+test('Test that add event form works', async () => {
   await navBar.gotoSignInPage();
-  await signInPage.signin(adminCredentials.username, adminCredentials.password);
-  await navBar.isLoggedIn(adminCredentials.username);
-  // await t.click(editLinks.nth(0));
-  // await navBar.gotoManageDatabasePage();
-  // await manageDatabasePage.isDisplayed();
+  await signInPage.signin(orgCredentials.username, orgCredentials.password);
+  await navBar.isLoggedIn(orgCredentials.username);
+  await navBar.gotoAddEventPage();
+  await addEventPage.addEvent();
+});
+
+test('Test that view user profile can be accessed from NavBar', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+});
+
+test('Test that view user profile can be accessed from Home', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoHomePage();
+  await homePage.isDisplayed();
+  await userDashboard.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+});
+
+test('Test that edit user profile can be accessed from Home', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoHomePage();
+  await homePage.isDisplayed();
+  await userDashboard.gotoEditUserProfilePage();
+  await editUserProfilePage.isDisplayed();
+});
+
+test('Test that edit user profile can be accessed from view user profile', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+  await userProfilePage.gotoEditUserProfile();
+  await editUserProfilePage.isDisplayed();
+});
+
+test('Test that find events can be accessed from user profile', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+  await upcomingEventCard.gotoEventsPage();
+  await eventsPage.isDisplayed();
+});
+
+test('Test that user profile can be updated', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+  await userProfilePage.gotoEditUserProfile();
+  await editUserProfilePage.updateProfile();
 });

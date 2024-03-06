@@ -11,7 +11,7 @@
   --color3:#04BF9D;
   --color4:#6EBF34;
   --color5:#f2f2f2;
-  --color6: #032f34;
+  --color6:#032f34;
 }
 
 * {
@@ -87,6 +87,16 @@ body {
   object-fit: contain;
 }
 
+.landing-link {
+  color: gold !important;
+  font-size: 20px !important;
+  text-decoration: none !important;
+}
+
+.landing-link:hover {
+  color: darkgoldenrod !important;
+}
+
 .btn-outline-light-landing {
   color: white !important;
   border-color: white !important;
@@ -95,10 +105,23 @@ body {
   transition: all 0.3s ease-out !important;
 }
 
+.btn-outline-light-landing:hover {
+  border-color: #f8f9fa !important;
+  background-color: #f8f9fa !important;
+  color: black !important;
+}
+
 .btn-light {
+  border-color: #f8f9fa !important;
   font-size: 20px !important;
   padding: 12px 26px !important;
   transition: all 0.3s ease-out !important;
+}
+
+.btn-light:hover {
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  border-color: #f8f9fa !important;
 }
 
 .about-background {
@@ -122,19 +145,119 @@ body {
 
 .login-text {
   color: white !important;
+  text-decoration: none;
 }
 
 .under-login {
-  background-color: var(--color2) !important;
   color: white !important;
+  text-decoration: none;
+}
+
+.under-login:hover {
+  text-decoration: underline;
 }
 
 .login-background {
   background-color: var(--color6);
-  height: 500px;
+  height: 600px;
 }
 
-#signup-background {
+.signup-background {
   background-color: var(--color6);
+  height: 800px;
+}
+
+.faq-header {
+  font-weight: bold;
+}
+
+.edit-page-background {
+  background-color: var(--color2);
+  background-size: cover;
   height: 600px;
+}
+
+.formCSS .btn {
+  --bs-btn-color: black !important;
+  --bs-btn-bg: gold !important;
+  --bs-btn-border-color: gold !important;
+  --bs-btn-hover-bg: darkgoldenrod !important;
+  --bs-btn-hover-border-color: darkgoldenrod !important;
+  --bs-btn-active-bg: var(--color6) !important;
+  --bs-btn-active-border-color: var(--color6) !important;
+}
+
+.formCSS .btn:disabled {
+  --bs-btn-disabled-bg: darkgoldenrod !important;
+  --bs-btn-disabled-border-color: darkgoldenrod !important;
+  --bs-btn-disabled-opacity: 0.5 !important;
+}
+
+.formCSS .card {
+  background-color: var(--color2) !important;
+  color: white;
+  border-color: rgba(0, 0, 0, 0) !important;
+  border-radius: 20px 20px 0 0;
+  --bs-success-rgb: gold;
+}
+
+.formCSS .alert {
+  background-color: var(--color1) !important;
+  color: white;
+  border-color: var(--color1) !important;
+  border-radius: 0 0 20px 20px;
+  --bs-link-hover-color: white;
+}
+
+.section-header {
+  color: black;
+  font-size: 26px;
+}
+
+.editCSS .card {
+  background-color: var(--color1) !important;
+  color: white;
+  border-color: rgba(0, 0, 0, 0) !important;
+  border-width: medium;
+  border-radius: 20px 20px 0 0;
+  --bs-success-rgb: gold;
+}
+
+.editCSS .alert {
+  background-color: var(--color3) !important;
+  color: white;
+  border-color: var(--color1) !important;
+  border-width: medium;
+  border-radius: 0 0 20px 20px;
+  --bs-link-hover-color: white;
+}
+
+.editCSS .btn {
+  --bs-btn-color: black !important;
+  --bs-btn-bg: gold !important;
+  --bs-btn-border-color: gold !important;
+  --bs-btn-hover-bg: darkgoldenrod !important;
+  --bs-btn-hover-border-color: darkgoldenrod !important;
+  --bs-btn-active-bg: var(--color6) !important;
+  --bs-btn-active-border-color: var(--color6) !important;
+}
+
+.editCSS .btn:disabled {
+  --bs-btn-disabled-bg: darkgoldenrod !important;
+  --bs-btn-disabled-border-color: darkgoldenrod !important;
+  --bs-btn-disabled-opacity: 0.5 !important;
+}
+
+.commit-btn {
+  --bs-btn-color: black !important;
+  --bs-btn-bg: gold !important;
+  --bs-btn-border-color: gold !important;
+  --bs-btn-hover-bg: darkgoldenrod !important;
+  --bs-btn-hover-border-color: darkgoldenrod !important;
+  --bs-btn-active-bg: var(--color6) !important;
+  --bs-btn-active-border-color: var(--color6) !important;
+}
+
+.indent {
+  padding-left: 20em;
 }
