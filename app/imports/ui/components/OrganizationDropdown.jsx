@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Dropdown, Card } from 'react-bootstrap';
+import { Container, Row, Dropdown, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import OrganizationOverview from './OrganizationOverview';
 
