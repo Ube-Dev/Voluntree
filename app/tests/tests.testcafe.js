@@ -113,7 +113,7 @@ test('Test that add event form works', async () => {
   await addEventPage.addEvent();
 });
 
-test('Test that view user profile can be accessed from navbar', async () => {
+test('Test that view user profile can be accessed from NavBar', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -121,7 +121,7 @@ test('Test that view user profile can be accessed from navbar', async () => {
   await userProfilePage.isDisplayed();
 });
 
-test('Test that view user profile can be accessed from home page', async () => {
+test('Test that view user profile can be accessed from Home', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -131,7 +131,7 @@ test('Test that view user profile can be accessed from home page', async () => {
   await userProfilePage.isDisplayed();
 });
 
-test('Test that edit user profile can be accessed from home page', async () => {
+test('Test that edit user profile can be accessed from Home', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -151,7 +151,7 @@ test('Test that edit user profile can be accessed from view user profile', async
   await editUserProfilePage.isDisplayed();
 });
 
-test.only('Test that user profile can be updated', async () => {
+test('Test that user profile can be updated', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
