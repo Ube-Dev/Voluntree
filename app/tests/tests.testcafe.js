@@ -10,6 +10,7 @@ import { aboutPage } from './about.page';
 import { eventsPage } from './events.page';
 import { addEventPage } from './addevent.page';
 import { userProfilePage } from './userprofile.page';
+import { upcomingEventCard } from './upcomingeventcard.component';
 import { editUserProfilePage } from './edituserprofile.page';
 import { userDashboard } from './userdashboard.component';
 
@@ -149,6 +150,16 @@ test('Test that edit user profile can be accessed from view user profile', async
   await userProfilePage.isDisplayed();
   await userProfilePage.gotoEditUserProfile();
   await editUserProfilePage.isDisplayed();
+});
+
+test('Test that find events can be accessed from user profile', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
+  await upcomingEventCard.gotoEventsPage();
+  await eventsPage.isDisplayed();
 });
 
 test('Test that user profile can be updated', async () => {

@@ -50,6 +50,7 @@ export const COMPONENT_IDS = {
   ADD_EVENT_FORM_ACCESSIBILITIES: 'add-event-form-accessibilities',
   ADD_EVENT_FORM_SUBMIT: 'add-event-form-submit',
   EVENTS_SEARCHBAR: 'events-searchbar',
+  UPCOMING_EVENT_CARD_FIND_EVENTS: 'upcoming-event-card-find-events',
   USER_DASHBOARD_VIEW_PROFILE: 'user-dashboard-view-profile',
   USER_DASHBOARD_EDIT_PROFILE: 'user-dashboard-edit-profile',
   USER_PROFILE_EDIT_PROFILE: 'user-profile-edit-profile',

@@ -16,8 +16,8 @@ class EditUserProfilePage {
   /* Update user profile */
   async updateProfile() {
     await this.isDisplayed();
-    await t.typeText(`#${COMPONENT_IDS.EDIT_USER_PROFILE_FIRST_NAME}`, 'John');
-    await t.typeText(`#${COMPONENT_IDS.EDIT_USER_PROFILE_LAST_NAME}`, 'Doe');
+    await t.typeText(`#${COMPONENT_IDS.EDIT_USER_PROFILE_FIRST_NAME}`, 'Chaewon');
+    await t.typeText(`#${COMPONENT_IDS.EDIT_USER_PROFILE_LAST_NAME}`, 'Kim');
     await t.typeText(`#${COMPONENT_IDS.EDIT_USER_PROFILE_PROFILE_PICTURE_URL}`, 'https://i.pinimg.com/736x/df/3e/2f/df3e2ff88a1453362c743b01dd8fb2f8.jpg');
     await t.typeText(`#${COMPONENT_IDS.EDIT_USER_PROFILE_ADDRESS}`, '2500 Campus Road');
     await t.typeText(`#${COMPONENT_IDS.EDIT_USER_PROFILE_PHONE}`, '123-456-7890');
