@@ -5,6 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Events, eventPublications } from '../../api/event/EventCollection';
 import LoadingSpinner from './LoadingSpinner';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const UpcomingEventCard = () => {
   const { ready, userProfile } = useTracker(() => {
@@ -33,6 +34,7 @@ const UpcomingEventCard = () => {
               return event ? (
                 <li key={eventId}>
                   <a href={`/view_event/${eventId}`}>{event.title}</a>
+                  <p>{event.startTime.toLocaleDateString()}</p>
                 </li>
               ) : null;
             })}
@@ -41,8 +43,8 @@ const UpcomingEventCard = () => {
           <p className="m-0">Hmmm... No Events...</p>
         )}
       </Card.Body>
-      <Card.Footer className="d-flex justify-content-center p-2">
-        <Button className="justify-content-center m-auto" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
+      <Card.Footer className="d-flex justify-content-end p-2">
+        <Button id={COMPONENT_IDS.UPCOMING_EVENT_CARD_FIND_EVENTS} className="justify-content-end" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
           <a href="/Events" style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>Find Events</a>
         </Button>
       </Card.Footer>

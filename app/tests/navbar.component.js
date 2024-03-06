@@ -134,6 +134,27 @@ class NavBar {
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_EVENTS_PAGE}`);
   }
+
+  /* Go to the add event page. */
+  async gotoAddEventPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADD_EVENT_PAGE}`);
+  }
+
+  /* Go to the Profile page. */
+  async gotoUserProfilePage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_USER_PROFILE_PAGE}`);
+  }
 }
 
 export const navBar = new NavBar();

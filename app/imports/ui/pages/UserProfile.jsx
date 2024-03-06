@@ -4,6 +4,9 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
+import UpcomingEventCard from '../components/UpcomingEventCard';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 const UserProfile = () => {
   const { ready, userProfile } = useTracker(() => {
@@ -26,32 +29,32 @@ const UserProfile = () => {
 
   // Once data is ready, render the user profile
   return (
-    <Container>
+    <Container id={PAGE_IDS.USER_PROFILE}>
       <Row className="py-5">
         <Col md={6}>
           <h1>Profile:</h1>
           <Card className="d-flex justify-content-center">
             <Image src={userProfile.image} alt="Profile Picture" style={{ width: '250px' }} />
           </Card>
+          <Card.Body className="mt-3">
+            <UpcomingEventCard />
+          </Card.Body>
           <Card className="mt-3">
-            <Card.Body>
-              <h3>Ongoing Events:</h3>
-              <ul>
-                {userProfile.onGoingEvents.map((event, index) => (
-                  <li key={index}>{event}</li>
-                ))}
-              </ul>
-            </Card.Body>
-          </Card>
-          <Card className="mt-3">
-            <Card.Body>
+            <Card.Header>
               <h3>Past Events:</h3>
+            </Card.Header>
+            <Card.Body>
               <ul>
                 {userProfile.pastEvents.map((event, index) => (
                   <li key={index}>{event}</li>
                 ))}
               </ul>
             </Card.Body>
+            <Card.Footer className="d-flex justify-content-end p-2">
+              <Button className="justify-content-end" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
+                <a href="/Events" style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>Past Events</a>
+              </Button>
+            </Card.Footer>
           </Card>
         </Col>
         <Col md={6}>
@@ -70,7 +73,7 @@ const UserProfile = () => {
               <p>{userProfile.address}</p>
             </Card.Body>
             <Card.Footer>
-              <Button className="btn btn-primary" href={`/edit-user-profile/${userProfile._id}`}>Edit</Button>
+              <Button id={COMPONENT_IDS.USER_PROFILE_EDIT_PROFILE} style={{ backgroundColor: 'gold', color: 'black', border: 'none' }} className="btn btn-primary justify-content-start" href={`/edit-user-profile/${userProfile._id}`}>Edit</Button>
             </Card.Footer>
           </Card>
         </Col>

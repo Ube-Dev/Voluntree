@@ -4,6 +4,7 @@ import { Col, Container, Image, Row, Card } from 'react-bootstrap';
 import { Bell, Calendar, GeoAlt, People } from 'react-bootstrap-icons';
 import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
+import GoBackButton from './GoBackButton';
 
 const Event = ({ event }) => (
   <Container fluid className="color1">
@@ -47,7 +48,10 @@ const Event = ({ event }) => (
           </Col>
         </Row>
         <Card.Footer className="pageCardFooter">
-          <CommitToEvent event={event} />
+          <Container className="d-flex">
+            <GoBackButton />
+            <CommitToEvent event={event} />
+          </Container>
         </Card.Footer>
       </Card>
     </Container>

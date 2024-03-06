@@ -257,3 +257,7 @@ body {
   --bs-btn-active-bg: var(--color6) !important;
   --bs-btn-active-border-color: var(--color6) !important;
 }
+
+.indent {
+  padding-left: 20em;
+}

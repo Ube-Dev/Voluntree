@@ -60,14 +60,14 @@ const MyEventPage = () => {
     );
   }
 
-  // if not, render page not found
+  // if not, render a button for the user to find events
   return (
     <>
-      <Container className="d-flex justify-content-center">
+      <Container className="d-flex justify-content-center mt-5">
         <h2>You haven&apos;t registered for any events yet!</h2>
       </Container>
-      <Container className="d-flex justify-content-center">
-        <Button href="/Events">Go Find Events</Button>
+      <Container className="d-flex justify-content-center mt-5">
+        <Button style={{ backgroundColor: 'gold', color: 'black', border: 'none' }} href="/Events">Go Find Events</Button>
       </Container>
     </>
   );

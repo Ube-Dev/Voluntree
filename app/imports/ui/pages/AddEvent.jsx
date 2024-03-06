@@ -6,7 +6,8 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { createEvent } from '../../startup/both/Methods';
-// import { PAGE_IDS } from '../utilities/PageIDs';
+import { PAGE_IDS } from '../utilities/PageIDs';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -56,7 +57,6 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddEvent page for adding a document. */
 const AddEvent = () => {
-
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { title, image, description, impact, address, zipCode, city, state, country, totalSpots, startTime, endTime, accessibilities, requiredSkills } = data;
@@ -71,7 +71,7 @@ const AddEvent = () => {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
-    <Container fluid className="color2">
+    <Container fluid className="color2" id={PAGE_IDS.ADD_EVENT}>
       <Container className="mb-5 mt-3">
         <Row className="justify-content-center">
           <Col md={8} xs={12}>
@@ -84,20 +84,20 @@ const AddEvent = () => {
                 <Card.Body>
                   <Row>
                     <Col>
-                      <TextField name="title" />
+                      <TextField name="title" id={COMPONENT_IDS.ADD_EVENT_FORM_TITLE} />
                     </Col>
                     <Col>
-                      <TextField name="image" />
+                      <TextField name="image" id={COMPONENT_IDS.ADD_EVENT_FORM_IMAGE} />
                     </Col>
                   </Row>
-                  <LongTextField name="description" placeholder="What's happening?" />
-                  <LongTextField name="impact" placeholder="How will this help?" />
+                  <LongTextField name="description" placeholder="What's happening?" id={COMPONENT_IDS.ADD_EVENT_FORM_DESCRIPTION} />
+                  <LongTextField name="impact" placeholder="How will this help?" id={COMPONENT_IDS.ADD_EVENT_FORM_IMPACT} />
                   <Row>
                     <Col>
-                      <NumField name="totalSpots" placeholder="0" />
+                      <NumField name="totalSpots" placeholder="0" id={COMPONENT_IDS.ADD_EVENT_FORM_TOTAL_SPOTS} />
                     </Col>
                     <Col>
-                      <SelectField name="activityType" />
+                      <SelectField name="activityType" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_TYPE} />
                     </Col>
                   </Row>
                 </Card.Body>
@@ -106,14 +106,14 @@ const AddEvent = () => {
                 <Card.Header className="section-header">Host Details</Card.Header>
                 <Card.Body>
                   <Row>
-                    <TextField name="hostBy" placeholder="Name or Organization" />
+                    <TextField name="hostBy" placeholder="Name or Organization" id={COMPONENT_IDS.ADD_EVENT_FORM_HOSTED_BY} />
                   </Row>
                   <Row>
                     <Col>
-                      <SelectField name="hostType" />
+                      <SelectField name="hostType" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_TYPE} />
                     </Col>
                     <Col>
-                      <TextField name="phone" placeholder="111-1111-111" />
+                      <TextField name="phone" placeholder="111-111-1111" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_PHONE} />
                     </Col>
                   </Row>
                 </Card.Body>
@@ -123,21 +123,21 @@ const AddEvent = () => {
                 <Card.Body>
                   <Row>
                     <Col md={12}>
-                      <TextField name="address" />
+                      <TextField name="address" id={COMPONENT_IDS.ADD_EVENT_FORM_ADDRESS} />
                     </Col>
                   </Row>
                   <Row>
                     <Col md={3}>
-                      <TextField name="zipCode" />
+                      <TextField name="zipCode" id={COMPONENT_IDS.ADD_EVENT_FORM_ZIPCODE} />
                     </Col>
                     <Col md={3}>
-                      <TextField name="city" />
+                      <TextField name="city" id={COMPONENT_IDS.ADD_EVENT_FORM_CITY} />
                     </Col>
                     <Col md={3}>
-                      <TextField name="state" />
+                      <TextField name="state" id={COMPONENT_IDS.ADD_EVENT_FORM_STATE} />
                     </Col>
                     <Col md={3}>
-                      <TextField name="country" />
+                      <TextField name="country" id={COMPONENT_IDS.ADD_EVENT_FORM_COUNTRY} />
                     </Col>
                   </Row>
                 </Card.Body>
@@ -147,29 +147,29 @@ const AddEvent = () => {
                 <Card.Body>
                   <Row>
                     <Col>
-                      <DateField name="startTime" />
-                      <DateField name="endTime" />
+                      <DateField name="startTime" id={COMPONENT_IDS.ADD_EVENT_FORM_START_DATE} />
+                      <DateField name="endTime" id={COMPONENT_IDS.ADD_EVENT_FORM_END_DATE} />
                     </Col>
                     <Col>
-                      <SelectField name="frequency" />
+                      <SelectField name="frequency" id={COMPONENT_IDS.ADD_EVENT_FORM_FREQUENCY} />
                     </Col>
                   </Row>
                 </Card.Body>
               </Card>
               <Card className="rounded-4 mt-3">
-                <Card.Header className="section-header">Required Skills & Accessibilitys</Card.Header>
+                <Card.Header className="section-header">Required Skills & Accessibilities</Card.Header>
                 <Card.Body>
                   <Row className="justify-content-center">
                     <Col md={4} lg={4}>
-                      <SelectField name="requiredSkills" />
+                      <SelectField name="requiredSkills" id={COMPONENT_IDS.ADD_EVENT_FORM_REQUIRED_SKILLS} />
                     </Col>
                     <Col md={4} lg={4}>
-                      <SelectField name="accessibilities" />
+                      <SelectField name="accessibilities" id={COMPONENT_IDS.ADD_EVENT_FORM_ACCESSIBILITIES} />
                     </Col>
                   </Row>
                 </Card.Body>
                 <Card.Footer>
-                  <SubmitField />
+                  <SubmitField id={COMPONENT_IDS.ADD_EVENT_FORM_SUBMIT} />
                   <ErrorsField />
                 </Card.Footer>
               </Card>

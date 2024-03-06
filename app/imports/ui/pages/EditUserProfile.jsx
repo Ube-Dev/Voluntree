@@ -10,12 +10,15 @@ import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { updateUserProfile } from '../../startup/both/Methods';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 const bridge = new SimpleSchema2Bridge(UserProfiles._schema);
 
 const EditUserProfile = () => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const { _id } = useParams();
+
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { ready, userProfile } = useTracker(() => {
     const currentUser = Meteor.user(); // Retrieve the current user
@@ -26,6 +29,7 @@ const EditUserProfile = () => {
       userProfile: profile,
     };
   });
+
   // On successful submit, insert the data.
   const submit = (data) => {
     const { firstName, lastName, image, phone, address, zipCode, city, state, country, skills } = data;
@@ -39,8 +43,9 @@ const EditUserProfile = () => {
       ),
     );
   };
+
   return ready ? (
-    <Container fluid className="py-3 edit-page-background editCSS">
+    <Container id={PAGE_IDS.EDIT_USER_PROFILE} fluid className="py-3 edit-page-background editCSS">
       <Row className="justify-content-center">
         <Col xs={8}>
           <Col className="pb-2 text-center login-text"><h2>Edit User Profile</h2></Col>
@@ -48,24 +53,24 @@ const EditUserProfile = () => {
             <Card>
               <Card.Body>
                 <Row>
-                  <Col><TextField name="firstName" label="First Name" /></Col>
-                  <Col><TextField name="lastName" label="Last Name" /></Col>
-                  <Col><TextField name="image" label="Profile Picture URL" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_FIRST_NAME} name="firstName" label="First Name" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_LAST_NAME} name="lastName" label="Last Name" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_PROFILE_PICTURE_URL} name="image" label="Profile Picture URL" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="address" label="Address" /></Col>
-                  <Col><TextField name="phone" label="Phone" /></Col>
-                  <Col><TextField name="email" label="Email" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ADDRESS} name="address" label="Address" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_PHONE} name="phone" label="Phone" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_EMAIL} name="email" label="Email" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField name="city" label="City" /></Col>
-                  <Col><TextField name="state" label="State" /></Col>
-                  <Col><TextField name="country" label="Country" /></Col>
-                  <Col><TextField name="zipCode" label="Zip Code" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_CITY} name="city" label="City" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_STATE} name="state" label="State" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_COUNTRY} name="country" label="Country" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ZIP_CODE} name="zipCode" label="Zip Code" /></Col>
                 </Row>
                 <HiddenField name="role" />
                 <HiddenField name="userID" />
-                <SubmitField value="Update" />
+                <SubmitField id={COMPONENT_IDS.EDIT_USER_PROFILE_SUBMIT} value="Update" />
                 <ErrorsField />
               </Card.Body>
             </Card>
