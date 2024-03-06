@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Dropdown, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import OrganizationOverview from './OrganizationOverview';
 
@@ -27,23 +27,21 @@ const OrganizationDropdown = ({ myOrganization }) => {
 
   return (
     <Container>
-      <Row>
-        <Col className="col-md-2 p-1">
+      <Card>
+        <Card.Header>
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               My Organizations
             </Dropdown.Toggle>
             <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
           </Dropdown>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+        </Card.Header>
+        <Row>
           {selectedOrganization && (
             <OrganizationOverview theOrganization={selectedOrganization} />
           )}
-        </Col>
-      </Row>
+        </Row>
+      </Card>
     </Container>
   );
 };

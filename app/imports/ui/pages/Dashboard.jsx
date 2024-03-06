@@ -1,7 +1,5 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-// import { Doughnut, Bar, Line, Pie, PolarArea } from 'react-chartjs-2';
-// import { Chart, ArcElement, CategoryScale, LinearScale, BarElement, PointElement, LineElement, RadialLinearScale } from 'chart.js';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { PAGE_IDS } from '../utilities/PageIDs';
