@@ -18,9 +18,14 @@ const OrganizationOverview = ({ theOrganization }) => (
             <h5>Mission:</h5>
             <p>{theOrganization.mission}</p>
             <h5>Location:</h5>
-            <p>{theOrganization.hasPhysicalAddress ? theOrganization.address : 'N/A'}</p>
-            {theOrganization.hasPhysicalAddress && (
-              <p>{theOrganization.address}, {theOrganization.zipCode}, {theOrganization.city}, {theOrganization.state}, {theOrganization.country}</p>
+            {theOrganization.hasPhysicalAddress ? (
+              <p>
+                {theOrganization.address}
+                <br />
+                {theOrganization.city}, {theOrganization.state}, {theOrganization.country}, {theOrganization.zipCode}
+              </p>
+            ) : (
+              <p>N/A</p>
             )}
             <Row>
               <Col>
