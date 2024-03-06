@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 const GoBackButton = () => {
   const history = useNavigate();
   return (
-    <Button className="px-1" style={{ color: 'black' }} onClick={() => history(-1)}>Back
+    <Button style={{ backgroundColor: 'gold', color: 'black', border: 'none' }} onClick={() => history(-1)}>Back
     </Button>
   );
 };
