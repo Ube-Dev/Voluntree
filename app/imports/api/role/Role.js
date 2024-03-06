@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Roles } from 'meteor/alanning:roles';
 import _ from 'lodash';
 import { Meteor } from 'meteor/meteor';
