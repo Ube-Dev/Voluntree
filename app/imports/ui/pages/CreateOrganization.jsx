@@ -45,8 +45,13 @@ const CreateOrganization = () => {
           .then(() => {
             // Route to another page upon successful submission
             const id = Meteor.userId();
-            Meteor.call(updateUserAccount, id, { privilege: [userPrivileges.hasOrganization] });
-            setRedirect(true); // Set submitted to true upon successful submission
+            Meteor.call(updateUserAccount, id, { privilege: [userPrivileges.hasOrganization] }, (updateError) => {
+              if (updateError) {
+                swal('Error', updateError.message, 'error');
+              } else {
+                setRedirect(true); // Set submitted to true upon successful submission
+              }
+            });
           });
       }
     });
