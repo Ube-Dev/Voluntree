@@ -162,7 +162,7 @@ Meteor.methods({
     check(data, Object);
     check(docID, String);
     try {
-      Organization.update(data);
+      Organization.update(docID, data);
     } catch (error) {
       throw new Meteor.Error('update-failed', 'Failed to update organization: ', error);
     }
