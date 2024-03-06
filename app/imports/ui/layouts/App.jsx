@@ -62,7 +62,7 @@ const App = () => {
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
-          <Route path="/org-profile" element={<OrganizationProfile />} />
+          <Route path="/org-profile/:_id" element={<OrganizationProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

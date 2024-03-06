@@ -1,16 +1,17 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Meteor } from 'meteor/meteor';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
+import { useParams } from 'react-router';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
 const OrganizationProfile = () => {
+  const { _id } = useParams();
+
   const { ready, orgProfile } = useTracker(() => {
-    const currentUser = Meteor.user(); // Retrieve the current user
-    const subscription = currentUser ? Organization.subscribeOrganization() : null; // Subscribe to organization publication
-    const profile = currentUser ? Organization.findOne({ userID: currentUser._id }) : null; // Query organization for the current user
+    const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication
+    const profile = Organization.find({ organizationID: _id }).fetch(); // Query organization
     return {
       ready: subscription ? subscription.ready() : false,
       orgProfile: profile,
@@ -31,6 +32,11 @@ const OrganizationProfile = () => {
       <Row className="py-5">
         <Col md={6}>
           <h4>Org Profile</h4>
+          <Card className="d-flex justify-content-center">
+            <Card.Header>
+              <h4>{orgProfile.name}</h4>
+            </Card.Header>
+          </Card>
         </Col>
       </Row>
     </Container>
