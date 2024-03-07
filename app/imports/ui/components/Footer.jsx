@@ -10,7 +10,7 @@ const Footer = () => {
         <Row className="mb-3">
           <Col sm={12} md={3}>
             <hr />
-            <Image src="/images/voluntreeLanding1.png" width="150px" /> <br />
+            <Image src="/images/voluntreeLogo.png" width="150px" /> <br />
           </Col>
           <Col sm={12} md={3}>
             <hr />
