@@ -1,7 +1,6 @@
 /* Use Quicksand as the default sans serif font. */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
-
 /* Set up some CSS variables to theme the application. */
 :root {
   --matr-navbar-bg: #ECECEC;
@@ -177,6 +176,7 @@ body {
   height: 600px;
 }
 
+/* formCSS: styling for sign-in and sign-up pages */
 .formCSS .btn {
   --bs-btn-color: black !important;
   --bs-btn-bg: gold !important;
@@ -214,6 +214,7 @@ body {
   font-size: 26px;
 }
 
+/* editCSS: styling for edit profile forms */
 .editCSS .card {
   background-color: var(--color1) !important;
   color: white;
