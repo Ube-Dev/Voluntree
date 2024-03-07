@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
+// import PropTypes from 'prop-types';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PAGE_IDS } from '../utilities/PageIDs';
@@ -11,7 +12,7 @@ const OrganizationProfile = () => {
 
   const { ready, orgProfile } = useTracker(() => {
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication
-    const profile = Organization.find({ organizationID: _id }).fetch(); // Query organization
+    const profile = Organization.find({ _id: _id }).fetch(); // Query organization
     return {
       ready: subscription ? subscription.ready() : false,
       orgProfile: profile,
@@ -31,11 +32,14 @@ const OrganizationProfile = () => {
     <Container id={PAGE_IDS.ORGANIZATION_PROFILE}>
       <Row className="py-5">
         <Col md={6}>
-          <h4>Org Profile</h4>
+          <h2>Org Profile</h2>
           <Card className="d-flex justify-content-center">
             <Card.Header>
-              <h4>{orgProfile.name}</h4>
+              <h4>Organization Name: {orgProfile.name}</h4>
             </Card.Header>
+            <Card.Body className="mt-2">
+              <h5>Address: {orgProfile.address}</h5>
+            </Card.Body>
           </Card>
         </Col>
       </Row>
