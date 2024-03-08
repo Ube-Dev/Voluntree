@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card, Col, Container, Dropdown, Row } from 'react-bootstrap';
 import { AutoForm, DateField, ErrorsField, NumField, SelectField, SubmitField, TextField, LongTextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
@@ -18,7 +18,7 @@ const formSchema = new SimpleSchema({
   image: { type: String, optional: true },
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
-  hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], defaultValue: 'organization', optional: false },
+  hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: false },
   hostBy: { type: String, optional: false },
   phone: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
@@ -71,11 +71,22 @@ const AddEvent = () => {
     };
   });
 
+  const [selectedOrganization, setSelectedOrganization] = useState(null);
+
+  const handleOrganizationSelect = (org) => {
+    setSelectedOrganization(org);
+  };
+
+  const renderMenuItems = () => organization.map((org, index) => (
+    <Dropdown.Item key={index} onClick={() => handleOrganizationSelect(org)}>
+      {org.name}
+    </Dropdown.Item>
+  ));
+
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, image, description, impact, address, zipCode, city, state, country, totalSpots, startTime, endTime, accessibilities, requiredSkills } = data;
-    const owner = Meteor.user().username;
-    const definitionData = { title, image, description, impact, address, zipCode, city, state, country, totalSpots, startTime, endTime, accessibilities, requiredSkills, owner };
+    const { title, image, description, impact, totalSpots, activityType, hostBy, hostType, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
+    const definitionData = { title, image, description, impact, totalSpots, activityType, hostBy, hostType, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
     Meteor.call(createEvent, definitionData, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', `Successfully added ${title}`, 'success')));
@@ -121,14 +132,22 @@ const AddEvent = () => {
                   <Card.Header className="section-header">Host Details</Card.Header>
                   <Card.Body>
                     <Row>
-                      <TextField name="hostBy" placeholder="Name or Organization" id={COMPONENT_IDS.ADD_EVENT_FORM_HOSTED_BY} />
+                      <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                          My Organizations
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
+                      </Dropdown>
+                    </Row>
+                    <Row>
+                      <TextField name="hostBy" placeholder="Name or Organization" id={COMPONENT_IDS.ADD_EVENT_FORM_HOSTED_BY} value={selectedOrganization ? selectedOrganization.name : ''} disabled />
                     </Row>
                     <Row>
                       <Col>
-                        <SelectField name="hostType" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_TYPE} />
+                        <SelectField name="hostType" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_TYPE} value={selectedOrganization ? selectedOrganization.type : ''} disabled />
                       </Col>
                       <Col>
-                        <TextField name="phone" placeholder="111-111-1111" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_PHONE} />
+                        <TextField name="phone" placeholder="111-111-1111" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_PHONE} value={selectedOrganization ? selectedOrganization.phone : ''} disabled />
                       </Col>
                     </Row>
                   </Card.Body>
