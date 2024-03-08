@@ -7,9 +7,9 @@
     }
   },
   "organizationTypes": [
-    "COMMUNITY",
-    "SCHOOL",
-    "ORGANIZATION"
+    "individual",
+    "school",
+    "organization"
   ],
   "defaultAccounts": [
     {

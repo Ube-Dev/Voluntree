@@ -18,7 +18,7 @@ const formSchema = new SimpleSchema({
   image: { type: String, optional: true },
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
-  hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: false },
+  hostType: { type: String, allowedValues: ['individual', 'organization', 'school'], optional: false },
   hostBy: { type: String, optional: false },
   phone: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
@@ -140,14 +140,19 @@ const AddEvent = () => {
                       </Dropdown>
                     </Row>
                     <Row>
-                      <TextField name="hostBy" placeholder="Name or Organization" id={COMPONENT_IDS.ADD_EVENT_FORM_HOSTED_BY} value={selectedOrganization ? selectedOrganization.name : ''} disabled />
+                      <TextField name="hostBy" placeholder="Name or Organization" id={COMPONENT_IDS.ADD_EVENT_FORM_HOSTED_BY} value={selectedOrganization ? selectedOrganization.name : ''} readOnly />
                     </Row>
                     <Row>
                       <Col>
-                        <SelectField name="hostType" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_TYPE} value={selectedOrganization ? selectedOrganization.type : ''} disabled />
+                        <SelectField
+                          name="hostType"
+                          id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_TYPE}
+                          value={selectedOrganization ? selectedOrganization.type : ''}
+                          readOnly
+                        />
                       </Col>
                       <Col>
-                        <TextField name="phone" placeholder="111-111-1111" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_PHONE} value={selectedOrganization ? selectedOrganization.phone : ''} disabled />
+                        <TextField name="phone" placeholder="111-111-1111" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_PHONE} value={selectedOrganization ? selectedOrganization.phone : ''} readOnly />
                       </Col>
                     </Row>
                   </Card.Body>
