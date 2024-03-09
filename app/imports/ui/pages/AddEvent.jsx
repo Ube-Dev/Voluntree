@@ -86,11 +86,20 @@ const AddEvent = () => {
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { title, image, description, impact, totalSpots, activityType, hostBy, hostType, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
+    // const hostBy = selectedOrganization.name;
+    // const hostType = selectedOrganization.type;
+    // const phone = selectedOrganization.phone;
     const definitionData = { title, image, description, impact, totalSpots, activityType, hostBy, hostType, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
-    Meteor.call(createEvent, definitionData, (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', `Successfully added ${title}`, 'success')));
-    formRef.reset();
+    Meteor.call(createEvent, definitionData, (error) => {
+      if (error) {
+        swal('Error', error.message, 'error');
+      } else {
+        swal('Success', `Successfully added ${title}`, 'success');
+        formRef.reset();
+      }
+      // Clear the selected organization after submission or error
+      setSelectedOrganization(null);
+    });
   };
 
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
@@ -146,13 +155,14 @@ const AddEvent = () => {
                       <Col>
                         <SelectField
                           name="hostType"
+                          placeholder=" "
                           id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_TYPE}
                           value={selectedOrganization ? selectedOrganization.type : ''}
                           readOnly
                         />
                       </Col>
                       <Col>
-                        <TextField name="phone" placeholder="111-111-1111" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_PHONE} value={selectedOrganization ? selectedOrganization.phone : ''} readOnly />
+                        <TextField name="phone" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_PHONE} value={selectedOrganization ? selectedOrganization.phone : ''} readOnly />
                       </Col>
                     </Row>
                   </Card.Body>
