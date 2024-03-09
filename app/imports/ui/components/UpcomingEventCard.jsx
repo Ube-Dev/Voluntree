@@ -41,9 +41,6 @@ const UpcomingEventCard = () => {
                   <Col xs={8} className="d-flex flex-column">
                     <div className="event-date">{event.startTime.toLocaleDateString()}</div>
                     <a className="event-title" href={`/view_event/${eventId}`}>{event.title}</a>
-                    <div className="event-button d-flex justify-content-end align-items-center mt-auto">
-                      <CommitToEvent event={event} />
-                    </div>
                   </Col>
                 </Row>
               </Container>
