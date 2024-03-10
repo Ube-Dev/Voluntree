@@ -12,7 +12,7 @@ const OrganizationProfile = () => {
 
   const { ready, orgProfile } = useTracker(() => {
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication
-    const profile = Organization.find({ _id: _id }).fetch(); // Query organization
+    const profile = Organization.findOne({ _id: _id }); // Query organization
     return {
       ready: subscription ? subscription.ready() : false,
       orgProfile: profile,
