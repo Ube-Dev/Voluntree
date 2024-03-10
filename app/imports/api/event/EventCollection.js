@@ -7,6 +7,7 @@ import { ROLE } from '../role/Role';
 
 export const eventPublications = {
   event: 'Event',
+  singleEvent: 'singleEvent',
   eventAdmin: 'EventAdmin',
 };
 
@@ -143,6 +144,33 @@ class EventCollection extends BaseCollection {
         return instance._collection.find();
       });
     }
+  }
+
+  /**
+   * Publish a single event entity.
+   */
+  publishSingleEvent() {
+    if (Meteor.isServer) {
+      // get the EventCollection instance.
+      const instance = this;
+      // this subscription publishes the entire collection
+      Meteor.publish(eventPublications.singleEvent, function publish(eventID) {
+        check(eventID, String);
+        return instance._collection.find({ eventID: eventID });
+      });
+    }
+  }
+
+  /**
+   * 
+   * @param {String} eventID Takes in a single eventID.
+   * @returns A subscription, or NULL when not a client.
+   */
+  subscribeSingleEvent(eventID) {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(eventPublications.singleEvent, eventID);
+    }
+    return null;
   }
 
   /**

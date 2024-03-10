@@ -7,6 +7,7 @@ const defaultOrganizationImage = Meteor.settings.defaultOrganizationImage;
 const organizationType = Meteor.settings.organizationType;
 const organizationPublications = {
   organization: 'Organizations',
+  singleOrganization: 'singleOrganization',
 };
 
 class OrganizationCollection extends BaseCollection {
@@ -99,6 +100,31 @@ class OrganizationCollection extends BaseCollection {
   }
 
   /**
+   * Publish a single organizaiton profile entity.
+   */
+  publishSingleOrganization() {
+    if (Meteor.isServer) {
+      const instance = this;
+      Meteor.publish(organizationPublications.singleOrganization, function publish(organizationID) {
+        check(organizationID, String);
+        return instance._collection.find({ organizationID: organizationID });
+      });
+    }
+  }
+
+  /**
+   * 
+   * @param {String} organizationID Takes in a single organizationID.
+   * @returns A subscription, or NULL when not a client.
+   */
+  subscribeSingleOrganization(organizationID) {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(organizationPublications.singleOrganization, organizationID);
+    }
+    return null;
+  }
+
+  /**
    * Default publication method for entities.
    * It publishes the entire collection for all users.
    */
@@ -155,40 +181,6 @@ class OrganizationCollection extends BaseCollection {
   assertValidRoleForMethod() {
     return true;
   }
-
-  // /**
-  //  * Returns an array of strings, each one representing an integrity problem with this collection.
-  //  * Returns an empty array if no problems were found.
-  //  * Checks the profile common fields and the role..
-  //  * @returns {Array} A (possibly empty) array of strings indicating integrity issues.
-  //  */
-  // checkIntegrity() {
-  //   const problems = [];
-  //   this.find().forEach((doc) => {
-  //     if (doc.role !== ROLE.ORGANIZATION) {
-  //       problems.push(`OrganizationProfile instance does not have ROLE.ORGANIZATION: ${doc}`);
-  //     }
-  //   });
-  //   return problems;
-  // }
-
-  // /**
-  //  * Returns an object representing the OrganizationProfile docID in a format acceptable to define().
-  //  * @param docID The docID of a OrganizationProfile
-  //  * @returns { Object } An object representing the definition of docID.
-  //  */
-  // dumpOne(docID) {
-  //   const doc = this.findDoc(docID);
-  //   const contactEmail = doc.contactEmail;
-  //   const name = doc.name;
-  //   const image = doc.image;
-  //   const location = doc.location;
-  //   const mission = doc.mission;
-  //   const contactInfo = doc.contactInfo;
-  //   const password = doc.password;
-  //   const role = doc.role;
-  //   return { contactEmail, name, image, location, mission, contactInfo, password, role }; // CAM this is not enough for the define method. We lose the password.
-  // }
 }
 
 /**

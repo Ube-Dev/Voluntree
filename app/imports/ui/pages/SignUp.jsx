@@ -46,9 +46,6 @@ const SignUp = () => {
         });
       })
       .catch((err) => setError(err.reason));
-    // remove this meteor call if dont want to send verification email when user registered.
-    // Meteor.call(sendVerification, doc.email);
-    Meteor.call(sendResetPasswordEmail_, doc.email);
   };
 
   /* Display the signup form. Redirect to home page after successful registration and login. */
