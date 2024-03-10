@@ -3,8 +3,6 @@ import { check } from 'meteor/check';
 import { Roles } from 'meteor/alanning:roles';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Events } from '../../api/event/EventCollection';
-import { Skills } from '../../api/skill/SkillCollection';
-import { Organization } from '../../api/organization/OrganizationCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
 import { SubCategory } from '../../api/category/SubCategoryCollection';
 import { ROLE } from '../../api/role/Role';
@@ -22,7 +20,6 @@ const removeEvent = 'Events.remove';
 // app\imports\api\skill\SkillCollection.methods.js
 const createSkill = 'Skills.define';
 const removeSkill = 'Skills.remove';
-
 
 // app\imports\api\organization\OrganizationCollection.methods.js
 const createOrganization = 'Organization.define';

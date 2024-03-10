@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 import SimpleSchema from 'simpl-schema';
 import BaseCollection from '../base/BaseCollection';
 // import { UserProfiles } from '../user/UserProfileCollection';
@@ -113,7 +114,7 @@ class OrganizationCollection extends BaseCollection {
   }
 
   /**
-   * 
+   *
    * @param {String} organizationID Takes in a single organizationID.
    * @returns A subscription, or NULL when not a client.
    */

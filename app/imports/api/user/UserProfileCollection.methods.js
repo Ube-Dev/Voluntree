@@ -27,7 +27,6 @@ Meteor.methods({
   },
 });
 
-
 Meteor.methods({
   'UserProfiles.update': function (docID, data) {
     check(docID, String);
@@ -51,5 +50,3 @@ Meteor.methods({
     }
   },
 });
-
-

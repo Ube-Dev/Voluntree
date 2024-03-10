@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 import SimpleSchema from 'simpl-schema';
 import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
@@ -126,7 +127,7 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
-   * 
+   *
    * @param {String} userID Takes in a single userID.
    * @returns A subscription, or NULL when not a client.
    */

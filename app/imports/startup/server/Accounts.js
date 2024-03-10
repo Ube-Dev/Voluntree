@@ -14,7 +14,7 @@ Meteor.startup(function () {
   const settings = Meteor.settings.packages.email;
   process.env.MAIL_URL = `smtp://${settings.user}:${settings.password}@${settings.service}`;
   Accounts.config({ sendVerificationEmail: true });
-  console.log(`smtp://${encodeURIComponent(settings.user)}:${encodeURIComponent(settings.password)}@${settings.service}`);
+  // console.log(`smtp://${encodeURIComponent(settings.user)}:${encodeURIComponent(settings.password)}@${settings.service}`);
   Accounts.emailTemplates.verifyEmail = {
     from() {
       return 'Voluntree';

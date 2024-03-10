@@ -162,7 +162,7 @@ class EventCollection extends BaseCollection {
   }
 
   /**
-   * 
+   *
    * @param {String} eventID Takes in a single eventID.
    * @returns A subscription, or NULL when not a client.
    */
