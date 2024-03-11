@@ -34,7 +34,7 @@ const UpcomingEventCard = () => {
                 <Container>
                   <Row key={eventId} className="event-border">
                     <Col xs={4} className="event-image">
-                      <Image src={event.image} fluid rounded />
+                      <Image src={event.image} fluid className="rounded" />
                     </Col>
                     <Col xs={8} className="d-flex flex-column">
                       <div className="event-date">{event.startTime.toLocaleDateString()}</div>
