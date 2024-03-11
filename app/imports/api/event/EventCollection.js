@@ -34,7 +34,7 @@ class EventCollection extends BaseCollection {
       requirements: { type: Array, unique: true, optional: true, defaultValue: [] },
       'requirements.$': { type: String },
       impact: { type: String, optional: true, defaultValue: '' },
-      hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: true, defaultValue: 'individual' },
+      hostType: { type: String, allowedValues: ['individual', 'organization', 'school'], optional: true, defaultValue: 'individual' },
       hostBy: { type: String, defaultValue: '' }, // organization/individual name
       hostID: { type: String, defaultValue: '' }, // organization/individual ID
       phone: { type: String, optional: true, defaultValue: '' },
