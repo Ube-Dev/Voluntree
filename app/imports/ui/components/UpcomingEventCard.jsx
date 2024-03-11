@@ -6,7 +6,6 @@ import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Events, eventPublications } from '../../api/event/EventCollection';
 import LoadingSpinner from './LoadingSpinner';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
-import CommitToEvent from './CommitToEvent';
 import '../css/UpComingEventCard.css';
 
 const UpcomingEventCard = () => {
@@ -51,8 +50,7 @@ const UpcomingEventCard = () => {
         )}
       </Card.Body>
       <Card.Footer className="d-flex justify-content-end p-2">
-        <Button id={COMPONENT_IDS.UPCOMING_EVENT_CARD_FIND_EVENTS} className="justify-content-end" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
-          <a href="/Events" style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>Find Events</a>
+        <Button id={COMPONENT_IDS.UPCOMING_EVENT_CARD_FIND_EVENTS} className="justify-content-end commit-btn" href="/Events">Find Events
         </Button>
       </Card.Footer>
     </Card>
