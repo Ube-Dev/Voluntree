@@ -85,10 +85,10 @@ const AddEvent = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, image, description, impact, totalSpots, activityType, hostBy, hostType, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
-    // const hostBy = selectedOrganization.name;
-    // const hostType = selectedOrganization.type;
-    // const phone = selectedOrganization.phone;
+    const { title, image, description, impact, totalSpots, activityType, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
+    const hostBy = selectedOrganization.name;
+    const hostType = selectedOrganization.type;
+    const phone = selectedOrganization.phone;
     const definitionData = { title, image, description, impact, totalSpots, activityType, hostBy, hostType, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
     Meteor.call(createEvent, definitionData, (error) => {
       if (error) {
@@ -148,21 +148,19 @@ const AddEvent = () => {
                         <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
                       </Dropdown>
                     </Row>
+                  <hr />
                     <Row>
-                      <TextField name="hostBy" placeholder="Name or Organization" id={COMPONENT_IDS.ADD_EVENT_FORM_HOSTED_BY} value={selectedOrganization ? selectedOrganization.name : ''} readOnly />
+                      <h4>Organization:</h4>
+                      <h6>{selectedOrganization ? selectedOrganization.name : ''}</h6>
                     </Row>
                     <Row>
                       <Col>
-                        <SelectField
-                          name="hostType"
-                          placeholder=" "
-                          id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_TYPE}
-                          value={selectedOrganization ? selectedOrganization.type : ''}
-                          readOnly
-                        />
+                        <h4>Organization Type:</h4>
+                        <h6>{selectedOrganization ? selectedOrganization.type : ''}</h6>
                       </Col>
                       <Col>
-                        <TextField name="phone" id={COMPONENT_IDS.ADD_EVENT_FORM_HOST_PHONE} value={selectedOrganization ? selectedOrganization.phone : ''} readOnly />
+                        <h4>Contact Information:</h4>
+                        <h6>{selectedOrganization ? selectedOrganization.phone : ''}</h6>
                       </Col>
                     </Row>
                   </Card.Body>
