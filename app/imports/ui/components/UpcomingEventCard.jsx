@@ -20,40 +20,42 @@ const UpcomingEventCard = () => {
     };
   });
 
-  if (!ready) return <LoadingSpinner />;
-
   return (
-    <Card className="w-100 h-100 my-1">
-      <Card.Header>
-        <h2>Upcoming Events</h2>
-      </Card.Header>
-      <Card.Body className="p-0">
-        {userProfile && userProfile.onGoingEvents && userProfile.onGoingEvents.length > 0 ? (
-          userProfile.onGoingEvents.map((eventId) => {
-            const event = Events.findOne({ _id: eventId });
-            return event ? (
-              <Container>
-                <Row key={eventId} className="event-border">
-                  <Col xs={4} className="event-image">
-                    <Image src={event.image} fluid rounded />
-                  </Col>
-                  <Col xs={8} className="d-flex flex-column">
-                    <div className="event-date">{event.startTime.toLocaleDateString()}</div>
-                    <a className="event-title" href={`/view_event/${eventId}`}>{event.title}</a>
-                  </Col>
-                </Row>
-              </Container>
-            ) : null;
-          })
-        ) : (
-          <p className="m-0">Hmmm... No Events...</p>
-        )}
-      </Card.Body>
-      <Card.Footer className="d-flex justify-content-end p-2">
-        <Button id={COMPONENT_IDS.UPCOMING_EVENT_CARD_FIND_EVENTS} className="justify-content-end commit-btn" href="/Events">Find Events
-        </Button>
-      </Card.Footer>
-    </Card>
+    ready ? (
+      <Card className="w-100 my-1">
+        <Card.Header>
+          <h2>Upcoming Events</h2>
+        </Card.Header>
+        <Card.Body>
+          {userProfile && userProfile.onGoingEvents && userProfile.onGoingEvents.length > 0 ? (
+            userProfile.onGoingEvents.map((eventId) => {
+              const event = Events.findOne({ _id: eventId });
+              return event ? (
+                <Container>
+                  <Row key={eventId} className="event-border">
+                    <Col xs={4} className="event-image">
+                      <Image src={event.image} fluid rounded />
+                    </Col>
+                    <Col xs={8} className="d-flex flex-column">
+                      <div className="event-date">{event.startTime.toLocaleDateString()}</div>
+                      <a className="event-title" href={`/view_event/${eventId}`}>{event.title}</a>
+                    </Col>
+                  </Row>
+                </Container>
+              ) : (<LoadingSpinner />);
+            })
+          ) : (
+            <p className="py-4 text-center">Hmmm... No Events...</p>
+          )}
+        </Card.Body>
+        <Card.Footer className="d-flex justify-content-end p-2">
+          <Button id={COMPONENT_IDS.UPCOMING_EVENT_CARD_FIND_EVENTS} className="justify-content-end commit-btn" href="/Events">Find Events
+          </Button>
+        </Card.Footer>
+      </Card>
+    ) : (
+      <LoadingSpinner />
+    )
   );
 };
 
