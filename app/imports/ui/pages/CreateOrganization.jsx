@@ -16,7 +16,7 @@ const formSchema = new SimpleSchema({
   name: { type: String, optional: false },
   image: { type: String, optional: true },
   mission: { type: String, optional: false },
-  type: { type: String, allowedValues: ['Organization', 'School', 'Individual'], optional: false },
+  type: { type: String, allowedValues: ['organization', 'school', 'individual'], optional: false },
   phone: { type: String, optional: false },
   contactEmail: { type: String, optional: false },
   hasPhysicalAddress: { type: Boolean, optional: false, defaultValue: false },
