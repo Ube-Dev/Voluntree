@@ -18,9 +18,6 @@ const formSchema = new SimpleSchema({
   image: { type: String, optional: true },
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
-  hostType: { type: String, allowedValues: ['individual', 'organization', 'school'], optional: false },
-  hostBy: { type: String, optional: false },
-  phone: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
   address: { type: String, optional: false },
   zipCode: { type: String, optional: false },
@@ -148,19 +145,19 @@ const AddEvent = () => {
                         <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
                       </Dropdown>
                     </Row>
-                  <hr />
+                    <hr />
                     <Row>
                       <h4>Organization:</h4>
-                      <h6>{selectedOrganization ? selectedOrganization.name : ''}</h6>
+                      <h5>{selectedOrganization ? selectedOrganization.name : <br />}</h5>
                     </Row>
                     <Row>
                       <Col>
                         <h4>Organization Type:</h4>
-                        <h6>{selectedOrganization ? selectedOrganization.type : ''}</h6>
+                        <h5>{selectedOrganization ? selectedOrganization.type : <br />}</h5>
                       </Col>
                       <Col>
                         <h4>Contact Information:</h4>
-                        <h6>{selectedOrganization ? selectedOrganization.phone : ''}</h6>
+                        <h5>{selectedOrganization ? selectedOrganization.phone : <br />}</h5>
                       </Col>
                     </Row>
                   </Card.Body>
