@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Alert, Card, Col, Container, Row } from 'react-bootstrap';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
-import { PAGE_IDS } from '../utilities/PageIDs';
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 /**
  * Signin page overrides the form’s submit event and call Meteor’s loginWithPassword().
@@ -38,6 +40,35 @@ const SignIn = () => {
   if (redirect) {
     return (<Navigate to="/home" />);
   }
+  function legalModal() {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    return (
+      <>
+        <Button variant="primary" onClick={handleShow}>
+          Review Privacy Policy
+        </Button>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
   // Otherwise return the Login form.
   return (
     <Container id={PAGE_IDS.SIGN_IN} fluid className="formCSS">
@@ -54,6 +85,7 @@ const SignIn = () => {
                 <ErrorsField />
                 <SubmitField id={COMPONENT_IDS.SIGN_IN_FORM_SUBMIT} />
               </Card.Body>
+              {legalModal()}
             </Card>
           </AutoForm>
           <Alert variant="secondary">
