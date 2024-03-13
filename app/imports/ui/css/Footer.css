@@ -1,0 +1,7 @@
+#footer-container {
+  padding-top: 15px !important;
+}
+
+.footer-link {
+  color: var(--color2) !important;
+}
