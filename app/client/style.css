@@ -17,7 +17,6 @@
   font-family: 'Quicksand', sans-serif;
 }
 
-
 /* Change bootstrap variable values.
  See https://getbootstrap.com/docs/5.2/customize/css-variables/
  */
@@ -25,11 +24,6 @@ body {
   --bs-dark: var(--matr-navbar-bg);
   --bs-dark-rgb: var(--matr-navbar-bg-rgb);
   --bs-body-bg: #ffffff;
-}
-
-/* Set the SignIn and SignUp alerts background. */
-#signin-page .alert-light, #signup-page .alert-light {
-  --bs-alert-bg: var(--matr-navbar-bg);
 }
 
 /* Define custom styles */
@@ -72,6 +66,7 @@ body {
   background-color: var(--color5);
 }
 
+/* Styling for Landing.jsx page */
 .landing-background {
   background: url('/images/Doing-Volunteer-Work.jpg') fixed center;
   background-size: cover;
@@ -123,6 +118,7 @@ body {
   border-color: #f8f9fa !important;
 }
 
+/* Styling for About.jsx page */
 .about-background {
   background: url('/images/beachCleanAbout.jpg') center;
   background-size: cover;
@@ -137,6 +133,7 @@ body {
   object-fit: contain;
 }
 
+/* Styling for sign-in, sign-up, sign-out pages*/
 .login {
   background-color: var(--color1);
   color: white !important;
@@ -164,12 +161,6 @@ body {
 .signup-background {
   background-color: var(--color6);
   height: 800px;
-}
-
-.edit-page-background {
-  background-color: var(--color2);
-  background-size: cover;
-  height: 600px;
 }
 
 /* formCSS: styling for sign-in and sign-up pages */
@@ -245,6 +236,13 @@ body {
   --bs-btn-disabled-opacity: 0.5 !important;
 }
 
+.edit-page-background {
+  background-color: var(--color2);
+  background-size: cover;
+  height: 600px;
+}
+
+/* Styling for CommitToEvent.jsx component */
 .commit-btn {
   --bs-btn-color: black !important;
   --bs-btn-bg: gold !important;
@@ -253,8 +251,4 @@ body {
   --bs-btn-hover-border-color: darkgoldenrod !important;
   --bs-btn-active-bg: var(--color6) !important;
   --bs-btn-active-border-color: var(--color6) !important;
-}
-
-.indent {
-  padding-left: 20em;
 }

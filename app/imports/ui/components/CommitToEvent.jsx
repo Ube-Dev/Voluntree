@@ -55,16 +55,16 @@ const CommitToEvent = ({ event }) => {
       return (
         event.spotsFilled.includes(user._id) ? (
           <Container className="d-flex justify-content-end">
-            <Button id="commit-button" className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Uncommit
+            <Button className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Uncommit
             </Button>
-            <Button id="connect-button" className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Disconnect
+            <Button className="mx-2" variant="danger" onClick={() => uncommitSubmission({ user, event })}>Disconnect
             </Button>
           </Container>
         ) : (
           <Container className="d-flex justify-content-end">
-            <Button id="commit-button" className="mx-2 commit-btn" variant="success" onClick={() => commitSubmission({ user, event })}>Commit
+            <Button className="mx-2 commit-btn" variant="success" onClick={() => commitSubmission({ user, event })}>Commit
             </Button>
-            <Button id="connect-button" className="mx-2 commit-btn" variant="success" onClick={() => commitSubmission({ user, event })}>Connect
+            <Button className="mx-2 commit-btn" variant="success" onClick={() => commitSubmission({ user, event })}>Connect
             </Button>
           </Container>
         )
