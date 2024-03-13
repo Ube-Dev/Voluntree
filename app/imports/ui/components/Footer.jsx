@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Col, Row, Image } from 'react-bootstrap';
 import '../css/Footer.css';
-import { Link } from 'react-router-dom';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 const Footer = () => (
@@ -15,11 +14,11 @@ const Footer = () => (
         <Col sm={12} md={3}>
           <hr />
           <h5>Quick Links</h5>
-          <Link to="/">Landing</Link> <br />
-          <Link to="/about">About Us</Link> <br />
-          <Link to="/FAQ">FAQ</Link> <br />
-          <Link to="/home">Home</Link> <br />
-          <Link to="/Events">Find Events</Link> <br />
+          <a className="footer-link" href="/">Landing</a> <br />
+          <a className="footer-link" href="/about">About Us</a> <br />
+          <a className="footer-link" href="/FAQ">FAQ</a> <br />
+          <a className="footer-link" href="/home">Home</a> <br />
+          <a className="footer-link" href="/Events">Find Events</a> <br />
         </Col>
         <Col sm={12} md={3}>
           <hr />
@@ -27,16 +26,16 @@ const Footer = () => (
           <p>sarakenley@thevoluntree.com</p>
           <hr />
           <h6>Become an Organization</h6>
-          <Link to="/createOrganization">Create Organization</Link>
+          <a className="footer-link" href="/createOrganization">Create Organization</a>
         </Col>
-        <Col sm={12} md={3} className="text-start">
+        <Col sm={12} md={3}>
           <hr />
-          Created by <a href="https://ube-dev.github.io/" target="_blank" rel="noopener noreferrer">Ube-Dev</a> <br />
+          Created by <a href="https://ube-dev.github.io/" target="_blank" rel="noopener noreferrer" className="footer-link">Ube-Dev</a> <br />
           Based on a template provided by <br />
           the Department of Information and Computer Sciences <br />
           University of Hawaii<br />
           Honolulu, HI 96822 <br />
-          <a href="http://ics-software-engineering.github.io/meteor-application-template-production" target="_blank" rel="noopener noreferrer">
+          <a href="http://ics-software-engineering.github.io/meteor-application-template-production" target="_blank" rel="noopener noreferrer" className="footer-link">
             Template Home Page
           </a>
         </Col>
