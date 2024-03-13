@@ -266,6 +266,18 @@ body {
   padding-right: 15px !important;
 }
 
+.btn-outline-primary {
+  --bs-btn-color: var(--color2) !important;
+  --bs-btn-border-color: var(--color2) !important;
+  --bs-btn-hover-bg: var(--color2) !important;
+  --bs-btn-hover-color: white !important;
+  --bs-btn-hover-border-color: var(--color2) !important;
+  --bs-btn-active-bg: var(--color1) !important;
+  --bs-btn-active-border-color: var(--color1) !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
 /* Styling for profile image in Home page */
 #profile-img {
   width: 150px;
