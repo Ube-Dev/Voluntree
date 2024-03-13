@@ -20,3 +20,11 @@
   -webkit-line-clamp: 4; /* Number of lines to show */
   -webkit-box-orient: vertical;
 }
+
+.host-link {
+  color: var(--color2) !important;
+}
+
+.host-link:hover {
+  color: var(--color1) !important;
+}

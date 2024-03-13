@@ -12,7 +12,7 @@ const SignOut = () => {
         <Col className="text-center py-3 login-text">
           <h2>You are signed out.</h2>
           <Button href="/" className="m-2">Home</Button>
-          <Button href="signin" className="m-2">Sign in</Button>
+          <Button href="/signin" className="m-2">Sign in</Button>
         </Col>
       </Row>
     </Container>

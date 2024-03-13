@@ -27,7 +27,7 @@ const UserDashboard = () => {
           <Card.Body className="d-flex flex-column align-items-start">
             <Row>
               <Col>
-                <Image src={userProfile.image} alt="Profile Image" style={{ width: '150px', height: '150px', borderRadius: '50%' }} />
+                <Image src={userProfile.image} alt="Profile Image" id="profile-img" />
               </Col>
               <Col>
                 <h4>{userProfile.firstName} {userProfile.lastName}</h4>
@@ -36,12 +36,8 @@ const UserDashboard = () => {
             </Row>
           </Card.Body>
           <Card.Footer className="d-flex justify-content-end p-2">
-            <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_PROFILE} className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
-              <a href="/profile" style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>View Profile</a>
-            </Button>
-            <Button id={COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE} className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
-              <a href={`/edit-user-profile/${userProfile._id}`} style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>Edit</a>
-            </Button>
+            <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_PROFILE} className="mx-1" href="/profile">View Profile</Button>
+            <Button id={COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE} className="mx-1" href={`/edit-user-profile/${userProfile._id}`}>Edit</Button>
           </Card.Footer>
         </Card>
       </Container>

@@ -3,7 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import swal from 'sweetalert';
 import { Button, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from './LoadingSpinner';
@@ -75,8 +74,8 @@ const CommitToEvent = ({ event }) => {
   // otherwise, they will redirect to the sign-in page
   return (
     <Container className="d-flex justify-content-end">
-      <Link to="/signin"><Button className="mx-2 commit-btn" variant="sucess">Commit</Button></Link>
-      <Link to="/signin"><Button className="mx-2 commit-btn" variant="success">Connect</Button></Link>
+      <Button className="mx-2 commit-btn" href="/signin" variant="success">Commit</Button>
+      <Button className="mx-2 commit-btn" href="/signin" variant="success">Connect</Button>
     </Container>
   );
 };

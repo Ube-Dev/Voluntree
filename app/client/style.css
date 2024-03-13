@@ -252,3 +252,23 @@ body {
   --bs-btn-active-bg: var(--color6) !important;
   --bs-btn-active-border-color: var(--color6) !important;
 }
+
+/* Site-wide styling for primary Button components */
+.btn-primary {
+  --bs-btn-color: black !important;
+  --bs-btn-bg: gold !important;
+  --bs-btn-border-color: gold !important;
+  --bs-btn-hover-bg: darkgoldenrod !important;
+  --bs-btn-hover-border-color: darkgoldenrod !important;
+  --bs-btn-active-bg: var(--color1) !important;
+  --bs-btn-active-border-color: var(--color1) !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+/* Styling for profile image in Home page */
+#profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
