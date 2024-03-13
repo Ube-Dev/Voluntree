@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import SimpleSchema from 'simpl-schema';
 import BaseCollection from '../base/BaseCollection';
-// import { UserProfiles } from '../user/UserProfileCollection';
 
 const defaultOrganizationImage = Meteor.settings.defaultOrganizationImage;
 const organizationType = Meteor.settings.organizationType;
@@ -34,6 +33,8 @@ class OrganizationCollection extends BaseCollection {
       'onGoingEvents.$': { type: String },
       members: { type: Array, optional: true, defaultValue: [] },
       'members.$': { type: String },
+      TotalHours: { type: Number, optional: true, defaultValue: 0 },
+      MonthlyHours: { type: Number, optional: true, defaultValue: 0 },
     }));
   }
 
