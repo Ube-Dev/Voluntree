@@ -116,7 +116,7 @@ const AddEvent = () => {
                   <Card.Body>
                     <Row>
                       <Col>
-                        <TextField name="title" id={COMPONENT_IDS.ADD_EVENT_FORM_TITLE} />
+                        <TextField name="title" id={COMPONENT_IDS.ADD_EVENT_FORM_TITLE} placeholder="My Event" />
                       </Col>
                       <Col>
                         <TextField name="image" id={COMPONENT_IDS.ADD_EVENT_FORM_IMAGE} />
