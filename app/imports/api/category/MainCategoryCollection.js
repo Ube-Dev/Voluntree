@@ -89,7 +89,7 @@ class MainCategoryCollection extends BaseCollection {
   /**
    * Subscription method for category.
    */
-  subscribeSkill() {
+  subscribeMainCategory() {
     if (Meteor.isClient) {
       return Meteor.subscribe(mainCategoryPublications.mainCategory);
     }

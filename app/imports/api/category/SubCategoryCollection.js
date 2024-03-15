@@ -78,7 +78,7 @@ class SubCategoryCollection extends BaseCollection {
   /**
    * Subscription method for category.
    */
-  subscribeSkill() {
+  subscribeSubCategory() {
     if (Meteor.isClient) {
       return Meteor.subscribe(subCategoryPublications.subCategory);
     }
