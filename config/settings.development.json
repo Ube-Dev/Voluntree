@@ -1,4 +1,8 @@
 {
+  "defaultProfileImage": "../images/defaultImages/defaultProfileImage.png",
+  "defaultEventImage": "../images/defaultImages/defaultEventImage.png",
+  "defaultOrganizationImage": "../images/defaultImages/defaultOrganizationImage.jpg",
+
   "packages": {
     "email": {
       "service": "smtp.gmail.com",
@@ -217,9 +221,6 @@
       "Tech Accessibility"
     ]
   },
-  "defaultProfileImage": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-  "defaultEventImage": "https://lottie.org/_next/image/?url=https%3A%2F%2Fapi.prd.lottie.org%2Fimages%2FA_volunteer_helping_an_elderly_lady_walk_f57f195098.webp&w=2048&q=75",
-  "defaultOrganizationImage": "https://thevoluntree.com/wp-content/uploads/2024/01/cropped-logoNew-120x124.jpg",
   "public": {
     "development": true
   },
@@ -312,8 +313,7 @@
     },
     {
       "title": "Turtle Bay Beach Clean Up",
-      "image": "https://images.squarespace-cdn.com/content/5b231afb297114b57e11002d/1579574099361-2KUGNED7EHSF6KR6UEAJ/IMG_4160%2B%25281%2529.jpg?format=1500w&content-type=image%2Fjpeg",
-      "description": "Help clean up your local beach!",
+      "description": "Help clean up your local beach! We need eveyone to come over to help clean this beach! It's dirty so be prepared to pick up trash.",
       "address": "Turtle Bay Beach",
       "zipCode": "96731",
       "city": "Kahuku",
