@@ -1,9 +1,36 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 
 const SubscriptionPage = () => (
   <Container>
-    <h1>Subscriptions</h1>
+    <Container className="py-3 align-content-center text-center">
+      <Row>
+        <h1>Help Grow the Voluntree</h1>
+        <h1>It Takes a Village to Drive Positive Change.</h1>
+        <p>At Voluntree, we believe in the power of collective action to drive positive change.
+          By donating, you&apos;re not just supporting us: you&apos;re enabling change. Your contribution
+          helps us maintain and imporve our platform.
+        </p>
+      </Row>
+      <Row>
+        <h1>Choose Your Membership</h1>
+        <Col>
+          <Card>
+            <Card.Header>Seedling</Card.Header>
+          </Card>
+        </Col>
+        <Col>
+          <Card>
+            <Card.Header>Sapling</Card.Header>
+          </Card>
+        </Col>
+        <Col>
+          <Card>
+            <Card.Header>Tree</Card.Header>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   </Container>
 );
 

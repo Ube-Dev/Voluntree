@@ -45,7 +45,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route path="/faq" element={<Faq />} />
-          <Route path="/subscriptions" element={<SubscriptionPage />} />
+          <Route path="/subscribe" element={<SubscriptionPage />} />
           <Route path="/Events" element={<AllEventPage />} />
           <Route path="/view_event/:_id" element={<ViewEventPage />} />
           <Route path="/my_event" element={<MyEventPage />} />
