@@ -3,6 +3,7 @@
   "defaultEventImage": "../images/defaultImages/defaultEventImage.png",
   "defaultOrganizationImage": "../images/defaultImages/defaultOrganizationImage.jpg",
 
+  "defaultNotificationSenderType": ["user", "organization"],
   "packages": {
     "email": {
       "service": "smtp.gmail.com",
