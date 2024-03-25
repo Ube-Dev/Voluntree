@@ -2,12 +2,12 @@
   margin-top: 10px;
   margin-bottom: 20px;
   box-shadow: -7px 7px 0 var(--color3);
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 20px 20px 20px 20px !important;
 }
 
 .card-membership-sp {
   margin-top: 10px;
   margin-bottom: 20px;
   box-shadow: -7px 7px 0 gold;
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 20px 20px 20px 20px !important;
 }
