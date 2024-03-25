@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Col, Container, Image, Row, Card } from 'react-bootstrap';
+import { Col, Container, Image, Row, Card, Button } from 'react-bootstrap';
 import { Bell, Calendar, GeoAlt, People, HeartFill, Heart } from 'react-bootstrap-icons';
 import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
@@ -40,7 +40,13 @@ const Event = ({ event }) => {
                 <Image className="pageCardImage" src={event.image} />
               </Card.Body>
               <Card.Body className="eventDetailsLeft">
-                <h5>Host: {event.hostBy}</h5>
+                <Row>
+                  <Col><h4>Host: {event.hostBy}</h4></Col>
+                  <Col className="text-end col-3">
+                    <Button id="connect-button" className="commit-btn" variant="success" onClick={() => {}}>Connect
+                    </Button>
+                  </Col>
+                </Row>
                 <hr />
                 <h5><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</h5>
                 <h5><Calendar /> {event.time.toLocaleString()}</h5>
