@@ -14,7 +14,7 @@ const SubscriptionPage = () => (
         <h1>Help Grow the Voluntree</h1>
       </Row>
       <Row>
-        <Card className="rounded-4 text-center header-card">
+        <Card className="rounded-4 py-3 text-center header-card">
           <Card.Body>
             <h5>
               At Voluntree, we believe in the power of collective action to drive positive change.
@@ -26,9 +26,8 @@ const SubscriptionPage = () => (
       </Row>
       <Row className="py-3 text-center">
         <h1 style={{ color: 'gold' }}>Choose Your Membership</h1>
-        <hr />
       </Row>
-      <Row>
+      <Row className="mb-1">
         <Col sm={12} lg={3}>
           <Card className="text-start card-membership">
             <Card.Header><h3>Soil</h3></Card.Header>
@@ -48,7 +47,7 @@ const SubscriptionPage = () => (
               <Row className="mb-3">
                 <Button>Join</Button>
               </Row>
-              <Card.Title className="mb-2">$5/Month</Card.Title>
+              <Card.Title className="mb-2">$3/Month</Card.Title>
               <Card.Text>This is the foundation!</Card.Text>
             </Card.Body>
           </Card>
@@ -77,12 +76,22 @@ const SubscriptionPage = () => (
             </Card.Body>
           </Card>
         </Col>
-        <hr />
       </Row>
-      <Row className="text-center">
-        <h3>
+      <hr />
+      <Row className="text-center py-2">
+        <h2>
           Joining Voluntree is free, but your support is invaluable.
-        </h3>
+        </h2>
+      </Row>
+      <hr />
+      <Row className="py-2 mb-3">
+        <h3>How Your Subscription Helps:</h3>
+        <h5>Maintaining Servers:</h5>
+        <p>Your subscription helps cover the costs of hosting and maintaining our website and database, ensuring smooth operation.</p>
+        <h5>Developing Features:</h5>
+        <p>We constantly strive to enhance our platform with new features and improvements based on user feedback. Your subscription fuels this innovation.</p>
+        <h5>Outreach:</h5>
+        <p>With your support, we can reach more volunteers and nonprofits, expanding our network and impact.</p>
       </Row>
     </Container>
   </Container>
