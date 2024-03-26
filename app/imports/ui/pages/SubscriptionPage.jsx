@@ -33,7 +33,7 @@ const SubscriptionPage = () => (
             <Card.Header><h3>Soil</h3></Card.Header>
             <Card.Body>
               <Row className="mb-3">
-                <Button>Join</Button>
+                <Button href="/signin">Join</Button>
               </Row>
               <Card.Title className="mb-2">FREE</Card.Title>
               <Card.Text>It all starts with you!</Card.Text>
