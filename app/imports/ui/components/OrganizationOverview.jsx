@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import LoadingSpinner from './LoadingSpinner';
+import OrganizationEvents from './OrganizationEvents';
 // import OrganizationStats from './OrganizationStats';
 
 const OrganizationOverview = ({ theOrganization }) => (
@@ -38,6 +39,9 @@ const OrganizationOverview = ({ theOrganization }) => (
       <Card.Footer>
         <Button className="btn btn-primary" href={`/edit-organization-profile/${theOrganization._id}`}>Edit</Button>
       </Card.Footer>
+    </Container>
+    <Container>
+      <OrganizationEvents organizationId={theOrganization._id} />
     </Container>
   ) : (
     <Container className="p-2">
