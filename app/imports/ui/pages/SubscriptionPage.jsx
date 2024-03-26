@@ -5,20 +5,28 @@ import '../css/SubscriptionPage.css';
 const SubscriptionPage = () => (
   <Container fluid className="color1">
     <Row>
-      <Col className="landing-background">
-        <h1>It Takes a Village to create Change.</h1>
+      <Col className="subscription-background text-center">
+        <h1>It Takes a Village to create Change</h1>
       </Col>
     </Row>
     <Container className="py-3">
       <Row className="py-3 align-content-center text-center">
         <h1>Help Grow the Voluntree</h1>
-        <p>At Voluntree, we believe in the power of collective action to drive positive change.
-          By donating, you&apos;re not just supporting us: you&apos;re enabling change. Your contribution
-          helps us maintain and imporve our platform so that we can branch out further.
-        </p>
       </Row>
-      <Row className="text-center">
-        <h1>Choose Your Membership</h1>
+      <Row>
+        <Card className="rounded-4 text-center header-card">
+          <Card.Body>
+            <h5>
+              At Voluntree, we believe in the power of collective action to drive positive change.
+              By donating, you&apos;re not just supporting us: you&apos;re enabling change. Your contribution
+              helps us maintain and imporve our platform so that we can branch out further.
+            </h5>
+          </Card.Body>
+        </Card>
+      </Row>
+      <Row className="py-3 text-center">
+        <h1 style={{ color: 'gold' }}>Choose Your Membership</h1>
+        <hr />
       </Row>
       <Row>
         <Col sm={12} lg={3}>
@@ -31,7 +39,6 @@ const SubscriptionPage = () => (
               <Card.Title className="mb-2">FREE</Card.Title>
               <Card.Text>It all starts with you!</Card.Text>
             </Card.Body>
-
           </Card>
         </Col>
         <Col sm={12} lg={3}>
@@ -70,6 +77,12 @@ const SubscriptionPage = () => (
             </Card.Body>
           </Card>
         </Col>
+        <hr />
+      </Row>
+      <Row className="text-center">
+        <h3>
+          Joining Voluntree is free, but your support is invaluable.
+        </h3>
       </Row>
     </Container>
   </Container>
