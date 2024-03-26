@@ -40,6 +40,8 @@ const NavBar = () => {
             <Nav.Link id={COMPONENT_IDS.NAVBAR_FAQ_PAGE} as={NavLink} to="/FAQ" key="FAQ">FAQ</Nav.Link>
             {/* Find Events page */}
             <Nav.Link id={COMPONENT_IDS.NAVBAR_EVENTS_PAGE} as={NavLink} to="/Events" key="Events">Find Events</Nav.Link>
+            {/* Subscription Page */}
+            <Nav.Link id={COMPONENT_IDS.NAVBAR_SUBSCRIBE_PAGE} as={NavLink} to="/subscribe" key="Subscribe">Subscribe</Nav.Link>
             {/* If user is logged in, set links to My Events and Dashboard pages as visible; hide it otherwise */}
             {currentUser ? (
               <Nav.Link id={COMPONENT_IDS.NAVBAR_MY_EVENTS_PAGE} as={NavLink} to="/my_event" key="myEvents">My Events</Nav.Link>
