@@ -15,9 +15,9 @@ const formSchema = new SimpleSchema({
   name: { type: String, optional: false },
   image: { type: String, optional: true },
   mission: { type: String, optional: false },
-  type: { type: String, allowedValues: ['Organization', 'School', 'Individual'], optional: false },
+  type: { type: String, allowedValues: ['organization', 'school', 'individual'], optional: false },
   phone: { type: String, optional: false },
-  email: { type: String, optional: false },
+  contactEmail: { type: String, optional: false },
   hasPhysicalAddress: { type: Boolean, optional: false, defaultValue: false },
   address: { type: String, optional: true },
   zipCode: { type: String, optional: true },
@@ -33,8 +33,9 @@ const CreateOrganization = () => {
   const [redirect, setRedirect] = useState(false);
 
   const submit = (data) => {
-    const { email, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country } = data;
-    const definitionData = { email, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
+    const { contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country } = data;
+    const username = Meteor.user().username;
+    const definitionData = { username, contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
     Meteor.call(createOrganization, definitionData, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
@@ -43,8 +44,13 @@ const CreateOrganization = () => {
           .then(() => {
             // Route to another page upon successful submission
             const id = Meteor.userId();
-            Meteor.call(updateUserAccount, id, { privilege: [userPrivileges.hasOrganization] });
-            setRedirect(true); // Set submitted to true upon successful submission
+            Meteor.call(updateUserAccount, id, { privilege: [userPrivileges.hasOrganization] }, (updateError) => {
+              if (updateError) {
+                swal('Error', updateError.message, 'error');
+              } else {
+                setRedirect(true); // Set submitted to true upon successful submission
+              }
+            });
           });
       }
     });
@@ -82,19 +88,19 @@ const CreateOrganization = () => {
                   </Row>
                   <Row>
                     <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Email" />
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="contactEmail" placeholder="Email" />
                     </Col>
                     <Col>
-                      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                      <label htmlFor="hasPhysicalAddress">Has Physical Address?</label>
-                      <input
-                        type="checkbox"
-                        id={COMPONENT_IDS.SIGN_UP_FORM_HAS_PHYSICAL_ADDRESS}
-                        name="hasPhysicalAddress"
-                        checked={hasAddress}
-                        onChange={() => setHasAddress(!hasAddress)}
-                        className="m-4"
-                      />
+                      <label htmlFor="hasPhysicalAddress">Has Physical Address?
+                        <input
+                          type="checkbox"
+                          id={COMPONENT_IDS.SIGN_UP_FORM_HAS_PHYSICAL_ADDRESS}
+                          name="hasPhysicalAddress"
+                          checked={hasAddress}
+                          onChange={() => setHasAddress(!hasAddress)}
+                          className="m-4"
+                        />
+                      </label>
                     </Col>
                   </Row>
                 </Card.Body>
@@ -111,16 +117,16 @@ const CreateOrganization = () => {
                   <Card.Body>
                     <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ADDRESS} name="address" placeholder="Address" />
                     <Row>
-                      <Col>
-                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
-                      </Col>
-                      <Col>
+                      <Col md={12}>
                         <TextField id={COMPONENT_IDS.SIGN_UP_FORM_CITY} name="city" placeholder="City" />
                       </Col>
-                      <Col>
+                      <Col md={12}>
                         <TextField id={COMPONENT_IDS.SIGN_UP_FORM_STATE} name="state" placeholder="State" />
                       </Col>
-                      <Col>
+                      <Col md={12}>
+                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
+                      </Col>
+                      <Col md={12}>
                         <TextField id={COMPONENT_IDS.SIGN_UP_FORM_COUNTRY} name="country" placeholder="Country" />
                       </Col>
                     </Row>

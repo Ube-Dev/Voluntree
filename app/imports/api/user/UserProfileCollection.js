@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 import SimpleSchema from 'simpl-schema';
 import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
@@ -8,6 +9,7 @@ const defaultProfileImage = Meteor.settings.defaultProfileImage;
 
 export const userPublications = {
   user: 'User',
+  singleUser: 'singleUser',
   userAdmin: 'Admin',
 };
 
@@ -17,7 +19,6 @@ class UserProfileCollection extends BaseProfileCollection {
       firstName: { type: String },
       lastName: { type: String },
       image: { type: String, optional: true, defaultValue: defaultProfileImage },
-      // userID: { type: String, unique: true },
       phone: { type: String, optional: true, defaultValue: '' },
       bookmarks: { type: Array, optional: true, defaultValue: [] },
       'bookmarks.$': { type: String }, // eventId
@@ -50,8 +51,6 @@ class UserProfileCollection extends BaseProfileCollection {
       'organizationFollowed.$': { type: String },
       memberOf: { type: Array, optional: true, defaultValue: [] },
       'memberOf.$': { type: String },
-      privilege: { type: Array, optional: true, defaultValue: [] },
-      'privilege.$': { type: String },
     }));
   }
 
@@ -110,6 +109,31 @@ class UserProfileCollection extends BaseProfileCollection {
   removeIt(profileID) {
     if (this.isDefined(profileID)) {
       return super.removeIt(profileID);
+    }
+    return null;
+  }
+
+  /**
+   * Publish a single userProfile entity.
+   */
+  publishSingleUser() {
+    if (Meteor.isServer) {
+      const instance = this;
+      Meteor.publish(userPublications.singleUser, function publish(userID) {
+        check(userID, String);
+        return instance._collection.find({ userID: userID });
+      });
+    }
+  }
+
+  /**
+   *
+   * @param {String} userID Takes in a single userID.
+   * @returns A subscription, or NULL when not a client.
+   */
+  subscribeSingleUser(userID) {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(userPublications.singleUser, userID);
     }
     return null;
   }
@@ -175,20 +199,6 @@ class UserProfileCollection extends BaseProfileCollection {
       }
     });
     return problems;
-  }
-
-  /**
-   * Returns an object representing the UserProfile docID in a format acceptable to define().
-   * @param docID The docID of a UserProfile
-   * @returns { Object } An object representing the definition of docID.
-   */
-  dumpOne(docID) {
-    const doc = this.findDoc(docID);
-    const email = doc.email;
-    const firstName = doc.firstName;
-    const lastName = doc.lastName;
-    const totalHours = doc.totalHours;
-    return { email, firstName, lastName, totalHours }; // CAM this is not enough for the define method. We lose the password.
   }
 }
 

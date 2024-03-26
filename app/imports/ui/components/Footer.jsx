@@ -8,18 +8,25 @@ const Footer = () => {
     <footer className="mt-auto bg-light">
       <Container style={divStyle}>
         <Row className="mb-3">
-          <Col sm={12} md={3}>
+          <Col sm={12} md={2}>
             <hr />
-            <Image src="/images/voluntreeLanding1.png" width="150px" /> <br />
+            <Image src="/images/voluntreeLogo.png" width="150px" /> <br />
           </Col>
           <Col sm={12} md={3}>
             <hr />
             <h5>Quick Links</h5>
-            <a href="/">Landing</a> <br />
-            <a href="/about">About Us</a> <br />
-            <a href="/FAQ">FAQ</a> <br />
-            <a href="/home">Home</a> <br />
-            <a href="/Events">Find Events</a> <br />
+            <Row>
+              <Col>
+                <a href="/">Landing</a> <br />
+                <a href="/about">About Us</a> <br />
+                <a href="/FAQ">FAQ</a> <br />
+                <a href="/subscribe">Subscribe</a> <br />
+              </Col>
+              <Col>
+                <a href="/home">Home</a> <br />
+                <a href="/Events">Find Events</a> <br />
+              </Col>
+            </Row>
           </Col>
           <Col sm={12} md={3}>
             <hr />
@@ -29,7 +36,7 @@ const Footer = () => {
             <h6>Become an Organization</h6>
             <a href="/createOrganization">Create Organization</a>
           </Col>
-          <Col sm={12} md={3} className="text-start">
+          <Col sm={12} md={4} className="text-start">
             <hr />
             Created by <a href="https://ube-dev.github.io/">Ube-Dev</a> <br />
             Based on a template provided by <br />

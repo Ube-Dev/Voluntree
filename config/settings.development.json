@@ -1,4 +1,9 @@
 {
+  "defaultProfileImage": "../images/defaultImages/defaultProfileImage.png",
+  "defaultEventImage": "../images/defaultImages/defaultEventImage.png",
+  "defaultOrganizationImage": "../images/defaultImages/defaultOrganizationImage.jpg",
+
+  "defaultNotificationSenderType": ["user", "organization"],
   "packages": {
     "email": {
       "service": "smtp.gmail.com",
@@ -7,9 +12,9 @@
     }
   },
   "organizationTypes": [
-    "COMMUNITY",
-    "SCHOOL",
-    "ORGANIZATION"
+    "individual",
+    "school",
+    "organization"
   ],
   "defaultAccounts": [
     {
@@ -57,25 +62,13 @@
   ],
   "defaultOrganizations": [
     {
-      "email": "organization@foo.com",
-      "password": "changeme",
-      "type": "ORGANIZATION",
-      "organizationID": "1SkcLcs",
-      "name": "temp",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
-      "location": "Honolulu, HI",
-      "mission": "mission",
-      "contactInfo": "(808)-000-0000"
-    },
-    {
       "leader": "John Doe",
       "organizationID": "1001",
       "name": "Green Earth Alliance",
-      "image": "green_earth_logo.png",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "New York",
-      "mission": "To protect and preserve the environment for future generations.",
+      "mission": "Green Earth Alliance is committed to promoting environmental sustainability through various initiatives and community engagement.",
       "type": "Environmental",
-      "description": "Green Earth Alliance is committed to promoting environmental sustainability through various initiatives and community engagement.",
       "phone": "123-456-7890",
       "email": "john@foo.com",
       "hasPhysicalAddress": true,
@@ -92,7 +85,7 @@
       "leader": "Alice Williams",
       "organizationID": "1002",
       "name": "Youth Empowerment Foundation",
-      "image": "youth_empowerment_logo.png",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Los Angeles",
       "mission": "To empower and educate underprivileged youth for a brighter future.",
       "type": "Education",
@@ -113,7 +106,7 @@
       "leader": "Sarah Johnson",
       "organizationID": "1003",
       "name": "Animal Guardians Society",
-      "image": "animal_guardians_logo.png",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Chicago",
       "mission": "To rescue, protect, and advocate for animals in need.",
       "type": "Animal Welfare",
@@ -134,7 +127,7 @@
       "leader": "Michael Lee",
       "organizationID": "1004",
       "name": "Healthcare for All",
-      "image": "healthcare_for_all_logo.png",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Houston",
       "mission": "To ensure access to quality healthcare for all individuals, regardless of income or background.",
       "type": "Healthcare",
@@ -155,7 +148,7 @@
       "leader": "David Smith",
       "organizationID": "1005",
       "name": "Relief Aid International",
-      "image": "relief_aid_logo.png",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Miami",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Disaster Relief",
@@ -229,9 +222,6 @@
       "Tech Accessibility"
     ]
   },
-  "defaultProfileImage": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-  "defaultEventImage": "https://lottie.org/_next/image/?url=https%3A%2F%2Fapi.prd.lottie.org%2Fimages%2FA_volunteer_helping_an_elderly_lady_walk_f57f195098.webp&w=2048&q=75",
-  "defaultOrganizationImage": "https://thevoluntree.com/wp-content/uploads/2024/01/cropped-logoNew-120x124.jpg",
   "public": {
     "development": true
   },
@@ -324,8 +314,7 @@
     },
     {
       "title": "Turtle Bay Beach Clean Up",
-      "image": "https://images.squarespace-cdn.com/content/5b231afb297114b57e11002d/1579574099361-2KUGNED7EHSF6KR6UEAJ/IMG_4160%2B%25281%2529.jpg?format=1500w&content-type=image%2Fjpeg",
-      "description": "Help clean up your local beach!",
+      "description": "Help clean up your local beach! We need eveyone to come over to help clean this beach! It's dirty so be prepared to pick up trash.",
       "address": "Turtle Bay Beach",
       "zipCode": "96731",
       "city": "Kahuku",

@@ -22,9 +22,6 @@ class AddEventPage {
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_IMPACT}`, 'Test Impact');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_TOTAL_SPOTS}`, '10');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_TYPE}`, 'hybrid');
-    await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_HOSTED_BY}`, 'Test Hosted By');
-    await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_HOST_TYPE}`, 'community');
-    await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_HOST_PHONE}`, '8088081808');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_ADDRESS}`, 'Test Address');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_ZIPCODE}`, 'Test Zipcode');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_CITY}`, 'Test City');
