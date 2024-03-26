@@ -17,10 +17,10 @@ const Footer = () => {
             <h5>Quick Links</h5>
             <Row>
               <Col>
-                <a href="/">Landing</a> <br/>
-                <a href="/about">About Us</a> <br/>
-                <a href="/FAQ">FAQ</a> <br/>
-                <a href="/subscribe">Subscribe</a> <br/>
+                <a href="/">Landing</a> <br />
+                <a href="/about">About Us</a> <br />
+                <a href="/FAQ">FAQ</a> <br />
+                <a href="/subscribe">Subscribe</a> <br />
               </Col>
               <Col>
                 <a href="/home">Home</a> <br />
