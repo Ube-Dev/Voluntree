@@ -19,7 +19,7 @@ const EventCard = ({ event }) => (
       <Card.Footer>
         <Row>
           <Col className="text-start">
-            <small>{event.time.toDateString()}</small>
+            <small>{event.startTime.toDateString()}</small>
           </Col>
           <Col className="text-end">
             <small>Seats: {event.spotsFilled.length}/{event.totalSpots}</small>
@@ -31,11 +31,12 @@ const EventCard = ({ event }) => (
 );
 
 EventCard.propTypes = {
-  event: PropTypes.shape({
+  event: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     image: PropTypes.string,
     description: PropTypes.string,
     city: PropTypes.string,
+    startTime: PropTypes.instanceOf(Date),
     time: PropTypes.instanceOf(Date),
     totalSpots: PropTypes.number,
     spotsFilled: PropTypes.instanceOf(Array),
@@ -45,7 +46,7 @@ EventCard.propTypes = {
     impact: PropTypes.string,
     hostBy: PropTypes.string,
     _id: PropTypes.string,
-  }).isRequired,
+  })).isRequired,
 };
 
 export default EventCard;
