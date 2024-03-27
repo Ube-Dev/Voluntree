@@ -1,14 +1,40 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Events } from './EventCollection';
+import { generateID, isAOrganization, isAUser, validMainCategory, validSubCategory } from '../base/BaseUtilities';
 
 Meteor.methods({
   'Events.define': function (data) {
     check(data, Object);
+
     try {
-      return Events.define(data);
+      Events._schema.clean(data);
+
     } catch (error) {
-      throw new Meteor.Error('create-failed', 'Failed to add new event: ', error);
+      throw new Meteor.Error('create-failed', 'Invalid new event: ', error);
+    }
+    console.log(data.activityCategory.mainCategory);
+    try {
+      // check for valid activityCategory
+      if (!(validMainCategory(data.activityCategory.mainCategory) && validSubCategory(data.activityCategory.subCategory))) {
+        throw Meteor.Error('Create Event Failed: Invalid Category.');
+      }
+      console.log("middle2");
+      console.log(data.hostID);
+      // check if hostID is organization/individual
+      if (!(isAOrganization(data.hostID) || isAUser(data.hostID))) {
+        console.error('Events.define failed:', 'hostID not found');
+        throw Meteor.Error('Create Event Failed: This host does not exists');
+      }
+      console.log('passes');
+
+      const id = data.EventID === undefined ? generateID() : data.EventID;
+      return Events._collection.insert({
+        ...data,
+        ...{ EventID: id },
+      });
+    } catch (error) {
+      throw Meteor.Error('Events.define failed', 'Unable to create new event.');
     }
   },
 });

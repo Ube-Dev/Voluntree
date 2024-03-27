@@ -46,7 +46,7 @@ class OrganizationCollection extends BaseCollection {
   define({ username, contactEmail, name, image, mission,
     type, phone, hasPhysicalAddress, address,
     zipCode, city, state, country, pastEvents, onGoingEvents,
-    members,
+    members, organizationID,
   }) {
     const entity = this.findOne({ contactEmail, name });
     // adapted from: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
@@ -59,7 +59,7 @@ class OrganizationCollection extends BaseCollection {
     for (let i = 0; i < passwordLength; i++) {
       credential += possible.charAt(Math.floor(Math.random() * possible.length));
     }
-    const organizationID = credential;
+    const ID = organizationID === undefined ? credential : organizationID;
     if (entity) {
       return console.error('entity already exists.');
     }
@@ -75,7 +75,7 @@ class OrganizationCollection extends BaseCollection {
       contactEmail, name, image, mission,
       type, phone, hasPhysicalAddress, address,
       zipCode, city, state, country, pastEvents, onGoingEvents,
-      members, leader: leaderID, organizationID,
+      members, leader: leaderID, organizationID: ID,
     });
 
   }

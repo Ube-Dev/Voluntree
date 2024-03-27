@@ -39,7 +39,9 @@ class EventCollection extends BaseCollection {
       hostID: { type: String, defaultValue: '' }, // organization/individual ID
       phone: { type: String, optional: true, defaultValue: '' },
       activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], optional: true, defaultValue: 'in-person' },
-      activityCategory: { type: String, optional: true, defaultValue: 'general' },
+      activityCategory: { type: Object },
+      'activityCategory.mainCategory': { type: String },
+      'activityCategory.subCategory': { type: String },
       address: { type: String, optional: true, defaultValue: '' },
       zipCode: { type: String, optional: true, defaultValue: '' },
       city: { type: String, optional: true, defaultValue: '' },

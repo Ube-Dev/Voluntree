@@ -67,7 +67,7 @@ class UserProfileCollection extends BaseProfileCollection {
     const user = this.findOne({ email, firstName, lastName });
     if (!user) {
       const role = ROLE.USER;
-      let newID = Users.define({ username, role, privilege, password });
+      let newID = Users.define({ userID, username, role, privilege, password });
       if (userID) {
         newID = userID;
       }

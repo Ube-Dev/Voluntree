@@ -51,7 +51,7 @@ function createUser(
 ) {
   console.log(`  Creating user ${email} with role ${role}.`);
   if (role === ROLE.ADMIN) {
-    AdminProfiles.define({ email, firstName, lastName, password });
+    AdminProfiles.define({ email, firstName, lastName, password, userID });
   } else { // everyone else is just a user.
     UserProfiles.define({ email, firstName, lastName, password, image, phone, bookmarks,
       viewingHistory, pastEvents, onGoingEvents, userActivity, role,

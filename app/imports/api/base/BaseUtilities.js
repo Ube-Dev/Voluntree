@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { MATPCollections } from '../matp/MATPCollections';
 import { UserProfiles } from '../user/UserProfileCollection';
 import { Organization } from '../organization/OrganizationCollection';
+import { MainCategory } from '../category/MainCategoryCollection';
+import { SubCategory } from '../category/SubCategoryCollection';
 
 export const removeAllEntities = () => {
   if (Meteor.isTest || Meteor.isAppTest) {
@@ -29,3 +31,7 @@ export const generateID = () => {
 export const isAUser = (userID) => UserProfiles.findOne({ userID: userID }) != null;
 
 export const isAOrganization = (organizationID) => Organization.findOne({ organizationID: organizationID }) != null;
+
+export const validMainCategory = (category) => MainCategory.findOne({ category: category }) != null;
+
+export const validSubCategory = (category) => SubCategory.findOne({ category: category }) != null;
