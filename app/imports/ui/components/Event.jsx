@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Col, Container, Image, Row, Card, Button } from 'react-bootstrap';
+import { Col, Container, Image, Row, Card } from 'react-bootstrap';
 import { Bell, Calendar, GeoAlt, People, HeartFill, Heart } from 'react-bootstrap-icons';
 import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
 import GoBackButton from './GoBackButton';
+import ConnectButton from './ConnectButton';
 
 const Event = ({ event }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -43,9 +44,7 @@ const Event = ({ event }) => {
                 <Row>
                   <Col><h4>Host: {event.hostBy}</h4></Col>
                   <Col className="text-end col-3">
-                    <Button id="connect-button" className="commit-btn" variant="success">
-                      Connect
-                    </Button>
+                    <ConnectButton org={event.hostBy} />
                   </Col>
                 </Row>
                 <hr />
