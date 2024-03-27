@@ -20,10 +20,12 @@ const OrganizationEvents = ({ org }) => {
 
   return ready ? (
     <Container>
-      <Row>
-        <Col>
-          <EventCard event={event} />
-        </Col>
+      <Row className="p-3">
+        {event.map((item) => (
+          <Col key={item._id} md={4} className="py-2">
+            <EventCard event={item} />
+          </Col>
+        ))}
       </Row>
     </Container>
   ) : (

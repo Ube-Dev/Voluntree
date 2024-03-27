@@ -20,14 +20,12 @@ const Dashboard = () => {
 
   return (
     ready ? (
-      <Container fluid id={PAGE_IDS.DASHBOARD} className="py-3 color2 justify-content-center">
+      <Container fluid id={PAGE_IDS.DASHBOARD} className="py-3 color1 justify-content-center">
         <Row className="py-1 text-center">
           <h1>Dashboard</h1>
         </Row>
-        <Row>
-          <Col>
-            <OrganizationDropdown myOrganization={organization} />
-          </Col>
+        <Row className="px-5">
+          <OrganizationDropdown myOrganization={organization} />
         </Row>
       </Container>
     ) : (

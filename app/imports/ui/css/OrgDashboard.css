@@ -1,0 +1,7 @@
+.org-dropdown {
+  background: transparent;
+}
+
+.org-background {
+  background: var(--color2) !important;
+}

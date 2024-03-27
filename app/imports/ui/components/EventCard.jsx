@@ -31,7 +31,7 @@ const EventCard = ({ event }) => (
 );
 
 EventCard.propTypes = {
-  event: PropTypes.arrayOf(PropTypes.shape({
+  event: PropTypes.shape({
     title: PropTypes.string,
     image: PropTypes.string,
     description: PropTypes.string,
@@ -46,7 +46,7 @@ EventCard.propTypes = {
     impact: PropTypes.string,
     hostBy: PropTypes.string,
     _id: PropTypes.string,
-  })).isRequired,
+  }).isRequired,
 };
 
 export default EventCard;
