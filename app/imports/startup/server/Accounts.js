@@ -20,7 +20,7 @@ Meteor.startup(function () {
       return 'Voluntree';
     },
     subject() {
-      return 'Verify Your Email Address';
+      return 'Verify Your EmailPage Address';
     },
     text(user, url) {
       const urlWithoutHash = url.replace('#/', '');

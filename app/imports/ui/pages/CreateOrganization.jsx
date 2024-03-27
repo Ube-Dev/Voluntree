@@ -88,7 +88,7 @@ const CreateOrganization = () => {
                   </Row>
                   <Row>
                     <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="contactEmail" placeholder="Email" />
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="contactEmail" placeholder="EmailPage" />
                     </Col>
                     <Col>
                       <label htmlFor="hasPhysicalAddress">Has Physical Address?

@@ -5,6 +5,7 @@ import { Bell, Calendar, GeoAlt, People, HeartFill, Heart } from 'react-bootstra
 import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
 import GoBackButton from './GoBackButton';
+import { Link } from 'react-router-dom';
 
 const Event = ({ event }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -43,8 +44,11 @@ const Event = ({ event }) => {
                 <Row>
                   <Col><h4>Host: {event.hostBy}</h4></Col>
                   <Col className="text-end col-3">
-                    <Button id="connect-button" className="commit-btn" variant="success" onClick={() => {}}>Connect
-                    </Button>
+                    <Link to="/email">
+                      <Button id="connect-button" className="commit-btn" variant="success">
+                        Connect
+                      </Button>
+                    </Link>
                   </Col>
                 </Row>
                 <hr />
