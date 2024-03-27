@@ -102,19 +102,6 @@ class OrganizationCollection extends BaseCollection {
   }
 
   /**
-   * Publish a single organizaiton profile entity.
-   */
-  publishSingleOrganization() {
-    if (Meteor.isServer) {
-      const instance = this;
-      Meteor.publish(organizationPublications.singleOrganization, function publish(organizationID) {
-        check(organizationID, String);
-        return instance._collection.find({ organizationID: organizationID });
-      });
-    }
-  }
-
-  /**
    *
    * @param {String} organizationID Takes in a single organizationID.
    * @returns A subscription, or NULL when not a client.
@@ -137,6 +124,10 @@ class OrganizationCollection extends BaseCollection {
       // this subscription publishes the entire collection
       Meteor.publish(organizationPublications.organization, function publish() {
         return instance._collection.find();
+      });
+      Meteor.publish(organizationPublications.singleOrganization, function publish(organizationID) {
+        check(organizationID, String);
+        return instance._collection.find({ organizationID: organizationID });
       });
     }
   }

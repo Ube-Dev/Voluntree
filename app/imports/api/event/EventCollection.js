@@ -145,17 +145,6 @@ class EventCollection extends BaseCollection {
       Meteor.publish(eventPublications.event, function publish() {
         return instance._collection.find();
       });
-    }
-  }
-
-  /**
-   * Publish a single event entity.
-   */
-  publishSingleEvent() {
-    if (Meteor.isServer) {
-      // get the EventCollection instance.
-      const instance = this;
-      // this subscription publishes the entire collection
       Meteor.publish(eventPublications.singleEvent, function publish(eventID) {
         check(eventID, String);
         return instance._collection.find({ eventID: eventID });

@@ -114,19 +114,6 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
-   * Publish a single userProfile entity.
-   */
-  publishSingleUser() {
-    if (Meteor.isServer) {
-      const instance = this;
-      Meteor.publish(userPublications.singleUser, function publish(userID) {
-        check(userID, String);
-        return instance._collection.find({ userID: userID });
-      });
-    }
-  }
-
-  /**
    *
    * @param {String} userID Takes in a single userID.
    * @returns A subscription, or NULL when not a client.
@@ -149,6 +136,11 @@ class UserProfileCollection extends BaseProfileCollection {
       // this subscription publishes the entire collection
       Meteor.publish(userPublications.user, function publish() {
         return instance._collection.find();
+      });
+      Meteor.publish(userPublications.singleUser, function publish(userID) {
+        check(userID, String);
+        console.log(instance._collection.find({ userID: userID }).fetch());
+        return instance._collection.find({ userID: userID });
       });
     }
   }
