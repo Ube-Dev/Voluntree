@@ -28,7 +28,6 @@ import EditUserProfile from '../pages/EditUserProfile';
 import MyEventPage from '../pages/MyEventPage';
 import VerifyEmailPage from '../pages/verifyEmailPage';
 import ResetPasswordPage from '../pages/ResetPassword';
-import EmailPage from '../pages/EmailPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -47,7 +46,6 @@ const App = () => {
           <Route path="/faq" element={<Faq />} />
           <Route path="/Events" element={<AllEventPage />} />
           <Route path="/view_event/:_id" element={<ViewEventPage />} />
-          <Route path="/email" element={<EmailPage />} />
           <Route path="/my_event" element={<MyEventPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/signin" element={<SignIn />} />
