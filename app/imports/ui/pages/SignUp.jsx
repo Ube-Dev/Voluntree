@@ -11,6 +11,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
+import TosModal from '../components/TosModal';
 
 /**
  * SignUp component is similar to signin component, but we create a new user instead.
@@ -69,6 +70,7 @@ const SignUp = () => {
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
                 <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
+                <TosModal />
               </Card.Body>
             </Card>
           </AutoForm>
