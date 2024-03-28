@@ -2,6 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import { MATPCollections } from '../matp/MATPCollections';
 import { UserProfiles } from '../user/UserProfileCollection';
 import { Organization } from '../organization/OrganizationCollection';
+import { MainCategory } from '../category/MainCategoryCollection';
+import { SubCategory } from '../category/SubCategoryCollection';
+import { Events } from '../event/EventCollection';
+import { Skills } from '../skill/SkillCollection';
 
 export const removeAllEntities = () => {
   if (Meteor.isTest || Meteor.isAppTest) {
@@ -28,4 +32,16 @@ export const generateID = () => {
 
 export const isAUser = (userID) => UserProfiles.findOne({ userID: userID }) != null;
 
+export const isAUser_id = (_id) => UserProfiles.findOne({ _id: _id });
+
 export const isAOrganization = (organizationID) => Organization.findOne({ organizationID: organizationID }) != null;
+
+export const validMainCategory = (category) => MainCategory.findOne({ category: category }) != null;
+
+export const validSubCategory = (category) => SubCategory.findOne({ category: category }) != null;
+
+export const isEvent = (eventID) => Events.findOne({ eventID: eventID }) != null;
+
+export const isEvent_id = (_id) => Events.findOne({ _id: _id }) != null;
+
+export const isSkill = (skill) => Skills.findOne({ skill: skill }) != null;

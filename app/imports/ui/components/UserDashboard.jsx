@@ -8,9 +8,10 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const UserDashboard = () => {
   const { ready, userProfile } = useTracker(() => {
-    const currentUser = Meteor.user(); // Retrieve the current user
-    const subscription = currentUser ? UserProfiles.subscribeUser() : null; // Subscribe to userProfile publication for the current user
-    const profile = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null; // Query user profile for the current user
+    const userSub = Meteor.subscribe('userData');
+    const currentUser = userSub.ready() ? Meteor.users.findOne({ _id: Meteor.userId() }) : null;// Retrieve the current user
+    const subscription = currentUser ? UserProfiles.subscribeSingleUser(currentUser.userID) : null; // Subscribe to userProfile publication for the current user
+    const profile = currentUser ? UserProfiles.findOne({ userID: currentUser.userID }) : null; // Query user profile for the current user
     return {
       ready: subscription ? subscription.ready() : false,
       userProfile: profile,

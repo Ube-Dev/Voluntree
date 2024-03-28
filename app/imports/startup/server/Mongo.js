@@ -5,22 +5,9 @@ import { Organization } from '../../api/organization/OrganizationCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
 /* eslint-disable no-console */
 
-// initialize the EventsCollection if empty
-if (Events.count() === 0) {
-  if (Meteor.settings.defaultEvent) {
-    console.log('Creating default event.');
-    Meteor.settings.defaultEvent.forEach(({
-      title, image, description, location, time, frequency, accessibilities, requirements, impact,
-      requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
-      country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
-      hostID, startTime, endTime,
-    }) => Meteor.call(createEvent, {
-      title, image, description, location, time, frequency, accessibilities, requirements, impact,
-      requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
-      country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
-      hostID, startTime, endTime,
-    }));
-  }
+if (MainCategory.count() === 0) {
+  console.log('Creating default categories.');
+  Meteor.call(loadDefaultCategories, Meteor.settings.defaultCategory);
 }
 
 if (Organization.count() === 0) {
@@ -38,7 +25,10 @@ if (Organization.count() === 0) {
   }));
 }
 
-if (MainCategory.count() === 0) {
-  console.log('Creating default categories.');
-  Meteor.call(loadDefaultCategories, Meteor.settings.defaultCategory);
+// initialize the EventsCollection if empty
+if (Events.count() === 0) {
+  if (Meteor.settings.defaultEvent) {
+    console.log('Creating default event.');
+    Meteor.settings.defaultEvent.forEach(data => Meteor.call(createEvent, data));
+  }
 }

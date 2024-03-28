@@ -10,9 +10,11 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 
 const UserProfile = () => {
   const { ready, userProfile } = useTracker(() => {
-    const currentUser = Meteor.user(); // Retrieve the current user
-    const subscription = currentUser ? UserProfiles.subscribeUser() : null; // Subscribe to userProfile publication for the current user
-    const profile = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null; // Query user profile for the current user
+    const userSub = Meteor.subscribe('userData'); // Retrieve the current user
+    const currentUser = userSub.ready() ? Meteor.users.findOne({ _id: Meteor.userId() }) : null;
+    const subscription = currentUser ? UserProfiles.subscribeSingleUser(currentUser.userID) : null; // Subscribe to userProfile publication for the current user
+    // console.log(UserProfiles.find().fetch());
+    const profile = currentUser ? UserProfiles.findOne({ userID: currentUser.userID }) : null; // Query user profile for the current user
     return {
       ready: subscription ? subscription.ready() : false,
       userProfile: profile,
@@ -34,7 +36,7 @@ const UserProfile = () => {
         <Col md={6}>
           <h1>Profile:</h1>
           <Card className="d-flex justify-content-center">
-            <Image src={userProfile.image} alt="Profile Picture" style={{ width: '250px' }} />
+            <Image src={UserProfile.image} alt="Profile Picture" style={{ width: '250px' }} />
           </Card>
           <Card.Body className="mt-3">
             <UpcomingEventCard />
