@@ -11,7 +11,7 @@ class SubCategoryCollection extends BaseCollection {
   constructor() {
     super('SubCategory', new SimpleSchema({
       category: { type: String, index: true, unique: true },
-      parentID: { type: String, optional: true, defaultValue: '' },
+      parentCategory: { type: String, defaultValue: 'General' },
     }));
   }
 

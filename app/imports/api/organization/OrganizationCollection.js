@@ -39,69 +39,6 @@ class OrganizationCollection extends BaseCollection {
   }
 
   /**
-   * Defines the profile associated with an User and the associated Meteor account.
-   * @param Object See database diagram
-   * @return _id
-   */
-  define({ username, contactEmail, name, image, mission,
-    type, phone, hasPhysicalAddress, address,
-    zipCode, city, state, country, pastEvents, onGoingEvents,
-    members, organizationID,
-  }) {
-    const entity = this.findOne({ contactEmail, name });
-    // adapted from: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
-    // generate ID
-    let credential = '';
-    const maxPasswordLength = 30;
-    const minPasswordLength = 6;
-    const passwordLength = Math.floor(Math.random() * (maxPasswordLength - (minPasswordLength + 1))) + minPasswordLength;
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < passwordLength; i++) {
-      credential += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    const ID = organizationID === undefined ? credential : organizationID;
-    if (entity) {
-      return console.error('entity already exists.');
-    }
-    console.log('username', username);
-    const id = Meteor.users.findOne({ username });
-    console.log('UserProfile: ', id);
-    // if (!id) {
-    //   return console.error('Please create a user account with this contactEmail first.');
-    // }
-    // insert new organization if user exists.
-    const leaderID = id._id;
-    return this._collection.insert({
-      contactEmail, name, image, mission,
-      type, phone, hasPhysicalAddress, address,
-      zipCode, city, state, country, pastEvents, onGoingEvents,
-      members, leader: leaderID, organizationID: ID,
-    });
-
-  }
-
-  /**
-   * Updates the OrganizationProfile. You cannot change the contactEmail or role.
-   * @param Object
-   */
-  update(docID, { contactEmail, name, image, mission,
-    type, phone, hasPhysicalAddress, address,
-    zipCode, city, state, country, pastEvents, onGoingEvents,
-    members, leader,
-  }) {
-    this.assertDefined(docID);
-    const updateData = {
-      contactEmail, name, image, mission,
-      type, phone, hasPhysicalAddress, address,
-      zipCode, city, state, country, pastEvents, onGoingEvents,
-      members, leader,
-    };
-    // Map non undefined values to keys then insert.
-    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
-    this._collection.update(docID, { $set: updateData });
-  }
-
-  /**
    *
    * @param {String} organizationID Takes in a single organizationID.
    * @returns A subscription, or NULL when not a client.
@@ -149,18 +86,6 @@ class OrganizationCollection extends BaseCollection {
   subscribeOrganizationAdmin() {
     if (Meteor.isClient) {
       return Meteor.subscribe(organizationPublications.organization);
-    }
-    return null;
-  }
-
-  /**
-   * Removes this profile, given its profile ID.
-   * Also removes this user from Meteor Accounts.
-   * @param profileID The ID for this profile object.
-   */
-  removeIt(profileID) {
-    if (this.isDefined(profileID)) {
-      return super.removeIt(profileID);
     }
     return null;
   }

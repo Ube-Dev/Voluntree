@@ -52,44 +52,17 @@ class UserCollection {
   define({ userID, username, role, password, privilege }) {
     // if (Meteor.isServer) {
     Roles.createRole(role, { unlessExists: true });
-    // In test Meteor.settings is not set from settings.development.json so we use _.get to see if it is set.
-    const credential = password || this._generateCredential();
-    // if (_.get(Meteor, 'settings.public.development', true)) {
-    //   console.log('inside');
-    //   let id = this.generateUserID();
-    //   let _id;
-    //   if (userID) {
-    //     _id = Accounts.createUser({ username, email: username, password: credential });
-    //     Meteor.users.update(_id, { $set: { userID: userID } });
-    //     id = userID;
-    //   } else {
-    //     _id = Accounts.createUser({ username, email: username, password: credential });
-    //     Meteor.users.update(_id, { $set: { userID: id } });
-    //   }
 
-    //   if (privilege) {
-    //     Roles.addUsersToRoles(userID, privilege, role);
-    //   } else {
-    //     Roles.addUsersToRoles(userID, role);
-    //   }
-    //   console.log(`Defining ${role} ${username} with password ${credential}`);
-    //   return id;
-    // }
-    // Otherwise define this user with a Meteor login and randomly generated password.
-    console.log(`Defining ${role} ${username} with password ${credential}. Priviledge: ${privilege}.`);
+    const credential = password || this._generateCredential();
     let id;
     if (userID) {
-      console.log('has userid');
       const _id = Accounts.createUser({ username, email: username, password: credential });
-      Meteor.users.update(_id, { $set: { userID: userID } });
+      Meteor.users.update(_id, { $set: { userID: userID, privilege: privilege } });
       id = userID;
-      console.log('id ', id);
     } else {
-      console.log('no userid');
       id = this.generateUserID();
       const _id = Accounts.createUser({ username, email: username, password: credential });
-      Meteor.users.update(_id, { $set: { userID: id } });
-      console.log('userID ', id);
+      Meteor.users.update(_id, { $set: { userID: id, privilege: privilege } });
     }
 
     console.log(`userID: ${id}`);

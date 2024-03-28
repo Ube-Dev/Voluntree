@@ -58,37 +58,6 @@ class UserProfileCollection extends BaseProfileCollection {
   }
 
   /**
-   * Updates the UserProfile. You cannot change the email or role.
-   * @param docID the id of the UserProfile
-   * @param Object
-   * @returns void
-   */
-  update(docID, { firstName, lastName, image, phone, bookmarks,
-    viewingHistory, pastEvents, onGoingEvents, userActivity,
-    totalHours, address, zipCode, city, state, country, feedbacks, skills,
-    followers, organizationFollowed, memberOf }) {
-    this.assertDefined(docID);
-    const updateData = { firstName, lastName, image, phone, bookmarks,
-      viewingHistory, pastEvents, onGoingEvents, userActivity,
-      totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf };
-    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
-    this._collection.update(docID, { $set: updateData });
-  }
-
-  /**
-   * Removes this profile, given its profile ID.
-   * Also removes this user from Meteor Accounts.
-   * @param profileID The ID for this profile object.
-   */
-  removeIt(profileID) {
-    if (this.isDefined(profileID)) {
-      return super.removeIt(profileID);
-    }
-    return null;
-  }
-
-  /**
    *
    * @param {String} userID Takes in a single userID.
    * @returns A subscription, or NULL when not a client.

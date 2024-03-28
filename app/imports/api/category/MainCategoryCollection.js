@@ -11,7 +11,6 @@ class MainCategoryCollection extends BaseCollection {
   constructor() {
     super('MainCategory', new SimpleSchema({
       category: { type: String, index: true, unique: true },
-      categoryID: { type: String, optional: true, defaultValue: '' },
     }));
   }
 

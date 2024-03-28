@@ -5,6 +5,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { UserProfiles } from './UserProfileCollection';
 import { Users } from './UserCollection';
 import { ROLE } from '../role/Role';
+import { isAOrganization, isAUser, isAUser_id, isEvent, isSkill } from '../base/BaseUtilities';
 
 export const signUpNewUserMethod = new ValidatedMethod({
   name: 'UserProfiles.SignupNewUser',
@@ -26,7 +27,7 @@ export const signUpNewUserMethod = new ValidatedMethod({
 Meteor.methods({
   'UserProfiles.define': function (data) {
     check(data, Object);
-    console.log('useprofile called');
+    console.log('useprofile called: ', data);
     UserProfiles._schema.clean(data);
     const username = data.email;
     const user = UserProfiles._collection.findOne({ email: data.email });
@@ -34,7 +35,6 @@ Meteor.methods({
 
     // only create user if the user does not exists in the database.
     if (user === undefined) {
-      console.log('inside');
       const role = ROLE.USER;
       let newID;
       // returned newID is the userID, not _id.
@@ -43,15 +43,13 @@ Meteor.methods({
       } else {
         newID = Users.define({ username, role, privilege: data.privilege, password: data.password });
       }
-      console.log('newID', newID);
 
-      // revert changes if there is an error while inserting.
+      // TO-DO revert changes if there is an error while inserting.
       try {
         const profileID = UserProfiles._collection.insert({
           ...data,
-          ...{ userID: newID },
+          ...{ userID: newID, role: ROLE.USER },
         });
-        console.log('profileID ', profileID);
         return profileID;
       } catch (error) {
         // delete the user acc and profile.
@@ -67,11 +65,90 @@ Meteor.methods({
   'UserProfiles.update': function (docID, data) {
     check(docID, String);
     check(data, Object);
+
+    // Ensure the user exists
+    if (!isAUser_id(docID)) {
+      throw new Meteor.Error('update-failed', 'User does not exist.');
+    }
+
+    // Perform the update
     try {
-      UserProfiles.update(docID, data);
+      const updateData = {};
+
+      // Iterate over the data fields and validate them
+      Object.keys(data).forEach(key => {
+        switch (key) {
+        case 'bookmarks':
+          data[key].forEach(eventID => {
+            if (!isEvent(eventID)) {
+              throw new Meteor.Error('update-failed-bookmarks', `bookmark with eventID ${eventID} does not exist.`);
+            }
+          });
+          updateData[key] = data[key];
+          break;
+        case 'viewingHistory':
+          data[key].forEach(eventID => {
+            if (!isEvent(eventID)) {
+              throw new Meteor.Error('update-failed-viewingHistory', `viewingHistory with eventID ${eventID} does not exist.`);
+            }
+          });
+          updateData[key] = data[key];
+          break;
+        case 'pastEvents': // depends on if we want to store past events
+        case 'onGoingEvents':
+          data[key].forEach(eventID => {
+            if (!isEvent(eventID)) {
+              throw new Meteor.Error('update-failed-onGoingEvents', `onGoingEvent with eventID ${eventID} does not exist.`);
+            }
+          });
+          updateData[key] = data[key];
+          break;
+
+        case 'skills':
+          data[key].forEach(skillName => {
+            if (!isSkill(skillName)) {
+              throw new Meteor.Error('update-failed-skills', `Skill with name ${skillName} does not exist.`);
+            }
+          });
+          updateData[key] = data[key];
+          break;
+
+        case 'followers':
+          data[key].forEach(userID => {
+            if (!isAUser(userID)) {
+              throw new Meteor.Error('update-failed-followers', `Follower user with ID ${userID} does not exist.`);
+            }
+          });
+          updateData[key] = data[key];
+          break;
+
+        case 'organizationFollowed':
+          data[key].forEach(organizationID => {
+            if (!isAOrganization(organizationID)) {
+              throw new Meteor.Error('update-failed-organizationFollowed', `Organization with ID ${organizationID} does not exist.`);
+            }
+          });
+          updateData[key] = data[key];
+          break;
+        case 'memberOf':
+          // Validate each organization ID
+          data[key].forEach(organizationID => {
+            if (!isAOrganization(organizationID)) {
+              throw new Meteor.Error('update-failed-memberOf', `Organization with ID ${organizationID} does not exist.`);
+            }
+          });
+          updateData[key] = data[key];
+          break;
+        default:
+          updateData[key] = data[key];
+        }
+      });
+
+      // Update the user profile
+      UserProfiles._collection.update(docID, { $set: updateData });
+
     } catch (error) {
-      // Handle or log the error here
-      throw new Meteor.Error('update-failed', 'Failed to update user profile: ', error);
+      throw new Meteor.Error('update-failed', `Failed to update user profile: ${error}`);
     }
   },
 });
@@ -80,7 +157,11 @@ Meteor.methods({
   'UserProfiles.remove': function (docID) {
     check(docID, String);
     try {
-      return UserProfiles.removeIt(docID);
+      const result = UserProfiles._collection.remove(docID);
+      if (isAUser_id(docID)) {
+        throw Meteor.error('remove-failed', 'User still in the database.');
+      }
+      return result;
     } catch (error) {
       throw new Meteor.Error('delete-failed', 'Failed to delete user profile: ', error);
     }
