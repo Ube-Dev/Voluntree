@@ -13,7 +13,6 @@ const UserDashboard = () => {
     const currentUser = userSub.ready() ? Meteor.users.findOne({ _id: Meteor.userId() }) : null;
     console.log(Meteor.users.find().fetch());
     const subscription = currentUser ? UserProfiles.subscribeSingleUser(currentUser.userID) : null; // Subscribe to userProfile publication for the current user
-    // console.log('current user:', currentUser.userID);
     console.log(UserProfiles.find().fetch());
     const profile = currentUser ? UserProfiles.findOne({ userID: currentUser.userID }) : null; // Query user profile for the current user
     return {

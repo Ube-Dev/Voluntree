@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Events } from './EventCollection';
-import { generateID, isAOrganization, isAUser, validMainCategory, validSubCategory } from '../base/BaseUtilities';
+import { generateID, isAOrganization, isAUser, isEvent, validMainCategory, validSubCategory } from '../base/BaseUtilities';
 
 Meteor.methods({
   'Events.define': function (data) {
@@ -19,7 +19,7 @@ Meteor.methods({
       if (!(validMainCategory(data.activityCategory.mainCategory) && validSubCategory(data.activityCategory.subCategory))) {
         throw Meteor.Error('Create Event Failed: Invalid Category.');
       }
-      console.log("middle2");
+      console.log('middle2');
       console.log(data.hostID);
       // check if hostID is organization/individual
       if (!(isAOrganization(data.hostID) || isAUser(data.hostID))) {
@@ -43,12 +43,19 @@ Meteor.methods({
   'Events.update': function (docID, data) {
     check(docID, String);
     check(data, Object);
+    if (!isEvent(docID)) {
+      throw Meteor.Error('Events.update failed,'`Unable to find event ${docID}`);
+    }
+    if (data.activityCategory) {
+      if (!(validMainCategory(data.activityCategory.mainCategory) && validSubCategory(data.activityCategory.subCategory))) {
+        throw Meteor.Error('Create Event Failed: Invalid Category.');
+      }
+    }
     try {
-      Events.update(docID, data);
+      Events._collection.update(docID, data);
     } catch (error) {
       throw new Meteor.Error('update-failed', 'Failed to update event: ', error);
     }
-    // skills.map(skill => RequiredSkills.define(skill, title));
   },
 });
 
@@ -56,7 +63,8 @@ Meteor.methods({
   'Events.remove': function (docID) {
     check(docID, String);
     try {
-      return Events.removeIt(docID);
+      Events._collection.remove(docID);
+      return Events._collection.findOne(docID) === null;
     } catch (error) {
       throw new Meteor.Error('delete-failed', 'Failed to delete event: ', error);
     }

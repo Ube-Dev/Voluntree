@@ -3,7 +3,6 @@ import { check } from 'meteor/check';
 import SimpleSchema from 'simpl-schema';
 import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
-import { Users } from './UserCollection';
 
 const defaultProfileImage = Meteor.settings.defaultProfileImage;
 
@@ -54,32 +53,8 @@ class UserProfileCollection extends BaseProfileCollection {
     }));
   }
 
-  /**
-   * Defines the profile associated with an User and the associated Meteor account.
-   * @param Object see db diagram.
-   */
-  define({ email, firstName, lastName, password, image, phone, bookmarks,
-    viewingHistory, pastEvents, onGoingEvents, userActivity,
-    totalHours, address, zipCode, city, state, country, feedbacks, skills,
-    followers, organizationFollowed, memberOf, userID, privilege,
-  }) {
-    const username = email;
-    const user = this.findOne({ email, firstName, lastName });
-    if (!user) {
-      const role = ROLE.USER;
-      let newID = Users.define({ userID, username, role, privilege, password });
-      if (userID) {
-        newID = userID;
-      }
-      const profileID = this._collection.insert({
-        email, firstName, lastName, userID: newID, role, image, phone, bookmarks,
-        viewingHistory, pastEvents, onGoingEvents, userActivity,
-        totalHours, address, zipCode, city, state, country, feedbacks, skills,
-        followers, organizationFollowed, memberOf, privilege,
-      });
-      return profileID;
-    }
-    return user._id;
+  define(data) {
+    return Meteor.call('UserProfiles.define', data);
   }
 
   /**

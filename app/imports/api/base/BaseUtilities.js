@@ -4,6 +4,7 @@ import { UserProfiles } from '../user/UserProfileCollection';
 import { Organization } from '../organization/OrganizationCollection';
 import { MainCategory } from '../category/MainCategoryCollection';
 import { SubCategory } from '../category/SubCategoryCollection';
+import { Events } from '../event/EventCollection';
 
 export const removeAllEntities = () => {
   if (Meteor.isTest || Meteor.isAppTest) {
@@ -35,3 +36,5 @@ export const isAOrganization = (organizationID) => Organization.findOne({ organi
 export const validMainCategory = (category) => MainCategory.findOne({ category: category }) != null;
 
 export const validSubCategory = (category) => SubCategory.findOne({ category: category }) != null;
+
+export const isEvent = (eventID) => Events.findOne({ eventID: eventID }) != null;

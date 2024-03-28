@@ -54,39 +54,50 @@ class UserCollection {
     Roles.createRole(role, { unlessExists: true });
     // In test Meteor.settings is not set from settings.development.json so we use _.get to see if it is set.
     const credential = password || this._generateCredential();
-    if (_.get(Meteor, 'settings.public.development', false)) {
-      const id = this.generateUserID();
-      let _id;
-      if (userID) {
-        _id = Accounts.createUser({ username, email: username, password: credential });
-        Meteor.users.update(_id, { $set: { userID: userID } });
-      } else {
-        _id = Accounts.createUser({ username, email: username, password: credential });
-        Meteor.users.update(_id, { $set: { userID: id } });
-      }
+    // if (_.get(Meteor, 'settings.public.development', true)) {
+    //   console.log('inside');
+    //   let id = this.generateUserID();
+    //   let _id;
+    //   if (userID) {
+    //     _id = Accounts.createUser({ username, email: username, password: credential });
+    //     Meteor.users.update(_id, { $set: { userID: userID } });
+    //     id = userID;
+    //   } else {
+    //     _id = Accounts.createUser({ username, email: username, password: credential });
+    //     Meteor.users.update(_id, { $set: { userID: id } });
+    //   }
 
-      if (privilege) {
-        Roles.addUsersToRoles(userID, privilege, role);
-      } else {
-        Roles.addUsersToRoles(userID, role);
-      }
-      console.log(`Defining ${role} ${username} with password ${credential}`);
-      return id;
-    }
+    //   if (privilege) {
+    //     Roles.addUsersToRoles(userID, privilege, role);
+    //   } else {
+    //     Roles.addUsersToRoles(userID, role);
+    //   }
+    //   console.log(`Defining ${role} ${username} with password ${credential}`);
+    //   return id;
+    // }
     // Otherwise define this user with a Meteor login and randomly generated password.
     console.log(`Defining ${role} ${username} with password ${credential}. Priviledge: ${privilege}.`);
-    const id = this.generateUserID();
-    let _id;
+    let id;
     if (userID) {
-      _id = Accounts.createUser({ username, email: username, password: credential, userID: userID });
+      console.log('has userid');
+      const _id = Accounts.createUser({ username, email: username, password: credential });
       Meteor.users.update(_id, { $set: { userID: userID } });
+      id = userID;
+      console.log('id ', id);
     } else {
-      _id = Accounts.createUser({ username, email: username, password: credential, userID: id });
+      console.log('no userid');
+      id = this.generateUserID();
+      const _id = Accounts.createUser({ username, email: username, password: credential });
       Meteor.users.update(_id, { $set: { userID: id } });
+      console.log('userID ', id);
     }
 
-    console.log(`userID: ${userID}`);
-    Roles.addUsersToRoles(userID, privilege, role);
+    console.log(`userID: ${id}`);
+    if (privilege) {
+      Roles.addUsersToRoles(id, privilege, role);
+    } else {
+      Roles.addUsersToRoles(id, role);
+    }
     return id;
   }
 
