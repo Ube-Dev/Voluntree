@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import propTypes from 'prop-types';
-import EventCard from './EventCard';
+import OrgEventCard from './OrgEventCard';
 import { Events } from '../../api/event/EventCollection';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -23,7 +23,7 @@ const OrganizationEvents = ({ org }) => {
       <Row className="p-3">
         {event.map((item) => (
           <Col key={item._id} md={4} className="py-2">
-            <EventCard event={item} />
+            <OrgEventCard event={item} />
           </Col>
         ))}
       </Row>
