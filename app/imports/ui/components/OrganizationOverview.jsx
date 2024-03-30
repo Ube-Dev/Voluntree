@@ -12,7 +12,7 @@ const OrganizationOverview = ({ theOrganization }) => (
         <Card.Body>
           <Row>
             <Col className="col-md-3">
-              <Image src={theOrganization.image} alt={theOrganization.name} />
+              <Image style={{ width: '95%' }} src={theOrganization.image} alt={theOrganization.name} />
             </Col>
             <Col className="col-md-9">
               <h3>{theOrganization.name}</h3>
@@ -42,6 +42,7 @@ const OrganizationOverview = ({ theOrganization }) => (
         </Card.Footer>
       </Card>
       <Row>
+        <h1 className="text-center pt-3">Organization Events</h1>
         <OrganizationEvents org={theOrganization} />
       </Row>
     </Container>

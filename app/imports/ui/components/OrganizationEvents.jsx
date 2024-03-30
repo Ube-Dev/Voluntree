@@ -16,8 +16,6 @@ const OrganizationEvents = ({ org }) => {
     };
   });
 
-  console.log(event);
-
   return ready ? (
     <Container>
       <Row className="p-3">

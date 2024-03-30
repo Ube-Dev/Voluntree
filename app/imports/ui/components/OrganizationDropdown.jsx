@@ -28,10 +28,10 @@ const OrganizationDropdown = ({ myOrganization }) => {
 
   return (
     <Container>
-      <Card className="org-background p-4">
+      <Card className="org-background p-3">
         <Row>
           <Col>
-            <Dropdown>
+            <Dropdown className="text-center mb-4">
               <Dropdown.Toggle variant="success" id="dropdown-basic" className="org-dropdown">
                 My Organizations
               </Dropdown.Toggle>
