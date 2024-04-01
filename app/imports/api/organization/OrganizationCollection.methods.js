@@ -19,10 +19,10 @@ export const signUpNewUserMethod = new ValidatedMethod({
 Meteor.methods({
   'Organization.define': function (data) {
     check(data, Object);
-    // const entity = Organization._collection.findOne({ contactEmail: data.contactEmail, name: data.name });
-    // if (entity) {
-    //   throw new Meteor.Error('Organization already exists');
-    // }
+    const entity = Organization._collection.findOne({ contactEmail: data.contactEmail, name: data.name });
+    if (entity) {
+      throw new Meteor.Error('Organization already exists');
+    }
     try {
       // if (data.leader && !isAUser(data.leader)) {
       //   throw new Meteor.Error('create-failed-leader', `Leader with userID ${data.leader} does not exist.`);
@@ -51,9 +51,8 @@ Meteor.methods({
       //     }
       //   });
       // }
-
       const ID = data.organizationID === undefined ? generateID() : data.organizationID;
-      return Organization._collection.define({
+      return Organization._collection.insert({
         ...data,
         ...{ organizationID: ID },
       });
