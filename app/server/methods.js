@@ -24,8 +24,7 @@ Meteor.methods({
         console.log('Verification email sent successfully!');
       }
     });
-
-    console.log('EmailPage sent. Refer to the URL sent through email or remove the hash above.');
+    console.log('Email sent. Refer to the URL sent through email or remove the hash above.');
   },
 });
 
@@ -44,6 +43,6 @@ Meteor.methods({
     // }
     console.log(`id: ${user._id}, email: ${userEmail.address}`);
     Accounts.sendResetPasswordEmail(user._id, userEmail.address);
-    console.log('EmailPage sent. Refer to the URL sent through email or remove the hash above.');
+    console.log('Email sent. Refer to the URL sent through email or remove the hash above.');
   },
 });

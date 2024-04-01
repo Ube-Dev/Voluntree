@@ -49,29 +49,43 @@ class UserCollection {
    * @returns { string } The docID of the newly created user.
    * @throws { Meteor.Error } If the user exists.
    */
-  define({ username, role, password, privilege }) {
+  define({ userID, username, role, password, privilege }) {
     // if (Meteor.isServer) {
     Roles.createRole(role, { unlessExists: true });
-    // In test Meteor.settings is not set from settings.development.json so we use _.get to see if it is set.
+
     const credential = password || this._generateCredential();
-    if (_.get(Meteor, 'settings.public.development', false)) {
-      const userID = Accounts.createUser({ username, email: username, password: credential });
-      if (privilege) {
-        Roles.addUsersToRoles(userID, privilege, role);
-      } else {
-        Roles.addUsersToRoles(userID, role);
-      }
-      console.log(`Defining ${role} ${username} with password ${credential}`);
-      return userID;
+    let id;
+    if (userID) {
+      const _id = Accounts.createUser({ username, email: username, password: credential });
+      Meteor.users.update(_id, { $set: { userID: userID, privilege: privilege } });
+      id = userID;
+    } else {
+      id = this.generateUserID();
+      const _id = Accounts.createUser({ username, email: username, password: credential });
+      Meteor.users.update(_id, { $set: { userID: id, privilege: privilege } });
     }
-    // Otherwise define this user with a Meteor login and randomly generated password.
-    console.log(`Defining ${role} ${username} with password ${credential}. Priviledge: ${privilege}.`);
-    const userID = Accounts.createUser({ username, email: username, password: credential });
-    console.log(`userID: ${userID}`);
-    Roles.addUsersToRoles(userID, privilege, role);
-    return userID;
-    // }
-    // return undefined;
+
+    console.log(`userID: ${id}`);
+    if (privilege) {
+      Roles.addUsersToRoles(id, privilege, role);
+    } else {
+      Roles.addUsersToRoles(id, role);
+    }
+    return id;
+  }
+
+  /**
+   *
+   * @returns a string matching the regex of userID.
+   */
+  generateUserID() {
+    const characters = '23456789ABCDEFGHJKLMNPQRSTWXYZabcdefghijkmnopqrstuvwxyz';
+    const length = 17;
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
   }
 
   /**
