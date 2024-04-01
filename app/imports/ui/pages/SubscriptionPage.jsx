@@ -6,7 +6,7 @@ const SubscriptionPage = () => (
   <Container fluid className="color1">
     <Row>
       <Col className="subscription-background text-center">
-        <h1>It Takes a Village to create Change</h1>
+        <h1>It Takes a Village to Create Change</h1>
       </Col>
     </Row>
     <Container className="py-3">
@@ -19,13 +19,13 @@ const SubscriptionPage = () => (
             <h5>
               At Voluntree, we believe in the power of collective action to drive positive change.
               By donating, you&apos;re not just supporting us: you&apos;re enabling change. Your contribution
-              helps us maintain and imporve our platform so that we can branch out further.
+              helps us maintain and improve our platform so that we can branch out further.
             </h5>
           </Card.Body>
         </Card>
       </Row>
       <Row className="py-3 text-center">
-        <h1 style={{ color: 'gold' }}>Choose Your Membership</h1>
+        <h1 className="yellow">Choose Your Membership</h1>
       </Row>
       <Row className="mb-1">
         <Col sm={12} lg={3}>

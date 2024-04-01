@@ -14,10 +14,12 @@ const OrganizationDropdown = ({ myOrganization }) => {
     }
   }, [myOrganization, selectedOrganization]);
 
+  // Handle organization selection. If selected, set the selected organization.
   const handleOrganizationSelect = (organization) => {
     setSelectedOrganization(organization);
   };
 
+  // Render the dropdown menu items
   const renderMenuItems = () => (
     Object.keys(myOrganization).map(key => (
       <Dropdown.Item key={key} onClick={() => handleOrganizationSelect(myOrganization[key])}>
