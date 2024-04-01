@@ -74,8 +74,8 @@ const SignUp = () => {
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="EmailPage address" />
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
-                <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
                 <TosModal handleAccept={() => setAcceptedTos(true)} />
+                <SubmitField className="pt-4" id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
               </Card.Body>
             </Card>
           </AutoForm>

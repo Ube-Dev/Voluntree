@@ -63,12 +63,14 @@ const TosModal = ({ handleAccept }) => {
           By using the Services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use and Service.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Decline
-          </Button>
           <Button variant="primary" onClick={() => { handleAccept(); handleClose(); }}>
             Accept
           </Button>
+          <Button variant="secondary" onClick={handleClose}>
+            Decline
+          </Button>
+          <br />
+
         </Modal.Footer>
       </Modal>
     </>
