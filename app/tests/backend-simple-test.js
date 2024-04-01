@@ -1,7 +1,67 @@
 /* eslint-disable */
 import { Meteor } from 'meteor/meteor';
-import { Events } from '../imports/api/event/EventCollection';
+import { Notification_ } from '../imports/api/notification/NotificationCollection';
+import { Organization } from '../imports/api/organization/OrganizationCollection';
+import { createUserProfile, sendNotification } from '../imports/startup/both/Methods';
+import { UserProfiles } from '../imports/api/user/UserProfileCollection';
 
-Events.subscribeSingleEvent('UUE2GmRHtbatVSKcXDX9zu');
+  // const organizationReady = Organization.subscribeOrganization();
+  // const userReady = UserProfiles.subscribeUser();
+  // let organizationID =  Organization.findOne().organizationID;
+  // let userIDs = UserProfiles.find().fetch().map(entity => entity.userID);
 
-console.log(Events.find().fetch());
+  // // organization to multiple users
+  // let data = {
+  //   receivers: userIDs,
+  //   senderGroup: 'ORGANIZATION',
+  //   sender: organizationID,
+  //   title: 'sample notification',
+  //   content: 'sample content',
+  // }
+
+  // console.log(data);
+
+  // Meteor.call(sendNotification, data);
+
+  // // organization to single user
+
+  // data = {
+  //   receivers: [userIDs[0]],
+  //   senderGroup: 'ORGANIZATION',
+  //   sender: organizationID,
+  //   title: 'sample notification',
+  //   content: 'sample content',
+  // }
+  // Meteor.call(sendNotification, data);
+
+  // // user to user
+  // data = {
+  //   receivers: [userIDs[0]],
+  //   senderGroup: 'USER',
+  //   sender: userIDs[1],
+  //   title: 'sample notification',
+  //   content: 'sample content',
+  //   z: 's'
+  // }
+  // Meteor.call(sendNotification, data);
+
+  // // if non existing user
+  // data = {
+  //   receivers: ['asda'],
+  //   senderGroup: 'USER',
+  //   sender: userIDs[0],
+  //   title: 'sample notification',
+  //   content: 'sample content',
+  //   z: 's'
+  // }
+  // Meteor.call(sendNotification, data)
+  // // if non existing organization
+
+  // // retrieve notification by specific organization
+  // // console.log(Notification_.subscribeUserNotification(userIDs[0]))
+  // // console.log(Notification_.find().fetch());
+  // // retrieve notification by specific user
+
+// user registration/creation
+
+Meteor.call(createUserProfile, { firstName: 'sdaswa', lastName: 'lsdassa', email: 'wasidasn@gm.com', password: 'sda' });

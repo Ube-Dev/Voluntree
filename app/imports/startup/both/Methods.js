@@ -33,6 +33,9 @@ const createSubcategory = 'Subcategory.define';
 const updateSubcategory = 'Subcategory.update';
 const removeSubcategory = 'Subcategory.remove';
 
+// app\imports\api\notification\Notification.method.js
+const sendNotification = 'Notification_.define';
+
 const updateUserAccount = 'UserAccount.update';
 
 Meteor.methods({
@@ -121,4 +124,5 @@ export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
   createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, updateUserAccount, sendVerification, sendResetPasswordEmail_, deleteMyEvents,
+  sendNotification,
 };

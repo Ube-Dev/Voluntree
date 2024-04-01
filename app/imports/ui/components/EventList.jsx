@@ -56,8 +56,8 @@ const EventList = ({ theEvents }) => {
 
   return (
     <Container>
-      <Container className="d-flex justify-content-start">
-        <Form.Group controlId="formEventSearch" className="w-100">
+      <Container className="d-flex justify-content-center">
+        <Form.Group className="w-75">
           <Form.Control
             id={COMPONENT_IDS.EVENTS_SEARCHBAR}
             type="text"
