@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import '../css/EventPage.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import PropTypes from 'prop-types';
 
-const TosModal = () => {
+const TosModal = ({ handleAccept }) => {
   const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   return (
     <>
-
       <Button variant="primary" onClick={handleShow}> Terms of Service </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -67,7 +66,7 @@ const TosModal = () => {
           <Button variant="secondary" onClick={handleClose}>
             Decline
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={() => { handleAccept(); handleClose(); }}>
             Accept
           </Button>
         </Modal.Footer>
@@ -76,3 +75,6 @@ const TosModal = () => {
   );
 };
 export default TosModal;
+TosModal.propTypes = {
+  handleAccept: PropTypes.func,
+}.isRequired;

@@ -18,6 +18,7 @@ import TosModal from '../components/TosModal';
  */
 const SignUp = () => {
   const [error, setError] = useState('');
+  const [acceptedTos, setAcceptedTos] = useState(false);
   const [redirectToReferer, setRedirectToRef] = useState(false);
 
   const schema = new SimpleSchema({
@@ -33,20 +34,24 @@ const SignUp = () => {
     const collectionName = UserProfiles.getCollectionName();
     const definitionData = doc;
     // create the new UserProfile
-    defineMethod.callPromise({ collectionName, definitionData })
-      .then(() => {
+    if (acceptedTos) {
+      defineMethod.callPromise({ collectionName, definitionData })
+        .then(() => {
         // log the new user in.
-        const { email, password } = doc;
-        Meteor.loginWithPassword(email, password, (err) => {
-          if (err) {
-            setError(err.reason);
-          } else {
-            setError('');
-            setRedirectToRef(true);
-          }
-        });
-      })
-      .catch((err) => setError(err.reason));
+          const { email, password } = doc;
+          Meteor.loginWithPassword(email, password, (err) => {
+            if (err) {
+              setError(err.reason);
+            } else {
+              setError('');
+              setRedirectToRef(true);
+            }
+          });
+        })
+        .catch((err) => setError(err.reason));
+    } else {
+      alert('Tos not accepted sorry');
+    }
   };
 
   /* Display the signup form. Redirect to home page after successful registration and login. */
@@ -70,7 +75,7 @@ const SignUp = () => {
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
                 <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
-                <TosModal />
+                <TosModal handleAccept={() => setAcceptedTos(true)} />
               </Card.Body>
             </Card>
           </AutoForm>
