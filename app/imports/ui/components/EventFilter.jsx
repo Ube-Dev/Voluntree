@@ -4,24 +4,24 @@ import { Button, Col, Container, Dropdown, Form, Row } from 'react-bootstrap';
 import EventList from './EventList';
 
 const EventFilter = ({ event, categories }) => {
-  const [categoryFilter, setCategoryFilter] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const resetFilter = () => {
-    setCategoryFilter([]);
+    setSelectedCategories([]);
   };
 
   const handleCheckboxChange = (e) => {
     const value = e.target.value;
-    if (categoryFilter.includes(value)) {
-      setCategoryFilter(categoryFilter.filter((filter) => filter !== value));
+    if (selectedCategories.includes(value)) {
+      setSelectedCategories(selectedCategories.filter((filter) => filter !== value));
     } else {
-      setCategoryFilter([...categoryFilter, value]);
+      setSelectedCategories([...selectedCategories, value]);
     }
   };
-  const isCategoryChecked = (category) => categoryFilter.includes(category);
+  const isCategoryChecked = (category) => selectedCategories.includes(category);
 
-  const filteredProducts = categoryFilter.length > 0 ?
-    event.filter((theEvent) => categoryFilter.includes(theEvent.title)) :
-    event;
+  const filteredEvents = selectedCategories.length > 0
+    ? event.filter((theEvent) => selectedCategories.every((selectedCategory) => theEvent.activityCategory.mainCategory === selectedCategory))
+    : event;
 
   return (
     <Container>
@@ -31,16 +31,16 @@ const EventFilter = ({ event, categories }) => {
             <Dropdown.Toggle variant="success" id="dropdown-basic"> Filter by Category </Dropdown.Toggle>
             <Dropdown.Menu>
               <Form>
-                {event.map((theEvent, index) => (
+                {categories.map((theCategory, index) => (
                   <div className="d-flex mx-3 my-2" key={index}>
                     <Form.Check
                       type="checkbox"
-                      value={theEvent.title}
+                      value={theCategory.category}
                       onChange={handleCheckboxChange}
-                      checked={isCategoryChecked(theEvent.title)}
+                      checked={isCategoryChecked(theCategory.category)}
                     />
                     <div className="ms-2">
-                      {theEvent.title}
+                      {theCategory.category}
                     </div>
                   </div>
                 ))}
@@ -50,7 +50,7 @@ const EventFilter = ({ event, categories }) => {
           </Dropdown>
         </Col>
         <Col className="col-10">
-          <EventList theEvents={filteredProducts} />
+          <EventList theEvents={filteredEvents} />
         </Col>
       </Row>
     </Container>

@@ -377,8 +377,8 @@
       "hostID": "FJHc6qrg9KzmDnwPt",
       "eventID": "nT7sXq9KdYfR",
       "activityCategory": {
-        "mainCategory": "Environmental Conservation",
-        "subCategory": "Wildlife Preservation"
+        "mainCategory": "Community Development",
+        "subCategory": "Education"
         }
     },
     {
@@ -573,8 +573,8 @@
       "hostID": "1SkcLcs",
       "eventID": "fV6qYn8UwDzS",
       "activityCategory": {
-        "mainCategory": "Environmental Conservation",
-        "subCategory": "Wildlife Preservation"
+        "mainCategory": "Social Services",
+        "subCategory": "Homelessness"
         }
     },
     {
@@ -606,8 +606,8 @@
       "hostID": "1SkcLcs",
       "eventID": "sD3kFq5LmBvX",
       "activityCategory": {
-        "mainCategory": "Environmental Conservation",
-        "subCategory": "Wildlife Preservation"
+        "mainCategory": "Community Development",
+        "subCategory": "Education"
         }
     },
     {
@@ -640,8 +640,8 @@
       "hostID": "1SkcLcs",
       "eventID": "cJ8yVr4HwNpZ",
       "activityCategory": {
-        "mainCategory": "Environmental Conservation",
-        "subCategory": "Wildlife Preservation"
+        "mainCategory": "Social Services",
+        "subCategory": "Homelessness"
         }
     }
   ]
