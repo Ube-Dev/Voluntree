@@ -103,6 +103,6 @@ class OrganizationCollection extends BaseCollection {
 
 /**
  * Provides the singleton instance of this class to all other entities.
- * @type {OrganizationProfileCollection}
+ * @type {OrganizationCollection}
  */
 export const Organization = new OrganizationCollection();

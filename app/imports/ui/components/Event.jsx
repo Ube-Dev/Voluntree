@@ -7,7 +7,7 @@ import CommitToEvent from './CommitToEvent';
 import GoBackButton from './GoBackButton';
 import ConnectButton from './ConnectButton';
 
-const Event = ({ event }) => {
+const Event = ({ event, org }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const Event = ({ event }) => {
                 <Row>
                   <Col><h4>Host: {event.hostBy}</h4></Col>
                   <Col className="text-end col-3">
-                    <ConnectButton org={event.hostBy} />
+                    <ConnectButton org={org} />
                   </Col>
                 </Row>
                 <hr />
@@ -108,6 +108,9 @@ Event.propTypes = {
     impact: PropTypes.string,
     hostBy: PropTypes.string,
     _id: PropTypes.string,
+  }).isRequired,
+  org: PropTypes.shape({
+    contactEmail: PropTypes.string,
   }).isRequired,
 };
 
