@@ -29,3 +29,7 @@
   box-shadow: -7px 7px 0 gold;
   border-radius: 20px 20px 20px 20px !important;
 }
+
+.yellow {
+  color: gold;
+}
