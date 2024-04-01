@@ -36,7 +36,7 @@ const CreateOrganization = () => {
     const { contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country } = data;
     const username = Meteor.user().username;
     const definitionData = { username, contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
-    Meteor.call(createOrganization, definitionData, (error) => {
+    Meteor.call(createOrganization, { definitionData }, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {

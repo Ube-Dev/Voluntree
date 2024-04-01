@@ -87,7 +87,7 @@ const AddEvent = () => {
     const hostType = selectedOrganization.type;
     const phone = selectedOrganization.phone;
     const definitionData = { title, image, description, impact, totalSpots, activityType, hostBy, hostType, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
-    Meteor.call(createEvent, definitionData, (error) => {
+    Meteor.call(createEvent, { definitionData }, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
