@@ -64,13 +64,13 @@ Meteor.methods({
     check(data, Object);
     try {
       Object.entries(data).forEach(([mainCategory, subCategories]) => {
-        // Define the main category and get its ID.
-        const mainCategoryId = MainCategory.define({ category: mainCategory });
+        // Insert a main category.
+        Meteor.call(createMainCategory, { category: mainCategory });
 
         // Iterate over each subcategory in the array.
         subCategories.forEach(subCategory => {
-          // Define the subcategory with the main category ID.
-          SubCategory.define({ category: subCategory, parentID: mainCategoryId });
+          // Insert the subcategory with its parent category into the collection.
+          Meteor.call(createSubcategory, { category: subCategory, parentCategory: mainCategory });
         });
       });
     } catch (error) {
