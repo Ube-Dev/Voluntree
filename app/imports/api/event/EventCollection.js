@@ -107,12 +107,12 @@ class EventCollection extends BaseCollection {
   update(docID, { title, image, description, location, time, frequency, accessibilities, requirements, impact,
     requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
     country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
-    startTime, endTime,
+    hostID, startTime, endTime,
   }) {
     const updateData = { title, image, description, location, time, frequency, accessibilities, requirements, impact,
       requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
       country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
-      startTime, endTime,
+      hostID, startTime, endTime,
     };
     // Map non undefined values to keys then insert.
     Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);

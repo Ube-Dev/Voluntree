@@ -3,6 +3,7 @@ import { Card, Col, Container, Row } from 'react-bootstrap';
 import { AutoForm, DateField, ErrorsField, NumField, SelectField, SubmitField, TextField, LongTextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
+import { useParams } from 'react-router';
 import { useTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
@@ -10,6 +11,7 @@ import { updateEvent } from '../../startup/both/Methods';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { Events } from '../../api/event/EventCollection';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -56,19 +58,25 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddEvent page for adding a document. */
 const AddEvent = () => {
-  const { ready, event } = useTracker(() => {
-    const subscription = Events.subscribeEvent(); // Subscribe to Event publication for the current user
-    const orgEvent = Events.find({ id: org.id }).fetch(); // Query events hosted by the organization
+  // get event id
+  const _id = useParams();
+  const { ready, events } = useTracker(() => {
+    // Get access to events
+    const subscription = Events.subscribeEvent();
+    // Make sure its ready
+    const rdy = subscription.ready();
+    // fetch all events
+    const theEvents = Events.findOne(_id);
     return {
-      ready: subscription ? subscription.ready() : false,
-      event: orgEvent,
+      events: theEvents,
+      ready: rdy,
     };
-  });
+  }, []);
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { title, image, description, impact, totalSpots, activityType, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
     const definitionData = { title, image, description, impact, totalSpots, activityType, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
-    Meteor.call(updateEvent, definitionData, (error) => {
+    Meteor.call(updateEvent, _id, definitionData, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
@@ -77,9 +85,8 @@ const AddEvent = () => {
       }
     });
   };
-
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
-  return (
+  return ready ? (
     <Container fluid className="color2" id={PAGE_IDS.EDIT_EVENT}>
       <Container className="mb-5 mt-3">
         <Row className="justify-content-center">
@@ -87,7 +94,7 @@ const AddEvent = () => {
             <Row className="text-center">
               <h1>Edit Event</h1>
             </Row>
-            <AutoForm schema={bridge} onSubmit={data => submit(data)} model={event}>
+            <AutoForm schema={bridge} onSubmit={data => submit(data)} model={events}>
               <Card className="rounded-4">
                 <Card.Header className="section-header">Event Details</Card.Header>
                 <Card.Body>
@@ -174,6 +181,8 @@ const AddEvent = () => {
         </Row>
       </Container>
     </Container>
+  ) : (
+    <LoadingSpinner />
   );
 };
 
