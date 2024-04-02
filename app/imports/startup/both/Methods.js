@@ -3,8 +3,8 @@ import { check } from 'meteor/check';
 import { Roles } from 'meteor/alanning:roles';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Events } from '../../api/event/EventCollection';
-import { MainCategory } from '../../api/category/MainCategoryCollection';
-import { SubCategory } from '../../api/category/SubCategoryCollection';
+// import { MainCategory } from '../../api/category/MainCategoryCollection';
+// import { SubCategory } from '../../api/category/SubCategoryCollection';
 import { ROLE } from '../../api/role/Role';
 
 // app\imports\api\user\UserProfileCollection.methods.js
