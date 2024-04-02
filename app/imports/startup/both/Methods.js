@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Roles } from 'meteor/alanning:roles';
-import { UserProfiles } from '../../api/user/UserProfileCollection';
-import { Events } from '../../api/event/EventCollection';
 // import { MainCategory } from '../../api/category/MainCategoryCollection';
 // import { SubCategory } from '../../api/category/SubCategoryCollection';
 import { ROLE } from '../../api/role/Role';
@@ -88,8 +86,22 @@ Meteor.methods({
     user.onGoingEvents.push(eventId);
     event.spotsFilled.push(userId);
     try {
-      UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
-      Events.update(eventId, { spotsFilled: event.spotsFilled });
+      // userId and eventId is _id, update takes _id by default
+      // UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
+      Meteor.call(updateUserProfile, userId, { onGoingEvents: user.onGoingEvents }, (error) => {
+        if (error) {
+          console.log('updateUserProfile error:', error);
+          throw new Meteor.Error('MyEvents.update failed', 'updateUserProfile error');
+        }
+      });
+
+      // Events.update(eventId, { spotsFilled: event.spotsFilled });
+      Meteor.call(updateEvent, eventId, { spotsFilled: event.spotsFilled }, (error) => {
+        if (error) {
+          console.log('error:', error);
+          throw new Meteor.Error('MyEvents.update failed', 'updateEvent error');
+        }
+      });
     } catch (error) {
       throw new Meteor.Error('update-failed', 'Failed to update User and Event information ', error);
     }
@@ -107,8 +119,22 @@ Meteor.methods({
     const userIndex = event.spotsFilled.indexOf(userId);
     event.spotsFilled.splice(userIndex, 1);
     try {
-      UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
-      Events.update(eventId, { spotsFilled: event.spotsFilled });
+      // userId and eventId is _id, update takes _id by default
+      // UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
+      Meteor.call(updateUserProfile, userId, { onGoingEvents: user.onGoingEvents }, (error) => {
+        if (error) {
+          console.log('updateUserProfile error:', error);
+          throw new Meteor.Error('MyEvents.update failed', 'updateUserProfile error');
+        }
+      });
+
+      // Events.update(eventId, { spotsFilled: event.spotsFilled });
+      Meteor.call(updateEvent, eventId, { spotsFilled: event.spotsFilled }, (error) => {
+        if (error) {
+          console.log('error:', error);
+          throw new Meteor.Error('MyEvents.update failed', 'updateEvent error');
+        }
+      });
     } catch (error) {
       throw new Meteor.Error('removal-failed', 'Failed to unregister from event ', error);
     }

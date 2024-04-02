@@ -3,7 +3,7 @@ import { check } from 'meteor/check';
 import { CallPromiseMixin } from 'meteor/didericis:callpromise-mixin';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { Organization } from './OrganizationCollection';
-import { generateID, isAOrganization, isAUser, isEvent } from '../base/BaseUtilities';
+import { generateID, isAOrganization_id, isAUser_id, isEvent_id } from '../base/BaseUtilities';
 
 export const signUpNewUserMethod = new ValidatedMethod({
   name: 'Organization.SignupNewOrganization',
@@ -21,6 +21,7 @@ Meteor.methods({
     check(data, Object);
     const entity = Organization._collection.findOne({ contactEmail: data.contactEmail, name: data.name });
     if (entity) {
+      console.error('Organization already exists');
       throw new Meteor.Error('Organization already exists');
     }
     try {
@@ -51,10 +52,10 @@ Meteor.methods({
       //     }
       //   });
       // }
-      const ID = data.organizationID === undefined ? generateID() : data.organizationID;
+      const ID = data._id === undefined ? generateID() : data._id;
       return Organization._collection.insert({
         ...data,
-        ...{ organizationID: ID },
+        ...{ _id: ID },
       });
 
     } catch (error) {
@@ -69,13 +70,15 @@ Meteor.methods({
     check(docID, String);
     try {
       // validate by searching through the collection
-      if (data.leader && !isAUser(data.leader)) {
+      if (data.leader && !isAUser_id(data.leader)) {
+        console.error('User does not exists.');
         throw new Meteor.Error('update-failed-leader', `Leader with userID ${data.leader} does not exist.`);
       }
 
       if (data.pastEvents) {
         data.pastEvents.forEach(eventID => {
-          if (!isEvent(eventID)) {
+          if (!isEvent_id(eventID)) {
+            console.error('Past event does not exists.');
             throw new Meteor.Error('update-failed-pastEvents', `Past event with eventID ${eventID} does not exist.`);
           }
         });
@@ -83,7 +86,8 @@ Meteor.methods({
 
       if (data.onGoingEvents) {
         data.onGoingEvents.forEach(eventID => {
-          if (!isEvent(eventID)) {
+          if (!isEvent_id(eventID)) {
+            console.error('Ongoing event does not exists.');
             throw new Meteor.Error('update-failed-onGoingEvents', `On-going event with eventID ${eventID} does not exist.`);
           }
         });
@@ -91,14 +95,15 @@ Meteor.methods({
 
       if (data.members) {
         data.members.forEach(userID => {
-          if (!isAUser(userID)) {
+          if (!isAUser_id(userID)) {
+            console.error('User does not exists.');
             throw new Meteor.Error('update-failed-members', `Member with userID ${userID} does not exist.`);
           }
         });
       }
 
       // update
-      Organization._collection.update(docID, data);
+      Organization._collection.update(docID, { $set: data });
     } catch (error) {
       throw new Meteor.Error('update-failed', 'Failed to update organization: ', error);
     }
@@ -110,7 +115,8 @@ Meteor.methods({
     check(docID, String);
     try {
       const result = Organization._collection.remove(docID);
-      if (isAOrganization(docID)) {
+      if (isAOrganization_id(docID)) {
+        console.error('Organization is not removed.(likely backend problem)');
         throw Meteor.error('remove-failed', 'Organization still in the database.');
       }
       return result;

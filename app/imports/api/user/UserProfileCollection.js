@@ -83,7 +83,7 @@ class UserProfileCollection extends BaseProfileCollection {
       });
       Meteor.publish(userPublications.singleUser, function publish(userID) {
         check(userID, String);
-        console.log(instance._collection.find({ userID: userID }).fetch());
+        // console.log(instance._collection.find({ userID: userID }).fetch());
         return instance._collection.find({ userID: userID });
       });
     }

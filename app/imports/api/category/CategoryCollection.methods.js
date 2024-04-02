@@ -31,10 +31,10 @@ Meteor.methods({
       // Perform the transaction
       const result = MainCategory._collection.remove(docID);
 
-      // Update documents with matching parentID
+      // Update documents with matching parentCategory
       SubCategory._collection.update(
         { parentCategory: mainCategoryBeforeRemove.category },
-        { $set: { parentCategory: 'General' } },
+        { $set: { parentCategory: 'Other' } },
         { multi: true },
       );
       return result;

@@ -66,8 +66,8 @@
   ],
   "defaultOrganizations": [
     {
-      "leader": "John Doe",
-      "organizationID": "1SkcLcs",
+      "leader": "FJHc6qrg9KzmDnwPt",
+      "_id": "1SkcLcs",
       "name": "Green Earth Alliance",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "New York",
@@ -83,11 +83,11 @@
       "country": "USA",
       "pastEvents": ["Earth Day Cleanup 2023", "Tree Planting Campaign 2022"],
       "onGoingEvents": ["Monthly Beach Cleanup"],
-      "members": ["Jane Smith", "David Johnson"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
     },
     {
-      "leader": "Alice Williams",
-      "organizationID": "1002",
+      "leader": "FJHc6qrg9KzmDnwPt",
+      "_id": "1002",
       "name": "Youth Empowerment Foundation",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Los Angeles",
@@ -104,11 +104,11 @@
       "country": "USA",
       "pastEvents": ["Back-to-School Drive 2023", "STEM Workshop 2022"],
       "onGoingEvents": ["Tutoring Program"],
-      "members": ["Michael Brown", "Emily Garcia"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
     },
     {
-      "leader": "Sarah Johnson",
-      "organizationID": "1003",
+      "leader": "FJHc6qrg9KzmDnwPt",
+      "_id": "1003",
       "name": "Animal Guardians Society",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Chicago",
@@ -125,11 +125,11 @@
       "country": "USA",
       "pastEvents": ["Adoption Fair 2023", "Pet Vaccination Clinic 2022"],
       "onGoingEvents": ["Foster Program"],
-      "members": ["Daniel Martinez", "Olivia Taylor"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
     },
     {
-      "leader": "Michael Lee",
-      "organizationID": "1004",
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1004",
       "name": "Healthcare for All",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Houston",
@@ -146,11 +146,11 @@
       "country": "USA",
       "pastEvents": ["Free Health Screening Camp 2023", "Community Health Fair 2022"],
       "onGoingEvents": ["Medical Outreach Program"],
-      "members": ["Sophia Nguyen", "William Brown"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
     },
     {
-      "leader": "David Smith",
-      "organizationID": "1005",
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1005",
       "name": "Relief Aid International",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Miami",
@@ -167,11 +167,11 @@
       "country": "USA",
       "pastEvents": ["Hurricane Relief Efforts 2023", "Earthquake Response 2022"],
       "onGoingEvents": ["Disaster Preparedness Workshops"],
-      "members": ["Emma Wilson", "James Garcia"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
     },
     {
-      "leader": "Kaitlin Blackwell",
-      "organizationID": "1006",
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1006",
       "name": "GLOBAL EDUCATION PHILANTHROPISTS",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Imperial",
@@ -186,11 +186,11 @@
       "city": "Imperial",
       "state": "TX",
       "country": "USA",
-      "members": ["Swanson Gibson", "Eugenia Donaldson"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
     },
     {
-      "leader": "Gibbs Bryant",
-      "organizationID": "1007",
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1007",
       "name": "Ala Moana",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
@@ -205,11 +205,11 @@
       "city": "Honolulu",
       "state": "HI",
     "country": "USA",
-    "members": ["Ducky Chuck", "Chucky Duck"]
+    "members": ["ZpLMnWk2SCQrhtgN5"]
     },
     {
-      "leader": "Vonnie Bryant",
-      "organizationID": "1008",
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1008",
       "name": "Turtle Bay Beach Org",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
@@ -224,11 +224,11 @@
       "city": "Kahuku",
       "state": "HI",
       "country": "USA",
-      "members": ["Ducky Chuck", "Chucky Duck"]
+      "members": ["ZpLMnWk2SCQrhtgN5"]
     },
     {
-      "leader": "Vonnie Bryant",
-      "organizationID": "1009",
+      "leader": "FJHc6qrg9KzmDnwPt",
+      "_id": "1009",
       "name": "Lanikai Beach Org",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
@@ -243,11 +243,11 @@
       "city": "Kailua",
       "state": "HI",
       "country": "USA",
-      "members": ["Sheddy Beddy", "Chucky Duck"]
+      "members": ["ZpLMnWk2SCQrhtgN5"]
     },
     {
-      "leader": "Vonnie Bryant",
-      "organizationID": "1010",
+      "leader": "FJHc6qrg9KzmDnwPt",
+      "_id": "1010",
       "name": "Food Bank of Hawaii",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
@@ -262,14 +262,11 @@
       "city": "Honolulu",
       "state": "HI",
       "country": "USA",
-      "members": [
-        "Ducky Chuck",
-        "Chucky Duck"
-      ]
+      "members": ["ZpLMnWk2SCQrhtgN5"]
     },
     {
-      "leader": "Linda Chu",
-      "organizationID": "1011",
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1011",
       "name": "Catholic Charities Hawaii",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
@@ -284,10 +281,7 @@
       "city": "Honolulu",
       "state": "HI",
       "country": "USA",
-      "members": [
-        "Ducky Chuck",
-        "Chucky Duck"
-      ]
+      "members": ["ZpLMnWk2SCQrhtgN5"]
     }
   ],
 
@@ -375,7 +369,7 @@
       "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
       "hostType": "individual",
       "hostID": "FJHc6qrg9KzmDnwPt",
-      "eventID": "nT7sXq9KdYfR",
+      "_id": "nT7sXq9KdYfR",
       "activityCategory": {
         "mainCategory": "Community Development",
         "subCategory": "Education"
@@ -408,7 +402,7 @@
       "hostBy": "Ala Moana",
       "hostType": "organization",
       "hostID": "1SkcLcs",
-      "eventID": "oT5zRj8QwFnS",
+      "_id": "oT5zRj8QwFnS",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
@@ -442,7 +436,7 @@
       "hostBy": "Turtle Bay Beach Org",
       "hostType": "organization",
       "hostID": "1SkcLcs",
-      "eventID": "lG4tZv7BmNcY",
+      "_id": "lG4tZv7BmNcY",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
@@ -473,7 +467,7 @@
       ],
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Turtle Bay Beach Org",
-      "eventID": "iE9xWq3RvSfT",
+      "_id": "iE9xWq3RvSfT",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
@@ -507,7 +501,7 @@
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
       "hostID": "1SkcLcs",
-      "eventID": "aT9mWc2RqLxV",
+      "_id": "aT9mWc2RqLxV",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
@@ -541,7 +535,7 @@
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
       "hostID": "1SkcLcs",
-      "eventID": "pH6uYt2QwNzC",
+      "_id": "pH6uYt2QwNzC",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
@@ -571,7 +565,7 @@
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
       "hostID": "1SkcLcs",
-      "eventID": "fV6qYn8UwDzS",
+      "_id": "fV6qYn8UwDzS",
       "activityCategory": {
         "mainCategory": "Social Services",
         "subCategory": "Homelessness"
@@ -604,7 +598,7 @@
       "hostBy": "Catholic Charities Hawaii",
       "hostType": "organization",
       "hostID": "1SkcLcs",
-      "eventID": "sD3kFq5LmBvX",
+      "_id": "sD3kFq5LmBvX",
       "activityCategory": {
         "mainCategory": "Community Development",
         "subCategory": "Education"
@@ -638,7 +632,7 @@
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
       "hostID": "1SkcLcs",
-      "eventID": "cJ8yVr4HwNpZ",
+      "_id": "cJ8yVr4HwNpZ",
       "activityCategory": {
         "mainCategory": "Social Services",
         "subCategory": "Homelessness"

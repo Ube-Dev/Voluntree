@@ -62,9 +62,9 @@ class OrganizationCollection extends BaseCollection {
       Meteor.publish(organizationPublications.organization, function publish() {
         return instance._collection.find();
       });
-      Meteor.publish(organizationPublications.singleOrganization, function publish(organizationID) {
-        check(organizationID, String);
-        return instance._collection.find({ organizationID: organizationID });
+      Meteor.publish(organizationPublications.singleOrganization, function publish(docID) {
+        check(docID, String);
+        return instance._collection.find({ _id: docID });
       });
     }
   }

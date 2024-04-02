@@ -5,7 +5,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { UserProfiles } from './UserProfileCollection';
 import { Users } from './UserCollection';
 import { ROLE } from '../role/Role';
-import { isAOrganization, isAUser, isAUser_id, isEvent, isSkill } from '../base/BaseUtilities';
+import { isAOrganization_id, isAUser_id, isEvent_id, isSkill } from '../base/BaseUtilities';
 
 export const signUpNewUserMethod = new ValidatedMethod({
   name: 'UserProfiles.SignupNewUser',
@@ -27,7 +27,6 @@ export const signUpNewUserMethod = new ValidatedMethod({
 Meteor.methods({
   'UserProfiles.define': function (data) {
     check(data, Object);
-    console.log('useprofile called: ', data);
     UserProfiles._schema.clean(data);
     const username = data.email;
     const user = UserProfiles._collection.findOne({ email: data.email });
@@ -68,6 +67,7 @@ Meteor.methods({
 
     // Ensure the user exists
     if (!isAUser_id(docID)) {
+      console.error('User does not exists.');
       throw new Meteor.Error('update-failed', 'User does not exist.');
     }
 
@@ -80,7 +80,8 @@ Meteor.methods({
         switch (key) {
         case 'bookmarks':
           data[key].forEach(eventID => {
-            if (!isEvent(eventID)) {
+            if (!isEvent_id(eventID)) {
+              console.error('bookmarks event does not exists.');
               throw new Meteor.Error('update-failed-bookmarks', `bookmark with eventID ${eventID} does not exist.`);
             }
           });
@@ -88,7 +89,8 @@ Meteor.methods({
           break;
         case 'viewingHistory':
           data[key].forEach(eventID => {
-            if (!isEvent(eventID)) {
+            if (!isEvent_id(eventID)) {
+              console.error('viewingHistory event does not exists.');
               throw new Meteor.Error('update-failed-viewingHistory', `viewingHistory with eventID ${eventID} does not exist.`);
             }
           });
@@ -97,7 +99,8 @@ Meteor.methods({
         case 'pastEvents': // depends on if we want to store past events
         case 'onGoingEvents':
           data[key].forEach(eventID => {
-            if (!isEvent(eventID)) {
+            if (!isEvent_id(eventID)) {
+              console.error('onGoingEvent does not exists.');
               throw new Meteor.Error('update-failed-onGoingEvents', `onGoingEvent with eventID ${eventID} does not exist.`);
             }
           });
@@ -107,6 +110,7 @@ Meteor.methods({
         case 'skills':
           data[key].forEach(skillName => {
             if (!isSkill(skillName)) {
+              console.error('Skill does not exists.');
               throw new Meteor.Error('update-failed-skills', `Skill with name ${skillName} does not exist.`);
             }
           });
@@ -115,7 +119,8 @@ Meteor.methods({
 
         case 'followers':
           data[key].forEach(userID => {
-            if (!isAUser(userID)) {
+            if (!isAUser_id(userID)) {
+              console.error('User does not exists.');
               throw new Meteor.Error('update-failed-followers', `Follower user with ID ${userID} does not exist.`);
             }
           });
@@ -124,7 +129,8 @@ Meteor.methods({
 
         case 'organizationFollowed':
           data[key].forEach(organizationID => {
-            if (!isAOrganization(organizationID)) {
+            if (!isAOrganization_id(organizationID)) {
+              console.error('Organization does not exists.');
               throw new Meteor.Error('update-failed-organizationFollowed', `Organization with ID ${organizationID} does not exist.`);
             }
           });
@@ -133,7 +139,8 @@ Meteor.methods({
         case 'memberOf':
           // Validate each organization ID
           data[key].forEach(organizationID => {
-            if (!isAOrganization(organizationID)) {
+            if (!isAOrganization_id(organizationID)) {
+              console.error('Organization does not exists.');
               throw new Meteor.Error('update-failed-memberOf', `Organization with ID ${organizationID} does not exist.`);
             }
           });
@@ -159,6 +166,7 @@ Meteor.methods({
     try {
       const result = UserProfiles._collection.remove(docID);
       if (isAUser_id(docID)) {
+        console.error('UserProfile is not removed.(likely backend problem)');
         throw Meteor.error('remove-failed', 'User still in the database.');
       }
       return result;

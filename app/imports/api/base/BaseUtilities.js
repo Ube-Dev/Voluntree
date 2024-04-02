@@ -36,6 +36,8 @@ export const isAUser_id = (_id) => UserProfiles.findOne({ _id: _id });
 
 export const isAOrganization = (organizationID) => Organization.findOne({ organizationID: organizationID }) != null;
 
+export const isAOrganization_id = (_id) => Organization.findOne({ _id: _id }) != null;
+
 export const validMainCategory = (category) => MainCategory.findOne({ category: category }) != null;
 
 export const validSubCategory = (category) => SubCategory.findOne({ category: category }) != null;

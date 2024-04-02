@@ -9,9 +9,10 @@ import OrganizationDropdown from '../components/OrganizationDropdown';
 
 const Dashboard = () => {
   const { ready, organization } = useTracker(() => {
-    const currentUser = Meteor.user()._id; // Retrieve the current user
+    const currentUser = Meteor.userId(); // Retrieve the current user
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication for the current user
-    const profile = Organization.find({ leader: currentUser }).fetch(); // Query user profile for the current user
+    const profile = currentUser ? Organization.find({ leader: currentUser }).fetch() : null; // Query user profile for the current user
+    console.log(currentUser);
     return {
       ready: subscription ? subscription.ready() : false,
       organization: profile,

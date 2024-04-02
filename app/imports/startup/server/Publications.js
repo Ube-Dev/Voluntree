@@ -17,7 +17,7 @@ Meteor.publish(null, function () {
 
 Meteor.publish('userData', function () {
   if (this.userId) {
-    return Meteor.users.find({ _id: this.userId }, { fields: { _id: 1, username: 1, emails: 1, userID: 1, privilege: 1 } });
+    return Meteor.users.find({ _id: this.userId }, { fields: { _id: 1, username: 1, emails: 1, privilege: 1 } });
   }
   return this.ready();
 

@@ -83,11 +83,12 @@ const AddEvent = () => {
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { title, image, description, impact, totalSpots, activityType, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
-    const hostBy = selectedOrganization.name;
-    const hostType = selectedOrganization.type;
+    const hostBy = selectedOrganization.name; // _id
+    const hostType = selectedOrganization ? 'organization' : 'individual'; // ['individual', 'organization', 'school']
+    const hostID = selectedOrganization ? selectedOrganization._id : Meteor.userId(); // _id, this is required
     const phone = selectedOrganization.phone;
-    const definitionData = { title, image, description, impact, totalSpots, activityType, hostBy, hostType, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
-    Meteor.call(createEvent, { definitionData }, (error) => {
+    const definitionData = { title, image, description, impact, totalSpots, activityType, hostBy, hostType, hostID, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
+    Meteor.call(createEvent, definitionData, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {

@@ -56,16 +56,23 @@ class UserCollection {
     const credential = password || this._generateCredential();
     let id;
     if (userID) {
-      const _id = Accounts.createUser({ username, email: username, password: credential });
-      Meteor.users.update(_id, { $set: { userID: userID, privilege: privilege } });
+      // Create new user, fetch the new doc, modify its _id as a temp object, remove old doc, insert it back.
+      // need a way to set _id on creatiom, Accounts.createUser() does not allow that
+      // if use Meteor.users.insert(), then will need to implenment custom Accounts features.
+      id = Accounts.createUser({ username, email: username, password: credential });
+      const temp = Meteor.users.findOne({ _id: id });
+      temp._id = userID;
+      Meteor.users.remove(id);
+      Meteor.users.insert(temp);
       id = userID;
+      Meteor.users.update(id, { $set: { privilege: privilege } });
+      console.log('creating user with set userID', `userID: ${userID} id: ${id}`);
     } else {
-      id = this.generateUserID();
-      const _id = Accounts.createUser({ username, email: username, password: credential });
-      Meteor.users.update(_id, { $set: { userID: id, privilege: privilege } });
+      id = Accounts.createUser({ _id: this.generateUserID(), username, email: username, password: credential });
+      Meteor.users.update(id, { $set: { privilege: privilege } });
     }
 
-    console.log(`userID: ${id}`);
+    console.log(`_id: ${id}`);
     if (privilege) {
       Roles.addUsersToRoles(id, privilege, role);
     } else {
