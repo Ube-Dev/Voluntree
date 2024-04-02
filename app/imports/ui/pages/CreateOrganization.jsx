@@ -31,11 +31,12 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 const CreateOrganization = () => {
   const [hasAddress, setHasAddress] = useState(false);
   const [redirect, setRedirect] = useState(false);
-
+  Meteor.subscribe('userData'); // subscribe
   const submit = (data) => {
     const { contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country } = data;
     const username = Meteor.user().username;
-    const definitionData = { username, contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
+    const leader = Meteor.user().userID; // get current userID
+    const definitionData = { leader, username, contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
     Meteor.call(createOrganization, definitionData, (error) => {
       if (error) {
         swal('Error', error.message, 'error');

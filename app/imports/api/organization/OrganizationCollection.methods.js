@@ -21,7 +21,7 @@ Meteor.methods({
     check(data, Object);
     const entity = Organization._collection.findOne({ contactEmail: data.contactEmail, name: data.name });
     if (entity) {
-      return console.error('entity already exists.');
+      throw new Meteor.Error('Organization already exists');
     }
     try {
       // if (data.leader && !isAUser(data.leader)) {
@@ -51,7 +51,6 @@ Meteor.methods({
       //     }
       //   });
       // }
-
       const ID = data.organizationID === undefined ? generateID() : data.organizationID;
       return Organization._collection.insert({
         ...data,

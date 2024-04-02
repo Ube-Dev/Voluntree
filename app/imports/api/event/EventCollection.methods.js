@@ -6,6 +6,7 @@ import { generateID, isAOrganization, isAUser, isEvent_id, validMainCategory, va
 Meteor.methods({
   'Events.define': function (data) {
     check(data, Object);
+    console.log(data);
     Events._schema.clean(data);
 
     // check for valid activityCategory
