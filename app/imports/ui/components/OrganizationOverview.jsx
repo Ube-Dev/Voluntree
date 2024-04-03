@@ -38,11 +38,12 @@ const OrganizationOverview = ({ theOrganization }) => (
           </Row>
         </Card.Body>
         <Card.Footer>
-          <Button className="btn btn-primary" href={`/edit-organization-profile/${theOrganization._id}`}>Edit</Button>
+          <Button className="commit-btn btn-primary" href={`/edit-organization-profile/${theOrganization._id}`}>Edit</Button>
         </Card.Footer>
       </Card>
+
       <Row>
-        <h1 className="text-center pt-3">Organization Events</h1>
+        <h1 className="text-center org-text-white pt-3 ">Organization Events</h1>
         <OrganizationEvents org={theOrganization} />
       </Row>
     </Container>

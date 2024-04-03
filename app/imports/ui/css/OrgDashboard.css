@@ -1,7 +1,17 @@
 .org-dropdown {
-  background: transparent;
+  --bs-btn-color: black !important;
+  --bs-btn-bg: gold !important;
+  --bs-btn-border-color: gold !important;
+  --bs-btn-hover-bg: darkgoldenrod !important;
+  --bs-btn-hover-border-color: darkgoldenrod !important;
+  --bs-btn-active-bg: var(--color6) !important;
+  --bs-btn-active-border-color: var(--color6) !important;
 }
 
 .org-background {
   background: var(--color2) !important;
+}
+
+.org-text-white {
+  color: white;
 }

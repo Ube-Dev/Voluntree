@@ -14,10 +14,10 @@ const EventCard = ({ event }) => (
       <Card.Text className="event-description">{event.description}</Card.Text>
       <Row>
         <Col className="text-center">
-          <Button href={`/view_event/${event._id}`}>View</Button>
+          <Button className="commit-btn" href={`/view_event/${event._id}`}>View</Button>
         </Col>
         <Col className="text-center">
-          <Button href={`/edit-event/${event._id}`}>Edit</Button>
+          <Button className="commit-btn" href={`/edit-event/${event._id}`}>Edit</Button>
         </Col>
       </Row>
     </Card.Body>
