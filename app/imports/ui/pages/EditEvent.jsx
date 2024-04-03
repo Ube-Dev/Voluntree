@@ -20,6 +20,7 @@ const formSchema = new SimpleSchema({
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
+  activityCategory: { type: String, optional: true },
   address: { type: String, optional: false },
   zipCode: { type: String, optional: false },
   city: { type: String, optional: false },
@@ -59,7 +60,7 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 /* Renders the AddEvent page for adding a document. */
 const AddEvent = () => {
   // get event id
-  const _id = useParams();
+  const { _id } = useParams();
   const { ready, events } = useTracker(() => {
     // Get access to events
     const subscription = Events.subscribeEvent();
@@ -72,19 +73,20 @@ const AddEvent = () => {
       ready: rdy,
     };
   }, []);
+
   // On submit, insert the data.
-  const submit = (data, formRef) => {
-    const { title, image, description, impact, totalSpots, activityType, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
-    const definitionData = { title, image, description, impact, totalSpots, activityType, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
+  const submit = (data) => {
+    const { title, image, description, impact, totalSpots, activityType, activityCategory, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
+    const definitionData = { title, image, description, impact, totalSpots, activityType, activityCategory, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
     Meteor.call(updateEvent, _id, definitionData, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
         swal('Success', `Successfully added ${title}`, 'success');
-        formRef.reset();
       }
     });
   };
+
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   return ready ? (
     <Container fluid className="color2" id={PAGE_IDS.EDIT_EVENT}>

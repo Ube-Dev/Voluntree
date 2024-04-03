@@ -107,8 +107,8 @@ class EventCollection extends BaseCollection {
   update(docID, { title, image, description, location, time, frequency, accessibilities, requirements, impact,
     requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
     country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
-    hostID, startTime, endTime,
-  }) {
+    hostID, startTime, endTime }) {
+    this.assertDefined(docID);
     const updateData = { title, image, description, location, time, frequency, accessibilities, requirements, impact,
       requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
       country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,

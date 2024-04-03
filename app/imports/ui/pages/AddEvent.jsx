@@ -19,6 +19,7 @@ const formSchema = new SimpleSchema({
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
+  activityCategory: { type: String, optional: true },
   address: { type: String, optional: false },
   zipCode: { type: String, optional: false },
   city: { type: String, optional: false },
@@ -82,11 +83,11 @@ const AddEvent = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, image, description, impact, totalSpots, activityType, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
+    const { title, image, description, impact, totalSpots, activityType, activityCategory, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
     const hostBy = selectedOrganization.name;
     const hostType = selectedOrganization.type;
     const phone = selectedOrganization.phone;
-    const definitionData = { title, image, description, impact, totalSpots, activityType, hostBy, hostType, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
+    const definitionData = { title, image, description, impact, totalSpots, activityType, activityCategory, hostBy, hostType, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
     Meteor.call(createEvent, definitionData, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
