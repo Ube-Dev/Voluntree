@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Image } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { Organization } from '../../api/organization/OrganizationCollection';
@@ -27,19 +27,35 @@ const OrganizationProfile = () => {
   }
 
   // Once data is ready, render the organization profile
-  return (
+  return orgProfile.hasPhysicalAddress ? (
     <Container id={PAGE_IDS.ORGANIZATION_PROFILE}>
       <Row className="py-5">
         <Col md={6}>
-          <h2>Org Profile</h2>
+          <h2>{orgProfile.name}</h2>
           <Card className="d-flex justify-content-center">
-            <Card.Header>
-              <h4>Organization Name: {orgProfile.name}</h4>
-            </Card.Header>
             <Card.Body className="mt-2">
               <h5>Address: {orgProfile.address}</h5>
             </Card.Body>
           </Card>
+        </Col>
+        <Col md={3}>
+          <Image src={orgProfile.image} />
+        </Col>
+      </Row>
+    </Container>
+  ) : (
+    <Container id={PAGE_IDS.ORGANIZATION_PROFILE}>
+      <Row className="py-5">
+        <Col md={6}>
+          <h2>{orgProfile.name}</h2>
+          <Card className="d-flex justify-content-center">
+            <Card.Body className="mt-2">
+              <h5>Address: N/A</h5>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={3}>
+          <Image src={orgProfile.image} />
         </Col>
       </Row>
     </Container>

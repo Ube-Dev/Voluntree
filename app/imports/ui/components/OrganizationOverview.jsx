@@ -42,7 +42,6 @@ const OrganizationOverview = ({ theOrganization }) => (
           <Button className="mx-2 btn-primary" href={`/edit-organization-profile/${theOrganization._id}`}>Edit</Button>
         </Card.Footer>
       </Card>
-
       <Row>
         <h1 className="text-center org-text-white pt-3 ">Organization Events</h1>
         <OrganizationEvents org={theOrganization} />
