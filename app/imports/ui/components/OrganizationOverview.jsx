@@ -38,7 +38,8 @@ const OrganizationOverview = ({ theOrganization }) => (
           </Row>
         </Card.Body>
         <Card.Footer>
-          <Button className="commit-btn btn-primary" href={`/edit-organization-profile/${theOrganization._id}`}>Edit</Button>
+          <Button className="btn-primary" href={`/org-profile/${theOrganization._id}`}>View More</Button>
+          <Button className="mx-2 btn-primary" href={`/edit-organization-profile/${theOrganization._id}`}>Edit</Button>
         </Card.Footer>
       </Card>
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
-// import PropTypes from 'prop-types';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PAGE_IDS } from '../utilities/PageIDs';
