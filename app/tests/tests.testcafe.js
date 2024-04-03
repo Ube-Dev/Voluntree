@@ -13,6 +13,7 @@ import { userProfilePage } from './userprofile.page';
 import { upcomingEventCard } from './upcomingeventcard.component';
 import { editUserProfilePage } from './edituserprofile.page';
 import { userDashboard } from './userdashboard.component';
+import { goBackButton } from './gobackbutton.component';
 
 /* global fixture:false, test:false */
 
@@ -170,4 +171,9 @@ test('Test that user profile can be updated', async () => {
   await userProfilePage.isDisplayed();
   await userProfilePage.gotoEditUserProfile();
   await editUserProfilePage.updateProfile();
+});
+
+test.only('Test that the GoBackButton works', async () => {
+  await goBackButton.isDisplayed();
+  await goBackButton.goBack();
 });
