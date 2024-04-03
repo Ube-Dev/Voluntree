@@ -175,3 +175,21 @@ Meteor.methods({
     }
   },
 });
+
+Meteor.methods({
+  'UserProfiles.AddHours': function (docID, hour) {
+    check(docID, String);
+    check(hour, Number);
+
+    if (!isAUser_id(docID)) {
+      console.error('User does not exists.');
+      throw new Meteor.Error('update-failed', 'User does not exist.');
+    }
+
+    try {
+      return UserProfiles._collection.update(docID, { $inc: { totalHours: hour } });
+    } catch (error) {
+      throw new Meteor.Error('update-AddHours-failed', `Failed to update user profile: ${error}`);
+    }
+  },
+});
