@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { PAGE_IDS } from '../utilities/PageIDs';
@@ -21,14 +21,12 @@ const Dashboard = () => {
 
   return (
     ready ? (
-      <Container fluid id={PAGE_IDS.DASHBOARD} className="py-3 color2 justify-content-center">
+      <Container fluid id={PAGE_IDS.DASHBOARD} className="py-3 color1 justify-content-center">
         <Row className="py-1 text-center">
           <h1>Dashboard</h1>
         </Row>
-        <Row>
-          <Col>
-            <OrganizationDropdown myOrganization={organization} />
-          </Col>
+        <Row className="px-md-5">
+          <OrganizationDropdown myOrganization={organization} />
         </Row>
       </Container>
     ) : (

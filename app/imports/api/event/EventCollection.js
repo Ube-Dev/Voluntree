@@ -69,6 +69,71 @@ class EventCollection extends BaseCollection {
   }
 
   /**
+   * Defines a new Event item.
+   * @param Object See database diagram for specifics.
+   * @return {String} the docID of the new document.
+   */
+  define({ title, image, description, location, time, frequency, accessibilities, requirements, impact,
+    requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
+    country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
+    hostID, startTime, endTime,
+  }) {
+    // adapted from: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+    // generate eventID
+    let credential = '';
+    const maxPasswordLength = 30;
+    const minPasswordLength = 6;
+    const passwordLength = Math.floor(Math.random() * (maxPasswordLength - (minPasswordLength + 1))) + minPasswordLength;
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < passwordLength; i++) {
+      credential += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    // insert new event entity
+    const docID = this._collection.insert({
+      title, image, description, location, time, frequency,
+      accessibilities, hostID,
+      requirements,
+      impact, eventID: credential, requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address,
+      zipCode, city, state, country, totalSpots, spotsFilled, eventState, recruiting, equipments,
+      equipmentsCount, canceledVolunteer, startTime, endTime,
+    });
+
+    return docID;
+  }
+
+  /**
+   * Updates the given document.
+   * @param docID the id of the document to update.
+   * @param Object See database diagram for specifics.
+   */
+  update(docID, { title, image, description, location, time, frequency, accessibilities, requirements, impact,
+    requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
+    country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
+    hostID, startTime, endTime }) {
+    this.assertDefined(docID);
+    const updateData = { title, image, description, location, time, frequency, accessibilities, requirements, impact,
+      requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
+      country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
+      hostID, startTime, endTime,
+    };
+    // Map non undefined values to keys then insert.
+    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
+    this._collection.update(docID, { $set: updateData });
+  }
+
+  /**
+   * A stricter form of remove that throws an error if the document or docID could not be found in this collection.
+   * @param { String | Object } name A document or docID in this collection.
+   * @returns true
+   */
+  removeIt(name) {
+    const doc = this.findDoc(name);
+    check(doc, Object);
+    this._collection.remove(doc._id);
+    return true;
+  }
+
+  /**
    * Default publication method for entities.
    * It publishes the entire collection for all users.
    */

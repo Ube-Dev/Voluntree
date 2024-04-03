@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Dropdown, Card } from 'react-bootstrap';
+import { Container, Row, Col, Dropdown, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import OrganizationOverview from './OrganizationOverview';
+import '../css/OrgDashboard.css';
 
 const OrganizationDropdown = ({ myOrganization }) => {
   const [selectedOrganization, setSelectedOrganization] = useState(null);
@@ -29,19 +30,19 @@ const OrganizationDropdown = ({ myOrganization }) => {
 
   return (
     <Container>
-      <Card>
-        <Card.Header>
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              My Organizations
-            </Dropdown.Toggle>
-            <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
-          </Dropdown>
-        </Card.Header>
+      <Card className="org-background p-3">
         <Row>
-          {selectedOrganization && (
-            <OrganizationOverview theOrganization={selectedOrganization} />
-          )}
+          <Col>
+            <Dropdown className="text-center mb-4">
+              <Dropdown.Toggle variant="success" id="dropdown-basic" className="org-dropdown">
+                My Organizations
+              </Dropdown.Toggle>
+              <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
+            </Dropdown>
+            {selectedOrganization && (
+              <OrganizationOverview theOrganization={selectedOrganization} />
+            )}
+          </Col>
         </Row>
       </Card>
     </Container>

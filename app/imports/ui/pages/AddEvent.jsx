@@ -19,6 +19,7 @@ const formSchema = new SimpleSchema({
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
+  activityCategory: { type: String, optional: true },
   address: { type: String, optional: false },
   zipCode: { type: String, optional: false },
   city: { type: String, optional: false },
