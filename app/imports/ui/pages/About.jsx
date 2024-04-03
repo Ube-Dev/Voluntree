@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Container, Row, Card, Image } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import '../css/About.css';
 
 const About = () => (
   <>
@@ -31,7 +32,7 @@ const About = () => (
           <Card className="rounded-0 d-flex flex-column justify-content-center align-items-center text-center p-3 h-100">
             <h3>Makes Working Together Simple</h3>
             <br />
-            <Image src="./images/workTogetherAbout.png" alt="People working together" className="d-block" style={{ width: '32%' }} />
+            <Image src="./images/workTogetherAbout.png" alt="People working together" className="image1n2 d-block" />
             <p>Removes barriers for volunteers to connect.</p>
           </Card>
         </Col>
@@ -39,7 +40,7 @@ const About = () => (
           <Card className="rounded-0 d-flex flex-column justify-content-center align-items-center text-center p-3 h-100">
             <h3>Unlocks Your Potential</h3>
             <br />
-            <Image src="./images/growthAbout.png" alt="People working together" className="d-block" style={{ width: '32%' }} />
+            <Image src="./images/growthAbout.png" alt="People working together" className="image1n2 d-block" />
             <p>Provides opportunities to grow and learn</p>
           </Card>
         </Col>
@@ -47,7 +48,7 @@ const About = () => (
           <Card className="rounded-0 d-flex flex-column justify-content-center align-items-center text-center p-3 h-100">
             <h3>Benefits Your Community</h3>
             <br />
-            <Image src="./images/benifitCommunityAbout.png" alt="People working together" className="d-block" style={{ width: '45%' }} />
+            <Image src="./images/benifitCommunityAbout.png" alt="People working together" className="image3 d-block" />
             <p>Creates a lasting positive impact</p>
           </Card>
         </Col>
