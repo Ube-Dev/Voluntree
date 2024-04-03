@@ -236,7 +236,7 @@ const AddEvent = () => {
                       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
                         {currentSectionIndex > 0 && <Button onClick={goToPreviousSection} className="me-2">Previous page</Button>}
                         {currentSectionIndex < sections.length - 1 && <Button onClick={goToNextSection} className="me-2">Next Page</Button>}
-                        {currentSectionIndex === sections.length - 1 && <SubmitField value="Submit Event" />}
+                        {currentSectionIndex === sections.length - 1 && <SubmitField id={COMPONENT_IDS.ADD_EVENT_FORM_SUBMIT} />}
                       </div>
                       <ErrorsField />
                     </Card.Footer>
