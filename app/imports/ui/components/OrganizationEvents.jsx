@@ -27,7 +27,9 @@ const OrganizationEvents = ({ org }) => {
       </Row>
     </Container>
   ) : (
-    <LoadingSpinner />
+    <Container className="p-2">
+      <LoadingSpinner />
+    </Container>
   );
 };
 

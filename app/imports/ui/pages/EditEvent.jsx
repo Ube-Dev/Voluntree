@@ -1,13 +1,13 @@
-import React from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card, Col, Container, Row, Button, Modal } from 'react-bootstrap';
 import { AutoForm, DateField, ErrorsField, NumField, SelectField, SubmitField, TextField, LongTextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
-import { useParams } from 'react-router';
+import { Navigate, useParams } from 'react-router';
 import { useTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { updateEvent } from '../../startup/both/Methods';
+import { removeEvent, updateEvent } from '../../startup/both/Methods';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { Events } from '../../api/event/EventCollection';
@@ -57,16 +57,11 @@ const formSchema = new SimpleSchema({
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
-/* Renders the AddEvent page for adding a document. */
 const EditEvent = () => {
-  // get event id
   const { _id } = useParams();
   const { ready, events } = useTracker(() => {
-    // Get access to events
     const subscription = Events.subscribeEvent();
-    // Make sure its ready
     const rdy = subscription.ready();
-    // fetch all events
     const theEvents = Events.findOne(_id);
     return {
       events: theEvents,
@@ -74,7 +69,29 @@ const EditEvent = () => {
     };
   }, []);
 
-  // On submit, insert the data.
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [redirectToReferer, setRedirectToRef] = useState(false);
+
+  const toggleDeleteConfirmation = () => {
+    setShowDeleteConfirmation(!showDeleteConfirmation);
+  };
+
+  const confirmDelete = () => {
+    Meteor.call(removeEvent, _id, (error) => {
+      if (error) {
+        swal('Error', error.message, 'error');
+      } else {
+        swal('Success', 'Event deleted successfully', 'success');
+        setShowDeleteConfirmation(false);
+        setRedirectToRef(true);
+      }
+    });
+  };
+
+  if (redirectToReferer) {
+    return <Navigate to="/Dashboard" />;
+  }
+
   const submit = (data) => {
     const { title, image, description, impact, totalSpots, activityType, activityCategory, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
     const definitionData = { title, image, description, impact, totalSpots, activityType, activityCategory, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
@@ -87,7 +104,6 @@ const EditEvent = () => {
     });
   };
 
-  // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   return ready ? (
     <Container fluid className="color2" id={PAGE_IDS.EDIT_EVENT}>
       <Container className="mb-5 mt-3">
@@ -174,11 +190,36 @@ const EditEvent = () => {
                   </Row>
                 </Card.Body>
                 <Card.Footer>
-                  <SubmitField id={COMPONENT_IDS.ADD_EVENT_FORM_SUBMIT} />
-                  <ErrorsField />
+                  <Row>
+                    <Col>
+                      <SubmitField id={COMPONENT_IDS.ADD_EVENT_FORM_SUBMIT} />
+                      <ErrorsField />
+                    </Col>
+                    <Col className="text-end">
+                      <Button variant="danger" onClick={toggleDeleteConfirmation}>
+                        Delete Event
+                      </Button>
+                    </Col>
+                  </Row>
                 </Card.Footer>
               </Card>
             </AutoForm>
+            <Modal show={showDeleteConfirmation} onHide={toggleDeleteConfirmation}>
+              <Modal.Header closeButton>
+                <Modal.Title>Confirm Delete</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p>Are you sure you want to delete this event?</p>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={toggleDeleteConfirmation}>
+                  Cancel
+                </Button>
+                <Button variant="danger" onClick={confirmDelete}>
+                  Confirm Delete
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </Col>
         </Row>
       </Container>
