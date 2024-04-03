@@ -6,8 +6,6 @@ class AddEventPage {
   constructor() {
     this.pageId = `#${PAGE_IDS.ADD_EVENT}`;
     this.pageSelector = Selector(this.pageId);
-    this.addressInputSelector = Selector(`#${COMPONENT_IDS.ADD_EVENT_FORM_ADDRESS}`);
-    this.containerSelector = Selector('.rounded-4.card');
   }
 
   /** Checks that this page is currently displayed. */
@@ -18,16 +16,13 @@ class AddEventPage {
   /** Fills out and submits the form to add event, then checks to see that the commit was successful. */
   async addEvent() {
     await this.isDisplayed();
-    // Force the container to be visible
-    await t.eval(() => this.containerSelector().style.display = 'block');
-
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_TITLE}`, 'Test Event');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_IMAGE}`, 'Test Image');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_DESCRIPTION}`, 'Test Description');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_IMPACT}`, 'Test Impact');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_TOTAL_SPOTS}`, '10');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_TYPE}`, 'hybrid');
-    await t.typeText(this.addressInputSelector, 'Test Address');
+    await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_ADDRESS}`, 'Test Address');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_ZIPCODE}`, 'Test Zipcode');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_CITY}`, 'Test City');
     await t.typeText(`#${COMPONENT_IDS.ADD_EVENT_FORM_STATE}`, 'Test State');

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Col, Container, Dropdown, Row, Button } from 'react-bootstrap';
+import { Card, Col, Container, Dropdown, Row } from 'react-bootstrap';
 import { AutoForm, DateField, ErrorsField, NumField, SelectField, SubmitField, TextField, LongTextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
@@ -58,9 +58,6 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddEvent page for adding a document. */
 const AddEvent = () => {
-  const sections = ['Event Details', 'Host Details', 'Location', 'Time of Event', 'Required Skills & Accessibilities'];
-  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-
   // Subscribe to the organization publication for the current user
   const { ready, organization } = useTracker(() => {
     const currentUser = Meteor.user()._id; // Retrieve the current user
@@ -104,20 +101,6 @@ const AddEvent = () => {
     });
   };
 
-  // Function to handle going to next section
-  const goToNextSection = () => {
-    if (currentSectionIndex < sections.length - 1) {
-      setCurrentSectionIndex(currentSectionIndex + 1);
-    }
-  };
-
-  // Function to handle going to previous section
-  const goToPreviousSection = () => {
-    if (currentSectionIndex > 0) {
-      setCurrentSectionIndex(currentSectionIndex - 1);
-    }
-  };
-
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
@@ -130,118 +113,112 @@ const AddEvent = () => {
                 <h1>Create Event</h1>
               </Row>
               <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-                {sections.map((section, index) => (
-                  <Card key={index} className="rounded-4" style={{ display: currentSectionIndex === index ? 'block' : 'none' }}>
-                    <Card.Header className="section-header">{section}</Card.Header>
-                    <Card.Body>
-                      {section === 'Event Details' && (
-                        <div>
-                          <Row>
-                            <Col>
-                              <TextField name="title" id={COMPONENT_IDS.ADD_EVENT_FORM_TITLE} />
-                            </Col>
-                            <Col>
-                              <TextField name="image" id={COMPONENT_IDS.ADD_EVENT_FORM_IMAGE} />
-                            </Col>
-                          </Row>
-                          <LongTextField name="description" placeholder="What's happening?" id={COMPONENT_IDS.ADD_EVENT_FORM_DESCRIPTION} />
-                          <LongTextField name="impact" placeholder="How will this help?" id={COMPONENT_IDS.ADD_EVENT_FORM_IMPACT} />
-                          <Row>
-                            <Col>
-                              <NumField name="totalSpots" placeholder="0" id={COMPONENT_IDS.ADD_EVENT_FORM_TOTAL_SPOTS} />
-                            </Col>
-                            <Col>
-                              <SelectField name="activityType" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_TYPE} />
-                            </Col>
-                          </Row>
-                        </div>
-                      )}
-                      {section === 'Host Details' && (
-                        <div>
-                          <Row>
-                            <Dropdown>
-                              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                My Organizations
-                              </Dropdown.Toggle>
-                              <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
-                            </Dropdown>
-                          </Row>
-                          <hr />
-                          <Row>
-                            <h4>Organization:</h4>
-                            <h5>{selectedOrganization ? selectedOrganization.name : <br />}</h5>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <h4>Organization Type:</h4>
-                              <h5>{selectedOrganization ? selectedOrganization.type : <br />}</h5>
-                            </Col>
-                            <Col>
-                              <h4>Contact Information:</h4>
-                              <h5>{selectedOrganization ? selectedOrganization.phone : <br />}</h5>
-                            </Col>
-                          </Row>
-                        </div>
-                      )}
-                      {section === 'Location' && (
-                        <div>
-                          <Row>
-                            <Col md={12}>
-                              <TextField name="address" id={COMPONENT_IDS.ADD_EVENT_FORM_ADDRESS} />
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col md={3}>
-                              <TextField name="zipCode" id={COMPONENT_IDS.ADD_EVENT_FORM_ZIPCODE} />
-                            </Col>
-                            <Col md={3}>
-                              <TextField name="city" id={COMPONENT_IDS.ADD_EVENT_FORM_CITY} />
-                            </Col>
-                            <Col md={3}>
-                              <TextField name="state" id={COMPONENT_IDS.ADD_EVENT_FORM_STATE} />
-                            </Col>
-                            <Col md={3}>
-                              <TextField name="country" id={COMPONENT_IDS.ADD_EVENT_FORM_COUNTRY} />
-                            </Col>
-                          </Row>
-                        </div>
-                      )}
-                      {section === 'Time of Event' && (
-                        <div>
-                          <Row>
-                            <Col>
-                              <DateField name="startTime" id={COMPONENT_IDS.ADD_EVENT_FORM_START_DATE} />
-                              <DateField name="endTime" id={COMPONENT_IDS.ADD_EVENT_FORM_END_DATE} />
-                            </Col>
-                            <Col>
-                              <SelectField name="frequency" id={COMPONENT_IDS.ADD_EVENT_FORM_FREQUENCY} />
-                            </Col>
-                          </Row>
-                        </div>
-                      )}
-                      {section === 'Required Skills & Accessibilities' && (
-                        <div>
-                          <Row className="justify-content-center">
-                            <Col md={4} lg={4}>
-                              <SelectField name="requiredSkills" id={COMPONENT_IDS.ADD_EVENT_FORM_REQUIRED_SKILLS} />
-                            </Col>
-                            <Col md={4} lg={4}>
-                              <SelectField name="accessibilities" id={COMPONENT_IDS.ADD_EVENT_FORM_ACCESSIBILITIES} />
-                            </Col>
-                          </Row>
-                        </div>
-                      )}
-                    </Card.Body>
-                    <Card.Footer>
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
-                        {currentSectionIndex > 0 && <Button onClick={goToPreviousSection} className="me-2">Previous page</Button>}
-                        {currentSectionIndex < sections.length - 1 && <Button onClick={goToNextSection} className="me-2">Next Page</Button>}
-                        {currentSectionIndex === sections.length - 1 && <SubmitField id={COMPONENT_IDS.ADD_EVENT_FORM_SUBMIT} />}
-                      </div>
-                      <ErrorsField />
-                    </Card.Footer>
-                  </Card>
-                ))}
+                <Card className="rounded-4">
+                  <Card.Header className="section-header">Event Details</Card.Header>
+                  <Card.Body>
+                    <Row>
+                      <Col>
+                        <TextField name="title" id={COMPONENT_IDS.ADD_EVENT_FORM_TITLE} />
+                      </Col>
+                      <Col>
+                        <TextField name="image" id={COMPONENT_IDS.ADD_EVENT_FORM_IMAGE} />
+                      </Col>
+                    </Row>
+                    <LongTextField name="description" placeholder="What's happening?" id={COMPONENT_IDS.ADD_EVENT_FORM_DESCRIPTION} />
+                    <LongTextField name="impact" placeholder="How will this help?" id={COMPONENT_IDS.ADD_EVENT_FORM_IMPACT} />
+                    <Row>
+                      <Col>
+                        <NumField name="totalSpots" placeholder="0" id={COMPONENT_IDS.ADD_EVENT_FORM_TOTAL_SPOTS} />
+                      </Col>
+                      <Col>
+                        <SelectField name="activityType" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_TYPE} />
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+                <Card className="rounded-4 mt-3">
+                  <Card.Header className="section-header">Host Details</Card.Header>
+                  <Card.Body>
+                    <Row>
+                      <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                          My Organizations
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
+                      </Dropdown>
+                    </Row>
+                    <hr />
+                    <Row>
+                      <h4>Organization:</h4>
+                      <h5>{selectedOrganization ? selectedOrganization.name : <br />}</h5>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <h4>Organization Type:</h4>
+                        <h5>{selectedOrganization ? selectedOrganization.type : <br />}</h5>
+                      </Col>
+                      <Col>
+                        <h4>Contact Information:</h4>
+                        <h5>{selectedOrganization ? selectedOrganization.phone : <br />}</h5>
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+                <Card className="rounded-4 mt-3">
+                  <Card.Header className="section-header">Location</Card.Header>
+                  <Card.Body>
+                    <Row>
+                      <Col md={12}>
+                        <TextField name="address" id={COMPONENT_IDS.ADD_EVENT_FORM_ADDRESS} />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={3}>
+                        <TextField name="zipCode" id={COMPONENT_IDS.ADD_EVENT_FORM_ZIPCODE} />
+                      </Col>
+                      <Col md={3}>
+                        <TextField name="city" id={COMPONENT_IDS.ADD_EVENT_FORM_CITY} />
+                      </Col>
+                      <Col md={3}>
+                        <TextField name="state" id={COMPONENT_IDS.ADD_EVENT_FORM_STATE} />
+                      </Col>
+                      <Col md={3}>
+                        <TextField name="country" id={COMPONENT_IDS.ADD_EVENT_FORM_COUNTRY} />
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+                <Card className="rounded-4 mt-3">
+                  <Card.Header className="section-header">Time of Event</Card.Header>
+                  <Card.Body>
+                    <Row>
+                      <Col>
+                        <DateField name="startTime" id={COMPONENT_IDS.ADD_EVENT_FORM_START_DATE} />
+                        <DateField name="endTime" id={COMPONENT_IDS.ADD_EVENT_FORM_END_DATE} />
+                      </Col>
+                      <Col>
+                        <SelectField name="frequency" id={COMPONENT_IDS.ADD_EVENT_FORM_FREQUENCY} />
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+                <Card className="rounded-4 mt-3">
+                  <Card.Header className="section-header">Required Skills & Accessibilities</Card.Header>
+                  <Card.Body>
+                    <Row className="justify-content-center">
+                      <Col md={4} lg={4}>
+                        <SelectField name="requiredSkills" id={COMPONENT_IDS.ADD_EVENT_FORM_REQUIRED_SKILLS} />
+                      </Col>
+                      <Col md={4} lg={4}>
+                        <SelectField name="accessibilities" id={COMPONENT_IDS.ADD_EVENT_FORM_ACCESSIBILITIES} />
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                  <Card.Footer>
+                    <SubmitField id={COMPONENT_IDS.ADD_EVENT_FORM_SUBMIT} />
+                    <ErrorsField />
+                  </Card.Footer>
+                </Card>
               </AutoForm>
             </Col>
           </Row>
