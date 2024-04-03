@@ -14,12 +14,12 @@ const EventCard = ({ event }) => (
         <Card.Title>{event.title}</Card.Title>
         <Card.Text>{event.city}</Card.Text>
         <Card.Text className="event-description">{event.description}</Card.Text>
-        <Link to="/"><Card.Text>{event.hostBy}</Card.Text></Link>
+        <Link className="host-link" to="/"><Card.Text>{event.hostBy}</Card.Text></Link>
       </Card.Body>
       <Card.Footer>
         <Row>
           <Col className="text-start">
-            <small>{event.time.toDateString()}</small>
+            <small>{event.startTime.toDateString()}</small>
           </Col>
           <Col className="text-end">
             <small>Seats: {event.spotsFilled.length}/{event.totalSpots}</small>
@@ -36,6 +36,7 @@ EventCard.propTypes = {
     image: PropTypes.string,
     description: PropTypes.string,
     city: PropTypes.string,
+    startTime: PropTypes.instanceOf(Date),
     time: PropTypes.instanceOf(Date),
     totalSpots: PropTypes.number,
     spotsFilled: PropTypes.instanceOf(Array),

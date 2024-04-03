@@ -10,13 +10,12 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { createOrganization, updateUserAccount } from '../../startup/both/Methods';
 import { userPrivileges } from '../../api/role/Role';
-// import UserProfile from './UserProfile';
 
 const formSchema = new SimpleSchema({
   name: { type: String, optional: false },
   image: { type: String, optional: true },
   mission: { type: String, optional: false },
-  type: { type: String, allowedValues: ['Organization', 'School', 'Individual'], optional: false },
+  type: { type: String, allowedValues: ['organization', 'school', 'individual'], optional: false },
   phone: { type: String, optional: false },
   contactEmail: { type: String, optional: false },
   hasPhysicalAddress: { type: Boolean, optional: false, defaultValue: false },
@@ -32,11 +31,11 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 const CreateOrganization = () => {
   const [hasAddress, setHasAddress] = useState(false);
   const [redirect, setRedirect] = useState(false);
-
   const submit = (data) => {
     const { contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country } = data;
     const username = Meteor.user().username;
-    const definitionData = { username, contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
+    const leader = Meteor.userId(); // get current userID
+    const definitionData = { leader, username, contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country };
     Meteor.call(createOrganization, definitionData, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
@@ -92,16 +91,16 @@ const CreateOrganization = () => {
                       <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="contactEmail" placeholder="Email" />
                     </Col>
                     <Col>
-                      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                      <label htmlFor="hasPhysicalAddress">Has Physical Address?</label>
-                      <input
-                        type="checkbox"
-                        id={COMPONENT_IDS.SIGN_UP_FORM_HAS_PHYSICAL_ADDRESS}
-                        name="hasPhysicalAddress"
-                        checked={hasAddress}
-                        onChange={() => setHasAddress(!hasAddress)}
-                        className="m-4"
-                      />
+                      <label htmlFor="hasPhysicalAddress">Has Physical Address?
+                        <input
+                          type="checkbox"
+                          id={COMPONENT_IDS.SIGN_UP_FORM_HAS_PHYSICAL_ADDRESS}
+                          name="hasPhysicalAddress"
+                          checked={hasAddress}
+                          onChange={() => setHasAddress(!hasAddress)}
+                          className="m-4"
+                        />
+                      </label>
                     </Col>
                   </Row>
                 </Card.Body>
@@ -118,16 +117,16 @@ const CreateOrganization = () => {
                   <Card.Body>
                     <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ADDRESS} name="address" placeholder="Address" />
                     <Row>
-                      <Col>
-                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
-                      </Col>
-                      <Col>
+                      <Col md={12}>
                         <TextField id={COMPONENT_IDS.SIGN_UP_FORM_CITY} name="city" placeholder="City" />
                       </Col>
-                      <Col>
+                      <Col md={12}>
                         <TextField id={COMPONENT_IDS.SIGN_UP_FORM_STATE} name="state" placeholder="State" />
                       </Col>
-                      <Col>
+                      <Col md={12}>
+                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
+                      </Col>
+                      <Col md={12}>
                         <TextField id={COMPONENT_IDS.SIGN_UP_FORM_COUNTRY} name="country" placeholder="Country" />
                       </Col>
                     </Row>

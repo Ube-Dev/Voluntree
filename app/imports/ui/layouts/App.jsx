@@ -26,9 +26,11 @@ import EditUserProfile from '../pages/EditUserProfile';
 import OrganizationProfile from '../pages/OrganizationProfile';
 import ViewEventPage from '../pages/ViewEventPage';
 import AddEvent from '../pages/AddEvent';
+import EditEvent from '../pages/EditEvent';
 import MyEventPage from '../pages/MyEventPage';
 import VerifyEmailPage from '../pages/verifyEmailPage';
 import ResetPasswordPage from '../pages/ResetPassword';
+import SubscriptionPage from '../pages/SubscriptionPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -45,6 +47,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/subscribe" element={<SubscriptionPage />} />
           <Route path="/Events" element={<AllEventPage />} />
           <Route path="/view_event/:_id" element={<ViewEventPage />} />
           <Route path="/my_event" element={<MyEventPage />} />
@@ -59,6 +62,7 @@ const App = () => {
           <Route path="/createOrganization" element={<ProtectedRoute><CreateOrganization /></ProtectedRoute>} />
           <Route path="/dashboard" element={<OrganizationProtectedRoute ready={ready}><Dashboard /></OrganizationProtectedRoute>} />
           <Route path="/add-event" element={<OrganizationProtectedRoute ready={ready}><AddEvent /></OrganizationProtectedRoute>} />
+          <Route path="/edit-event/:_id" element={<OrganizationProtectedRoute ready={ready}><EditEvent /></OrganizationProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />

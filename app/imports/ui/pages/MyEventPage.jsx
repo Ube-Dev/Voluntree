@@ -1,22 +1,15 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { useParams } from 'react-router';
-import { Container, Card, Button, ButtonGroup, Row, Col, Pagination, Image } from 'react-bootstrap';
-import { TagFill } from 'react-bootstrap-icons';
+import { Container, Button, Row } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
-import CommitToEvent from '../components/CommitToEvent';
-import { PAGE_IDS } from '../utilities/PageIDs';
 import { Events } from '../../api/event/EventCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
-import Event from '../components/Event';
-import NotFound from './NotFound';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
-import EventCard from '../components/EventCard';
-import EventList from '../components/EventList';
+import { MainCategory } from '../../api/category/MainCategoryCollection';
+import EventFilter from '../components/EventFilter';
 
 const MyEventPage = () => {
-  const { ready, events } = useTracker(() => {
+  const { ready, events, categories } = useTracker(() => {
     // get current user
     const currentUser = Meteor.user();
     // check the user info
@@ -26,20 +19,24 @@ const MyEventPage = () => {
         ready: false,
       };
     }
-    // get access to events and userProfile
+    // get access to events, userProfile, and main categories
     const eventSubscription = Events.subscribeEvent();
     const userSubscription = UserProfiles.subscribeUser();
+    const categorySubscription = MainCategory.subscribeMainCategory();
     // make sure its ready
-    const rdy = eventSubscription.ready() && userSubscription.ready();
+    const rdy = eventSubscription.ready() && userSubscription.ready() && categorySubscription.ready();
     // get user info
     const theUser = UserProfiles.findOne({ email: currentUser.username });
     // get the user's onGoing events
     const onGoingEvents = Array.isArray(theUser?.onGoingEvents) ? theUser.onGoingEvents : [];
     // fetch all events that the user is attending/registered for
     const userEvents = Events.find({ _id: { $in: onGoingEvents } }).fetch();
+    // fetch all the main categories
+    const theCategories = MainCategory.find({}).fetch();
     return {
       events: userEvents,
       ready: rdy,
+      categories: theCategories,
     };
   }, []);
 
@@ -53,9 +50,10 @@ const MyEventPage = () => {
     return (
       <Container>
         <Row className="justify-content-center text-center">
-          <h1>Your Events</h1>
+          <h1 className="ps-5 ms-5">Your Events</h1>
+          <br />
         </Row>
-        <EventList theEvents={events} />
+        <EventFilter event={events} categories={categories} />
       </Container>
     );
   }
@@ -67,7 +65,7 @@ const MyEventPage = () => {
         <h2>You haven&apos;t registered for any events yet!</h2>
       </Container>
       <Container className="d-flex justify-content-center mt-5">
-        <Button style={{ backgroundColor: 'gold', color: 'black', border: 'none' }} href="/Events">Go Find Events</Button>
+        <Button href="/Events">Go Find Events</Button>
       </Container>
     </>
   );

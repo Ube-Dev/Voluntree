@@ -11,7 +11,6 @@ class MainCategoryCollection extends BaseCollection {
   constructor() {
     super('MainCategory', new SimpleSchema({
       category: { type: String, index: true, unique: true },
-      categoryID: { type: String, optional: true, defaultValue: '' },
     }));
   }
 
@@ -89,7 +88,7 @@ class MainCategoryCollection extends BaseCollection {
   /**
    * Subscription method for category.
    */
-  subscribeSkill() {
+  subscribeMainCategory() {
     if (Meteor.isClient) {
       return Meteor.subscribe(mainCategoryPublications.mainCategory);
     }

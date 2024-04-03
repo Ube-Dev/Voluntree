@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useState } from 'react';
 import { Navigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Alert, Card, Col, Container, Row } from 'react-bootstrap';
@@ -10,13 +11,14 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
-import { sendResetPasswordEmail_ } from '../../startup/both/Methods';
+import TosModal from '../components/TosModal';
 
 /**
  * SignUp component is similar to signin component, but we create a new user instead.
  */
 const SignUp = () => {
   const [error, setError] = useState('');
+  const [acceptedTos, setAcceptedTos] = useState(false);
   const [redirectToReferer, setRedirectToRef] = useState(false);
 
   const schema = new SimpleSchema({
@@ -32,23 +34,24 @@ const SignUp = () => {
     const collectionName = UserProfiles.getCollectionName();
     const definitionData = doc;
     // create the new UserProfile
-    defineMethod.callPromise({ collectionName, definitionData })
-      .then(() => {
+    if (acceptedTos) {
+      defineMethod.callPromise({ collectionName, definitionData })
+        .then(() => {
         // log the new user in.
-        const { email, password } = doc;
-        Meteor.loginWithPassword(email, password, (err) => {
-          if (err) {
-            setError(err.reason);
-          } else {
-            setError('');
-            setRedirectToRef(true);
-          }
-        });
-      })
-      .catch((err) => setError(err.reason));
-    // remove this meteor call if dont want to send verification email when user registered.
-    // Meteor.call(sendVerification, doc.email);
-    Meteor.call(sendResetPasswordEmail_, doc.email);
+          const { email, password } = doc;
+          Meteor.loginWithPassword(email, password, (err) => {
+            if (err) {
+              setError(err.reason);
+            } else {
+              setError('');
+              setRedirectToRef(true);
+            }
+          });
+        })
+        .catch((err) => setError(err.reason));
+    } else {
+      alert('Tos not accepted sorry');
+    }
   };
 
   /* Display the signup form. Redirect to home page after successful registration and login. */
@@ -71,7 +74,8 @@ const SignUp = () => {
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Email address" />
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
-                <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
+                <TosModal handleAccept={() => setAcceptedTos(true)} />
+                <SubmitField className="pt-4" id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
               </Card.Body>
             </Card>
           </AutoForm>

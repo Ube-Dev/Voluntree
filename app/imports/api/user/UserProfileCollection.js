@@ -1,13 +1,14 @@
 import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 import SimpleSchema from 'simpl-schema';
 import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
-import { Users } from './UserCollection';
 
 const defaultProfileImage = Meteor.settings.defaultProfileImage;
 
 export const userPublications = {
   user: 'User',
+  singleUser: 'singleUser',
   userAdmin: 'Admin',
 };
 
@@ -17,7 +18,6 @@ class UserProfileCollection extends BaseProfileCollection {
       firstName: { type: String },
       lastName: { type: String },
       image: { type: String, optional: true, defaultValue: defaultProfileImage },
-      // userID: { type: String, unique: true },
       phone: { type: String, optional: true, defaultValue: '' },
       bookmarks: { type: Array, optional: true, defaultValue: [] },
       'bookmarks.$': { type: String }, // eventId
@@ -50,66 +50,21 @@ class UserProfileCollection extends BaseProfileCollection {
       'organizationFollowed.$': { type: String },
       memberOf: { type: Array, optional: true, defaultValue: [] },
       'memberOf.$': { type: String },
-      privilege: { type: Array, optional: true, defaultValue: [] },
-      'privilege.$': { type: String },
     }));
   }
 
-  /**
-   * Defines the profile associated with an User and the associated Meteor account.
-   * @param Object see db diagram.
-   */
-  define({ email, firstName, lastName, password, image, phone, bookmarks,
-    viewingHistory, pastEvents, onGoingEvents, userActivity,
-    totalHours, address, zipCode, city, state, country, feedbacks, skills,
-    followers, organizationFollowed, memberOf, userID, privilege,
-  }) {
-    const username = email;
-    const user = this.findOne({ email, firstName, lastName });
-    if (!user) {
-      const role = ROLE.USER;
-      let newID = Users.define({ username, role, privilege, password });
-      if (userID) {
-        newID = userID;
-      }
-      const profileID = this._collection.insert({
-        email, firstName, lastName, userID: newID, role, image, phone, bookmarks,
-        viewingHistory, pastEvents, onGoingEvents, userActivity,
-        totalHours, address, zipCode, city, state, country, feedbacks, skills,
-        followers, organizationFollowed, memberOf, privilege,
-      });
-      return profileID;
-    }
-    return user._id;
+  define(data) {
+    return Meteor.call('UserProfiles.define', data);
   }
 
   /**
-   * Updates the UserProfile. You cannot change the email or role.
-   * @param docID the id of the UserProfile
-   * @param Object
-   * @returns void
+   *
+   * @param {String} userID Takes in a single userID.
+   * @returns A subscription, or NULL when not a client.
    */
-  update(docID, { firstName, lastName, image, phone, bookmarks,
-    viewingHistory, pastEvents, onGoingEvents, userActivity,
-    totalHours, address, zipCode, city, state, country, feedbacks, skills,
-    followers, organizationFollowed, memberOf }) {
-    this.assertDefined(docID);
-    const updateData = { firstName, lastName, image, phone, bookmarks,
-      viewingHistory, pastEvents, onGoingEvents, userActivity,
-      totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf };
-    Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
-    this._collection.update(docID, { $set: updateData });
-  }
-
-  /**
-   * Removes this profile, given its profile ID.
-   * Also removes this user from Meteor Accounts.
-   * @param profileID The ID for this profile object.
-   */
-  removeIt(profileID) {
-    if (this.isDefined(profileID)) {
-      return super.removeIt(profileID);
+  subscribeSingleUser(userID) {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(userPublications.singleUser, userID);
     }
     return null;
   }
@@ -125,6 +80,11 @@ class UserProfileCollection extends BaseProfileCollection {
       // this subscription publishes the entire collection
       Meteor.publish(userPublications.user, function publish() {
         return instance._collection.find();
+      });
+      Meteor.publish(userPublications.singleUser, function publish(userID) {
+        check(userID, String);
+        // console.log(instance._collection.find({ userID: userID }).fetch());
+        return instance._collection.find({ userID: userID });
       });
     }
   }
@@ -175,20 +135,6 @@ class UserProfileCollection extends BaseProfileCollection {
       }
     });
     return problems;
-  }
-
-  /**
-   * Returns an object representing the UserProfile docID in a format acceptable to define().
-   * @param docID The docID of a UserProfile
-   * @returns { Object } An object representing the definition of docID.
-   */
-  dumpOne(docID) {
-    const doc = this.findDoc(docID);
-    const email = doc.email;
-    const firstName = doc.firstName;
-    const lastName = doc.lastName;
-    const totalHours = doc.totalHours;
-    return { email, firstName, lastName, totalHours }; // CAM this is not enough for the define method. We lose the password.
   }
 }
 

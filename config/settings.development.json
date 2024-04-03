@@ -1,4 +1,9 @@
 {
+  "defaultProfileImage": "../images/defaultImages/defaultProfileImage.png",
+  "defaultEventImage": "../images/defaultImages/defaultEventImage.png",
+  "defaultOrganizationImage": "../images/defaultImages/defaultOrganizationImage.jpg",
+
+  "defaultNotificationSenderType": ["user", "organization"],
   "packages": {
     "email": {
       "service": "smtp.gmail.com",
@@ -7,9 +12,9 @@
     }
   },
   "organizationTypes": [
-    "COMMUNITY",
-    "SCHOOL",
-    "ORGANIZATION"
+    "individual",
+    "school",
+    "organization"
   ],
   "defaultAccounts": [
     {
@@ -18,7 +23,8 @@
       "role": "USER",
       "privilege": ["hasOrganization"],
       "firstName": "Temp",
-      "lastName": "Org"
+      "lastName": "Org",
+      "userID": "YhdWABR9mLpjx3vzC"
     },
     {
       "email": "admin@foo.com",
@@ -26,7 +32,8 @@
       "role": "ADMIN",
       "privilege": [],
       "firstName": "Admin",
-      "lastName": "MATRP"
+      "lastName": "MATRP",
+      "userID": "5YrWpXgMvD7jKt8nN"
     },
     {
       "email": "john@foo.com",
@@ -39,7 +46,8 @@
         "communication",
         "reading",
         "writing"
-      ]
+      ],
+      "userID": "FJHc6qrg9KzmDnwPt"
     },
     {
       "email": "thomas@foo.com",
@@ -52,13 +60,14 @@
         "communication",
         "driving",
         "cleaning"
-      ]
+      ],
+      "userID": "ZpLMnWk2SCQrhtgN5"
     }
   ],
   "defaultOrganizations": [
     {
-      "leader": "John Doe",
-      "organizationID": "1001",
+      "leader": "FJHc6qrg9KzmDnwPt",
+      "_id": "1SkcLcs",
       "name": "Green Earth Alliance",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "New York",
@@ -74,11 +83,11 @@
       "country": "USA",
       "pastEvents": ["Earth Day Cleanup 2023", "Tree Planting Campaign 2022"],
       "onGoingEvents": ["Monthly Beach Cleanup"],
-      "members": ["Jane Smith", "David Johnson"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
     },
     {
-      "leader": "Alice Williams",
-      "organizationID": "1002",
+      "leader": "FJHc6qrg9KzmDnwPt",
+      "_id": "1002",
       "name": "Youth Empowerment Foundation",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Los Angeles",
@@ -95,11 +104,11 @@
       "country": "USA",
       "pastEvents": ["Back-to-School Drive 2023", "STEM Workshop 2022"],
       "onGoingEvents": ["Tutoring Program"],
-      "members": ["Michael Brown", "Emily Garcia"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
     },
     {
-      "leader": "Sarah Johnson",
-      "organizationID": "1003",
+      "leader": "FJHc6qrg9KzmDnwPt",
+      "_id": "1003",
       "name": "Animal Guardians Society",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Chicago",
@@ -116,11 +125,11 @@
       "country": "USA",
       "pastEvents": ["Adoption Fair 2023", "Pet Vaccination Clinic 2022"],
       "onGoingEvents": ["Foster Program"],
-      "members": ["Daniel Martinez", "Olivia Taylor"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
     },
     {
-      "leader": "Michael Lee",
-      "organizationID": "1004",
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1004",
       "name": "Healthcare for All",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Houston",
@@ -137,11 +146,11 @@
       "country": "USA",
       "pastEvents": ["Free Health Screening Camp 2023", "Community Health Fair 2022"],
       "onGoingEvents": ["Medical Outreach Program"],
-      "members": ["Sophia Nguyen", "William Brown"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
     },
     {
-      "leader": "David Smith",
-      "organizationID": "1005",
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1005",
       "name": "Relief Aid International",
       "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Miami",
@@ -158,11 +167,122 @@
       "country": "USA",
       "pastEvents": ["Hurricane Relief Efforts 2023", "Earthquake Response 2022"],
       "onGoingEvents": ["Disaster Preparedness Workshops"],
-      "members": ["Emma Wilson", "James Garcia"]
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
+    },
+    {
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1006",
+      "name": "GLOBAL EDUCATION PHILANTHROPISTS",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
+      "location": "Imperial",
+      "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
+      "type": "Disaster Relief",
+      "description": "Relief Aid International responds to natural disasters and humanitarian crises by providing emergency assistance, shelter, food, and medical aid to those in need.",
+      "phone": "012-345-6789",
+      "email": "GEP@foo.com",
+      "hasPhysicalAddress": true,
+      "address": "114 Vine Street",
+      "zipCode": "9995",
+      "city": "Imperial",
+      "state": "TX",
+      "country": "USA",
+      "members": ["ZpLMnWk2SCQrhtgN5", "FJHc6qrg9KzmDnwPt"]
+    },
+    {
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1007",
+      "name": "Ala Moana",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
+      "location": "Honolulu",
+      "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
+      "type": "Environmental",
+      "description": "Relief Aid International responds to natural disasters and humanitarian crises by providing emergency assistance, shelter, food, and medical aid to those in need.",
+      "phone": "012-345-6789",
+      "email": "ALA@foo.com",
+      "hasPhysicalAddress": true,
+      "address": "1450 Ala Moana Blvd",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
+    "country": "USA",
+    "members": ["ZpLMnWk2SCQrhtgN5"]
+    },
+    {
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1008",
+      "name": "Turtle Bay Beach Org",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
+      "location": "Honolulu",
+      "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
+      "type": "Environmental",
+      "description": "Relief Aid International responds to natural disasters and humanitarian crises by providing emergency assistance, shelter, food, and medical aid to those in need.",
+      "phone": "012-345-6789",
+      "email": "TBB@foo.com",
+      "hasPhysicalAddress": true,
+      "address": "57-091 Kamehameha Hwy",
+      "zipCode": "96731",
+      "city": "Kahuku",
+      "state": "HI",
+      "country": "USA",
+      "members": ["ZpLMnWk2SCQrhtgN5"]
+    },
+    {
+      "leader": "FJHc6qrg9KzmDnwPt",
+      "_id": "1009",
+      "name": "Lanikai Beach Org",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
+      "location": "Honolulu",
+      "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
+      "type": "Environmental",
+      "description": "Relief Aid International responds to natural disasters and humanitarian crises by providing emergency assistance, shelter, food, and medical aid to those in need.",
+      "phone": "012-345-6789",
+      "email": "LB@foo.com",
+      "hasPhysicalAddress": true,
+      "address": "Lanikai Beach",
+      "zipCode": "96734",
+      "city": "Kailua",
+      "state": "HI",
+      "country": "USA",
+      "members": ["ZpLMnWk2SCQrhtgN5"]
+    },
+    {
+      "leader": "FJHc6qrg9KzmDnwPt",
+      "_id": "1010",
+      "name": "Food Bank of Hawaii",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
+      "location": "Honolulu",
+      "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
+      "type": "Environmental",
+      "description": "Relief Aid International responds to natural disasters and humanitarian crises by providing emergency assistance, shelter, food, and medical aid to those in need.",
+      "phone": "012-345-6789",
+      "email": "FBH@foo.com",
+      "hasPhysicalAddress": true,
+      "address": "2611 Kilihau St",
+      "zipCode": "96819",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "members": ["ZpLMnWk2SCQrhtgN5"]
+    },
+    {
+      "leader": "YhdWABR9mLpjx3vzC",
+      "_id": "1011",
+      "name": "Catholic Charities Hawaii",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
+      "location": "Honolulu",
+      "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
+      "type": "Environmental",
+      "description": "Relief Aid International responds to natural disasters and humanitarian crises by providing emergency assistance, shelter, food, and medical aid to those in need.",
+      "phone": "012-345-6789",
+      "email": "CCH@foo.com",
+      "hasPhysicalAddress": true,
+      "address": "1822 Keeaumoku St",
+      "zipCode": "96822",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "members": ["ZpLMnWk2SCQrhtgN5"]
     }
-
-
-
   ],
 
   "defaultCategory": {
@@ -217,9 +337,6 @@
       "Tech Accessibility"
     ]
   },
-  "defaultProfileImage": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-  "defaultEventImage": "https://lottie.org/_next/image/?url=https%3A%2F%2Fapi.prd.lottie.org%2Fimages%2FA_volunteer_helping_an_elderly_lady_walk_f57f195098.webp&w=2048&q=75",
-  "defaultOrganizationImage": "https://thevoluntree.com/wp-content/uploads/2024/01/cropped-logoNew-120x124.jpg",
   "public": {
     "development": true
   },
@@ -251,7 +368,12 @@
       "impact": "You'll change people's lives!",
       "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
       "hostType": "individual",
-      "hostID": "grE2jpXRaEKNqJ2nk"
+      "hostID": "FJHc6qrg9KzmDnwPt",
+      "_id": "nT7sXq9KdYfR",
+      "activityCategory": {
+        "mainCategory": "Community Development",
+        "subCategory": "Education"
+        }
     },
     {
       "title": "Ala Moana Beach Clean Up",
@@ -279,7 +401,12 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Ala Moana",
       "hostType": "organization",
-      "hostID": "1SkcLcs"
+      "hostID": "1SkcLcs",
+      "_id": "oT5zRj8QwFnS",
+      "activityCategory": {
+        "mainCategory": "Environmental Conservation",
+        "subCategory": "Wildlife Preservation"
+        }
     },
     {
       "title": "Turtle Bay Beach Clean Up",
@@ -306,14 +433,18 @@
         "water bottle"
       ],
       "impact": "You'll make the beach more beautiful and safe",
-      "hostBy": "Turle Bay Beach Org",
+      "hostBy": "Turtle Bay Beach Org",
       "hostType": "organization",
-      "hostID": "1SkcLcs"
+      "hostID": "1SkcLcs",
+      "_id": "lG4tZv7BmNcY",
+      "activityCategory": {
+        "mainCategory": "Environmental Conservation",
+        "subCategory": "Wildlife Preservation"
+        }
     },
     {
       "title": "Turtle Bay Beach Clean Up",
-      "image": "https://images.squarespace-cdn.com/content/5b231afb297114b57e11002d/1579574099361-2KUGNED7EHSF6KR6UEAJ/IMG_4160%2B%25281%2529.jpg?format=1500w&content-type=image%2Fjpeg",
-      "description": "Help clean up your local beach!",
+      "description": "Help clean up your local beach! We need eveyone to come over to help clean this beach! It's dirty so be prepared to pick up trash.",
       "address": "Turtle Bay Beach",
       "zipCode": "96731",
       "city": "Kahuku",
@@ -335,7 +466,12 @@
         "water bottle"
       ],
       "impact": "You'll make the beach more beautiful and safe",
-      "hostBy": "Turle Bay Beach Org"
+      "hostBy": "Turtle Bay Beach Org",
+      "_id": "iE9xWq3RvSfT",
+      "activityCategory": {
+        "mainCategory": "Environmental Conservation",
+        "subCategory": "Wildlife Preservation"
+        }
     },
     {
       "title": "Lanikai Beach Clean Up",
@@ -364,7 +500,12 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
-      "hostID": "1SkcLcs"
+      "hostID": "1SkcLcs",
+      "_id": "aT9mWc2RqLxV",
+      "activityCategory": {
+        "mainCategory": "Environmental Conservation",
+        "subCategory": "Wildlife Preservation"
+        }
     },
     {
       "title": "Lanikai Beach Clean Up",
@@ -393,7 +534,12 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
-      "hostID": "1SkcLcs"
+      "hostID": "1SkcLcs",
+      "_id": "pH6uYt2QwNzC",
+      "activityCategory": {
+        "mainCategory": "Environmental Conservation",
+        "subCategory": "Wildlife Preservation"
+        }
     },
     {
       "title": "Food Bank Of Hawaii",
@@ -418,7 +564,12 @@
       "impact": "You'll help feed the homeless!",
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "1SkcLcs"
+      "hostID": "1SkcLcs",
+      "_id": "fV6qYn8UwDzS",
+      "activityCategory": {
+        "mainCategory": "Social Services",
+        "subCategory": "Homelessness"
+        }
     },
     {
       "title": "Elderly Home Talk",
@@ -446,7 +597,12 @@
       "impact": "You'll help take care of your local elderly",
       "hostBy": "Catholic Charities Hawaii",
       "hostType": "organization",
-      "hostID": "1SkcLcs"
+      "hostID": "1SkcLcs",
+      "_id": "sD3kFq5LmBvX",
+      "activityCategory": {
+        "mainCategory": "Community Development",
+        "subCategory": "Education"
+        }
     },
     {
       "title": "Food Packing",
@@ -475,7 +631,12 @@
       "impact": "You'll help feed the homeless!",
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "1SkcLcs"
+      "hostID": "1SkcLcs",
+      "_id": "cJ8yVr4HwNpZ",
+      "activityCategory": {
+        "mainCategory": "Social Services",
+        "subCategory": "Homelessness"
+        }
     }
   ]
 }

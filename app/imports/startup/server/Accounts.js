@@ -2,10 +2,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { ROLE } from '../../api/role/Role';
-import { Skills } from '../../api/skill/SkillCollection';
 import { AdminProfiles } from '../../api/user/AdminProfileCollection';
-import { UserProfiles } from '../../api/user/UserProfileCollection';
-
+import { createSkill, createUserProfile } from '../both/Methods';
 /* eslint-disable no-console */
 /* eslint-disable function-call-argument-newline */
 /* eslint-disable function-paren-newline */
@@ -14,13 +12,13 @@ Meteor.startup(function () {
   const settings = Meteor.settings.packages.email;
   process.env.MAIL_URL = `smtp://${settings.user}:${settings.password}@${settings.service}`;
   Accounts.config({ sendVerificationEmail: true });
-  console.log(`smtp://${encodeURIComponent(settings.user)}:${encodeURIComponent(settings.password)}@${settings.service}`);
+  // console.log(`smtp://${encodeURIComponent(settings.user)}:${encodeURIComponent(settings.password)}@${settings.service}`);
   Accounts.emailTemplates.verifyEmail = {
     from() {
       return 'Voluntree';
     },
     subject() {
-      return 'Verify Your Email Address';
+      return 'Verify Your EmailPage Address';
     },
     text(user, url) {
       const urlWithoutHash = url.replace('#/', '');
@@ -43,23 +41,15 @@ Meteor.startup(function () {
   };
 });
 
-function createUser(
-  email, firstName, lastName, password, image, phone, bookmarks,
-  viewingHistory, pastEvents, onGoingEvents, userActivity, role,
-  totalHours, address, zipCode, city, state, country, feedbacks, skills,
-  followers, organizationFollowed, memberOf, userID, privilege,
-) {
-  console.log(`  Creating user ${email} with role ${role}.`);
-  if (role === ROLE.ADMIN) {
-    AdminProfiles.define({ email, firstName, lastName, password });
+function createUser(data) {
+  console.log(`  Creating user ${data.email} with role ${data.role}.`);
+  if (data.role === ROLE.ADMIN) {
+    AdminProfiles.define({ email: data.email, firstName: data.firstName, lastName: data.lastName, password: data.password, userID: data.userID });
   } else { // everyone else is just a user.
-    UserProfiles.define({ email, firstName, lastName, password, image, phone, bookmarks,
-      viewingHistory, pastEvents, onGoingEvents, userActivity, role,
-      totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf, userID, privilege });
-    if (skills) {
-      skills.map(skill => Skills.define({ skill: skill }));
-      console.log(`skill added: ${skills}`);
+    Meteor.call(createUserProfile, data);
+    if (data.skills) {
+      data.skills.map(skill => Meteor.call(createSkill, { skill: skill }));
+      console.log(`skill added: ${data.skills}`);
     }
   }
 }
@@ -68,17 +58,7 @@ function createUser(
 if (Meteor.users.find().count() === 0) {
   if (Meteor.settings.defaultAccounts) {
     console.log('Creating the default user(s)');
-    Meteor.settings.defaultAccounts.forEach(({
-      email, firstName, lastName, password, image, phone, bookmarks,
-      viewingHistory, pastEvents, onGoingEvents, userActivity, role,
-      totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf, userID, privilege,
-    }) => createUser(
-      email, firstName, lastName, password, image, phone, bookmarks,
-      viewingHistory, pastEvents, onGoingEvents, userActivity, role,
-      totalHours, address, zipCode, city, state, country, feedbacks, skills,
-      followers, organizationFollowed, memberOf, userID, privilege,
-    ));
+    Meteor.settings.defaultAccounts.forEach((data) => createUser(data));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }

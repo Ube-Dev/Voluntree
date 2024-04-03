@@ -1,0 +1,24 @@
+.event-border {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+
+.event-image {
+  display: flex;
+  align-items: center;
+}
+
+.event-date {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.event-title {
+  font-size: 17px;
+  font-weight: bold;
+  color: #03A696;
+  font-weight: bold;
+  text-decoration: none;
+}

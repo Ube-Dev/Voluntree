@@ -7,6 +7,7 @@ import { ROLE } from '../role/Role';
 
 export const eventPublications = {
   event: 'Event',
+  singleEvent: 'singleEvent',
   eventAdmin: 'EventAdmin',
 };
 
@@ -33,12 +34,14 @@ class EventCollection extends BaseCollection {
       requirements: { type: Array, unique: true, optional: true, defaultValue: [] },
       'requirements.$': { type: String },
       impact: { type: String, optional: true, defaultValue: '' },
-      hostType: { type: String, allowedValues: ['individual', 'organization', 'school', 'community'], optional: true, defaultValue: 'individual' },
+      hostType: { type: String, allowedValues: ['individual', 'organization', 'school'], optional: true, defaultValue: 'individual' },
       hostBy: { type: String, defaultValue: '' }, // organization/individual name
       hostID: { type: String, defaultValue: '' }, // organization/individual ID
       phone: { type: String, optional: true, defaultValue: '' },
       activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], optional: true, defaultValue: 'in-person' },
-      activityCategory: { type: String, optional: true, defaultValue: 'general' },
+      activityCategory: { type: Object, optional: true },
+      'activityCategory.mainCategory': { type: String, defaultValue: 'Other' },
+      'activityCategory.subCategory': { type: String, defaultValue: 'Other' },
       address: { type: String, optional: true, defaultValue: '' },
       zipCode: { type: String, optional: true, defaultValue: '' },
       city: { type: String, optional: true, defaultValue: '' },
@@ -106,12 +109,12 @@ class EventCollection extends BaseCollection {
   update(docID, { title, image, description, location, time, frequency, accessibilities, requirements, impact,
     requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
     country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
-    startTime, endTime,
-  }) {
+    hostID, startTime, endTime }) {
+    this.assertDefined(docID);
     const updateData = { title, image, description, location, time, frequency, accessibilities, requirements, impact,
       requiredSkills, hostType, hostBy, phone, activityType, activityCategory, address, zipCode, city, state,
       country, totalSpots, spotsFilled, eventState, recruiting, equipments, equipmentsCount, canceledVolunteer,
-      startTime, endTime,
+      hostID, startTime, endTime,
     };
     // Map non undefined values to keys then insert.
     Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
@@ -142,7 +145,23 @@ class EventCollection extends BaseCollection {
       Meteor.publish(eventPublications.event, function publish() {
         return instance._collection.find();
       });
+      Meteor.publish(eventPublications.singleEvent, function publish(docID) {
+        check(docID, String);
+        return instance._collection.find({ _id: docID });
+      });
     }
+  }
+
+  /**
+   *
+   * @param {String} _id Takes in a single _id of this event.
+   * @returns A subscription, or NULL when not a client.
+   */
+  subscribeSingleEvent(docID) {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(eventPublications.singleEvent, docID);
+    }
+    return null;
   }
 
   /**

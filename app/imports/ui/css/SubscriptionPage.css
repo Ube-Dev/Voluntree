@@ -1,0 +1,35 @@
+.subscription-background {
+  background: url('/images/subscriptionPage/SubscribeBackground.png') fixed center;
+  background-size: cover;
+  color: white;
+  min-height: 75vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+}
+
+.header-card {
+  box-shadow: -7px 7px 0 var(--color3);
+}
+
+.card-membership {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  box-shadow: -7px 7px 0 var(--color3);
+  border-radius: 20px 20px 20px 20px !important;
+}
+
+.card-membership-sp {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  box-shadow: -7px 7px 0 gold;
+  border-radius: 20px 20px 20px 20px !important;
+}
+
+.yellow {
+  color: gold;
+}

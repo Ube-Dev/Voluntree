@@ -9,47 +9,45 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 const UserDashboard = () => {
   const { ready, userProfile } = useTracker(() => {
     const currentUser = Meteor.user(); // Retrieve the current user
-    const subscription = currentUser ? UserProfiles.subscribeUser() : null; // Subscribe to userProfile publication for the current user
-    const profile = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null; // Query user profile for the current user
+    const subscription = currentUser ? UserProfiles.subscribeSingleUser(currentUser._id) : null;
+    const profile = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null;
     return {
       ready: subscription ? subscription.ready() : false,
       userProfile: profile,
     };
   });
 
+  if (!ready) {
+    return <LoadingSpinner />;
+  }
+
   return (
-    ready ? (
-      <Container>
-        <Card>
-          <Card.Header>
-            <h2>Overview</h2>
-          </Card.Header>
-          <Card.Body className="d-flex flex-column align-items-start">
-            <Row>
-              <Col>
-                <Image src={userProfile.image} alt="Profile Image" style={{ width: '150px', height: '150px', borderRadius: '50%' }} />
-              </Col>
-              <Col>
-                <h4>{userProfile.firstName} {userProfile.lastName}</h4>
-                <p>Hours Recorded: {userProfile.totalHours}</p>
-              </Col>
-            </Row>
-          </Card.Body>
-          <Card.Footer className="d-flex justify-content-end p-2">
-            <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_PROFILE} className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
-              <a href="/profile" style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>View Profile</a>
-            </Button>
-            <Button id={COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE} className="mx-1" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
-              <a href={`/edit-user-profile/${userProfile._id}`} style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>Edit</a>
-            </Button>
-          </Card.Footer>
-        </Card>
-      </Container>
-    ) : (
-      <Container className="p-2">
-        <LoadingSpinner />
-      </Container>
-    )
+    <Container>
+      <Card>
+        <Card.Header>
+          <h2>Overview</h2>
+        </Card.Header>
+        <Card.Body className="d-flex flex-column align-items-start">
+          <Row>
+            <Col>
+              <Image src={userProfile?.image || '/path/to/default/profile/image.png'} alt="Profile Image" id="profile-img" />
+            </Col>
+            <Col>
+              {userProfile && (
+                <>
+                  <h4>{userProfile.firstName} {userProfile.lastName}</h4>
+                  <p>Hours Recorded: {userProfile.totalHours}</p>
+                </>
+              )}
+            </Col>
+          </Row>
+        </Card.Body>
+        <Card.Footer className="d-flex justify-content-end p-2">
+          <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_PROFILE} className="mx-1" href="/profile">View Profile</Button>
+          <Button id={COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE} className="mx-1" href={`/edit-user-profile/${userProfile?._id}`}>Edit</Button>
+        </Card.Footer>
+      </Card>
+    </Container>
   );
 };
 
