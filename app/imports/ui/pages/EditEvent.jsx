@@ -58,7 +58,7 @@ const formSchema = new SimpleSchema({
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddEvent page for adding a document. */
-const AddEvent = () => {
+const EditEvent = () => {
   // get event id
   const { _id } = useParams();
   const { ready, events } = useTracker(() => {
@@ -188,4 +188,4 @@ const AddEvent = () => {
   );
 };
 
-export default AddEvent;
+export default EditEvent;
