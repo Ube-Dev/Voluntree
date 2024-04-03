@@ -14,7 +14,7 @@ const EventCard = ({ event }) => (
         <Card.Title>{event.title}</Card.Title>
         <Card.Text>{event.city}</Card.Text>
         <Card.Text className="event-description">{event.description}</Card.Text>
-        <Link to="/"><Card.Text>{event.hostBy}</Card.Text></Link>
+        <Link className="host-link" to="/"><Card.Text>{event.hostBy}</Card.Text></Link>
       </Card.Body>
       <Card.Footer>
         <Row>
