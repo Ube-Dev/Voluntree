@@ -1,21 +1,16 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import { Container, Card, Button, ButtonGroup, Row, Col, Pagination } from 'react-bootstrap';
-import { TagFill } from 'react-bootstrap-icons';
+import React from 'react';
+import { Container, Button, Row } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
-import EventList from '../components/EventList';
 import '../css/AllEventPage.css';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { Events } from '../../api/event/EventCollection';
 import EventFilter from '../components/EventFilter';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const AllEventPage = () => {
   // apply filter to the entire page when a specific skill is clicked.
   // buttons inside <EventCard> will invoke this function.
-  const filterSkill = (skill) => {
-    // console.log('triggered');
-  };
 
   const { ready, events, categories } = useTracker(() => {
   // Get access to events
@@ -32,7 +27,7 @@ const AllEventPage = () => {
       ready: rdy,
     };
   }, []);
-  return (
+  return ready ? (
     <Container id={PAGE_IDS.EVENTS}>
       <Row className="justify-content-center text-center">
         <h1 className="ps-5 ms-5">Find Events</h1>
@@ -44,6 +39,8 @@ const AllEventPage = () => {
         <Button variant="outline-primary" href="/createOrganization">Create An Organization</Button>
       </Container>
     </Container>
+  ) : (
+    <LoadingSpinner />
   );
 };
 
