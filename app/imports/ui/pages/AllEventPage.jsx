@@ -24,7 +24,7 @@ const AllEventPage = () => {
     // Make sure its ready
     const rdy = subscription.ready() && subscription2.ready();
     // fetch all events and categories
-    const theEvents = Events.find({}).fetch();
+    const theEvents = Events.find({}).fetch().reverse();
     const theCategories = MainCategory.find({}).fetch();
     return {
       events: theEvents,
