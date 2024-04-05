@@ -12,6 +12,7 @@
     "meteor-node-stubs": "^1.2.5",
     "moment": "^2.29.4",
     "prop-types": "^15.7.2",
+    "qrcode": "^1.5.3",
     "react": "^18.0.0",
     "react-big-calendar": "^1.11.0",
     "react-bootstrap": "^2.8.0",

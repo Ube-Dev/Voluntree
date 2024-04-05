@@ -10,6 +10,7 @@ import UserDashboard from '../components/UserDashboard';
 import AdminDashboard from './AdminDashboard'; // Assuming this exists
 import UserCalendar from '../components/UserCalendar';
 import UpcomingEventCard from '../components/UpcomingEventCard';
+import QRCodeGenerator from '../components/QRCodeGenerator';
 
 const HomePage = () => {
   const { isAdmin, adminProfile } = useTracker(() => {
@@ -36,6 +37,7 @@ const HomePage = () => {
               <Container className="d-flex flex-column h-100">
                 <Row className="flex-grow-1">
                   <Col className="d-flex flex-column">
+                     <QRCodeGenerator />
                     <UpcomingEventCard />
                   </Col>
                 </Row>
