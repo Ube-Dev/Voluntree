@@ -22,14 +22,17 @@ const formSchema = new SimpleSchema({
   impact: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
   activityCategory: {
-    type: Array,
+    type: Object,
     optional: false,
     defaultValue: [],
   },
-  'activityCategory.$': {
+  'activityCategory.mainCategory': {
     type: String,
     optional: false,
-    allowedValues: [],
+  },
+  'activityCategory.subCategory': {
+    type: String,
+    optional: false,
   },
   address: { type: String, optional: false },
   zipCode: { type: String, optional: false },
@@ -109,7 +112,11 @@ const AddEvent = () => {
     const definitionData = { title, image, description, impact, totalSpots, activityType, activityCategory, hostBy, hostType, hostID, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
     Meteor.call(createEvent, definitionData, (error) => {
       if (error) {
-        swal('Error', error.message, 'error');
+        swal('Error', error.message, 'error')
+          .then(() => {
+            // Re-enable the submit button after catching an error
+            formRef.getModel().$set('$$submit', true);
+          });
       } else {
         swal('Success', `Successfully added ${title}`, 'success');
         formRef.reset();
@@ -162,10 +169,64 @@ const AddEvent = () => {
                     <hr />
                     <Row className="justify-content-center">
                       <Col md={4} lg={4}>
-                        <SelectField name="activityCategory" label="Main Category" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={categories} />
+                        <SelectField name="activityCategory.mainCategory" label="Main Category" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={categories} />
                       </Col>
                       <Col md={4} lg={4}>
-                        <SelectField name="activityCategory" label="Sub Category" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={subCategories} />
+                        <SelectField name="activityCategory.subCategory" label="Sub Category" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={subCategories} />
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+
+                <Card className="rounded-4 mt-3">
+                  <Card.Header className="section-header">Required Skills & Accessibilities</Card.Header>
+                  <Card.Body>
+                    <Row className="justify-content-center">
+                      <Col md={4} lg={4}>
+                        <SelectField name="requiredSkills" id={COMPONENT_IDS.ADD_EVENT_FORM_REQUIRED_SKILLS} />
+                      </Col>
+                      <Col md={4} lg={4}>
+                        <SelectField name="accessibilities" id={COMPONENT_IDS.ADD_EVENT_FORM_ACCESSIBILITIES} />
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+
+                <Card className="rounded-4 mt-3">
+                  <Card.Header className="section-header">Location</Card.Header>
+                  <Card.Body>
+                    <Row>
+                      <Col md={12}>
+                        <TextField name="address" id={COMPONENT_IDS.ADD_EVENT_FORM_ADDRESS} />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={3}>
+                        <TextField name="zipCode" id={COMPONENT_IDS.ADD_EVENT_FORM_ZIPCODE} />
+                      </Col>
+                      <Col md={3}>
+                        <TextField name="city" id={COMPONENT_IDS.ADD_EVENT_FORM_CITY} />
+                      </Col>
+                      <Col md={3}>
+                        <TextField name="state" id={COMPONENT_IDS.ADD_EVENT_FORM_STATE} />
+                      </Col>
+                      <Col md={3}>
+                        <TextField name="country" id={COMPONENT_IDS.ADD_EVENT_FORM_COUNTRY} />
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+
+                <Card className="rounded-4 mt-3">
+                  <Card.Header className="section-header">Time of Event</Card.Header>
+                  <Card.Body>
+                    <Row>
+                      <Col>
+                        <DateField name="startTime" id={COMPONENT_IDS.ADD_EVENT_FORM_START_DATE} />
+                        <DateField name="endTime" id={COMPONENT_IDS.ADD_EVENT_FORM_END_DATE} />
+                      </Col>
+                      <Col>
+                        <SelectField name="frequency" id={COMPONENT_IDS.ADD_EVENT_FORM_FREQUENCY} />
                       </Col>
                     </Row>
                   </Card.Body>
@@ -195,57 +256,6 @@ const AddEvent = () => {
                       <Col>
                         <h4>Contact Information:</h4>
                         <h5>{selectedOrganization ? selectedOrganization.phone : <br />}</h5>
-                      </Col>
-                    </Row>
-                  </Card.Body>
-                </Card>
-                <Card className="rounded-4 mt-3">
-                  <Card.Header className="section-header">Location</Card.Header>
-                  <Card.Body>
-                    <Row>
-                      <Col md={12}>
-                        <TextField name="address" id={COMPONENT_IDS.ADD_EVENT_FORM_ADDRESS} />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md={3}>
-                        <TextField name="zipCode" id={COMPONENT_IDS.ADD_EVENT_FORM_ZIPCODE} />
-                      </Col>
-                      <Col md={3}>
-                        <TextField name="city" id={COMPONENT_IDS.ADD_EVENT_FORM_CITY} />
-                      </Col>
-                      <Col md={3}>
-                        <TextField name="state" id={COMPONENT_IDS.ADD_EVENT_FORM_STATE} />
-                      </Col>
-                      <Col md={3}>
-                        <TextField name="country" id={COMPONENT_IDS.ADD_EVENT_FORM_COUNTRY} />
-                      </Col>
-                    </Row>
-                  </Card.Body>
-                </Card>
-                <Card className="rounded-4 mt-3">
-                  <Card.Header className="section-header">Time of Event</Card.Header>
-                  <Card.Body>
-                    <Row>
-                      <Col>
-                        <DateField name="startTime" id={COMPONENT_IDS.ADD_EVENT_FORM_START_DATE} />
-                        <DateField name="endTime" id={COMPONENT_IDS.ADD_EVENT_FORM_END_DATE} />
-                      </Col>
-                      <Col>
-                        <SelectField name="frequency" id={COMPONENT_IDS.ADD_EVENT_FORM_FREQUENCY} />
-                      </Col>
-                    </Row>
-                  </Card.Body>
-                </Card>
-                <Card className="rounded-4 mt-3">
-                  <Card.Header className="section-header">Required Skills & Accessibilities</Card.Header>
-                  <Card.Body>
-                    <Row className="justify-content-center">
-                      <Col md={4} lg={4}>
-                        <SelectField name="requiredSkills" id={COMPONENT_IDS.ADD_EVENT_FORM_REQUIRED_SKILLS} />
-                      </Col>
-                      <Col md={4} lg={4}>
-                        <SelectField name="accessibilities" id={COMPONENT_IDS.ADD_EVENT_FORM_ACCESSIBILITIES} />
                       </Col>
                     </Row>
                   </Card.Body>
