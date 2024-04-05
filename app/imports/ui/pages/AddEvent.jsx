@@ -11,6 +11,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
+import { SubCategory } from '../../api/category/SubCategoryCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 // Create a schema to specify the structure of the data to appear in the form.
@@ -68,17 +69,20 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddEvent page for adding a document. */
 const AddEvent = () => {
-  // Subscribe to the organization publication for the current user
-  const { ready, organization, categories } = useTracker(() => {
+// Subscribe to the organization publication for the current user
+  const { ready, organization, categories, subCategories } = useTracker(() => {
     const currentUser = Meteor.user()._id; // Retrieve the current user
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication for the current user
     const subscription2 = MainCategory.subscribeMainCategory(); // Subscribe to the main category publication
-    const rdy = subscription.ready() && subscription2.ready(); // Check if the subscription is ready
+    const subscription3 = SubCategory.subscribeSubCategory(); // Subscribe to the sub category publication
+    const rdy = subscription.ready() && subscription2.ready() && subscription3.ready(); // Check if the subscription is ready
     const profile = Organization.find({ leader: currentUser }).fetch(); // Query user profile for the current user
     const mainCategory = MainCategory.find({}).fetch(); // Query main category
+    const subCategoryData = SubCategory.find({}).fetch(); // Query sub category
     return {
       ready: rdy,
       categories: mainCategory.map(category => category.category), // Extract category names
+      subCategories: subCategoryData.map(subCategory => subCategory.category), // Extract sub category names
       organization: profile,
     };
   });
@@ -154,9 +158,14 @@ const AddEvent = () => {
                 <Card className="rounded-4 mt-3">
                   <Card.Header className="section-header">Category</Card.Header>
                   <Card.Body>
-                    <Row>
+                    <p>Choose a category and sub-category that best matches your event.</p>
+                    <hr />
+                    <Row className="justify-content-center">
                       <Col md={4} lg={4}>
-                        <SelectField name="activityCategory" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={categories} />
+                        <SelectField name="activityCategory" label="Main Category" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={categories} />
+                      </Col>
+                      <Col md={4} lg={4}>
+                        <SelectField name="activityCategory" label="Sub Category" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={subCategories} />
                       </Col>
                     </Row>
                   </Card.Body>
