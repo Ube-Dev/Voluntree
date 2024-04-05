@@ -158,6 +158,36 @@ const EditEvent = () => {
               </Card>
 
               <Card className="rounded-4 mt-3">
+                <Card.Header className="section-header">Category</Card.Header>
+                <Card.Body>
+                  <p>Choose a category and sub-category that best matches your event.</p>
+                  <hr />
+                  <Row className="justify-content-center">
+                    <Col md={4} lg={4}>
+                      <SelectField name="activityCategory.mainCategory" label="Main Category" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={categories} />
+                    </Col>
+                    <Col md={4} lg={4}>
+                      <SelectField name="activityCategory.subCategory" label="Sub Category" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={subCategories} />
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+
+              <Card className="rounded-4 mt-3">
+                <Card.Header className="section-header">Required Skills & Accessibilities</Card.Header>
+                <Card.Body>
+                  <Row className="justify-content-center">
+                    <Col md={4} lg={4}>
+                      <SelectField name="requiredSkills" id={COMPONENT_IDS.ADD_EVENT_FORM_REQUIRED_SKILLS} />
+                    </Col>
+                    <Col md={4} lg={4}>
+                      <SelectField name="accessibilities" id={COMPONENT_IDS.ADD_EVENT_FORM_ACCESSIBILITIES} />
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+
+              <Card className="rounded-4 mt-3">
                 <Card.Header className="section-header">Location</Card.Header>
                 <Card.Body>
                   <Row>
@@ -192,20 +222,6 @@ const EditEvent = () => {
                     </Col>
                     <Col>
                       <SelectField name="frequency" id={COMPONENT_IDS.ADD_EVENT_FORM_FREQUENCY} />
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-
-              <Card className="rounded-4 mt-3">
-                <Card.Header className="section-header">Required Skills & Accessibilities</Card.Header>
-                <Card.Body>
-                  <Row className="justify-content-center">
-                    <Col md={4} lg={4}>
-                      <SelectField name="requiredSkills" id={COMPONENT_IDS.ADD_EVENT_FORM_REQUIRED_SKILLS} />
-                    </Col>
-                    <Col md={4} lg={4}>
-                      <SelectField name="accessibilities" id={COMPONENT_IDS.ADD_EVENT_FORM_ACCESSIBILITIES} />
                     </Col>
                   </Row>
                 </Card.Body>
