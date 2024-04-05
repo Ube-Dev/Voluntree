@@ -12,6 +12,8 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { Events } from '../../api/event/EventCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { MainCategory } from '../../api/category/MainCategoryCollection';
+import { SubCategory } from '../../api/category/SubCategoryCollection';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -20,7 +22,19 @@ const formSchema = new SimpleSchema({
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
-  activityCategory: { type: String, optional: true },
+  activityCategory: {
+    type: Object,
+    optional: false,
+    defaultValue: [],
+  },
+  'activityCategory.mainCategory': {
+    type: String,
+    optional: false,
+  },
+  'activityCategory.subCategory': {
+    type: String,
+    optional: false,
+  },
   address: { type: String, optional: false },
   zipCode: { type: String, optional: false },
   city: { type: String, optional: false },
@@ -59,12 +73,18 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 const EditEvent = () => {
   const { _id } = useParams();
-  const { ready, events } = useTracker(() => {
+  const { ready, events, categories, subCategories } = useTracker(() => {
     const subscription = Events.subscribeEvent();
-    const rdy = subscription.ready();
+    const subscription2 = MainCategory.subscribeMainCategory(); // Subscribe to the main category publication
+    const subscription3 = SubCategory.subscribeSubCategory(); // Subscribe to the sub category publication
+    const rdy = subscription.ready() && subscription2.ready() && subscription3.ready();
     const theEvents = Events.findOne(_id);
+    const mainCategory = MainCategory.find({}).fetch(); // Query main category
+    const subCategoryData = SubCategory.find({}).fetch(); // Query sub category
     return {
       events: theEvents,
+      categories: mainCategory.map(category => category.category),
+      subCategories: subCategoryData.map(subCategory => subCategory.category),
       ready: rdy,
     };
   }, []);
