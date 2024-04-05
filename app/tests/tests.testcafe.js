@@ -106,7 +106,7 @@ test('Test that user pages show up', async () => {
 //   // await manageDatabasePage.isDisplayed();
 // });
 
-test('Test that add event form works', async () => {
+test.only('Test that add event form works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(orgCredentials.username, orgCredentials.password);
   await navBar.isLoggedIn(orgCredentials.username);

@@ -19,6 +19,7 @@ export const COMPONENT_IDS = {
   NAVBAR_ADMIN_PAGE: 'navbar-admin',
   NAVBAR_SIGN_OUT_PAGE: 'navbar-sign-out',
   NAVBAR_USER_PROFILE_PAGE: 'navbar-user-profile',
+
   SIGN_IN_FORM_EMAIL: 'sign-in-form-email',
   SIGN_IN_FORM_PASSWORD: 'sign-in-form-password',
   SIGN_IN_FORM_SUBMIT: 'sign-in-form-submit',
@@ -29,12 +30,15 @@ export const COMPONENT_IDS = {
   SIGN_UP_FORM_ORGANIZATION_ID: 'sign-up-form-organization-id',
   SIGN_UP_FORM_NAME: 'sign-up-form-name',
   SIGN_UP_FORM_SUBMIT: 'sign-up-form-submit',
+
   ADD_EVENT_FORM_TITLE: 'add-event-form-title',
   ADD_EVENT_FORM_IMAGE: 'add-event-form-image',
   ADD_EVENT_FORM_DESCRIPTION: 'add-event-form-description',
   ADD_EVENT_FORM_IMPACT: 'add-event-form-impact',
   ADD_EVENT_FORM_TOTAL_SPOTS: 'add-event-form-total-spots',
   ADD_EVENT_FORM_ACTIVITY_TYPE: 'add-event-form-activity-type',
+  ADD_EVENT_FORM_MAINCATEGORY: 'add-event-form-maincategory',
+  ADD_EVENT_FORM_SUBCATEGORY: 'add-event-form-subcategory',
   ADD_EVENT_FORM_HOSTED_BY: 'add-event-form-hosted-by',
   ADD_EVENT_FORM_HOST_TYPE: 'add-event-form-host-type',
   ADD_EVENT_FORM_HOST_PHONE: 'add-event-form-host-phone',
@@ -49,11 +53,13 @@ export const COMPONENT_IDS = {
   ADD_EVENT_FORM_REQUIRED_SKILLS: 'add-event-form-required-skills',
   ADD_EVENT_FORM_ACCESSIBILITIES: 'add-event-form-accessibilities',
   ADD_EVENT_FORM_SUBMIT: 'add-event-form-submit',
+
   EVENTS_SEARCHBAR: 'events-searchbar',
   UPCOMING_EVENT_CARD_FIND_EVENTS: 'upcoming-event-card-find-events',
   USER_DASHBOARD_VIEW_PROFILE: 'user-dashboard-view-profile',
   USER_DASHBOARD_EDIT_PROFILE: 'user-dashboard-edit-profile',
   USER_PROFILE_EDIT_PROFILE: 'user-profile-edit-profile',
+
   EDIT_USER_PROFILE_FIRST_NAME: 'edit-user-profile-first-name',
   EDIT_USER_PROFILE_LAST_NAME: 'edit-user-profile-last-name',
   EDIT_USER_PROFILE_PROFILE_PICTURE_URL: 'edit-user-profile-profile-picture-url',

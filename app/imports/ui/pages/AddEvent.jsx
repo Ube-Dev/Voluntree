@@ -169,10 +169,10 @@ const AddEvent = () => {
                     <hr />
                     <Row className="justify-content-center">
                       <Col md={4} lg={4}>
-                        <SelectField name="activityCategory.mainCategory" label="Main Category" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={categories} />
+                        <SelectField name="activityCategory.mainCategory" label="Main Category" id={COMPONENT_IDS.ADD_EVENT_FORM_MAINCATEGORY} allowedValues={categories} />
                       </Col>
                       <Col md={4} lg={4}>
-                        <SelectField name="activityCategory.subCategory" label="Sub Category" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_CATEGORY} allowedValues={subCategories} />
+                        <SelectField name="activityCategory.subCategory" label="Sub Category" id={COMPONENT_IDS.ADD_EVENT_FORM_SUBCATEGORY} allowedValues={subCategories} />
                       </Col>
                     </Row>
                   </Card.Body>
