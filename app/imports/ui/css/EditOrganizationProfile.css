@@ -1,6 +1,5 @@
 /* Styling only for EditOrganizationProfile.jsx page */
 
-/* editCSS: styling for edit profile forms */
 .edit-org-form .card {
   background-color: var(--color1) !important;
   color: white;
