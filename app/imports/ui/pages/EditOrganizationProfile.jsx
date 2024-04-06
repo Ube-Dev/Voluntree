@@ -59,13 +59,13 @@ const EditOrganizationProfile = () => {
       { contactEmail, name, image, mission, type, phone, hasPhysicalAddress, address, zipCode, city, state, country },
       (error) => (error ?
         swal('Error', error.message, 'error') :
-        swal('Success', 'Profile updated successfully.', 'success')
+        swal('Success', 'Organization profile updated successfully.', 'success')
       ),
     );
   };
 
   return ready ? (
-    <Container id={PAGE_IDS.EDIT_USER_PROFILE} fluid className="py-3 edit-org-form color2">
+    <Container id={PAGE_IDS.EDIT_ORGANIZATION_PROFILE} fluid className="py-3 edit-org-form color2">
       <Container className="mb-5 mt-3">
         <Row className="justify-content-center">
           <Col md={8} xs={12}>
@@ -76,30 +76,30 @@ const EditOrganizationProfile = () => {
                 <Card.Body>
                   <Row>
                     <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_NAME} name="name" placeholder="Name" />
+                      <TextField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_NAME} name="name" placeholder="Name" />
                     </Col>
                     <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_IMAGE} name="image" placeholder="Image" label="Image URL" required />
-                    </Col>
-                  </Row>
-                  <LongTextField id={COMPONENT_IDS.SIGN_UP_FORM_MISSION} name="mission" placeholder="Mission" />
-                  <Row>
-                    <Col>
-                      <SelectField id={COMPONENT_IDS.SIGN_UP_FORM_TYPE} name="type" placeholder="Type" />
-                    </Col>
-                    <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PHONE} name="phone" placeholder="Phone" />
+                      <TextField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_IMAGE} name="image" placeholder="Image" label="Image URL" required />
                     </Col>
                   </Row>
+                  <LongTextField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_MISSION} name="mission" placeholder="Mission" />
                   <Row>
                     <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="contactEmail" placeholder="Email" />
+                      <SelectField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_TYPE} name="type" placeholder="Type" />
+                    </Col>
+                    <Col>
+                      <TextField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_PHONE} name="phone" placeholder="Phone" />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <TextField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_CONTACT_EMAIL} name="contactEmail" placeholder="Email" />
                     </Col>
                     <Col>
                       <label htmlFor="hasPhysicalAddress">Has Physical Address?
                         <input
                           type="checkbox"
-                          id={COMPONENT_IDS.SIGN_UP_FORM_HAS_PHYSICAL_ADDRESS}
+                          id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_HAS_PHYSICAL_ADDRESS}
                           name="hasPhysicalAddress"
                           checked={hasAddress}
                           onChange={() => setHasAddress(!hasAddress)}
@@ -112,7 +112,7 @@ const EditOrganizationProfile = () => {
                 {!hasAddress && (
                   <Card.Footer>
                     <ErrorsField />
-                    <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
+                    <SubmitField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_SUBMIT} />
                   </Card.Footer>
                 )}
               </Card>
@@ -121,28 +121,28 @@ const EditOrganizationProfile = () => {
                   <Card.Header className="section-header">Location</Card.Header>
                   <Card.Body>
                     <Row>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ADDRESS} name="address" placeholder="Address" />
+                      <TextField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_ADDRESS} name="address" placeholder="Address" />
                     </Row>
                     <Row>
                       <Col>
-                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_CITY} name="city" placeholder="City" />
+                        <TextField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_CITY} name="city" placeholder="City" />
                       </Col>
                       <Col>
-                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_STATE} name="state" placeholder="State" />
+                        <TextField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_STATE} name="state" placeholder="State" />
                       </Col>
                       <Col>
-                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
+                        <TextField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
                       </Col>
                     </Row>
                     <Row>
                       <Col md={12}>
-                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_COUNTRY} name="country" placeholder="Country" />
+                        <TextField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_COUNTRY} name="country" placeholder="Country" />
                       </Col>
                     </Row>
                   </Card.Body>
                   <Card.Footer>
                     <ErrorsField />
-                    <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
+                    <SubmitField id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_SUBMIT} />
                   </Card.Footer>
                 </Card>
               )}

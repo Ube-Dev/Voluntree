@@ -97,4 +97,18 @@ export const COMPONENT_IDS = {
   EDIT_USER_PROFILE_COUNTRY: 'edit-user-profile-country',
   EDIT_USER_PROFILE_ZIP_CODE: 'edit-user-profile-zip-code',
   EDIT_USER_PROFILE_SUBMIT: 'edit-user-profile-submit',
+
+  EDIT_ORGANIZATION_PROFILE_NAME: 'edit-organization-profile-name',
+  EDIT_ORGANIZATION_PROFILE_IMAGE: 'edit-organization-profile-image',
+  EDIT_ORGANIZATION_PROFILE_MISSION: 'edit-organization-profile-mission',
+  EDIT_ORGANIZATION_PROFILE_TYPE: 'edit-organization-profile-type',
+  EDIT_ORGANIZATION_PROFILE_PHONE: 'edit-organization-profile-phone',
+  EDIT_ORGANIZATION_PROFILE_CONTACT_EMAIL: 'edit-organization-profile-contact-email',
+  EDIT_ORGANIZATION_PROFILE_HAS_PHYSICAL_ADDRESS: 'edit-organization-profile-has-physical-address',
+  EDIT_ORGANIZATION_PROFILE_ADDRESS: 'edit-organization-profile-address',
+  EDIT_ORGANIZATION_PROFILE_CITY: 'edit-organization-profile-city',
+  EDIT_ORGANIZATION_PROFILE_STATE: 'edit-organization-profile-state',
+  EDIT_ORGANIZATION_PROFILE_ZIP_CODE: 'edit-organization-profile-zip-code',
+  EDIT_ORGANIZATION_PROFILE_COUNTRY: 'edit-organization-profile-country',
+  EDIT_ORGANIZATION_PROFILE_SUBMIT: 'edit-organization-profile-submit',
 };
