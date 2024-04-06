@@ -262,10 +262,15 @@ body {
   padding-left: 15px !important;
   padding-right: 15px !important;
 }
-
+.scrollModal
+{
+  overflow-y: scroll;
+  max-height: 50vh;
+}
 /* Styling for profile image in Home page */
 #profile-img {
   width: 150px;
   height: 150px;
   border-radius: 50%;
 }
+
