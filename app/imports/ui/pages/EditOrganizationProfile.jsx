@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import swal from 'sweetalert';
-import { Alert, Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { AutoForm, ErrorsField, LongTextField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
@@ -13,6 +13,7 @@ import { Organization } from '../../api/organization/OrganizationCollection';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { updateOrganization } from '../../startup/both/Methods';
+import '../css/EditOrganizationProfile.css';
 
 const updateSchema = new SimpleSchema({
   name: { type: String, optional: false },
@@ -64,7 +65,7 @@ const EditOrganizationProfile = () => {
   };
 
   return ready ? (
-    <Container id={PAGE_IDS.EDIT_USER_PROFILE} fluid className="py-3 editCSS color2">
+    <Container id={PAGE_IDS.EDIT_USER_PROFILE} fluid className="py-3 edit-org-form color2">
       <Container className="mb-5 mt-3">
         <Row className="justify-content-center">
           <Col md={8} xs={12}>
@@ -119,17 +120,21 @@ const EditOrganizationProfile = () => {
                 <Card className="mt-3 rounded-4">
                   <Card.Header className="section-header">Location</Card.Header>
                   <Card.Body>
-                    <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ADDRESS} name="address" placeholder="Address" />
                     <Row>
-                      <Col md={12}>
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ADDRESS} name="address" placeholder="Address" />
+                    </Row>
+                    <Row>
+                      <Col>
                         <TextField id={COMPONENT_IDS.SIGN_UP_FORM_CITY} name="city" placeholder="City" />
                       </Col>
-                      <Col md={12}>
+                      <Col>
                         <TextField id={COMPONENT_IDS.SIGN_UP_FORM_STATE} name="state" placeholder="State" />
                       </Col>
-                      <Col md={12}>
+                      <Col>
                         <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
                       </Col>
+                    </Row>
+                    <Row>
                       <Col md={12}>
                         <TextField id={COMPONENT_IDS.SIGN_UP_FORM_COUNTRY} name="country" placeholder="Country" />
                       </Col>
@@ -142,10 +147,10 @@ const EditOrganizationProfile = () => {
                 </Card>
               )}
             </AutoForm>
-            <Alert variant="secondary">
-              <Link to="/dashboard"><Button>Return to Dashboard</Button></Link>
-            </Alert>
           </Col>
+        </Row>
+        <Row className="pt-4 text-center">
+          <Link to="/dashboard"><Button>Return to Dashboard</Button></Link>
         </Row>
       </Container>
     </Container>
