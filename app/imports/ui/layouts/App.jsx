@@ -30,6 +30,7 @@ import MyEventPage from '../pages/MyEventPage';
 import VerifyEmailPage from '../pages/verifyEmailPage';
 import ResetPasswordPage from '../pages/ResetPassword';
 import SubscriptionPage from '../pages/SubscriptionPage';
+import EditOrganizationProfile from '../pages/EditOrganizationProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -62,6 +63,7 @@ const App = () => {
           <Route path="/dashboard" element={<OrganizationProtectedRoute ready={ready}><Dashboard /></OrganizationProtectedRoute>} />
           <Route path="/add-event" element={<OrganizationProtectedRoute ready={ready}><AddEvent /></OrganizationProtectedRoute>} />
           <Route path="/edit-event/:_id" element={<OrganizationProtectedRoute ready={ready}><EditEvent /></OrganizationProtectedRoute>} />
+          <Route path="/edit-organization-profile/:_id" element={<ProtectedRoute><EditOrganizationProfile /></ProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
