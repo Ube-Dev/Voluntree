@@ -52,6 +52,8 @@ export const COMPONENT_IDS = {
   ADD_EVENT_FORM_FREQUENCY: 'add-event-form-frequency',
   ADD_EVENT_FORM_REQUIRED_SKILLS: 'add-event-form-required-skills',
   ADD_EVENT_FORM_ACCESSIBILITIES: 'add-event-form-accessibilities',
+  ADD_EVENT_FORM_NEXT_PAGE: 'add-event-form-next-page',
+  ADD_EVENT_FORM_PREVIOUS_PAGE: 'add-event-form-previous-page',
   ADD_EVENT_FORM_SUBMIT: 'add-event-form-submit',
 
   EDIT_EVENT_FORM_TITLE: 'edit-event-form-title',
