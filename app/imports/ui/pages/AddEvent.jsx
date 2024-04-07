@@ -10,6 +10,8 @@ import { createEvent } from '../../startup/both/Methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { Organization } from '../../api/organization/OrganizationCollection';
+import { MainCategory } from '../../api/category/MainCategoryCollection';
+import { SubCategory } from '../../api/category/SubCategoryCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 // Create a schema to specify the structure of the data to appear in the form.
@@ -19,7 +21,19 @@ const formSchema = new SimpleSchema({
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
-  activityCategory: { type: String, optional: true },
+  activityCategory: {
+    type: Object,
+    optional: false,
+    defaultValue: [],
+  },
+  'activityCategory.mainCategory': {
+    type: String,
+    optional: false,
+  },
+  'activityCategory.subCategory': {
+    type: String,
+    optional: false,
+  },
   address: { type: String, optional: false },
   zipCode: { type: String, optional: false },
   city: { type: String, optional: false },
@@ -58,13 +72,20 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddEvent page for adding a document. */
 const AddEvent = () => {
-  // Subscribe to the organization publication for the current user
-  const { ready, organization } = useTracker(() => {
+// Subscribe to the organization publication for the current user
+  const { ready, organization, categories, subCategories } = useTracker(() => {
     const currentUser = Meteor.user()._id; // Retrieve the current user
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication for the current user
+    const subscription2 = MainCategory.subscribeMainCategory(); // Subscribe to the main category publication
+    const subscription3 = SubCategory.subscribeSubCategory(); // Subscribe to the sub category publication
+    const rdy = subscription.ready() && subscription2.ready() && subscription3.ready(); // Check if the subscription is ready
     const profile = Organization.find({ leader: currentUser }).fetch(); // Query user profile for the current user
+    const mainCategory = MainCategory.find({}).fetch(); // Query main category
+    const subCategoryData = SubCategory.find({}).fetch(); // Query sub category
     return {
-      ready: subscription ? subscription.ready() : false,
+      ready: rdy,
+      categories: mainCategory.map(category => category.category), // Extract category names
+      subCategories: subCategoryData.map(subCategory => subCategory.category), // Extract sub category names
       organization: profile,
     };
   });
@@ -83,15 +104,19 @@ const AddEvent = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, image, description, impact, totalSpots, activityType, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
+    const { title, image, description, impact, totalSpots, activityType, activityCategory, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
     const hostBy = selectedOrganization.name; // _id
     const hostType = selectedOrganization ? 'organization' : 'individual'; // ['individual', 'organization', 'school']
     const hostID = selectedOrganization ? selectedOrganization._id : Meteor.userId(); // _id, this is required
     const phone = selectedOrganization.phone;
-    const definitionData = { title, image, description, impact, totalSpots, activityType, hostBy, hostType, hostID, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
+    const definitionData = { title, image, description, impact, totalSpots, activityType, activityCategory, hostBy, hostType, hostID, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
     Meteor.call(createEvent, definitionData, (error) => {
       if (error) {
-        swal('Error', error.message, 'error');
+        swal('Error', error.message, 'error')
+          .then(() => {
+            // Re-enable the submit button after catching an error
+            formRef.getModel().$set('$$submit', true);
+          });
       } else {
         swal('Success', `Successfully added ${title}`, 'success');
         formRef.reset();
@@ -136,34 +161,37 @@ const AddEvent = () => {
                     </Row>
                   </Card.Body>
                 </Card>
+
                 <Card className="rounded-4 mt-3">
-                  <Card.Header className="section-header">Host Details</Card.Header>
+                  <Card.Header className="section-header">Category</Card.Header>
                   <Card.Body>
-                    <Row>
-                      <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                          My Organizations
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
-                      </Dropdown>
-                    </Row>
+                    <p>Choose a category and sub-category that best matches your event.</p>
                     <hr />
-                    <Row>
-                      <h4>Organization:</h4>
-                      <h5>{selectedOrganization ? selectedOrganization.name : <br />}</h5>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <h4>Organization Type:</h4>
-                        <h5>{selectedOrganization ? selectedOrganization.type : <br />}</h5>
+                    <Row className="justify-content-center">
+                      <Col md={4} lg={4}>
+                        <SelectField name="activityCategory.mainCategory" label="Main Category" id={COMPONENT_IDS.ADD_EVENT_FORM_MAINCATEGORY} allowedValues={categories} />
                       </Col>
-                      <Col>
-                        <h4>Contact Information:</h4>
-                        <h5>{selectedOrganization ? selectedOrganization.phone : <br />}</h5>
+                      <Col md={4} lg={4}>
+                        <SelectField name="activityCategory.subCategory" label="Sub Category" id={COMPONENT_IDS.ADD_EVENT_FORM_SUBCATEGORY} allowedValues={subCategories} />
                       </Col>
                     </Row>
                   </Card.Body>
                 </Card>
+
+                <Card className="rounded-4 mt-3">
+                  <Card.Header className="section-header">Required Skills & Accessibilities</Card.Header>
+                  <Card.Body>
+                    <Row className="justify-content-center">
+                      <Col md={4} lg={4}>
+                        <SelectField name="requiredSkills" id={COMPONENT_IDS.ADD_EVENT_FORM_REQUIRED_SKILLS} />
+                      </Col>
+                      <Col md={4} lg={4}>
+                        <SelectField name="accessibilities" id={COMPONENT_IDS.ADD_EVENT_FORM_ACCESSIBILITIES} />
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
+
                 <Card className="rounded-4 mt-3">
                   <Card.Header className="section-header">Location</Card.Header>
                   <Card.Body>
@@ -188,6 +216,7 @@ const AddEvent = () => {
                     </Row>
                   </Card.Body>
                 </Card>
+
                 <Card className="rounded-4 mt-3">
                   <Card.Header className="section-header">Time of Event</Card.Header>
                   <Card.Body>
@@ -202,15 +231,31 @@ const AddEvent = () => {
                     </Row>
                   </Card.Body>
                 </Card>
+
                 <Card className="rounded-4 mt-3">
-                  <Card.Header className="section-header">Required Skills & Accessibilities</Card.Header>
+                  <Card.Header className="section-header">Host Details</Card.Header>
                   <Card.Body>
-                    <Row className="justify-content-center">
-                      <Col md={4} lg={4}>
-                        <SelectField name="requiredSkills" id={COMPONENT_IDS.ADD_EVENT_FORM_REQUIRED_SKILLS} />
+                    <Row>
+                      <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                          My Organizations
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
+                      </Dropdown>
+                    </Row>
+                    <hr />
+                    <Row>
+                      <h4>Organization:</h4>
+                      <h5>{selectedOrganization ? selectedOrganization.name : <br />}</h5>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <h4>Organization Type:</h4>
+                        <h5>{selectedOrganization ? selectedOrganization.type : <br />}</h5>
                       </Col>
-                      <Col md={4} lg={4}>
-                        <SelectField name="accessibilities" id={COMPONENT_IDS.ADD_EVENT_FORM_ACCESSIBILITIES} />
+                      <Col>
+                        <h4>Contact Information:</h4>
+                        <h5>{selectedOrganization ? selectedOrganization.phone : <br />}</h5>
                       </Col>
                     </Row>
                   </Card.Body>

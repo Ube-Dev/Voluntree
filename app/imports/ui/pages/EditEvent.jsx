@@ -12,6 +12,8 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { Events } from '../../api/event/EventCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { MainCategory } from '../../api/category/MainCategoryCollection';
+import { SubCategory } from '../../api/category/SubCategoryCollection';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -20,7 +22,19 @@ const formSchema = new SimpleSchema({
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
-  activityCategory: { type: String, optional: true },
+  activityCategory: {
+    type: Object,
+    optional: false,
+    defaultValue: [],
+  },
+  'activityCategory.mainCategory': {
+    type: String,
+    optional: false,
+  },
+  'activityCategory.subCategory': {
+    type: String,
+    optional: false,
+  },
   address: { type: String, optional: false },
   zipCode: { type: String, optional: false },
   city: { type: String, optional: false },
@@ -59,12 +73,18 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 const EditEvent = () => {
   const { _id } = useParams();
-  const { ready, events } = useTracker(() => {
+  const { ready, events, categories, subCategories } = useTracker(() => {
     const subscription = Events.subscribeEvent();
-    const rdy = subscription.ready();
+    const subscription2 = MainCategory.subscribeMainCategory(); // Subscribe to the main category publication
+    const subscription3 = SubCategory.subscribeSubCategory(); // Subscribe to the sub category publication
+    const rdy = subscription.ready() && subscription2.ready() && subscription3.ready();
     const theEvents = Events.findOne(_id);
+    const mainCategory = MainCategory.find({}).fetch(); // Query main category
+    const subCategoryData = SubCategory.find({}).fetch(); // Query sub category
     return {
       events: theEvents,
+      categories: mainCategory.map(category => category.category),
+      subCategories: subCategoryData.map(subCategory => subCategory.category),
       ready: rdy,
     };
   }, []);
@@ -118,60 +138,36 @@ const EditEvent = () => {
                 <Card.Body>
                   <Row>
                     <Col>
-                      <TextField name="title" id={COMPONENT_IDS.ADD_EVENT_FORM_TITLE} />
+                      <TextField name="title" id={COMPONENT_IDS.EDIT_EVENT_FORM_TITLE} />
                     </Col>
                     <Col>
-                      <TextField name="image" id={COMPONENT_IDS.ADD_EVENT_FORM_IMAGE} />
+                      <TextField name="image" id={COMPONENT_IDS.EDIT_EVENT_FORM_IMAGE} />
                     </Col>
                   </Row>
-                  <LongTextField name="description" placeholder="What's happening?" id={COMPONENT_IDS.ADD_EVENT_FORM_DESCRIPTION} />
-                  <LongTextField name="impact" placeholder="How will this help?" id={COMPONENT_IDS.ADD_EVENT_FORM_IMPACT} />
+                  <LongTextField name="description" placeholder="What's happening?" id={COMPONENT_IDS.EDIT_EVENT_FORM_DESCRIPTION} />
+                  <LongTextField name="impact" placeholder="How will this help?" id={COMPONENT_IDS.EDIT_EVENT_FORM_IMPACT} />
                   <Row>
                     <Col>
-                      <NumField name="totalSpots" placeholder="0" id={COMPONENT_IDS.ADD_EVENT_FORM_TOTAL_SPOTS} />
+                      <NumField name="totalSpots" placeholder="0" id={COMPONENT_IDS.EDIT_EVENT_FORM_TOTAL_SPOTS} />
                     </Col>
                     <Col>
-                      <SelectField name="activityType" id={COMPONENT_IDS.ADD_EVENT_FORM_ACTIVITY_TYPE} />
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-
-              <Card className="rounded-4 mt-3">
-                <Card.Header className="section-header">Location</Card.Header>
-                <Card.Body>
-                  <Row>
-                    <Col md={12}>
-                      <TextField name="address" id={COMPONENT_IDS.ADD_EVENT_FORM_ADDRESS} />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={3}>
-                      <TextField name="zipCode" id={COMPONENT_IDS.ADD_EVENT_FORM_ZIPCODE} />
-                    </Col>
-                    <Col md={3}>
-                      <TextField name="city" id={COMPONENT_IDS.ADD_EVENT_FORM_CITY} />
-                    </Col>
-                    <Col md={3}>
-                      <TextField name="state" id={COMPONENT_IDS.ADD_EVENT_FORM_STATE} />
-                    </Col>
-                    <Col md={3}>
-                      <TextField name="country" id={COMPONENT_IDS.ADD_EVENT_FORM_COUNTRY} />
+                      <SelectField name="activityType" id={COMPONENT_IDS.EDIT_EVENT_FORM_ACTIVITY_TYPE} />
                     </Col>
                   </Row>
                 </Card.Body>
               </Card>
 
               <Card className="rounded-4 mt-3">
-                <Card.Header className="section-header">Time of Event</Card.Header>
+                <Card.Header className="section-header">Category</Card.Header>
                 <Card.Body>
-                  <Row>
-                    <Col>
-                      <DateField name="startTime" id={COMPONENT_IDS.ADD_EVENT_FORM_START_DATE} />
-                      <DateField name="endTime" id={COMPONENT_IDS.ADD_EVENT_FORM_END_DATE} />
+                  <p>Choose a category and sub-category that best matches your event.</p>
+                  <hr />
+                  <Row className="justify-content-center">
+                    <Col md={4} lg={4}>
+                      <SelectField name="activityCategory.mainCategory" label="Main Category" id={COMPONENT_IDS.EDIT_EVENT_FORM_MAINCATEGORY} allowedValues={categories} />
                     </Col>
-                    <Col>
-                      <SelectField name="frequency" id={COMPONENT_IDS.ADD_EVENT_FORM_FREQUENCY} />
+                    <Col md={4} lg={4}>
+                      <SelectField name="activityCategory.subCategory" label="Sub Category" id={COMPONENT_IDS.EDIT_EVENT_FORM_SUBCATEGORY} allowedValues={subCategories} />
                     </Col>
                   </Row>
                 </Card.Body>
@@ -182,21 +178,61 @@ const EditEvent = () => {
                 <Card.Body>
                   <Row className="justify-content-center">
                     <Col md={4} lg={4}>
-                      <SelectField name="requiredSkills" id={COMPONENT_IDS.ADD_EVENT_FORM_REQUIRED_SKILLS} />
+                      <SelectField name="requiredSkills" id={COMPONENT_IDS.EDIT_EVENT_FORM_REQUIRED_SKILLS} />
                     </Col>
                     <Col md={4} lg={4}>
-                      <SelectField name="accessibilities" id={COMPONENT_IDS.ADD_EVENT_FORM_ACCESSIBILITIES} />
+                      <SelectField name="accessibilities" id={COMPONENT_IDS.EDIT_EVENT_FORM_ACCESSIBILITIES} />
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+
+              <Card className="rounded-4 mt-3">
+                <Card.Header className="section-header">Location</Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col md={12}>
+                      <TextField name="address" id={COMPONENT_IDS.EDIT_EVENT_FORM_ADDRESS} />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={3}>
+                      <TextField name="zipCode" id={COMPONENT_IDS.EDIT_EVENT_FORM_ZIPCODE} />
+                    </Col>
+                    <Col md={3}>
+                      <TextField name="city" id={COMPONENT_IDS.EDIT_EVENT_FORM_CITY} />
+                    </Col>
+                    <Col md={3}>
+                      <TextField name="state" id={COMPONENT_IDS.EDIT_EVENT_FORM_STATE} />
+                    </Col>
+                    <Col md={3}>
+                      <TextField name="country" id={COMPONENT_IDS.EDIT_EVENT_FORM_COUNTRY} />
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+
+              <Card className="rounded-4 mt-3">
+                <Card.Header className="section-header">Time of Event</Card.Header>
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <DateField name="startTime" id={COMPONENT_IDS.EDIT_EVENT_FORM_START_DATE} />
+                      <DateField name="endTime" id={COMPONENT_IDS.EDIT_EVENT_FORM_END_DATE} />
+                    </Col>
+                    <Col>
+                      <SelectField name="frequency" id={COMPONENT_IDS.EDIT_EVENT_FORM_FREQUENCY} />
                     </Col>
                   </Row>
                 </Card.Body>
                 <Card.Footer>
                   <Row>
                     <Col>
-                      <SubmitField id={COMPONENT_IDS.ADD_EVENT_FORM_SUBMIT} />
+                      <SubmitField id={COMPONENT_IDS.EDIT_EVENT_FORM_SUBMIT} />
                       <ErrorsField />
                     </Col>
                     <Col className="text-end">
-                      <Button variant="danger" onClick={toggleDeleteConfirmation}>
+                      <Button variant="danger" onClick={toggleDeleteConfirmation} id={COMPONENT_IDS.EDIT_EVENT_FORM_DELETE}>
                         Delete Event
                       </Button>
                     </Col>
@@ -212,10 +248,10 @@ const EditEvent = () => {
                 <p>Are you sure you want to delete this event?</p>
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="secondary" onClick={toggleDeleteConfirmation}>
+                <Button variant="secondary" onClick={toggleDeleteConfirmation} id={COMPONENT_IDS.EDIT_EVENT_FORM_CANCEL}>
                   Cancel
                 </Button>
-                <Button variant="danger" onClick={confirmDelete}>
+                <Button variant="danger" onClick={confirmDelete} id={COMPONENT_IDS.EDIT_EVENT_FORM_CONFIRM_DELETE}>
                   Confirm Delete
                 </Button>
               </Modal.Footer>

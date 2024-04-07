@@ -9,6 +9,7 @@ import { ROLE } from '../../api/role/Role';
 const createUserProfile = 'UserProfiles.define';
 const updateUserProfile = 'UserProfiles.update';
 const removeUserProfile = 'UserProfiles.remove';
+const userAddHours = 'UserProfiles.AddHours';
 
 // app\imports\api\event\EventCollection.methods.js
 const createEvent = 'Events.define';
@@ -150,5 +151,5 @@ export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
   createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, updateUserAccount, sendVerification, sendResetPasswordEmail_, deleteMyEvents,
-  sendNotification,
+  sendNotification, userAddHours,
 };
