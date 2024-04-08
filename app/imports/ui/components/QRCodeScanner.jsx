@@ -38,6 +38,7 @@ const QrCodeScanner = ({ onResultChange }) => {
         }
 
         document.getElementById('startButton').addEventListener('click', () => {
+          // eslint-disable-next-line no-use-before-define
           decodeOnce(codeReaderRef.current, selectedDeviceId);
         });
 
@@ -56,6 +57,7 @@ const QrCodeScanner = ({ onResultChange }) => {
     initCodeReader();
   }, [selectedDeviceId, codeReaderRef]);
 
+  // eslint-disable-next-line no-shadow
   const decodeOnce = (codeReader, selectedDeviceId) => {
     if (isScanning) {
       setIsScanning(false); // Set to false before scanning to prevent rapid clicks
@@ -100,6 +102,7 @@ const QrCodeScanner = ({ onResultChange }) => {
 
             <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div>
+                {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
                 <video id="video" width="300" height="200" style={{ border: '1px solid gray' }} />
               </div>
             </Container>
