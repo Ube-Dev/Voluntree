@@ -10,7 +10,7 @@ const QrCodeScanner = ({ onResultChange }) => {
   const codeReaderRef = useCodeReader();
   const [selectedDeviceId, setSelectedDeviceId] = useState(null); // State to store selected device ID
   const [isScanning, setIsScanning] = useState(true); // New state to control scanning
-  const [result, setResult] = useState('');
+  const [setResult] = useState('');
 
   useEffect(() => {
     const initCodeReader = async () => {
@@ -38,7 +38,6 @@ const QrCodeScanner = ({ onResultChange }) => {
         }
 
         document.getElementById('startButton').addEventListener('click', () => {
-          // eslint-disable-next-line no-use-before-define
           decodeOnce(codeReaderRef.current, selectedDeviceId);
         });
 
@@ -57,11 +56,9 @@ const QrCodeScanner = ({ onResultChange }) => {
     initCodeReader();
   }, [selectedDeviceId, codeReaderRef]);
 
-  // eslint-disable-next-line no-shadow
   const decodeOnce = (codeReader, selectedDeviceId) => {
     if (isScanning) {
       setIsScanning(false); // Set to false before scanning to prevent rapid clicks
-      // eslint-disable-next-line no-shadow
       codeReader.decodeFromInputVideoDeviceContinuously(selectedDeviceId, 'video', (result, err) => {
         if (result) {
           console.log('Found QR code!', result);
@@ -87,11 +84,7 @@ const QrCodeScanner = ({ onResultChange }) => {
     }
   };
 
-  if (!ZXing) {
-    return <LoadingSpinner />;
-  }
-
-  return (
+  return ZXing ? (
     <div className="p-1 justify-content-center align-content-center">
       <Row className="justify-content-center">
         <Col sm={3} md={4} lg={4} xl={4}>
@@ -107,7 +100,6 @@ const QrCodeScanner = ({ onResultChange }) => {
 
             <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div>
-                {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
                 <video id="video" width="300" height="200" style={{ border: '1px solid gray' }} />
               </div>
             </Container>
@@ -127,6 +119,8 @@ const QrCodeScanner = ({ onResultChange }) => {
         </Col>
       </Row>
     </div>
+  ) : (
+    <LoadingSpinner />
   );
 };
 
