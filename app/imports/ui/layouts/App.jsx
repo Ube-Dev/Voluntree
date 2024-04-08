@@ -18,6 +18,7 @@ import { ROLE, userPrivileges } from '../../api/role/Role';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ManageDatabase from '../pages/ManageDatabase';
 import Dashboard from '../pages/Dashboard';
+import UserQRCode from '../pages/UserQRCode';
 import HomePage from '../pages/HomePage';
 import About from '../pages/About';
 import AllEventPage from '../pages/AllEventPage';
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/verify-email/:token" element={<VerifyEmailPage />} />
           <Route path="/edit-user-profile/:_id" element={<ProtectedRoute><EditUserProfile /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+          <Route path="/qr-code/:_id" element={<ProtectedRoute><UserQRCode /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
           <Route path="/createOrganization" element={<ProtectedRoute><CreateOrganization /></ProtectedRoute>} />
           <Route path="/dashboard" element={<OrganizationProtectedRoute ready={ready}><Dashboard /></OrganizationProtectedRoute>} />
