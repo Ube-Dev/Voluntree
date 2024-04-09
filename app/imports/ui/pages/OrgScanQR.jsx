@@ -3,6 +3,8 @@ import { useParams } from 'react-router';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Events } from '../../api/event/EventCollection';
+import { Organization } from '../../api/organization/OrganizationCollection';
+import { UserProfiles } from '../../api/user/UserProfileCollection';
 import QRCodeScanner from '../components/QRCodeScanner';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -15,15 +17,27 @@ const OrgScanQR = () => {
   };
 
   // subscribe to the event
-  const { ready, event } = useTracker(() => {
+  const { ready, event, userHours, orgHours } = useTracker(() => {
     const subscription = Events.subscribeEvent();
+    const subscription2 = Organization.subscribeOrganization();
+    const subscription3 = UserProfiles.subscribeUser();
     const rdy = subscription.ready();
+    const rdy2 = subscription2.ready();
+    const rdy3 = subscription3.ready();
     const theEvent = Events.findOne(eventId);
+    const theUserHours = UserProfiles.find({}).fetch();
+    const theOrgHours = Organization.find({}).fetch();
     return {
+      ready: rdy, rdy2, rdy3,
       event: theEvent,
-      ready: rdy,
+      userHours: theUserHours,
+      orgHours: theOrgHours,
     };
   }, []);
+
+  console.log(event);
+  console.log(userHours);
+  console.log(orgHours);
 
   return ready ? (
     <Container>

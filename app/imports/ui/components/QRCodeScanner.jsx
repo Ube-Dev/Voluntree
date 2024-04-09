@@ -102,7 +102,7 @@ const QrCodeScanner = ({ onResultChange }) => {
                 <Button className="button" id="startButton">Start</Button>
               </Col>
               <Col className="d-flex justify-content-center align-items-center">
-                <Button className="button" id="resetButton">Stop</Button>
+                <Button className="button" id="resetButton">Reset</Button>
               </Col>
             </Row>
 
