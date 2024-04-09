@@ -26,6 +26,7 @@ import UserProfile from '../pages/UserProfile';
 import ViewEventPage from '../pages/ViewEventPage';
 import AddEvent from '../pages/AddEvent';
 import EditEvent from '../pages/EditEvent';
+import OrgScanQR from '../pages/OrgScanQR';
 import EditUserProfile from '../pages/EditUserProfile';
 import MyEventPage from '../pages/MyEventPage';
 import VerifyEmailPage from '../pages/verifyEmailPage';
@@ -65,7 +66,8 @@ const App = () => {
           <Route path="/dashboard" element={<OrganizationProtectedRoute ready={ready}><Dashboard /></OrganizationProtectedRoute>} />
           <Route path="/add-event" element={<OrganizationProtectedRoute ready={ready}><AddEvent /></OrganizationProtectedRoute>} />
           <Route path="/edit-event/:_id" element={<OrganizationProtectedRoute ready={ready}><EditEvent /></OrganizationProtectedRoute>} />
-          <Route path="/edit-organization-profile/:_id" element={<ProtectedRoute><EditOrganizationProfile /></ProtectedRoute>} />
+          <Route path="/scan-qr-code/:_id" element={<OrganizationProtectedRoute ready={ready}><OrgScanQR /></OrganizationProtectedRoute>} />
+          <Route path="/edit-organization-profile/:_id" element={<OrganizationProtectedRoute><EditOrganizationProfile /></OrganizationProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
