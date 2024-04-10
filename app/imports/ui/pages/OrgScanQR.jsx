@@ -17,21 +17,33 @@ const OrgScanQR = () => {
   };
 
   // subscribe to the event
-  const { ready, event, userHours, orgHours } = useTracker(() => {
+  const { ready, event } = useTracker(() => {
     const subscription = Events.subscribeEvent();
-    const subscription2 = Organization.subscribeOrganization();
-    const subscription3 = UserProfiles.subscribeUser();
     const rdy = subscription.ready();
-    const rdy2 = subscription2.ready();
-    const rdy3 = subscription3.ready();
     const theEvent = Events.findOne(eventId);
-    const theUserHours = UserProfiles.find({}).fetch();
-    const theOrgHours = Organization.find({}).fetch();
     return {
-      ready: rdy, rdy2, rdy3,
+      ready: rdy,
       event: theEvent,
-      userHours: theUserHours,
-      orgHours: theOrgHours,
+    };
+  }, []);
+
+  const { ready2, userHours } = useTracker(() => {
+    const subscription = UserProfiles.subscribeUser();
+    const rdy = subscription.ready();
+    const user = UserProfiles.find({ onGoingEvents: event._id }).fetch();
+    return {
+      ready2: rdy,
+      userHours: user,
+    };
+  }, []);
+
+  const { ready3, orgHours } = useTracker(() => {
+    const subscription = Organization.subscribeOrganization();
+    const rdy = subscription.ready();
+    const org = Organization.findOne({ id: event.hostId });
+    return {
+      ready3: rdy,
+      orgHours: org,
     };
   }, []);
 
@@ -39,7 +51,7 @@ const OrgScanQR = () => {
   console.log(userHours);
   console.log(orgHours);
 
-  return ready ? (
+  return ready && ready2 && ready3 ? (
     <Container>
       <Row className="text-center py-3">
         <Col>
