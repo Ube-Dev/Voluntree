@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 
 const EventCard = ({ event }) => (
   <Link className="text-decoration-none" to={`/view_event/${event._id}`}>
-    <Card key={event._id} className="h-100 event-card" style={{ maxHeight: '500px' }}>
+    <Card key={event._id} className="h-100 event-card">
       <Card.Header>
-        <Card.Img variant="top" src={event.image} style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+        <Card.Img variant="top" src={event.image} className="event-image" />
       </Card.Header>
       <Card.Body>
         <Card.Title>{event.title}</Card.Title>

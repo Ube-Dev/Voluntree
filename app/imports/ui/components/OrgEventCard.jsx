@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import '../css/EventCard.css';
 
-const EventCard = ({ event }) => (
-  <Card key={event._id} className="h-100" style={{ maxHeight: '500px' }}>
+const OrgEventCard = ({ event }) => (
+  <Card key={event._id} className="h-100 event-card">
     <Card.Header>
-      <Card.Img variant="top" src={event.image} style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+      <Card.Img variant="top" src={event.image} className="event-image" />
     </Card.Header>
     <Card.Body>
       <Card.Title>{event.title}</Card.Title>
@@ -14,10 +14,10 @@ const EventCard = ({ event }) => (
       <Card.Text className="event-description">{event.description}</Card.Text>
       <Row>
         <Col className="text-center">
-          <Button className="commit-btn" href={`/view_event/${event._id}`}>View</Button>
+          <Button variant="primary" href={`/view_event/${event._id}`}>View</Button>
         </Col>
         <Col className="text-center">
-          <Button className="commit-btn" href={`/edit-event/${event._id}`}>Edit</Button>
+          <Button variant="primary" href={`/edit-event/${event._id}`}>Edit</Button>
         </Col>
       </Row>
     </Card.Body>
@@ -34,7 +34,7 @@ const EventCard = ({ event }) => (
   </Card>
 );
 
-EventCard.propTypes = {
+OrgEventCard.propTypes = {
   event: PropTypes.shape({
     title: PropTypes.string,
     image: PropTypes.string,
@@ -52,4 +52,4 @@ EventCard.propTypes = {
   }).isRequired,
 };
 
-export default EventCard;
+export default OrgEventCard;

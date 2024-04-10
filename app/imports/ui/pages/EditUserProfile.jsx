@@ -70,12 +70,14 @@ const EditUserProfile = () => {
                 </Row>
                 <HiddenField name="role" />
                 <HiddenField name="userID" />
+              </Card.Body>
+              <Card.Footer>
                 <SubmitField id={COMPONENT_IDS.EDIT_USER_PROFILE_SUBMIT} value="Update" />
                 <ErrorsField />
-              </Card.Body>
+              </Card.Footer>
             </Card>
           </AutoForm>
-          <Alert variant="secondary">
+          <Alert className="mt-3" variant="secondary">
             <Link to="/profile"><Button>Return to Profile</Button></Link>
           </Alert>
         </Col>
