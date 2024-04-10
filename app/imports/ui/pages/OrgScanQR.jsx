@@ -10,7 +10,7 @@ import { Meteor } from 'meteor/meteor';
 import { Events } from '../../api/event/EventCollection';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
-import { userAddHours } from '../../startup/both/Methods';
+import { userAddHours, orgAddHours } from '../../startup/both/Methods';
 import QRCodeScanner from '../components/QRCodeScanner';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -61,11 +61,14 @@ const OrgScanQR = () => {
     const subscription = Organization.subscribeOrganization();
     const rdy = subscription.ready();
     const org = Organization.findOne({ id: event.id });
+    console.log(org);
     return {
       ready3: rdy,
       orgHours: org,
     };
   }, [ready, event]);
+
+  const foundUser = userHours.find(user => user._id === result);
 
   // updates user and org hours
   const submit = (data) => {
@@ -76,10 +79,16 @@ const OrgScanQR = () => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', `Successfully updated ${userName}&apos; hours.`, 'success');
+        swal('Success', 'Successfully updated user hours.', 'success');
       }
     });
-    Meteor.call(organization)
+    Meteor.call(orgAddHours, orgHours._id, totalHours, (error) => {
+      if (error) {
+        swal('Error', error.message, 'error');
+      } else {
+        swal('Success', 'Successfully updated user hours.', 'success');
+      }
+    });
   };
 
   return ready && ready2 && ready3 ? (
@@ -94,7 +103,18 @@ const OrgScanQR = () => {
           <h1>Record Hours</h1>
           <p>Scan the volunteer&apos;s QR code to record hours.</p>
           <QRCodeScanner onResultChange={handleResultChange} />
-          <h1 id="result">{result}</h1>
+          <h6 id="result">{result}</h6>
+          {/* Display user information */}
+          {foundUser ? (
+            <div>
+              <h2>User found:</h2>
+              <h4>Name: {foundUser.firstName} {foundUser.lastName}</h4>
+              <h4>Email: {foundUser.email}</h4>
+              {/* Display any other relevant user information */}
+            </div>
+          ) : (
+            <p>No user found with the ID: {result}</p>
+          )}
         </Col>
       </Row>
       <Row>
