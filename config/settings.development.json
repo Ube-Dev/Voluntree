@@ -4,7 +4,7 @@
   "defaultOrganizationImage": "../images/defaultImages/defaultOrganizationImage.jpg",
 
   "defaultNotificationSenderType": ["user", "organization"],
-  "defaultReviewForType": ["event", "organization"],
+  "defaultReviewForType": { "event": "event", "organization": "organization" },
   "defaultRatingRange": { "min": 1, "max": 5 },
   "packages": {
     "email": {
@@ -665,6 +665,16 @@
     {
       "_id": "zxc123qwe",
       "rating": 3,
+      "reviewerID": "FJHc6qrg9KzmDnwPt",
+      "reviewFor": {
+        "type": "event",
+        "ID": "nT7sXq9KdYfR"
+      },
+      "content": "The event was good, but there's room for improvement."
+    },
+    {
+      "_id": "tyu123qwe",
+      "rating": 2,
       "reviewerID": "FJHc6qrg9KzmDnwPt",
       "reviewFor": {
         "type": "event",
