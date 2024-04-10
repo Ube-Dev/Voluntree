@@ -70,21 +70,25 @@ const OrgScanQR = () => {
   // updates user and org hours
   const submit = (data) => {
     let totalHours = data;
-    totalHours = 9;
-    const newData = { totalHours };
-    console.log(newData);
-    console.log('Submit Result: ', result);
+    const timeDifference = event.endTime.getTime() - event.startTime.getTime(); // Difference in milliseconds
+    totalHours = timeDifference / (3600000); // Convert milliseconds to hours
     Meteor.call(userAddHours, result, totalHours, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', `Successfully updated ${userHours.firstName}&apos; hours.`, 'success');
+        swal('Success', `Successfully updated ${userName}&apos; hours.`, 'success');
       }
     });
+    Meteor.call(organization)
   };
 
   return ready && ready2 && ready3 ? (
-    <Container>
+    <Container className="text-center">
+      <Row>
+        <Col>
+          <h1>{event.title}</h1>
+        </Col>
+      </Row>
       <Row className="text-center py-3">
         <Col>
           <h1>Record Hours</h1>
