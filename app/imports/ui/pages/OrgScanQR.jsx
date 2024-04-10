@@ -67,17 +67,14 @@ const OrgScanQR = () => {
     };
   }, [ready, event]);
 
-  console.log(event);
-  console.log(userHours);
-  console.log(orgHours);
-
   // updates user and org hours
   const submit = (data) => {
     let totalHours = data;
     totalHours = 9;
     const newData = { totalHours };
     console.log(newData);
-    Meteor.call(userAddHours, 'vPHSYK95tusThwz5K', 9, (error) => {
+    console.log('Submit Result: ', result);
+    Meteor.call(userAddHours, result, totalHours, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
