@@ -6,6 +6,7 @@ import '../../api/organization/OrganizationCollection.methods';
 import '../../api/skill/SkillCollection.methods';
 import '../../api/user/UserProfileCollection.methods';
 import '../../api/notification/Notification.methods';
+import '../../api/review/Review.methods';
 // startups
 import './Accounts';
 import './Mongo';

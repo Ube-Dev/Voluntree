@@ -2,7 +2,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Notification_ } from '../imports/api/notification/NotificationCollection';
 import { Organization } from '../imports/api/organization/OrganizationCollection';
-import { createUserProfile, sendNotification } from '../imports/startup/both/Methods';
+import { createReview, createUserProfile, organizationAddHours, removeReview, sendNotification, updateReview } from '../imports/startup/both/Methods';
 import { UserProfiles } from '../imports/api/user/UserProfileCollection';
 
   // const organizationReady = Organization.subscribeOrganization();
@@ -64,4 +64,13 @@ import { UserProfiles } from '../imports/api/user/UserProfileCollection';
 
 // user registration/creation
 
-Meteor.call(createUserProfile, { firstName: 'sdaswa', lastName: 'lsdassa', email: 'wasidasn@gm.com', password: 'sda' });
+// Meteor.call(createUserProfile, { firstName: 'sdaswa', lastName: 'lsdassa', email: 'wasidasn@gm.com', password: 'sda' });
+
+// test update review
+// Meteor.call(updateReview, "qwe890poi", { content: 'zzzz', rating: 1 });
+// test remove review
+// console.log();
+// Meteor.call(createReview, { rating: 5, reviewerID: 'FJHc6qrg9KzmDnwPt', reviewFor: {  "type": "event",
+// "ID": "nT7sXq9KdYfR" }, content: 'zasdni' });
+
+Meteor.call(organizationAddHours, "1SkcLcs", 5);

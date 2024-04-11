@@ -23,7 +23,7 @@ Meteor.methods({
 
     try {
       console.log('inserting new Event.');
-      const id = data.eventID === undefined ? generateID() : data.eventID;
+      const id = data._id === undefined ? generateID() : data._id;
       return Events._collection.insert({
         ...data,
         ...{ _id: id },

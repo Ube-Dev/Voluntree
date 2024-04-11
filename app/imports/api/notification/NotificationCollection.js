@@ -71,7 +71,7 @@ class NotificationCollection extends BaseCollection {
    */
   subscribeOrganizationNotification(organizationID) {
     if (Meteor.isClient) {
-      return Meteor.subscribe(notificationPublications.user, organizationID);
+      return Meteor.subscribe(notificationPublications.organization, organizationID);
     }
     return null;
   }
