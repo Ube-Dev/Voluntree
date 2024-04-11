@@ -10,7 +10,7 @@ import { Meteor } from 'meteor/meteor';
 import { Events } from '../../api/event/EventCollection';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
-import { userAddHours, orgAddHours } from '../../startup/both/Methods';
+import { userAddHours, organizationAddHours } from '../../startup/both/Methods';
 import QRCodeScanner from '../components/QRCodeScanner';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -60,8 +60,7 @@ const OrgScanQR = () => {
     }
     const subscription = Organization.subscribeOrganization();
     const rdy = subscription.ready();
-    const org = Organization.findOne({ id: event.id });
-    console.log(org);
+    const org = Organization.findOne({ _id: event.hostID });
     return {
       ready3: rdy,
       orgHours: org,
@@ -79,53 +78,48 @@ const OrgScanQR = () => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Successfully updated user hours.', 'success');
+        swal('Success', `Successfully updated ${foundUser.firstName}&apos;s hours.`, 'success');
       }
     });
-    Meteor.call(orgAddHours, orgHours._id, totalHours, (error) => {
+    Meteor.call(organizationAddHours, event.hostID, totalHours, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Successfully updated user hours.', 'success');
+        swal('Success', `Successfully updated ${orgHours.name} hours.`, 'success');
       }
     });
   };
 
   return ready && ready2 && ready3 ? (
-    <Container className="text-center">
-      <Row>
-        <Col>
-          <h1>{event.title}</h1>
-        </Col>
-      </Row>
-      <Row className="text-center py-3">
-        <Col>
-          <h1>Record Hours</h1>
-          <p>Scan the volunteer&apos;s QR code to record hours.</p>
-          <QRCodeScanner onResultChange={handleResultChange} />
-          <h6 id="result">{result}</h6>
-          {/* Display user information */}
-          {foundUser ? (
-            <div>
-              <h2>User found:</h2>
-              <h4>Name: {foundUser.firstName} {foundUser.lastName}</h4>
-              <h4>Email: {foundUser.email}</h4>
-              {/* Display any other relevant user information */}
-            </div>
-          ) : (
-            <p>No user found with the ID: {result}</p>
-          )}
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <AutoForm schema={bridge} onSubmit={data => submit(data)}>
-            <HiddenField name="totalHours" />
-            <SubmitField />
-            <ErrorsField />
-          </AutoForm>
-        </Col>
-      </Row>
+    <Container fluid className="color2">
+      <Container className="text-center py-3">
+        <Row className="text-center py-3">
+          <Col>
+            <h1>Record Hours</h1>
+            <h3>Event: {event.title}</h3>
+            <h4>Scan the volunteer&apos;s QR code to record hours.</h4>
+            <QRCodeScanner onResultChange={handleResultChange} />
+            <h6 id="result">{result}</h6>
+            <Row className="py-2">
+              <AutoForm schema={bridge} onSubmit={data => submit(data)}>
+                <HiddenField name="totalHours" />
+                <SubmitField />
+                <ErrorsField />
+              </AutoForm>
+            </Row>
+            {/* Display user information */}
+            {foundUser ? (
+              <div>
+                <h2>User found:</h2>
+                <h4>Name: {foundUser.firstName} {foundUser.lastName}</h4>
+                {/* Display any other relevant user information */}
+              </div>
+            ) : (
+              <h4>No user found</h4>
+            )}
+          </Col>
+        </Row>
+      </Container>
     </Container>
   ) : (
     <LoadingSpinner />
