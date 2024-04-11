@@ -125,3 +125,21 @@ Meteor.methods({
     }
   },
 });
+
+Meteor.methods({
+  'Organization.AddHours': function (docID, hour) {
+    check(docID, String);
+    check(hour, Number);
+
+    if (!isAOrganization_id(docID)) {
+      console.error('Organization does not exists.');
+      throw new Meteor.Error('update-failed', 'Organization does not exist.');
+    }
+
+    try {
+      return Organization._collection.update(docID, { $inc: { totalHours: hour, monthlyHours: hour } });
+    } catch (error) {
+      throw new Meteor.Error('update-AddHours-failed', `Failed to update organization profile: ${error}`);
+    }
+  },
+});

@@ -24,6 +24,7 @@ const removeSkill = 'Skills.remove';
 const createOrganization = 'Organization.define';
 const updateOrganization = 'Organization.update';
 const removeOrganization = 'Organization.remove';
+const organizationAddHours = 'Organization.AddHours';
 
 // app\imports\api\category\CategoryCollection.methods.js
 const createMainCategory = 'MainCategory.define';
@@ -156,5 +157,5 @@ export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
   createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, updateUserAccount, sendVerification, sendResetPasswordEmail_, deleteMyEvents,
-  sendNotification, userAddHours, createReview, updateReview, removeReview,
+  sendNotification, userAddHours, createReview, updateReview, removeReview, organizationAddHours,
 };
