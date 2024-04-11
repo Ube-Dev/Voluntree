@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, SubmitField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { useParams } from 'react-router';
@@ -79,6 +79,7 @@ const OrgScanQR = () => {
         swal('Error', error.message, 'error');
       } else {
         swal('Success', `Successfully updated ${foundUser.firstName}&apos;s hours.`, 'success');
+        setResult('');
       }
     });
     Meteor.call(organizationAddHours, event.hostID, totalHours, (error) => {
@@ -93,11 +94,13 @@ const OrgScanQR = () => {
   return ready && ready2 && ready3 ? (
     <Container fluid className="color2">
       <Container className="text-center py-3">
-        <Row className="text-center py-3">
-          <Col>
-            <h1>Record Hours</h1>
-            <h3>Event: {event.title}</h3>
-            <h4>Scan the volunteer&apos;s QR code to record hours.</h4>
+        <Row className="text-center justify-content-center py-3">
+          <Col className="col-11">
+            <Card className="rounded-4">
+              <h1>Record Hours</h1>
+              <h3>Event: {event.title}</h3>
+              <h4>Scan the volunteer&apos;s QR code to record hours.</h4>
+            </Card>
             <QRCodeScanner onResultChange={handleResultChange} />
             <h6 id="result">{result}</h6>
             <Row className="py-2">
@@ -109,13 +112,19 @@ const OrgScanQR = () => {
             </Row>
             {/* Display user information */}
             {foundUser ? (
-              <div>
-                <h2>User found:</h2>
-                <h4>Name: {foundUser.firstName} {foundUser.lastName}</h4>
+              <Container>
+                <Card className="rounded-4 pt-1">
+                  <h2>User found:</h2>
+                  <h4>Name: {foundUser.firstName} {foundUser.lastName}</h4>
+                </Card>
                 {/* Display any other relevant user information */}
-              </div>
+              </Container>
             ) : (
-              <h4>No user found</h4>
+              <Container>
+                <Card className="rounded-4 pt-1">
+                  <h4>No user found</h4>
+                </Card>
+              </Container>
             )}
           </Col>
         </Row>

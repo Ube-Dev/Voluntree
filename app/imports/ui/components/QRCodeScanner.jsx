@@ -97,7 +97,7 @@ const QrCodeScanner = ({ onResultChange }) => {
       <Row className="justify-content-center">
         <Col sm={3} md={4} lg={4} xl={4}>
           <Container className="py-2">
-            <Row className="py-1 d-flex">
+            <Row className="pb-3 d-flex">
               <Col className="d-flex justify-content-center align-items-center">
                 <Button className="button" id="startButton">Start</Button>
               </Col>
@@ -109,11 +109,11 @@ const QrCodeScanner = ({ onResultChange }) => {
             <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div>
                 {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                <video id="video" width="350" height="350" style={{ border: '1px solid gray' }} />
+                <video id="video" width="350" height="350" style={{ border: '3px solid gray', background: 'gray' }} />
               </div>
             </Container>
 
-            <Container className="py-2">
+            <Container className="py-1">
               <div id="sourceSelectPanel" style={{ display: 'none' }}>
                 <label htmlFor="sourceSelect">
                   Video Source:
