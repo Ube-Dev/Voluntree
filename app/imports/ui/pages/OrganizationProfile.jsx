@@ -66,7 +66,8 @@ const OrganizationProfile = () => {
       <Row>
         <h1 className="text-center">Events Organized by {orgProfile.name}</h1>
         <OrganizationEvents org={orgProfile} />
-      </Row>    </Container>
+      </Row>
+    </Container>
   ) : (
     <Container id={PAGE_IDS.ORGANIZATION_PROFILE}>
       <Row className="py-5">
