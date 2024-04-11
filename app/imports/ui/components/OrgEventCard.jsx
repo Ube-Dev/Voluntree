@@ -19,6 +19,9 @@ const OrgEventCard = ({ event }) => (
         <Col className="text-center">
           <Button variant="primary" href={`/edit-event/${event._id}`}>Edit</Button>
         </Col>
+        <Col className="text-center">
+          <Button variant="primary" href={`/scan-qr-code/${event._id}`}>Record</Button>
+        </Col>
       </Row>
     </Card.Body>
     <Card.Footer>
