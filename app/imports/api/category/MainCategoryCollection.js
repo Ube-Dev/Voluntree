@@ -77,10 +77,7 @@ class MainCategoryCollection extends BaseCollection {
       const instance = this;
       /** This subscription publishes the entire mainCategory collection */
       Meteor.publish(mainCategoryPublications.mainCategory, function publish() {
-        if (this.userId) {
-          return instance._collection.find();
-        }
-        return this.ready();
+        return instance._collection.find();
       });
     }
   }
