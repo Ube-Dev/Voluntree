@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const EventCard = ({ event }) => (
   <Link className="text-decoration-none" to={`/view_event/${event._id}`}>
-    <Card key={event._id} className="h-100 event-card">
+    <Card key={event._id} className="h-200 event-card">
       <Card.Header>
         <Card.Img variant="top" src={event.image} className="event-image" />
       </Card.Header>
@@ -18,10 +18,10 @@ const EventCard = ({ event }) => (
       </Card.Body>
       <Card.Footer>
         <Row>
-          <Col className="text-start">
-            <small>{event.startTime.toDateString()}</small>
+          <Col className="text-start col-8">
+            <small>{event.startTime.toDateString()} | {event.startTime.toLocaleTimeString()}</small>
           </Col>
-          <Col className="text-end">
+          <Col className="text-end col-4">
             <small>Seats: {event.spotsFilled.length}/{event.totalSpots}</small>
           </Col>
         </Row>

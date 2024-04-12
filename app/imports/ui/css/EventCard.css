@@ -16,12 +16,13 @@
 
 .event-image {
   width: 100%;
-  height: 150px;
+  min-height: 150px;
   object-fit: cover;
 }
 
 .event-description {
-  height: 100px;
+  max-height: 100px;
+  min-height: 100px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 4; /* Number of lines to show */
@@ -30,6 +31,7 @@
 
 .host-link {
   color: var(--color2) !important;
+  text-decoration: none;
 }
 
 .host-link:hover {
