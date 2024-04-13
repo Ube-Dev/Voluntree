@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Button, Row, Col, Card, Image } from 'react-bootstrap';
+import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { Organization } from '../../api/organization/OrganizationCollection';
@@ -11,12 +12,15 @@ import OrganizationEvents from '../components/OrganizationEvents';
 const OrganizationProfile = () => {
   const { _id } = useParams();
 
-  const { ready, orgProfile } = useTracker(() => {
+  const { ready, orgProfile, leader } = useTracker(() => {
+    const currentUser = Meteor.userId();
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication
     const profile = Organization.findOne({ _id: _id }); // Query organization
+    const currentUserIsLeader = currentUser ? currentUser === profile.leader : null;
     return {
       ready: subscription ? subscription.ready() : false,
       orgProfile: profile,
+      leader: currentUserIsLeader,
     };
   });
 
@@ -66,9 +70,11 @@ const OrganizationProfile = () => {
                 </Col>
               </Row>
             </Card.Body>
-            <Card.Footer>
-              <Button variant="primary" href={`/edit-organization-profile/${_id}`}>Edit</Button>
-            </Card.Footer>
+            {leader ? (
+              <Card.Footer>
+                <Button variant="primary" href={`/edit-organization-profile/${_id}`}>Edit</Button>
+              </Card.Footer>
+            ) : ('')}
           </Card>
         </Col>
       </Row>
