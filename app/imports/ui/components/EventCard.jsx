@@ -14,7 +14,7 @@ const EventCard = ({ event }) => (
         <Card.Title>{event.title}</Card.Title>
         <Card.Text>{event.city}</Card.Text>
         <Card.Text className="event-description">{event.description}</Card.Text>
-        <Link className="host-link" to="/"><Card.Text>{event.hostBy}</Card.Text></Link>
+        <Link className="host-link" to={`/org-profile/${event.hostID}`}><Card.Text>{event.hostBy}</Card.Text></Link>
       </Card.Body>
       <Card.Footer>
         <Row>
@@ -45,6 +45,7 @@ EventCard.propTypes = {
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
     hostBy: PropTypes.string,
+    hostID: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
 };
