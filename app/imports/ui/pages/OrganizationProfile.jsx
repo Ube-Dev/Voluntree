@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Button, Row, Col, Card, Image } from 'react-bootstrap';
-// import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { Organization } from '../../api/organization/OrganizationCollection';
