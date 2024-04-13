@@ -11,7 +11,7 @@ class SubCategoryCollection extends BaseCollection {
   constructor() {
     super('SubCategory', new SimpleSchema({
       category: { type: String, index: true, unique: true },
-      parentID: { type: String, optional: true, defaultValue: '' },
+      parentCategory: { type: String, optional: true, defaultValue: 'Other' },
     }));
   }
 
@@ -78,7 +78,7 @@ class SubCategoryCollection extends BaseCollection {
   /**
    * Subscription method for category.
    */
-  subscribeSkill() {
+  subscribeSubCategory() {
     if (Meteor.isClient) {
       return Meteor.subscribe(subCategoryPublications.subCategory);
     }

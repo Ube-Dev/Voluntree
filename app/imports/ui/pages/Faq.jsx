@@ -5,7 +5,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 const Faq = () => (
   <Container id={PAGE_IDS.FAQ} fluid className="color2">
     <Container className="py-3">
-      <h1 className="faq-header py-3 text-center">Frequently Asked Questions(FAQ)</h1>
+      <h1 className="py-3 text-center">Frequently Asked Questions(FAQ)</h1>
       <Row className="justify-content-center">
         <Col className="col-md-8">
           <Accordion className="py-3">

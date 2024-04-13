@@ -10,8 +10,9 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 
 const UserProfile = () => {
   const { ready, userProfile } = useTracker(() => {
-    const currentUser = Meteor.user(); // Retrieve the current user
-    const subscription = currentUser ? UserProfiles.subscribeUser() : null; // Subscribe to userProfile publication for the current user
+    const currentUser = Meteor.users.findOne({ _id: Meteor.userId() });
+    const subscription = currentUser ? UserProfiles.subscribeSingleUser(currentUser._id) : null; // Subscribe to userProfile publication for the current user
+    // console.log(UserProfiles.find().fetch());
     const profile = currentUser ? UserProfiles.findOne({ userID: currentUser._id }) : null; // Query user profile for the current user
     return {
       ready: subscription ? subscription.ready() : false,
@@ -51,9 +52,7 @@ const UserProfile = () => {
               </ul>
             </Card.Body>
             <Card.Footer className="d-flex justify-content-end p-2">
-              <Button className="justify-content-end" style={{ backgroundColor: 'gold', color: 'black', border: 'none' }}>
-                <a href="/Events" style={{ textDecoration: 'none', color: 'inherit', padding: '10px' }}>Past Events</a>
-              </Button>
+              <Button className="justify-content-end" href="/Events">Past Events</Button>
             </Card.Footer>
           </Card>
         </Col>
@@ -73,7 +72,7 @@ const UserProfile = () => {
               <p>{userProfile.address}</p>
             </Card.Body>
             <Card.Footer>
-              <Button id={COMPONENT_IDS.USER_PROFILE_EDIT_PROFILE} style={{ backgroundColor: 'gold', color: 'black', border: 'none' }} className="btn btn-primary justify-content-start" href={`/edit-user-profile/${userProfile._id}`}>Edit</Button>
+              <Button id={COMPONENT_IDS.USER_PROFILE_EDIT_PROFILE} className="btn btn-primary justify-content-start" href={`/edit-user-profile/${userProfile._id}`}>Edit</Button>
             </Card.Footer>
           </Card>
         </Col>

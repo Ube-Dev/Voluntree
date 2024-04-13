@@ -10,6 +10,7 @@ export const PAGE_IDS = {
   NOT_AUTHORIZED: 'not-authorized',
   NOT_FOUND: 'not-found',
   ADD_EVENT: 'add-event',
+  EDIT_EVENT: 'edit-event',
   SIGN_IN: 'sign-in',
   SIGN_OUT: 'sign-out',
   SIGN_UP: 'sign-up',
@@ -17,4 +18,6 @@ export const PAGE_IDS = {
   FAQ: 'faq',
   USER_PROFILE: 'user-profile',
   EDIT_USER_PROFILE: 'edit-user-profile',
+  ORGANIZATION_PROFILE: 'organization-profile',
+  EDIT_ORGANIZATION_PROFILE: 'edit-organization-profile',
 };

@@ -1,16 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Roles } from 'meteor/alanning:roles';
-import { UserProfiles } from '../../api/user/UserProfileCollection';
-import { Events } from '../../api/event/EventCollection';
-import { MainCategory } from '../../api/category/MainCategoryCollection';
-import { SubCategory } from '../../api/category/SubCategoryCollection';
+// import { MainCategory } from '../../api/category/MainCategoryCollection';
+// import { SubCategory } from '../../api/category/SubCategoryCollection';
 import { ROLE } from '../../api/role/Role';
 
 // app\imports\api\user\UserProfileCollection.methods.js
 const createUserProfile = 'UserProfiles.define';
 const updateUserProfile = 'UserProfiles.update';
 const removeUserProfile = 'UserProfiles.remove';
+const userAddHours = 'UserProfiles.AddHours';
 
 // app\imports\api\event\EventCollection.methods.js
 const createEvent = 'Events.define';
@@ -25,6 +24,7 @@ const removeSkill = 'Skills.remove';
 const createOrganization = 'Organization.define';
 const updateOrganization = 'Organization.update';
 const removeOrganization = 'Organization.remove';
+const organizationAddHours = 'Organization.AddHours';
 
 // app\imports\api\category\CategoryCollection.methods.js
 const createMainCategory = 'MainCategory.define';
@@ -32,6 +32,14 @@ const removeMainCategory = 'MainCategory.remove';
 const createSubcategory = 'Subcategory.define';
 const updateSubcategory = 'Subcategory.update';
 const removeSubcategory = 'Subcategory.remove';
+
+// app\imports\api\review\Review.methods.js
+const createReview = 'Review.define';
+const removeReview = 'Review.remove';
+const updateReview = 'Review.update';
+
+// app\imports\api\notification\Notification.method.js
+const sendNotification = 'Notification_.define';
 
 const updateUserAccount = 'UserAccount.update';
 
@@ -61,13 +69,13 @@ Meteor.methods({
     check(data, Object);
     try {
       Object.entries(data).forEach(([mainCategory, subCategories]) => {
-        // Define the main category and get its ID.
-        const mainCategoryId = MainCategory.define({ category: mainCategory });
+        // Insert a main category.
+        Meteor.call(createMainCategory, { category: mainCategory });
 
         // Iterate over each subcategory in the array.
         subCategories.forEach(subCategory => {
-          // Define the subcategory with the main category ID.
-          SubCategory.define({ category: subCategory, parentID: mainCategoryId });
+          // Insert the subcategory with its parent category into the collection.
+          Meteor.call(createSubcategory, { category: subCategory, parentCategory: mainCategory });
         });
       });
     } catch (error) {
@@ -85,8 +93,22 @@ Meteor.methods({
     user.onGoingEvents.push(eventId);
     event.spotsFilled.push(userId);
     try {
-      UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
-      Events.update(eventId, { spotsFilled: event.spotsFilled });
+      // userId and eventId is _id, update takes _id by default
+      // UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
+      Meteor.call(updateUserProfile, userId, { onGoingEvents: user.onGoingEvents }, (error) => {
+        if (error) {
+          console.log('updateUserProfile error:', error);
+          throw new Meteor.Error('MyEvents.update failed', 'updateUserProfile error');
+        }
+      });
+
+      // Events.update(eventId, { spotsFilled: event.spotsFilled });
+      Meteor.call(updateEvent, eventId, { spotsFilled: event.spotsFilled }, (error) => {
+        if (error) {
+          console.log('error:', error);
+          throw new Meteor.Error('MyEvents.update failed', 'updateEvent error');
+        }
+      });
     } catch (error) {
       throw new Meteor.Error('update-failed', 'Failed to update User and Event information ', error);
     }
@@ -104,8 +126,22 @@ Meteor.methods({
     const userIndex = event.spotsFilled.indexOf(userId);
     event.spotsFilled.splice(userIndex, 1);
     try {
-      UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
-      Events.update(eventId, { spotsFilled: event.spotsFilled });
+      // userId and eventId is _id, update takes _id by default
+      // UserProfiles.update(userId, { onGoingEvents: user.onGoingEvents });
+      Meteor.call(updateUserProfile, userId, { onGoingEvents: user.onGoingEvents }, (error) => {
+        if (error) {
+          console.log('updateUserProfile error:', error);
+          throw new Meteor.Error('MyEvents.update failed', 'updateUserProfile error');
+        }
+      });
+
+      // Events.update(eventId, { spotsFilled: event.spotsFilled });
+      Meteor.call(updateEvent, eventId, { spotsFilled: event.spotsFilled }, (error) => {
+        if (error) {
+          console.log('error:', error);
+          throw new Meteor.Error('MyEvents.update failed', 'updateEvent error');
+        }
+      });
     } catch (error) {
       throw new Meteor.Error('removal-failed', 'Failed to unregister from event ', error);
     }
@@ -121,4 +157,5 @@ export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
   createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, updateUserAccount, sendVerification, sendResetPasswordEmail_, deleteMyEvents,
+  sendNotification, userAddHours, createReview, updateReview, removeReview, organizationAddHours,
 };

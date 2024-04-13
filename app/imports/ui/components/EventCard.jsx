@@ -6,20 +6,20 @@ import { Link } from 'react-router-dom';
 
 const EventCard = ({ event }) => (
   <Link className="text-decoration-none" to={`/view_event/${event._id}`}>
-    <Card key={event._id} className="h-100 event-card" style={{ maxHeight: '500px' }}>
+    <Card key={event._id} className="h-100 event-card">
       <Card.Header>
-        <Card.Img variant="top" src={event.image} style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+        <Card.Img variant="top" src={event.image} className="event-image" />
       </Card.Header>
       <Card.Body>
         <Card.Title>{event.title}</Card.Title>
         <Card.Text>{event.city}</Card.Text>
         <Card.Text className="event-description">{event.description}</Card.Text>
-        <Link to="/"><Card.Text>{event.hostBy}</Card.Text></Link>
+        <Link className="host-link" to={`/org-profile/${event.hostID}`}><Card.Text>{event.hostBy}</Card.Text></Link>
       </Card.Body>
       <Card.Footer>
         <Row>
           <Col className="text-start">
-            <small>{event.time.toDateString()}</small>
+            <small>{event.startTime.toDateString()}</small>
           </Col>
           <Col className="text-end">
             <small>Seats: {event.spotsFilled.length}/{event.totalSpots}</small>
@@ -36,6 +36,7 @@ EventCard.propTypes = {
     image: PropTypes.string,
     description: PropTypes.string,
     city: PropTypes.string,
+    startTime: PropTypes.instanceOf(Date),
     time: PropTypes.instanceOf(Date),
     totalSpots: PropTypes.number,
     spotsFilled: PropTypes.instanceOf(Array),
@@ -44,6 +45,7 @@ EventCard.propTypes = {
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
     hostBy: PropTypes.string,
+    hostID: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
 };

@@ -18,16 +18,22 @@ import { ROLE, userPrivileges } from '../../api/role/Role';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ManageDatabase from '../pages/ManageDatabase';
 import Dashboard from '../pages/Dashboard';
+import UserQRCode from '../pages/UserQRCode';
 import HomePage from '../pages/HomePage';
 import About from '../pages/About';
 import AllEventPage from '../pages/AllEventPage';
 import UserProfile from '../pages/UserProfile';
+import EditUserProfile from '../pages/EditUserProfile';
+import OrganizationProfile from '../pages/OrganizationProfile';
+import EditOrganizationProfile from '../pages/EditOrganizationProfile';
 import ViewEventPage from '../pages/ViewEventPage';
 import AddEvent from '../pages/AddEvent';
-import EditUserProfile from '../pages/EditUserProfile';
+import EditEvent from '../pages/EditEvent';
+import OrgScanQR from '../pages/OrgScanQR';
 import MyEventPage from '../pages/MyEventPage';
 import VerifyEmailPage from '../pages/verifyEmailPage';
 import ResetPasswordPage from '../pages/ResetPassword';
+import SubscriptionPage from '../pages/SubscriptionPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -44,6 +50,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/subscribe" element={<SubscriptionPage />} />
           <Route path="/Events" element={<AllEventPage />} />
           <Route path="/view_event/:_id" element={<ViewEventPage />} />
           <Route path="/my_event" element={<MyEventPage />} />
@@ -54,13 +61,18 @@ const App = () => {
           <Route path="/verify-email/:token" element={<VerifyEmailPage />} />
           <Route path="/edit-user-profile/:_id" element={<ProtectedRoute><EditUserProfile /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+          <Route path="/qr-code/:_id" element={<ProtectedRoute><UserQRCode /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
           <Route path="/createOrganization" element={<ProtectedRoute><CreateOrganization /></ProtectedRoute>} />
           <Route path="/dashboard" element={<OrganizationProtectedRoute ready={ready}><Dashboard /></OrganizationProtectedRoute>} />
           <Route path="/add-event" element={<OrganizationProtectedRoute ready={ready}><AddEvent /></OrganizationProtectedRoute>} />
+          <Route path="/edit-event/:_id" element={<OrganizationProtectedRoute ready={ready}><EditEvent /></OrganizationProtectedRoute>} />
+          <Route path="/scan-qr-code/:_id" element={<OrganizationProtectedRoute ready={ready}><OrgScanQR /></OrganizationProtectedRoute>} />
+          <Route path="/edit-organization-profile/:_id" element={<OrganizationProtectedRoute ready={ready}><EditOrganizationProfile /></OrganizationProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+          <Route path="/org-profile/:_id" element={<OrganizationProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

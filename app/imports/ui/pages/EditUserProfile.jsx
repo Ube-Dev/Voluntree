@@ -60,7 +60,7 @@ const EditUserProfile = () => {
                 <Row>
                   <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ADDRESS} name="address" label="Address" /></Col>
                   <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_PHONE} name="phone" label="Phone" /></Col>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_EMAIL} name="email" label="Email" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_EMAIL} name="email" label="EmailPage" /></Col>
                 </Row>
                 <Row>
                   <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_CITY} name="city" label="City" /></Col>
@@ -70,12 +70,14 @@ const EditUserProfile = () => {
                 </Row>
                 <HiddenField name="role" />
                 <HiddenField name="userID" />
+              </Card.Body>
+              <Card.Footer>
                 <SubmitField id={COMPONENT_IDS.EDIT_USER_PROFILE_SUBMIT} value="Update" />
                 <ErrorsField />
-              </Card.Body>
+              </Card.Footer>
             </Card>
           </AutoForm>
-          <Alert variant="secondary">
+          <Alert className="mt-3" variant="secondary">
             <Link to="/profile"><Button>Return to Profile</Button></Link>
           </Alert>
         </Col>

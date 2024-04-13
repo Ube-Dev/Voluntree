@@ -11,7 +11,6 @@ class MainCategoryCollection extends BaseCollection {
   constructor() {
     super('MainCategory', new SimpleSchema({
       category: { type: String, index: true, unique: true },
-      categoryID: { type: String, optional: true, defaultValue: '' },
     }));
   }
 
@@ -78,10 +77,7 @@ class MainCategoryCollection extends BaseCollection {
       const instance = this;
       /** This subscription publishes the entire mainCategory collection */
       Meteor.publish(mainCategoryPublications.mainCategory, function publish() {
-        if (this.userId) {
-          return instance._collection.find();
-        }
-        return this.ready();
+        return instance._collection.find();
       });
     }
   }
@@ -89,7 +85,7 @@ class MainCategoryCollection extends BaseCollection {
   /**
    * Subscription method for category.
    */
-  subscribeSkill() {
+  subscribeMainCategory() {
     if (Meteor.isClient) {
       return Meteor.subscribe(mainCategoryPublications.mainCategory);
     }

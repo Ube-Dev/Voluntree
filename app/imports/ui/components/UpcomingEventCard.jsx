@@ -37,7 +37,7 @@ const UpcomingEventCard = () => {
                       <Image src={event.image} fluid className="rounded" />
                     </Col>
                     <Col xs={8} className="d-flex flex-column">
-                      <div className="event-date">{event.startTime.toLocaleDateString()}</div>
+                      <p className="event-date m-0">{event.startTime.toLocaleDateString()} | {event.startTime.toLocaleTimeString()}</p>
                       <a className="event-title" href={`/view_event/${eventId}`}>{event.title}</a>
                     </Col>
                   </Row>

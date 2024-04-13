@@ -1,0 +1,42 @@
+/* Styling only for EditOrganizationProfile.jsx page */
+
+.edit-org-form .card {
+  background-color: var(--color1) !important;
+  color: white;
+  border-color: rgba(0, 0, 0, 0) !important;
+  border-width: medium;
+  border-radius: 22px !important;
+  --bs-success-rgb: gold;
+}
+
+.edit-org-form .card-footer {
+  background-color: var(--color2) !important;
+  border-radius: 20px !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+
+.edit-org-form .alert {
+  background-color: var(--color3) !important;
+  color: white;
+  border-color: var(--color1) !important;
+  border-width: medium;
+  border-radius: 20px;
+  --bs-link-hover-color: white;
+}
+
+.edit-org-form .btn {
+  --bs-btn-color: black !important;
+  --bs-btn-bg: gold !important;
+  --bs-btn-border-color: gold !important;
+  --bs-btn-hover-bg: darkgoldenrod !important;
+  --bs-btn-hover-border-color: darkgoldenrod !important;
+  --bs-btn-active-bg: var(--color6) !important;
+  --bs-btn-active-border-color: var(--color6) !important;
+}
+
+.edit-org-form .btn:disabled {
+  --bs-btn-disabled-bg: darkgoldenrod !important;
+  --bs-btn-disabled-border-color: darkgoldenrod !important;
+  --bs-btn-disabled-opacity: 0.5 !important;
+}

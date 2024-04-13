@@ -1,7 +1,4 @@
-/*
-  css file for EventCard.jsx component
-*/
-
+/* Styling for EventCard.jsx and OrgEventCard.jsx components */
 
 .flex-wrap-buttons {
   flex-wrap: wrap;
@@ -10,10 +7,17 @@
 .event-card {
   transition: 0.25s;
   box-shadow: 6px 6px 6px 0 rgba(0, 0, 0, 0.15);
+  max-height: 500px;
 }
 .event-card:hover {
   transform: translateY(-4px);
   box-shadow: 6px 10px 12px 0 rgba(0,0,0,0.15);
+}
+
+.event-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 
 .event-description {
@@ -22,4 +26,12 @@
   display: -webkit-box;
   -webkit-line-clamp: 4; /* Number of lines to show */
   -webkit-box-orient: vertical;
+}
+
+.host-link {
+  color: var(--color2) !important;
+}
+
+.host-link:hover {
+  color: var(--color1) !important;
 }

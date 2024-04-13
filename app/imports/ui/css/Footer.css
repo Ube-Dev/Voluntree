@@ -1,0 +1,13 @@
+/* Styling only for Footer.jsx component */
+
+.footer-container {
+  padding-top: 15px !important;
+}
+
+.footer-link {
+  color: var(--color2) !important;
+}
+
+.footer-link:hover {
+  color: var(--color1) !important;
+}

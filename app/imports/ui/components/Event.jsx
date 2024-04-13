@@ -5,8 +5,9 @@ import { Bell, Calendar, GeoAlt, People, HeartFill, Heart } from 'react-bootstra
 import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
 import GoBackButton from './GoBackButton';
+import ConnectButton from './ConnectButton';
 
-const Event = ({ event }) => {
+const Event = ({ event, org }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -40,7 +41,12 @@ const Event = ({ event }) => {
                 <Image className="pageCardImage" src={event.image} />
               </Card.Body>
               <Card.Body className="eventDetailsLeft">
-                <h5>Host: {event.hostBy}</h5>
+                <Row>
+                  <Col><h4>Host: {event.hostBy}</h4></Col>
+                  <Col className="text-end col-3">
+                    <ConnectButton org={org} />
+                  </Col>
+                </Row>
                 <hr />
                 <h5><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</h5>
                 <h5><Calendar /> {event.time.toLocaleString()}</h5>
@@ -102,6 +108,9 @@ Event.propTypes = {
     impact: PropTypes.string,
     hostBy: PropTypes.string,
     _id: PropTypes.string,
+  }).isRequired,
+  org: PropTypes.shape({
+    contactEmail: PropTypes.string,
   }).isRequired,
 };
 
