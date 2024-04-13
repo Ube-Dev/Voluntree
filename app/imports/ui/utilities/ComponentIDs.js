@@ -100,6 +100,8 @@ export const COMPONENT_IDS = {
   EDIT_USER_PROFILE_ZIP_CODE: 'edit-user-profile-zip-code',
   EDIT_USER_PROFILE_SUBMIT: 'edit-user-profile-submit',
 
+  ORGANIZATION_PROFILE_EDIT_PROFILE: 'organization-profile-edit-profile',
+
   EDIT_ORGANIZATION_PROFILE_NAME: 'edit-organization-profile-name',
   EDIT_ORGANIZATION_PROFILE_IMAGE: 'edit-organization-profile-image',
   EDIT_ORGANIZATION_PROFILE_MISSION: 'edit-organization-profile-mission',
