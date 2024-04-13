@@ -28,7 +28,7 @@ const AllEventPage = () => {
     };
   }, []);
   return ready ? (
-    <Container fluid className="color2">
+    <Container fluid className="color1">
       <Container fluid id={PAGE_IDS.EVENTS}>
         <Row className="justify-content-center">
           <Col className="col-11">
@@ -36,7 +36,7 @@ const AllEventPage = () => {
               <h1>Find Events</h1>
             </Row>
             <Row className="justify-content-center">
-              <Card>
+              <Card className="rounded-4 pt-5 all-event-card-background">
                 <EventFilter event={events} categories={categories} />
               </Card>
             </Row>

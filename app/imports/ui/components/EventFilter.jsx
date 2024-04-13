@@ -26,9 +26,9 @@ const EventFilter = ({ event, categories }) => {
   return (
     <Container>
       <Row>
-        <Col>
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic"> Filter by Category </Dropdown.Toggle>
+        <Col className="col-md-1 pb-3 text-center">
+          <Dropdown className="rounded-4">
+            <Dropdown.Toggle id="dropdown-basic-button">Filter by Category</Dropdown.Toggle>
             <Dropdown.Menu>
               <Form>
                 {categories.map((theCategory, index) => (
@@ -49,7 +49,7 @@ const EventFilter = ({ event, categories }) => {
             </Dropdown.Menu>
           </Dropdown>
         </Col>
-        <Col className="col-10">
+        <Col className="col-md-11">
           <EventList theEvents={filteredEvents} />
         </Col>
       </Row>

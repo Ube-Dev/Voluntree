@@ -70,11 +70,11 @@ const EventList = ({ theEvents }) => {
       </Container>
       {searchPerformed ? (
         <Row className="justify-content-center text-center p-2">
-          <p>Total Results: {displayedEvents.length}</p>
+          <h6>Total Results: {displayedEvents.length}</h6>
         </Row>
       ) : (
         <Row className="justify-content-center text-center p-2">
-          <p>Latest Events</p>
+          <h6>Latest Events</h6>
         </Row>
       )}
       <Row className="p-3">
