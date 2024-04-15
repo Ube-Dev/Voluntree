@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import '../css/EventPage.css';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import { Button, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import checkMark from './CheckMark';
 
-const TosModal = ({ handleAccept }) => {
+const TosModal = ({ handleAccept, handleDecline }) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}> Terms of Service </Button>
+      <div className="text-center">
+        <Button className="align-content-center" variant="primary" onClick={handleShow}> Terms of Service </Button>                 {checkMark(accepted)}
+      </div>
       <Modal show={show} onHide={handleClose} size="xl">
         <Modal.Header closeButton>
           <Modal.Title>Terms of Service</Modal.Title>
@@ -66,11 +68,10 @@ const TosModal = ({ handleAccept }) => {
           <Button variant="primary" onClick={() => { handleAccept(); handleClose(); }}>
             Accept
           </Button>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={() => { handleDecline(); handleClose(); }}>
             Decline
           </Button>
           <br />
-
         </Modal.Footer>
       </Modal>
     </>
@@ -79,4 +80,5 @@ const TosModal = ({ handleAccept }) => {
 export default TosModal;
 TosModal.propTypes = {
   handleAccept: PropTypes.func,
+  handleDecline: PropTypes.func,
 }.isRequired;

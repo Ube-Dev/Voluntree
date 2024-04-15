@@ -273,4 +273,7 @@ body {
   height: 150px;
   border-radius: 50%;
 }
-
+.ascii-icon
+{
+  font-size: 3em;
+}
