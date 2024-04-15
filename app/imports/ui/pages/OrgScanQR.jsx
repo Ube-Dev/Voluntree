@@ -30,7 +30,7 @@ const OrgScanQR = () => {
 
   // subscribe to the event
   const { ready, event } = useTracker(() => {
-    const subscription = Events.subscribeEvent();
+    const subscription = Events.subscribeSingleEvent(eventId._id);
     const rdy = subscription.ready();
     const theEvent = Events.findOne(eventId);
     return {
@@ -58,7 +58,7 @@ const OrgScanQR = () => {
     if (!ready) {
       return { ready3: false, orgHours: {} }; // Return empty object until 'event' is ready
     }
-    const subscription = Organization.subscribeOrganization();
+    const subscription = Organization.subscribeSingleOrganization(event.hostID);
     const rdy = subscription.ready();
     const org = Organization.findOne({ _id: event.hostID });
     return {
