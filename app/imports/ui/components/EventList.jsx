@@ -57,7 +57,7 @@ const EventList = ({ theEvents }) => {
   return (
     <Container>
       <Container className="d-flex justify-content-center">
-        <Form.Group className="w-75">
+        <Form.Group className="search-bar">
           <Form.Control
             id={COMPONENT_IDS.EVENTS_SEARCHBAR}
             type="text"
@@ -69,17 +69,17 @@ const EventList = ({ theEvents }) => {
         </Form.Group>
       </Container>
       {searchPerformed ? (
-        <Row className="justify-content-center text-center p-2">
-          <p>Total Results: {displayedEvents.length}</p>
+        <Row className="justify-content-center text-center p-2 text-color">
+          <h4>Total Results: {displayedEvents.length}</h4>
         </Row>
       ) : (
-        <Row className="justify-content-center text-center p-2">
-          <p>Latest Events</p>
+        <Row className="justify-content-center text-center p-2 text-color">
+          <h4>Latest Events</h4>
         </Row>
       )}
-      <Row className="p-3">
+      <Row className="py-1 event-list">
         {currentEvents.map((item) => (
-          <Col key={item._id} md={4} className="py-2">
+          <Col key={item._id} lg={4} md={6} sm={12} className="py-2">
             <EventCard event={item} />
           </Col>
         ))}
