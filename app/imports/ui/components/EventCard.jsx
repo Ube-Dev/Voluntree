@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Row, Col } from 'react-bootstrap';
+import { PersonFill } from 'react-bootstrap-icons';
 import '../css/EventCard.css';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +12,8 @@ const EventCard = ({ event }) => (
         <Card.Img src={event.image} className="event-image rounded-3" />
       </Card.Header>
       <Card.Body>
-        <Card.Title>{event.title}</Card.Title>
+        <Card.Title className="event-title">{event.title}</Card.Title>
+        <hr />
         <Card.Text>{event.city}</Card.Text>
         <Card.Text className="event-description">{event.description}</Card.Text>
         <Link className="host-link" to={`/org-profile/${event.hostID}`}><Card.Text>{event.hostBy}</Card.Text></Link>
@@ -22,7 +24,7 @@ const EventCard = ({ event }) => (
             <small>{event.startTime.toDateString()} | {event.startTime.toLocaleTimeString()}</small>
           </Col>
           <Col className="text-end col-4">
-            <small>Seats: {event.spotsFilled.length}/{event.totalSpots}</small>
+            <small><PersonFill /> {event.spotsFilled.length}/{event.totalSpots}</small>
           </Col>
         </Row>
       </Card.Footer>

@@ -69,15 +69,15 @@ const EventList = ({ theEvents }) => {
         </Form.Group>
       </Container>
       {searchPerformed ? (
-        <Row className="justify-content-center text-center p-2">
-          <h6>Total Results: {displayedEvents.length}</h6>
+        <Row className="justify-content-center text-center p-2 text-color">
+          <h5>Total Results: {displayedEvents.length}</h5>
         </Row>
       ) : (
-        <Row className="justify-content-center text-center p-2">
-          <h6>Latest Events</h6>
+        <Row className="justify-content-center text-center p-2 text-color">
+          <h5>Latest Events</h5>
         </Row>
       )}
-      <Row className="p-3">
+      <Row className="py-1">
         {currentEvents.map((item) => (
           <Col key={item._id} md={4} className="py-2">
             <EventCard event={item} />

@@ -44,7 +44,7 @@ const EventFilter = ({ event, categories }) => {
                     </div>
                   </div>
                 ))}
-                <Button variant="link" className="ms-auto" onClick={resetFilter}>reset</Button>
+                <Button variant="primary" className="m-2" onClick={resetFilter}>reset</Button>
               </Form>
             </Dropdown.Menu>
           </Dropdown>

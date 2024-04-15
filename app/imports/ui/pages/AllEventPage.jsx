@@ -36,15 +36,17 @@ const AllEventPage = () => {
               <h1>Find Events</h1>
             </Row>
             <Row className="justify-content-center">
-              <Card className="rounded-4 pt-5 all-event-card-background">
+              <Card fluid className="rounded-4 py-5 all-event-card-background">
                 <EventFilter event={events} categories={categories} />
               </Card>
             </Row>
             <Row className="justify-content-center p-3">
-              <Col className="col-4">
-                <Card>
+              <Col className="col-lg-4 col-md-6 text-center">
+                <Card className="rounded-4 p-3">
                   <h4>Need Volunteers?</h4>
-                  <Button variant="outline-primary" href="/createOrganization">Create An Organization</Button>
+                  <Col>
+                    <Button variant="primary" href="/createOrganization">Create An Organization</Button>
+                  </Col>
                 </Card>
               </Col>
             </Row>
