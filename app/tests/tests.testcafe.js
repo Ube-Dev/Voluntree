@@ -17,6 +17,7 @@ import { orgProfilePage } from './orgprofile.page';
 import { orgDashboardPage } from './orgdashboard.page';
 import { orgOverview } from './orgoverview.component';
 import { editOrgProfilePage } from './editorgprofile.page';
+import { orgDropdown } from './orgdropdown.component';
 
 /* global fixture:false, test:false */
 
@@ -186,7 +187,7 @@ test('Test that view org profile page can be accessed from org dashboard', async
   await orgProfilePage.isDisplayed();
 });
 
-test.only('Test that edit org profile page can be accessed from org dashboard', async () => {
+test('Test that edit org profile page can be accessed from org dashboard', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -194,4 +195,13 @@ test.only('Test that edit org profile page can be accessed from org dashboard', 
   await orgDashboardPage.isDisplayed();
   await orgOverview.gotoEditOrgProfilePage();
   await editOrgProfilePage.isDisplayed();
+});
+
+test.only('Test that org dashboard dropdown works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgDropdown.selectOrg();
 });

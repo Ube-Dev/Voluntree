@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Dropdown, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import OrganizationOverview from './OrganizationOverview';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import '../css/OrgDashboard.css';
 
 const OrganizationDropdown = ({ myOrganization }) => {
@@ -34,7 +35,7 @@ const OrganizationDropdown = ({ myOrganization }) => {
         <Row>
           <Col>
             <Dropdown className="text-center mb-4">
-              <Dropdown.Toggle variant="success" className="org-dropdown">
+              <Dropdown.Toggle variant="success" className="org-dropdown" id={COMPONENT_IDS.ORGANIZATION_DROPDOWN}>
                 My Organizations
               </Dropdown.Toggle>
               <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
