@@ -14,7 +14,7 @@ import { upcomingEventCard } from './upcomingeventcard.component';
 import { editUserProfilePage } from './edituserprofile.page';
 import { userDashboard } from './userdashboard.component';
 // import { orgProfilePage } from './orgprofile.page';
-// import { orgDashboardPage } from './orgdashboard.page';
+import { orgDashboardPage } from './orgdashboard.page';
 
 /* global fixture:false, test:false */
 
@@ -174,8 +174,10 @@ test('Test that user profile can be updated', async () => {
   await editUserProfilePage.updateProfile();
 });
 
-test.only('Test that organization profile works', async () => {
+test.only('Test that organization dashboard works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
 });
