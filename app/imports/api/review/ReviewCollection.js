@@ -18,7 +18,7 @@ class ReviewCollection extends BaseCollection {
       rating: { type: Number, min: defaultRatingRange.min, max: defaultRatingRange.max },
       reviewerID: { type: String }, // userID
       reviewFor: { type: Object },
-      'reviewFor.type': { type: String, allowedValues: defaultReviewForType }, // ["event", "organization"]
+      'reviewFor.type': { type: String, allowedValues: Object.values(defaultReviewForType) }, // ["event", "organization"]
       'reviewFor.ID': { type: String }, // eventID/organizationID
       content: { type: String },
     }));
@@ -43,7 +43,7 @@ class ReviewCollection extends BaseCollection {
       Meteor.publish(reviewPublications.event, function publish(eventID) {
         check(eventID, String);
         if (this.userId) {
-          return instance._collection.find({ reviewFor: { type: defaultReviewForType[0], ID: eventID } });
+          return instance._collection.find({ reviewFor: { type: defaultReviewForType.event, ID: eventID } });
         }
         return this.ready();
       });
@@ -51,7 +51,7 @@ class ReviewCollection extends BaseCollection {
       Meteor.publish(reviewPublications.organization, function publish(organizationID) {
         check(organizationID, String);
         if (this.userId) {
-          return instance._collection.find({ reviewFor: { type: defaultReviewForType[1], ID: organizationID } });
+          return instance._collection.find({ reviewFor: { type: defaultReviewForType.organization, ID: organizationID } });
         }
         return this.ready();
       });

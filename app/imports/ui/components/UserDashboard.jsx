@@ -17,11 +17,7 @@ const UserDashboard = () => {
     };
   });
 
-  if (!ready) {
-    return <LoadingSpinner />;
-  }
-
-  return (
+  return ready ? (
     <Container>
       <Card>
         <Card.Header>
@@ -33,21 +29,26 @@ const UserDashboard = () => {
               <Image src={userProfile?.image || '/path/to/default/profile/image.png'} alt="Profile Image" id="profile-img" />
             </Col>
             <Col>
-              {userProfile && (
-                <>
-                  <h4>{userProfile.firstName} {userProfile.lastName}</h4>
-                  <p>Hours Recorded: {userProfile.totalHours}</p>
-                </>
-              )}
+              <h4>{userProfile.firstName} {userProfile.lastName}</h4>
+              <p>Hours Recorded: {userProfile.totalHours}</p>
             </Col>
           </Row>
         </Card.Body>
-        <Card.Footer className="d-flex justify-content-end p-2">
-          <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_PROFILE} className="mx-1" href="/profile">View Profile</Button>
-          <Button id={COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE} className="mx-1" href={`/edit-user-profile/${userProfile?._id}`}>Edit</Button>
+        <Card.Footer className="p-2">
+          <Row>
+            <Col className="text-start">
+              <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_PROFILE} className="mx-1" href="/profile">View Profile</Button>
+              <Button id={COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE} className="mx-1" href={`/edit-user-profile/${userProfile?.id}`}>Edit</Button>
+            </Col>
+            <Col className="text-end">
+              <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_QR_CODE} className="mx-1" href={`/qr-code/${userProfile?._id}`}>Log Hours</Button>
+            </Col>
+          </Row>
         </Card.Footer>
       </Card>
     </Container>
+  ) : (
+    <LoadingSpinner />
   );
 };
 

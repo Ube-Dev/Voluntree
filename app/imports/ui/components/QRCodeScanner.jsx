@@ -8,9 +8,10 @@ const useCodeReader = () => useRef(new ZXing.BrowserQRCodeReader());
 
 const QrCodeScanner = ({ onResultChange }) => {
   const codeReaderRef = useCodeReader();
-  const [selectedDeviceId, setSelectedDeviceId] = useState(null); // State to store selected device ID
+  const [selectedDeviceId, setSelectedDeviceId] = useState(null);
   const [isScanning, setIsScanning] = useState(true); // New state to control scanning
-  const [setResult] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [result, setResult] = useState('');
 
   useEffect(() => {
     const initCodeReader = async () => {
@@ -61,6 +62,7 @@ const QrCodeScanner = ({ onResultChange }) => {
   const decodeOnce = (codeReader, selectedDeviceId) => {
     if (isScanning) {
       setIsScanning(false); // Set to false before scanning to prevent rapid clicks
+      // eslint-disable-next-line no-shadow
       codeReader.decodeFromInputVideoDeviceContinuously(selectedDeviceId, 'video', (result, err) => {
         if (result) {
           console.log('Found QR code!', result);
@@ -86,44 +88,43 @@ const QrCodeScanner = ({ onResultChange }) => {
     }
   };
 
-  return ZXing ? (
+  if (!ZXing) {
+    return <LoadingSpinner />;
+  }
+
+  return (
     <div className="p-1 justify-content-center align-content-center">
       <Row className="justify-content-center">
         <Col sm={3} md={4} lg={4} xl={4}>
           <Container className="py-2">
-            <Row className="py-1 d-flex">
+            <Row className="pb-3 d-flex">
               <Col className="d-flex justify-content-center align-items-center">
                 <Button className="button" id="startButton">Start</Button>
               </Col>
               <Col className="d-flex justify-content-center align-items-center">
-                <Button className="button" id="resetButton">Stop</Button>
+                <Button className="button" id="resetButton">Reset</Button>
               </Col>
             </Row>
 
             <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div>
                 {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                <video id="video" width="300" height="200" style={{ border: '1px solid gray' }} />
+                <video id="video" width="350" height="350" style={{ border: '3px solid gray', background: 'gray' }} />
               </div>
             </Container>
 
-            <Container className="py-2">
-              <Row className="py-1 d-flex">
-                <Col className="d-flex justify-content-center align-items-center">
-                  <div id="sourceSelectPanel" style={{ display: 'none' }}>
-                    <label htmlFor="sourceSelect">Change video input:
-                      <select id="sourceSelect" aria-label="Select video input" />
-                    </label>
-                  </div>
-                </Col>
-              </Row>
+            <Container className="py-1">
+              <div id="sourceSelectPanel" style={{ display: 'none' }}>
+                <label htmlFor="sourceSelect">
+                  Video Source:
+                  <select id="sourceSelect" style={{ maxWidth: '400px' }} aria-label="Video Source" />
+                </label>
+              </div>
             </Container>
           </Container>
         </Col>
       </Row>
     </div>
-  ) : (
-    <LoadingSpinner />
   );
 };
 

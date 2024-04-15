@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, Col, Container, Dropdown, Row, Button } from 'react-bootstrap';
 import { AutoForm, DateField, ErrorsField, NumField, SelectField, SubmitField, TextField, LongTextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
@@ -58,6 +59,7 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /* Renders the AddEvent page for adding a document. */
 const AddEvent = () => {
+  const navigate = useNavigate();
   const sections = ['Event Details', 'Host Details', 'Location', 'Time of Event', 'Required Skills & Accessibilities'];
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
@@ -85,23 +87,32 @@ const AddEvent = () => {
   ));
 
   // On submit, insert the data.
-  const submit = (data, formRef) => {
-    const { title, image, description, impact, totalSpots, activityType, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
-    const hostBy = selectedOrganization.name; // _id
-    const hostType = selectedOrganization ? 'organization' : 'individual'; // ['individual', 'organization', 'school']
-    const hostID = selectedOrganization ? selectedOrganization._id : Meteor.userId(); // _id, this is required
-    const phone = selectedOrganization.phone;
-    const definitionData = { title, image, description, impact, totalSpots, activityType, hostBy, hostType, hostID, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
-    Meteor.call(createEvent, definitionData, (error) => {
-      if (error) {
-        swal('Error', error.message, 'error');
-      } else {
-        swal('Success', `Successfully added ${title}`, 'success');
-        formRef.reset();
-      }
-      // Clear the selected organization after submission or error
+  const submit = async (data, formRef) => {
+    try {
+      const { title, image, description, impact, totalSpots, activityType, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
+      const hostBy = selectedOrganization.name;
+      const hostType = selectedOrganization ? 'organization' : 'individual';
+      const hostID = selectedOrganization ? selectedOrganization._id : Meteor.userId();
+      const phone = selectedOrganization.phone;
+      const definitionData = { title, image, description, impact, totalSpots, activityType, hostBy, hostType, hostID, phone, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
+
+      const newEventId = await new Promise((resolve, reject) => {
+        Meteor.call(createEvent, definitionData, (error, eventId) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(eventId);
+          }
+        });
+      });
+
+      swal('Success', `Successfully added ${title}`, 'success');
+      formRef.reset();
+      navigate(`/view_event/${newEventId}`);
       setSelectedOrganization(null);
-    });
+    } catch (error) {
+      swal('Error', error.message, 'error');
+    }
   };
 
   // Function to handle going to next section

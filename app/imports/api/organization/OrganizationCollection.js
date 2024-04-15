@@ -33,8 +33,9 @@ class OrganizationCollection extends BaseCollection {
       'onGoingEvents.$': { type: String },
       members: { type: Array, optional: true, defaultValue: [] },
       'members.$': { type: String },
-      TotalHours: { type: Number, optional: true, defaultValue: 0 },
-      MonthlyHours: { type: Number, optional: true, defaultValue: 0 },
+      totalHours: { type: Number, optional: true, defaultValue: 0 },
+      monthlyHours: { type: Number, optional: true, defaultValue: 0 },
+      averageRating: { type: Number, optional: true },
     }));
   }
 
