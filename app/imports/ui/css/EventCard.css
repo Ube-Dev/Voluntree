@@ -41,6 +41,10 @@
   -webkit-box-orient: vertical;
 }
 
+.event-footer {
+  margin-bottom: 5px;
+}
+
 .host-link {
   color: var(--color2) !important;
   text-decoration: none;

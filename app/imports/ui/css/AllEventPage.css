@@ -58,6 +58,8 @@
 .all-event-card-background {
   background-color: var(--color2) !important;
   box-shadow: 6px 6px 6px 0 rgba(0, 0, 0, 0.15);
+  margin-right: -25px !important;
+  margin-left: -25px !important;
 }
 
 .search-bar {
@@ -65,8 +67,8 @@
 }
 
 .event-list {
-  margin-left: -15px !important;
-  margin-right: -15px !important;
+  margin-left: -30px !important;
+  margin-right: -30px !important;
 }
 
 .text-color {

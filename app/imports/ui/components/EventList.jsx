@@ -79,7 +79,7 @@ const EventList = ({ theEvents }) => {
       )}
       <Row className="py-1 event-list">
         {currentEvents.map((item) => (
-          <Col key={item._id} md={4} className="py-2">
+          <Col key={item._id} lg={4} md={6} sm={12} className="py-2">
             <EventCard event={item} />
           </Col>
         ))}

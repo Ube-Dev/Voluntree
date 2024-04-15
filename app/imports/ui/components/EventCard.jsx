@@ -19,7 +19,7 @@ const EventCard = ({ event }) => (
         <Link className="host-link" to={`/org-profile/${event.hostID}`}><Card.Text>{event.hostBy}</Card.Text></Link>
       </Card.Body>
       <Card.Footer>
-        <Row>
+        <Row className="event-footer">
           <Col className="text-start col-8">
             <small>{event.startTime.toDateString()} | {event.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</small>
           </Col>
