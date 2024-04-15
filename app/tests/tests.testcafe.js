@@ -171,3 +171,9 @@ test('Test that user profile can be updated', async () => {
   await userProfilePage.gotoEditUserProfile();
   await editUserProfilePage.updateProfile();
 });
+
+test.only('Test that organization profile works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+});
