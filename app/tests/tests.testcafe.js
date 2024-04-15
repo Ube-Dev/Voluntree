@@ -16,6 +16,7 @@ import { userDashboard } from './userdashboard.component';
 import { orgProfilePage } from './orgprofile.page';
 import { orgDashboardPage } from './orgdashboard.page';
 import { orgOverview } from './orgoverview.component';
+import { editOrgProfilePage } from './editorgprofile.page';
 
 /* global fixture:false, test:false */
 
@@ -167,7 +168,7 @@ test('Test that user profile can be updated', async () => {
   await editUserProfilePage.updateProfile();
 });
 
-test.only('Test that organization dashboard works', async () => {
+test('Test that organization dashboard works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -175,7 +176,7 @@ test.only('Test that organization dashboard works', async () => {
   await orgDashboardPage.isDisplayed();
 });
 
-test.only('Test that view org profile page can be viewed from org dashboard', async () => {
+test('Test that view org profile page can be accessed from org dashboard', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -183,4 +184,14 @@ test.only('Test that view org profile page can be viewed from org dashboard', as
   await orgDashboardPage.isDisplayed();
   await orgOverview.gotoOrgProfilePage();
   await orgProfilePage.isDisplayed();
+});
+
+test.only('Test that edit org profile page can be accessed from org dashboard', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgOverview.gotoEditOrgProfilePage();
+  await editOrgProfilePage.isDisplayed();
 });

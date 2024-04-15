@@ -34,7 +34,7 @@ const OrganizationDropdown = ({ myOrganization }) => {
         <Row>
           <Col>
             <Dropdown className="text-center mb-4">
-              <Dropdown.Toggle variant="success" id="dropdown-basic" className="org-dropdown">
+              <Dropdown.Toggle variant="success" className="org-dropdown">
                 My Organizations
               </Dropdown.Toggle>
               <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
