@@ -13,6 +13,8 @@ import { userProfilePage } from './userprofile.page';
 import { upcomingEventCard } from './upcomingeventcard.component';
 import { editUserProfilePage } from './edituserprofile.page';
 import { userDashboard } from './userdashboard.component';
+// import { orgProfilePage } from './orgprofile.page';
+// import { orgDashboardPage } from './orgdashboard.page';
 
 /* global fixture:false, test:false */
 
