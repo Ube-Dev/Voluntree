@@ -4,6 +4,8 @@
   "defaultOrganizationImage": "../images/defaultImages/defaultOrganizationImage.jpg",
 
   "defaultNotificationSenderType": ["user", "organization"],
+  "defaultReviewForType": { "event": "event", "organization": "organization" },
+  "defaultRatingRange": { "min": 1, "max": 5 },
   "packages": {
     "email": {
       "service": "smtp.gmail.com",
@@ -637,6 +639,58 @@
         "mainCategory": "Social Services",
         "subCategory": "Homelessness"
         }
+    }
+  ],
+  "defaultReview": [
+    {
+      "_id": "qwe890poi",
+      "rating": 4,
+      "reviewerID": "FJHc6qrg9KzmDnwPt",
+      "reviewFor": {
+        "type": "event",
+        "ID": "nT7sXq9KdYfR"
+      },
+      "content": "This was a great event! Highly recommended."
+    },
+    {
+      "_id": "asd456jkl",
+      "rating": 5,
+      "reviewerID": "ZpLMnWk2SCQrhtgN5",
+      "reviewFor": {
+        "type": "organization",
+        "ID": "1SkcLcs"
+      },
+      "content": "I had an amazing experience with this organization. They exceeded my expectations."
+    },
+    {
+      "_id": "zxc123qwe",
+      "rating": 3,
+      "reviewerID": "FJHc6qrg9KzmDnwPt",
+      "reviewFor": {
+        "type": "event",
+        "ID": "nT7sXq9KdYfR"
+      },
+      "content": "The event was good, but there's room for improvement."
+    },
+    {
+      "_id": "tyu123qwe",
+      "rating": 2,
+      "reviewerID": "FJHc6qrg9KzmDnwPt",
+      "reviewFor": {
+        "type": "event",
+        "ID": "nT7sXq9KdYfR"
+      },
+      "content": "The event was good, but there's room for improvement."
+    },
+    {
+      "_id": "rty789uio",
+      "rating": 2,
+      "reviewerID": "ZpLMnWk2SCQrhtgN5",
+      "reviewFor": {
+        "type": "organization",
+        "ID": "1SkcLcs"
+      },
+      "content": "I was disappointed with the services provided by this organization."
     }
   ]
 }

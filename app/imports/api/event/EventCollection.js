@@ -65,6 +65,7 @@ class EventCollection extends BaseCollection {
       'equipmentsCount.value.value': { type: Number }, // total numbers
       startTime: { type: Date, optional: true, defaultValue: new Date() },
       endTime: { type: Date, optional: true, defaultValue: new Date() },
+      averageRating: { type: Number, optional: true },
     }));
   }
 

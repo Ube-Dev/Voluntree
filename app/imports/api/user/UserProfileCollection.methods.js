@@ -47,7 +47,7 @@ Meteor.methods({
       try {
         const profileID = UserProfiles._collection.insert({
           ...data,
-          ...{ userID: newID, role: ROLE.USER },
+          ...{ _id: newID, userID: newID, role: ROLE.USER },
         });
         return profileID;
       } catch (error) {
