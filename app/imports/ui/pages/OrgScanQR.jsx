@@ -80,13 +80,13 @@ const OrgScanQR = () => {
       } else {
         swal('Success', `Successfully updated ${foundUser.firstName}&apos;s hours.`, 'success');
         setResult('');
-      }
-    });
-    Meteor.call(organizationAddHours, event.hostID, totalHours, (error) => {
-      if (error) {
-        swal('Error', error.message, 'error');
-      } else {
-        swal('Success', `Successfully updated ${orgHours.name} hours.`, 'success');
+        Meteor.call(organizationAddHours, event.hostID, totalHours, (error2) => {
+          if (error2) {
+            swal('Error', error.message, 'error');
+          } else {
+            swal('Success', `Successfully updated ${orgHours.name} hours.`, 'success');
+          }
+        });
       }
     });
   };
