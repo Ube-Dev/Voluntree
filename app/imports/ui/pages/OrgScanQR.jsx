@@ -30,7 +30,7 @@ const OrgScanQR = () => {
 
   // subscribe to the event
   const { ready, event } = useTracker(() => {
-    const subscription = Events.subscribeEvent();
+    const subscription = Events.subscribeSingleEvent(eventId._id);
     const rdy = subscription.ready();
     const theEvent = Events.findOne(eventId);
     return {
@@ -58,7 +58,7 @@ const OrgScanQR = () => {
     if (!ready) {
       return { ready3: false, orgHours: {} }; // Return empty object until 'event' is ready
     }
-    const subscription = Organization.subscribeOrganization();
+    const subscription = Organization.subscribeSingleOrganization(event.hostID);
     const rdy = subscription.ready();
     const org = Organization.findOne({ _id: event.hostID });
     return {
@@ -80,13 +80,13 @@ const OrgScanQR = () => {
       } else {
         swal('Success', `Successfully updated ${foundUser.firstName}&apos;s hours.`, 'success');
         setResult('');
-      }
-    });
-    Meteor.call(organizationAddHours, event.hostID, totalHours, (error) => {
-      if (error) {
-        swal('Error', error.message, 'error');
-      } else {
-        swal('Success', `Successfully updated ${orgHours.name} hours.`, 'success');
+        Meteor.call(organizationAddHours, event.hostID, totalHours, (error2) => {
+          if (error2) {
+            swal('Error', error.message, 'error');
+          } else {
+            swal('Success', `Successfully updated ${orgHours.name} hours.`, 'success');
+          }
+        });
       }
     });
   };
