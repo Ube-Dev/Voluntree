@@ -6,6 +6,7 @@ import checkMark from './CheckMark';
 
 const TosModal = ({ handleAccept, handleDecline }) => {
   const [show, setShow] = useState(false);
+  const [accepted, setAccepted] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
@@ -18,6 +19,7 @@ const TosModal = ({ handleAccept, handleDecline }) => {
         <Modal.Header closeButton>
           <Modal.Title>Terms of Service</Modal.Title>
         </Modal.Header>
+
         <Modal.Body className="scrollModal">
           <strong> Welcome to Voluntree! </strong><br /> These Terms of Use and Service ( &quot; Terms &quot;) govern your access to and use of the Voluntree website and services (collectively, the &quot; Services &quot;).
           By accessing or using the Services, you agree to be bound by these Terms. If you do not agree to these Terms, please do not use the Services.
@@ -65,10 +67,10 @@ const TosModal = ({ handleAccept, handleDecline }) => {
           By using the Services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use and Service.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => { handleAccept(); handleClose(); }}>
+          <Button variant="primary" onClick={() => { handleAccept(); setAccepted(true); handleClose(); }}>
             Accept
           </Button>
-          <Button variant="secondary" onClick={() => { handleDecline(); handleClose(); }}>
+          <Button variant="secondary" onClick={() => { handleDecline(); setAccepted(false); handleClose(); }}>
             Decline
           </Button>
           <br />
