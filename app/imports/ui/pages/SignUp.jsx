@@ -12,6 +12,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import TosModal from '../components/TosModal';
+import checkMark from '../components/CheckMark';
 
 /**
  * SignUp component is similar to signin component, but we create a new user instead.
@@ -53,7 +54,6 @@ const SignUp = () => {
       alert('Tos not accepted sorry');
     }
   };
-
   /* Display the signup form. Redirect to home page after successful registration and login. */
   // if correct authentication, redirect to from: page instead of signup screen
   if (redirectToReferer) {
@@ -73,9 +73,9 @@ const SignUp = () => {
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_LAST_NAME} name="lastName" placeholder="Last name" />
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Email address" />
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD} name="password" placeholder="Password" type="password" />
-                <ErrorsField />
-                <TosModal handleAccept={() => setAcceptedTos(true)} />
+                <TosModal handleAccept={() => setAcceptedTos(true)} handleDecline={() => setAcceptedTos(false)} />
                 <SubmitField className="pt-4" id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
+                <ErrorsField />
               </Card.Body>
             </Card>
           </AutoForm>
