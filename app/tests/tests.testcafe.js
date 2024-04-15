@@ -2,7 +2,7 @@ import { signOutPage } from './simple.page';
 import { landingPage } from './landing.page';
 import { signInPage } from './signin.page';
 // import { signUpPage } from './signup.page';
-import { dashboardPage } from './dashboard.page';
+// import { dashboardPage } from './dashboard.page';
 import { navBar } from './navbar.component';
 import { faqPage } from './faq.page';
 import { homePage } from './home.page';
@@ -13,8 +13,9 @@ import { userProfilePage } from './userprofile.page';
 import { upcomingEventCard } from './upcomingeventcard.component';
 import { editUserProfilePage } from './edituserprofile.page';
 import { userDashboard } from './userdashboard.component';
-// import { orgProfilePage } from './orgprofile.page';
+import { orgProfilePage } from './orgprofile.page';
 import { orgDashboardPage } from './orgdashboard.page';
+import { orgOverview } from './orgoverview.component';
 
 /* global fixture:false, test:false */
 
@@ -29,14 +30,6 @@ fixture('meteor-application-template-production localhost test with default db')
 
 test('Test that landing page shows up', async () => {
   await landingPage.isDisplayed();
-});
-
-test('Test that dashboard works', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(orgCredentials.username, orgCredentials.password);
-  await navBar.isLoggedIn(orgCredentials.username);
-  await navBar.gotoDashboardPage();
-  await dashboardPage.isDisplayed();
 });
 
 test('Test that FAQ page works', async () => {
@@ -180,4 +173,14 @@ test.only('Test that organization dashboard works', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoDashboardPage();
   await orgDashboardPage.isDisplayed();
+});
+
+test.only('Test that view org profile page can be viewed from org dashboard', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgOverview.gotoOrgProfilePage();
+  await orgProfilePage.isDisplayed();
 });

@@ -3,11 +3,12 @@ import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import LoadingSpinner from './LoadingSpinner';
 import OrganizationEvents from './OrganizationEvents';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 // import OrganizationStats from './OrganizationStats';
 
 const OrganizationOverview = ({ theOrganization }) => (
   theOrganization ? (
-    <Container>
+    <Container id={COMPONENT_IDS.ORGANIZATION_OVERVIEW}>
       <Card>
         <Card.Body>
           <Row>
@@ -38,8 +39,12 @@ const OrganizationOverview = ({ theOrganization }) => (
           </Row>
         </Card.Body>
         <Card.Footer>
-          <Button className="btn-primary" href={`/org-profile/${theOrganization._id}`}>View More</Button>
-          <Button className="mx-2 btn-primary" href={`/edit-organization-profile/${theOrganization._id}`}>Edit</Button>
+          <Button className="btn-primary" href={`/org-profile/${theOrganization._id}`} id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_VIEW_PROFILE}>
+            View More
+          </Button>
+          <Button className="mx-2 btn-primary" href={`/edit-organization-profile/${theOrganization._id}`} id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_EDIT_PROFILE}>
+            Edit
+          </Button>
         </Card.Footer>
       </Card>
       <Row>
