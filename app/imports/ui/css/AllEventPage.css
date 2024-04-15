@@ -60,6 +60,15 @@
   box-shadow: 6px 6px 6px 0 rgba(0, 0, 0, 0.15);
 }
 
+.search-bar {
+  min-width: 75%;
+}
+
+.event-list {
+  margin-left: -15px !important;
+  margin-right: -15px !important;
+}
+
 .text-color {
   color: white;
 }

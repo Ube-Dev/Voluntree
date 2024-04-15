@@ -8,6 +8,8 @@
   transition: 0.25s;
   box-shadow: 6px 6px 6px 0 rgba(0, 0, 0, 0.15);
   height: 550px !important;
+  margin-right: -5px !important;
+  margin-left: -5px !important;
 }
 .event-card:hover {
   transform: translateY(-4px);
