@@ -149,7 +149,7 @@ const AddEvent = () => {
               <Row className="text-center">
                 <h1>Create Event</h1>
               </Row>
-              <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
+              <AutoForm className="edit-page-background editCSS" ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
                 {sections.map((section, index) => (
                   <Card key={index} className="rounded-4" style={{ display: currentSectionIndex === index ? 'block' : 'none' }}>
                     <Card.Header className="section-header">{section}</Card.Header>
@@ -269,9 +269,9 @@ const AddEvent = () => {
                         {currentSectionIndex > 0 && <Button onClick={goToPreviousSection} id={COMPONENT_IDS.ADD_EVENT_FORM_PREVIOUS_PAGE} className="me-2">Previous page</Button>}
                         {currentSectionIndex < sections.length - 1 && <Button onClick={goToNextSection} id={COMPONENT_IDS.ADD_EVENT_FORM_NEXT_PAGE} className="me-2">Next Page</Button>}
                         {currentSectionIndex === sections.length - 1 && <SubmitField id={COMPONENT_IDS.ADD_EVENT_FORM_SUBMIT} />}
+                        {currentSectionIndex === sections.length - 1 && <ErrorsField />}
                       </div>
                     </Card.Footer>
-                    <ErrorsField />
                   </Card>
                 ))}
               </AutoForm>
