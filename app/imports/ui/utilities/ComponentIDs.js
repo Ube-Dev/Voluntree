@@ -55,6 +55,7 @@ export const COMPONENT_IDS = {
   ADD_EVENT_FORM_NEXT_PAGE: 'add-event-form-next-page',
   ADD_EVENT_FORM_PREVIOUS_PAGE: 'add-event-form-previous-page',
   ADD_EVENT_FORM_SUBMIT: 'add-event-form-submit',
+  ADD_EVENT_FORM_SHOW_LOCATION: 'add-event-form-show-location',
 
   EDIT_EVENT_FORM_TITLE: 'edit-event-form-title',
   EDIT_EVENT_FORM_IMAGE: 'edit-event-form-image',

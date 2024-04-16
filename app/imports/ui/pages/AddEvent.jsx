@@ -21,14 +21,15 @@ const formSchema = new SimpleSchema({
   impact: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
   activityCategory: { type: String, optional: true },
-  address: { type: String, optional: false },
-  zipCode: { type: String, optional: false },
-  city: { type: String, optional: false },
-  state: { type: String, optional: false },
-  country: { type: String, optional: false },
+  address: { type: String, optional: true },
+  zipCode: { type: String, optional: true },
+  city: { type: String, optional: true },
+  state: { type: String, optional: true },
+  country: { type: String, optional: true },
   totalSpots: { type: SimpleSchema.Integer, optional: false },
   startTime: { type: Date, optional: false },
   endTime: { type: Date, optional: false },
+  showLocationForm: { type: Boolean, optional: false },
   frequency: {
     type: String,
     allowedValues: ['Once', 'Daily', 'Weekly', 'Monthly', 'Yearly'],
@@ -62,7 +63,8 @@ const AddEvent = () => {
   const navigate = useNavigate();
   const sections = ['Event Details', 'Host Details', 'Location', 'Time of Event', 'Required Skills & Accessibilities'];
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-
+  const [showLocationForm, setShowLocationForm] = useState(false);
+  const [selectedOrganization, setSelectedOrganization] = useState(null);
   // Subscribe to the organization publication for the current user
   const { ready, organization } = useTracker(() => {
     const currentUser = Meteor.user()._id; // Retrieve the current user
@@ -73,8 +75,6 @@ const AddEvent = () => {
       organization: profile,
     };
   });
-
-  const [selectedOrganization, setSelectedOrganization] = useState(null);
 
   const handleOrganizationSelect = (org) => {
     setSelectedOrganization(org);
@@ -110,6 +110,7 @@ const AddEvent = () => {
       formRef.reset();
       navigate(`/view_event/${newEventId}`);
       setSelectedOrganization(null);
+      setShowLocationForm(false);
     } catch (error) {
       swal('Error', error.message, 'error');
     }
@@ -117,6 +118,10 @@ const AddEvent = () => {
 
   // Function to handle going to next section
   const goToNextSection = () => {
+    if (currentSectionIndex === 1 && !showLocationForm) {
+      setCurrentSectionIndex(3);
+      return;
+    }
     if (currentSectionIndex < sections.length - 1) {
       setCurrentSectionIndex(currentSectionIndex + 1);
     }
@@ -124,6 +129,10 @@ const AddEvent = () => {
 
   // Function to handle going to previous section
   const goToPreviousSection = () => {
+    if (currentSectionIndex === 3 && !showLocationForm) {
+      setCurrentSectionIndex(1);
+      return;
+    }
     if (currentSectionIndex > 0) {
       setCurrentSectionIndex(currentSectionIndex - 1);
     }
@@ -170,12 +179,26 @@ const AddEvent = () => {
                       {section === 'Host Details' && (
                         <div>
                           <Row>
-                            <Dropdown>
-                              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                My Organizations
-                              </Dropdown.Toggle>
-                              <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
-                            </Dropdown>
+                            <Col md={6}>
+                              <Dropdown>
+                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                  My Organizations
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
+                              </Dropdown>
+                            </Col>
+                            <Col md={6}>
+                              <div style={{ marginTop: '10px' }}>
+                                <SelectField
+                                  name="showLocationForm"
+                                  label="Have location"
+                                  id={COMPONENT_IDS.ADD_EVENT_FORM_SHOW_LOCATION}
+                                  options={[{ label: 'Yes', value: 'true' }, { label: 'No', value: 'false' }]}
+                                  value={showLocationForm}
+                                  onChange={(value) => setShowLocationForm(value === 'true')}
+                                />
+                              </div>
+                            </Col>
                           </Row>
                           <hr />
                           <Row>
@@ -194,7 +217,7 @@ const AddEvent = () => {
                           </Row>
                         </div>
                       )}
-                      {section === 'Location' && (
+                      {section === 'Location' && showLocationForm && (
                         <div>
                           <Row>
                             <Col md={12}>
@@ -249,8 +272,8 @@ const AddEvent = () => {
                         {currentSectionIndex < sections.length - 1 && <Button onClick={goToNextSection} id={COMPONENT_IDS.ADD_EVENT_FORM_NEXT_PAGE} className="me-2">Next Page</Button>}
                         {currentSectionIndex === sections.length - 1 && <SubmitField id={COMPONENT_IDS.ADD_EVENT_FORM_SUBMIT} />}
                       </div>
-                      <ErrorsField />
                     </Card.Footer>
+                    <ErrorsField />
                   </Card>
                 ))}
               </AutoForm>
