@@ -1,0 +1,56 @@
+/* editCSS: styling for add event forms */
+.addEventCSS .card {
+    background-color: var(--color1) !important;
+    color: white;
+    border-color: rgba(0, 0, 0, 0) !important;
+    border-width: medium;
+    border-radius: 20px;
+    --bs-success-rgb: gold;
+}
+
+.addEventCSS .alert {
+    background-color: var(--color3) !important;
+    color: white;
+    border-color: var(--color1) !important;
+    border-width: medium;
+    border-radius: 20px;
+    --bs-link-hover-color: white;
+}
+
+.addEventCSS .btn {
+    --bs-btn-color: black !important;
+    --bs-btn-bg: gold !important;
+    --bs-btn-border-color: gold !important;
+    --bs-btn-hover-bg: darkgoldenrod !important;
+    --bs-btn-hover-border-color: darkgoldenrod !important;
+    --bs-btn-active-bg: var(--color6) !important;
+    --bs-btn-active-border-color: var(--color6) !important;
+}
+
+.addEventCSS .btn:disabled {
+    --bs-btn-disabled-bg: darkgoldenrod !important;
+    --bs-btn-disabled-border-color: darkgoldenrod !important;
+    --bs-btn-disabled-opacity: 0.5 !important;
+}
+
+.addEvent-page-background {
+    background-color: var(--color2);
+    background-size: cover;
+    height: 600px;
+}
+
+.addEventCSS .organization-details {
+    color: #04BF9D;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.my-organizations-dropdown .dropdown-toggle {
+    font-size: 15px;
+    width: 80%;
+    background-color: #04BF9D !important;
+    border-color: #04BF9D !important;
+    color: white !important;
+    margin-top: 25px;
+    margin-left: 20px;
+}

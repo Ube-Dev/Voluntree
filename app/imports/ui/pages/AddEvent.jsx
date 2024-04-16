@@ -11,6 +11,7 @@ import { createEvent } from '../../startup/both/Methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { Organization } from '../../api/organization/OrganizationCollection';
+import '../css/AddEvent.css';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 // Create a schema to specify the structure of the data to appear in the form.
@@ -149,7 +150,7 @@ const AddEvent = () => {
               <Row className="text-center">
                 <h1>Create Event</h1>
               </Row>
-              <AutoForm className="edit-page-background editCSS" ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
+              <AutoForm className="addEvent-page-background addEventCSS" ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
                 {sections.map((section, index) => (
                   <Card key={index} className="rounded-4" style={{ display: currentSectionIndex === index ? 'block' : 'none' }}>
                     <Card.Header className="section-header">{section}</Card.Header>
@@ -180,7 +181,7 @@ const AddEvent = () => {
                         <div>
                           <Row>
                             <Col>
-                              <Dropdown>
+                              <Dropdown className="my-organizations-dropdown">
                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                                   My Organizations
                                 </Dropdown.Toggle>
@@ -200,17 +201,17 @@ const AddEvent = () => {
                           </Row>
                           <hr />
                           <Row>
-                            <h4>Organization:</h4>
-                            <h5>{selectedOrganization ? selectedOrganization.name : <br />}</h5>
+                            <h6>Organization:</h6>
+                            <h4 className="organization-details">{selectedOrganization ? selectedOrganization.name : <br />}</h4>
                           </Row>
                           <Row>
                             <Col>
-                              <h4>Organization Type:</h4>
-                              <h5>{selectedOrganization ? selectedOrganization.type : <br />}</h5>
+                              <h6>Organization Type:</h6>
+                              <h4 className="organization-details">{selectedOrganization ? selectedOrganization.type : <br />}</h4>
                             </Col>
                             <Col>
-                              <h4>Contact Information:</h4>
-                              <h5>{selectedOrganization ? selectedOrganization.phone : <br />}</h5>
+                              <h6>Contact Information:</h6>
+                              <h4 className="organization-details">{selectedOrganization ? selectedOrganization.phone : <br />}</h4>
                             </Col>
                           </Row>
                         </div>
