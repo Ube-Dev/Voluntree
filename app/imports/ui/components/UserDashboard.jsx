@@ -5,6 +5,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from './LoadingSpinner';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import SkillChooserModal from './SkillChooserModal';
 
 const UserDashboard = () => {
   const { ready, userProfile } = useTracker(() => {
