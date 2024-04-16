@@ -179,7 +179,7 @@ const AddEvent = () => {
                       {section === 'Host Details' && (
                         <div>
                           <Row>
-                            <Col md={6}>
+                            <Col>
                               <Dropdown>
                                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                                   My Organizations
@@ -187,17 +187,15 @@ const AddEvent = () => {
                                 <Dropdown.Menu>{renderMenuItems()}</Dropdown.Menu>
                               </Dropdown>
                             </Col>
-                            <Col md={6}>
-                              <div style={{ marginTop: '10px' }}>
-                                <SelectField
-                                  name="showLocationForm"
-                                  label="Have location"
-                                  id={COMPONENT_IDS.ADD_EVENT_FORM_SHOW_LOCATION}
-                                  options={[{ label: 'Yes', value: 'true' }, { label: 'No', value: 'false' }]}
-                                  value={showLocationForm}
-                                  onChange={(value) => setShowLocationForm(value === 'true')}
-                                />
-                              </div>
+                            <Col>
+                              <SelectField
+                                name="showLocationForm"
+                                label="Have location"
+                                id={COMPONENT_IDS.ADD_EVENT_FORM_SHOW_LOCATION}
+                                options={[{ label: 'Yes', value: 'true' }, { label: 'No', value: 'false' }]}
+                                value={showLocationForm}
+                                onChange={(value) => setShowLocationForm(value === 'true')}
+                              />
                             </Col>
                           </Row>
                           <hr />
