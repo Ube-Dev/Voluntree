@@ -29,7 +29,7 @@ const orgCredentials = { username: 'organization@foo.com', password: 'changeme' 
 fixture('meteor-application-template-production localhost test with default db')
   .page('http://localhost:3000');
 
-test.only('Test that landing page shows up', async () => {
+test('Test that landing page shows up', async () => {
   await landingPage.isDisplayed();
 });
 
@@ -169,32 +169,12 @@ test('Test that user profile can be updated', async () => {
   await editUserProfilePage.updateProfile();
 });
 
-test('Test that organization dashboard works', async () => {
+test.only('Test that organization dashboard works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoDashboardPage();
   await orgDashboardPage.isDisplayed();
-});
-
-test('Test that view org profile page can be accessed from org dashboard', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoDashboardPage();
-  await orgDashboardPage.isDisplayed();
-  await orgOverview.gotoOrgProfilePage();
-  await orgProfilePage.isDisplayed();
-});
-
-test('Test that edit org profile page can be accessed from org dashboard', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoDashboardPage();
-  await orgDashboardPage.isDisplayed();
-  await orgOverview.gotoEditOrgProfilePage();
-  await editOrgProfilePage.isDisplayed();
 });
 
 test.only('Test that org dashboard dropdown works', async () => {
@@ -204,4 +184,36 @@ test.only('Test that org dashboard dropdown works', async () => {
   await navBar.gotoDashboardPage();
   await orgDashboardPage.isDisplayed();
   await orgDropdown.selectOrg();
+});
+
+test.only('Test that view org profile page can be accessed from org dashboard', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgOverview.gotoOrgProfilePage();
+  await orgProfilePage.isDisplayed();
+});
+
+test.only('Test that edit org profile page can be accessed from org dashboard', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgOverview.gotoEditOrgProfilePage();
+  await editOrgProfilePage.isDisplayed();
+});
+
+test.only('Test that edit org profile page can be accessed from view org profile', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgOverview.gotoOrgProfilePage();
+  await orgProfilePage.isDisplayed();
+  await orgProfilePage.gotoEditOrgProfile();
+  await editOrgProfilePage.isDisplayed();
 });
