@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import LoadingSpinner from './LoadingSpinner';
 import OrganizationEvents from './OrganizationEvents';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 // import OrganizationStats from './OrganizationStats';
 
 const OrganizationOverview = ({ theOrganization }) => (
@@ -15,7 +16,7 @@ const OrganizationOverview = ({ theOrganization }) => (
               <Image style={{ width: '95%' }} src={theOrganization.image} alt={theOrganization.name} />
             </Col>
             <Col className="col-md-9">
-              <h3>{theOrganization.name}</h3>
+              <h3 id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_ORG_NAME}>{theOrganization.name}</h3>
               <hr />
               <h5>Mission:</h5>
               <p>{theOrganization.mission}</p>
@@ -27,7 +28,7 @@ const OrganizationOverview = ({ theOrganization }) => (
               <Row>
                 <Col>
                   <h5>Contact Email:</h5>
-                  <p>{theOrganization.contactEmail}</p>
+                  <p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>{theOrganization.contactEmail}</p>
                 </Col>
                 <Col>
                   <h5>Phone:</h5>
@@ -38,8 +39,12 @@ const OrganizationOverview = ({ theOrganization }) => (
           </Row>
         </Card.Body>
         <Card.Footer>
-          <Button className="btn-primary" href={`/org-profile/${theOrganization._id}`}>View More</Button>
-          <Button className="mx-2 btn-primary" href={`/edit-organization-profile/${theOrganization._id}`}>Edit</Button>
+          <Button className="btn-primary" href={`/org-profile/${theOrganization._id}`} id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_VIEW_PROFILE}>
+            View More
+          </Button>
+          <Button className="mx-2 btn-primary" href={`/edit-organization-profile/${theOrganization._id}`} id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_EDIT_PROFILE}>
+            Edit
+          </Button>
         </Card.Footer>
       </Card>
       <Row>

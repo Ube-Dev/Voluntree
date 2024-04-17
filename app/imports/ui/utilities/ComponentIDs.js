@@ -101,6 +101,13 @@ export const COMPONENT_IDS = {
   EDIT_USER_PROFILE_ZIP_CODE: 'edit-user-profile-zip-code',
   EDIT_USER_PROFILE_SUBMIT: 'edit-user-profile-submit',
 
+  ORGANIZATION_OVERVIEW_VIEW_PROFILE: 'organization-overview-view-profile',
+  ORGANIZATION_OVERVIEW_EDIT_PROFILE: 'organization-overview-edit-profile',
+  ORGANIZATION_OVERVIEW_ORG_NAME: 'organization-overview-org-name',
+  ORGANIZATION_OVERVIEW_CONTACT_EMAIL: 'organization-overview-contact-email',
+
+  ORGANIZATION_DROPDOWN: 'organization-dropdown',
+
   ORGANIZATION_PROFILE_EDIT_PROFILE: 'organization-profile-edit-profile',
 
   EDIT_ORGANIZATION_PROFILE_NAME: 'edit-organization-profile-name',
@@ -116,4 +123,5 @@ export const COMPONENT_IDS = {
   EDIT_ORGANIZATION_PROFILE_ZIP_CODE: 'edit-organization-profile-zip-code',
   EDIT_ORGANIZATION_PROFILE_COUNTRY: 'edit-organization-profile-country',
   EDIT_ORGANIZATION_PROFILE_SUBMIT: 'edit-organization-profile-submit',
+  EDIT_ORGANIZATION_PROFILE_RETURN_TO_DASHBOARD: 'edit-organization-profile-return-to-dashboard',
 };
