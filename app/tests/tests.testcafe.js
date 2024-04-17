@@ -169,7 +169,7 @@ test('Test that user profile can be updated', async () => {
   await editUserProfilePage.updateProfile();
 });
 
-test.only('Test that organization dashboard works', async () => {
+test('Test that organization dashboard works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -177,7 +177,7 @@ test.only('Test that organization dashboard works', async () => {
   await orgDashboardPage.isDisplayed();
 });
 
-test.only('Test that org dashboard dropdown works', async () => {
+test('Test that org dashboard dropdown works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -186,7 +186,7 @@ test.only('Test that org dashboard dropdown works', async () => {
   await orgDropdown.selectOrg();
 });
 
-test.only('Test that view org profile page can be accessed from org dashboard', async () => {
+test('Test that view org profile page can be accessed from org dashboard', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -196,7 +196,7 @@ test.only('Test that view org profile page can be accessed from org dashboard', 
   await orgProfilePage.isDisplayed();
 });
 
-test.only('Test that edit org profile page can be accessed from org dashboard', async () => {
+test('Test that edit org profile page can be accessed from org dashboard', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -206,7 +206,7 @@ test.only('Test that edit org profile page can be accessed from org dashboard', 
   await editOrgProfilePage.isDisplayed();
 });
 
-test.only('Test that edit org profile page can be accessed from view org profile', async () => {
+test('Test that edit org profile page can be accessed from view org profile', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
