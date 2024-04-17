@@ -35,11 +35,11 @@ const formSchema = new SimpleSchema({
     type: String,
     optional: false,
   },
-  address: { type: String, optional: false },
-  zipCode: { type: String, optional: false },
-  city: { type: String, optional: false },
-  state: { type: String, optional: false },
-  country: { type: String, optional: false },
+  address: { type: String, optional: true },
+  zipCode: { type: String, optional: true },
+  city: { type: String, optional: true },
+  state: { type: String, optional: true },
+  country: { type: String, optional: true },
   totalSpots: { type: SimpleSchema.Integer, optional: false },
   startTime: { type: Date, optional: false },
   endTime: { type: Date, optional: false },
@@ -113,10 +113,6 @@ const EditEvent = () => {
     });
   };
 
-  if (redirectToReferer) {
-    return <Navigate to="/Dashboard" />;
-  }
-
   const submit = (data) => {
     const { title, image, description, impact, totalSpots, activityType, activityCategory, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills } = data;
     const definitionData = { title, image, description, impact, totalSpots, activityType, activityCategory, address, zipCode, city, state, country, startTime, endTime, accessibilities, requiredSkills };
@@ -125,9 +121,14 @@ const EditEvent = () => {
         swal('Error', error.message, 'error');
       } else {
         swal('Success', `Successfully added ${title}`, 'success');
+        setRedirectToRef(true);
       }
     });
   };
+
+  if (redirectToReferer) {
+    return <Navigate to="/Dashboard" />;
+  }
 
   return ready ? (
     <Container fluid className="color2" id={PAGE_IDS.EDIT_EVENT}>
@@ -137,7 +138,7 @@ const EditEvent = () => {
             <Row className="text-center">
               <h1>Edit Event</h1>
             </Row>
-            <AutoForm schema={bridge} onSubmit={data => submit(data)} model={events}>
+            <AutoForm schema={bridge} onSubmit={data => submit(data)} model={events} id="editEventForm">
               <Card className="rounded-4">
                 <Card.Header className="section-header">Event Details</Card.Header>
                 <Card.Body>
@@ -233,8 +234,8 @@ const EditEvent = () => {
                 <Card.Footer>
                   <Row>
                     <Col>
-                      <Button variant="primary" onClick={toggleEditconfirmation} id={COMPONENT_IDS.EDIT_EVENT_FORM_SUBMIT}>
-                        Submit
+                      <Button variant="primary" onClick={toggleEditconfirmation} id={COMPONENT_IDS.EDIT_EVENT_FORM_SAVE}>
+                        Save Changes
                       </Button>
                     </Col>
                     <Col className="text-end">
@@ -251,13 +252,18 @@ const EditEvent = () => {
                   <Modal.Title>Confirm Edit</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <p>Are you sure you want to edit this event?</p>
+                  <p>All participants that have already committed to this event will get a notification of changes. Do you want to proceed?</p>
                 </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={toggleEditconfirmation} id={COMPONENT_IDS.EDIT_EVENT_FORM_CANCEL}>
                     Cancel
                   </Button>
-                  <Button variant="primary" onClick={submit} id={COMPONENT_IDS.EDIT_EVENT_FORM_CONFIRM_EDIT}>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    form="editEventForm"
+                    id={COMPONENT_IDS.EDIT_EVENT_FORM_CONFIRM_EDIT}
+                  >
                     Confirm Edit
                   </Button>
                   <ErrorsField />
@@ -271,6 +277,7 @@ const EditEvent = () => {
               </Modal.Header>
               <Modal.Body>
                 <p>Are you sure you want to delete this event?</p>
+                <p>Users will be notified of this deletion.</p>
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={toggleDeleteConfirmation} id={COMPONENT_IDS.EDIT_EVENT_FORM_CANCEL}>
