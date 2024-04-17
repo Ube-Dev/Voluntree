@@ -8,7 +8,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const OrganizationOverview = ({ theOrganization }) => (
   theOrganization ? (
-    <Container id={COMPONENT_IDS.ORGANIZATION_OVERVIEW}>
+    <Container>
       <Card>
         <Card.Body>
           <Row>
@@ -16,7 +16,7 @@ const OrganizationOverview = ({ theOrganization }) => (
               <Image style={{ width: '95%' }} src={theOrganization.image} alt={theOrganization.name} />
             </Col>
             <Col className="col-md-9">
-              <h3>{theOrganization.name}</h3>
+              <h3 id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_ORG_NAME}>{theOrganization.name}</h3>
               <hr />
               <h5>Mission:</h5>
               <p>{theOrganization.mission}</p>
@@ -28,7 +28,7 @@ const OrganizationOverview = ({ theOrganization }) => (
               <Row>
                 <Col>
                   <h5>Contact Email:</h5>
-                  <p>{theOrganization.contactEmail}</p>
+                  <p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>{theOrganization.contactEmail}</p>
                 </Col>
                 <Col>
                   <h5>Phone:</h5>

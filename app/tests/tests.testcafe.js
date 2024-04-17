@@ -217,3 +217,13 @@ test('Test that edit org profile page can be accessed from view org profile', as
   await orgProfilePage.gotoEditOrgProfile();
   await editOrgProfilePage.isDisplayed();
 });
+
+test('Test that updating org profile works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgOverview.gotoEditOrgProfilePage();
+  await editOrgProfilePage.updateProfile();
+});

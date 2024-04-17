@@ -150,7 +150,9 @@ const EditOrganizationProfile = () => {
           </Col>
         </Row>
         <Row className="pt-4 text-center">
-          <Link to="/dashboard"><Button>Return to Dashboard</Button></Link>
+          <Link to="/dashboard">
+            <Button id={COMPONENT_IDS.EDIT_ORGANIZATION_PROFILE_RETURN_TO_DASHBOARD}>Return to Dashboard</Button>
+          </Link>
         </Row>
       </Container>
     </Container>
