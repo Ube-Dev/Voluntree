@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Container, Row, Image, Button } from 'react-bootstrap';
 import '../css/Landing.css';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import MailingList from '../components/MailingList';
 
 const Landing = () => (
   <>
@@ -12,7 +13,7 @@ const Landing = () => (
           <h2>Working together made simple</h2>
         </Col>
       </Row>
-      <Row className="mt-2 mb-5 g-0 justify-content-center">
+      <Row className="mt-2 mb-3 g-0 justify-content-center">
         <Col xs="auto">
           <Button className="rounded-0" variant="outline-light-landing" size="lg" href="/signin">
             Sign In
@@ -22,6 +23,11 @@ const Landing = () => (
           <Button className="rounded-0" variant="light" size="lg" href="/signup">
             Register
           </Button>
+        </Col>
+      </Row>
+      <Row className="mb-5 justify-content-center">
+        <Col xs="auto">
+          <MailingList />
         </Col>
       </Row>
     </Container>
