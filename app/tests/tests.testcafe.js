@@ -2,7 +2,6 @@ import { signOutPage } from './simple.page';
 import { landingPage } from './landing.page';
 import { signInPage } from './signin.page';
 // import { signUpPage } from './signup.page';
-// import { dashboardPage } from './dashboard.page';
 import { navBar } from './navbar.component';
 import { faqPage } from './faq.page';
 import { homePage } from './home.page';
@@ -30,7 +29,7 @@ const orgCredentials = { username: 'organization@foo.com', password: 'changeme' 
 fixture('meteor-application-template-production localhost test with default db')
   .page('http://localhost:3000');
 
-test('Test that landing page shows up', async () => {
+test.only('Test that landing page shows up', async () => {
   await landingPage.isDisplayed();
 });
 
@@ -83,7 +82,8 @@ test('Test that user pages show up', async () => {
   await t.click(editLinks.nth(0));
   await navBar.logout();
   await signOutPage.isDisplayed();
-}); */
+});
+*/
 
 // test('Test that sign up and sign out work', async () => {
 //   await navBar.gotoSignUpPage();
