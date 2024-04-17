@@ -2,9 +2,11 @@ import React from 'react';
 import { Col, Container, Row, Image, Button } from 'react-bootstrap';
 import '../css/Landing.css';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import MailingList from '../components/MailingList';
 
 const Landing = () => (
   <>
+    <MailingList />
     <Container fluid id={PAGE_IDS.LANDING} className="landing-background p-0">
       <Row className="align-middle text-center">
         <Col xs={12} className="justify-content-center mt-4">
