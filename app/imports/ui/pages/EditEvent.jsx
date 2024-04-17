@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Col, Container, Row, Button, Modal } from 'react-bootstrap';
-import { AutoForm, DateField, ErrorsField, NumField, SelectField, SubmitField, TextField, LongTextField } from 'uniforms-bootstrap5';
+import { AutoForm, DateField, ErrorsField, NumField, SelectField, TextField, LongTextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import { Navigate, useParams } from 'react-router';
@@ -245,6 +245,7 @@ const EditEvent = () => {
                   </Row>
                 </Card.Footer>
               </Card>
+
               <Modal show={showEditconfirmation} onHide={toggleEditconfirmation}>
                 <Modal.Header closeButton>
                   <Modal.Title>Confirm Edit</Modal.Title>
