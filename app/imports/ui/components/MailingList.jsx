@@ -9,21 +9,21 @@ const MailingList = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className="fixed-bottom m-3" style={{ right: 0, position: 'fixed' }}>
+      <Button variant="primary" onClick={handleShow} style={{ width: 'auto', padding: '0.5rem 1rem', fontSize: '1rem' }}>
         Join Mailing List
       </Button>
 
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Join Our Mailing List</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group>
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
               <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
+                We&apos;ll never share your email with anyone else.
               </Form.Text>
             </Form.Group>
             <Button variant="primary" onClick={handleClose}>

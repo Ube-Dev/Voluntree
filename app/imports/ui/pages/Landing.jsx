@@ -6,7 +6,6 @@ import MailingList from '../components/MailingList';
 
 const Landing = () => (
   <>
-    <MailingList />
     <Container fluid id={PAGE_IDS.LANDING} className="landing-background p-0">
       <Row className="align-middle text-center">
         <Col xs={12} className="justify-content-center mt-4">
@@ -14,7 +13,7 @@ const Landing = () => (
           <h2>Working together made simple</h2>
         </Col>
       </Row>
-      <Row className="mt-2 mb-5 g-0 justify-content-center">
+      <Row className="mt-2 mb-3 g-0 justify-content-center">
         <Col xs="auto">
           <Button className="rounded-0" variant="outline-light-landing" size="lg" href="/signin">
             Sign In
@@ -24,6 +23,11 @@ const Landing = () => (
           <Button className="rounded-0" variant="light" size="lg" href="/signup">
             Register
           </Button>
+        </Col>
+      </Row>
+      <Row className="mb-5 justify-content-center"> {/* Added this row for the mailing list button */}
+        <Col xs="auto">
+          <MailingList />
         </Col>
       </Row>
     </Container>
