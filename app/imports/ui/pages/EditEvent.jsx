@@ -90,10 +90,15 @@ const EditEvent = () => {
   }, []);
 
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [showEditconfirmation, setShowEditconfirmation] = useState(false);
   const [redirectToReferer, setRedirectToRef] = useState(false);
 
   const toggleDeleteConfirmation = () => {
     setShowDeleteConfirmation(!showDeleteConfirmation);
+  };
+
+  const toggleEditconfirmation = () => {
+    setShowEditconfirmation(!showEditconfirmation);
   };
 
   const confirmDelete = () => {
@@ -228,8 +233,9 @@ const EditEvent = () => {
                 <Card.Footer>
                   <Row>
                     <Col>
-                      <SubmitField id={COMPONENT_IDS.EDIT_EVENT_FORM_SUBMIT} />
-                      <ErrorsField />
+                      <Button variant="primary" onClick={toggleEditconfirmation} id={COMPONENT_IDS.EDIT_EVENT_FORM_SUBMIT}>
+                        Submit
+                      </Button>
                     </Col>
                     <Col className="text-end">
                       <Button variant="danger" onClick={toggleDeleteConfirmation} id={COMPONENT_IDS.EDIT_EVENT_FORM_DELETE}>
@@ -239,7 +245,25 @@ const EditEvent = () => {
                   </Row>
                 </Card.Footer>
               </Card>
+              <Modal show={showEditconfirmation} onHide={toggleEditconfirmation}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Confirm Edit</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <p>Are you sure you want to edit this event?</p>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={toggleEditconfirmation} id={COMPONENT_IDS.EDIT_EVENT_FORM_CANCEL}>
+                    Cancel
+                  </Button>
+                  <Button variant="primary" onClick={submit} id={COMPONENT_IDS.EDIT_EVENT_FORM_CONFIRM_EDIT}>
+                    Confirm Edit
+                  </Button>
+                  <ErrorsField />
+                </Modal.Footer>
+              </Modal>
             </AutoForm>
+
             <Modal show={showDeleteConfirmation} onHide={toggleDeleteConfirmation}>
               <Modal.Header closeButton>
                 <Modal.Title>Confirm Delete</Modal.Title>
