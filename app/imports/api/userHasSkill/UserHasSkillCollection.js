@@ -5,7 +5,7 @@ import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
 
 export const userHasSkillPublications = {
-  skill: 'skill',
+  UserHasSkills: 'UserHasSkill',
 };
 
 class UserHasSkillCollection extends BaseCollection {
@@ -51,7 +51,7 @@ class UserHasSkillCollection extends BaseCollection {
       // get the SkillCollection instance.
       const instance = this;
       /** This subscription publishes the entire skill collection */
-      Meteor.publish(UserHasSkillCollection.skill, function publish() {
+      Meteor.publish(UserHasSkillCollection.UserHasSkills, function publish() {
         if (this.userId) {
           return instance._collection.find();
         }
@@ -65,7 +65,7 @@ class UserHasSkillCollection extends BaseCollection {
    */
   subscribeSkill() {
     if (Meteor.isClient) {
-      return Meteor.subscribe(userHasSkillPublications.skill);
+      return Meteor.subscribe(userHasSkillPublications.UserHasSkills);
     }
     return null;
   }
@@ -95,4 +95,4 @@ class UserHasSkillCollection extends BaseCollection {
 /**
  * Provides the singleton instance of this class to all other entities.
  */
-export const Skills = new UserHasSkillCollection();
+export const UserHasSkills = new UserHasSkillCollection();

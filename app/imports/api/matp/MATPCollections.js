@@ -7,6 +7,7 @@ import { Skills } from '../skill/SkillCollection';
 import { MainCategory } from '../category/MainCategoryCollection';
 import { SubCategory } from '../category/SubCategoryCollection';
 import { Notification_ } from '../notification/NotificationCollection';
+import { UserHasSkills } from '../userHasSkill/UserHasSkillCollection';
 
 class MATPClass {
   collections;
@@ -21,6 +22,7 @@ class MATPClass {
       AdminProfiles,
       UserProfiles,
       Events,
+      UserHasSkills,
       Organization,
       Skills,
       MainCategory,
@@ -39,6 +41,7 @@ class MATPClass {
       SubCategory,
       Events,
       Notification_,
+      UserHasSkills,
     ];
 
     /*

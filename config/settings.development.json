@@ -12,7 +12,7 @@
       "user": "voluntree0@gmail.com",
       "password": "kdsz nncn wqxp nflg"
     }
-  },
+  },me
   "organizationTypes": [
     "individual",
     "school",
@@ -286,7 +286,13 @@
       "members": ["ZpLMnWk2SCQrhtgN5"]
     }
   ],
-
+  "defaultUserSkills" :
+  [
+    {
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "skillID": "FJHc6qrg9KzmDnwPt"
+    }
+  ],
   "defaultCategory": {
     "Environmental Conservation": [
       "Wildlife Preservation",
