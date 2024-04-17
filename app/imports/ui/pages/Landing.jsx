@@ -25,7 +25,7 @@ const Landing = () => (
           </Button>
         </Col>
       </Row>
-      <Row className="mb-5 justify-content-center"> {/* Added this row for the mailing list button */}
+      <Row className="mb-5 justify-content-center">
         <Col xs="auto">
           <MailingList />
         </Col>

@@ -19,9 +19,9 @@ const MailingList = () => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group>
+            <Form.Group controlId="formMailingListEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control type="email" placeholder="Enter email" name="email" id="mailingListEmail" autoComplete="email" />
               <Form.Text className="text-muted">
                 We&apos;ll never share your email with anyone else.
               </Form.Text>
