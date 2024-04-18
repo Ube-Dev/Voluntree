@@ -1,7 +1,7 @@
 import React from 'react';
 import swal from 'sweetalert';
 import { Alert, Button, Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, HiddenField, ListField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -45,7 +45,7 @@ const EditUserProfile = () => {
   };
 
   return ready ? (
-    <Container id={PAGE_IDS.EDIT_USER_PROFILE} fluid className="py-3 edit-page-background editCSS">
+    <Container id={PAGE_IDS.EDIT_USER_PROFILE} fluid className="py-3 color2 editCSS">
       <Row className="justify-content-center">
         <Col xs={8}>
           <Col className="pb-2 text-center login-text"><h2>Edit User Profile</h2></Col>
@@ -60,13 +60,23 @@ const EditUserProfile = () => {
                 <Row>
                   <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ADDRESS} name="address" label="Address" /></Col>
                   <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_PHONE} name="phone" label="Phone" /></Col>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_EMAIL} name="email" label="EmailPage" /></Col>
+                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_EMAIL} name="email" label="Email" /></Col>
                 </Row>
                 <Row>
                   <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_CITY} name="city" label="City" /></Col>
                   <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_STATE} name="state" label="State" /></Col>
                   <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_COUNTRY} name="country" label="Country" /></Col>
                   <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ZIP_CODE} name="zipCode" label="Zip Code" /></Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <ListField
+                      id={COMPONENT_IDS.EDIT_USER_PROFILE_SKILLS}
+                      name="skills"
+                      label="Skills"
+                      initialCount={5}
+                    />
+                  </Col>
                 </Row>
                 <HiddenField name="role" />
                 <HiddenField name="userID" />

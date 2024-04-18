@@ -99,6 +99,7 @@ export const COMPONENT_IDS = {
   EDIT_USER_PROFILE_STATE: 'edit-user-profile-state',
   EDIT_USER_PROFILE_COUNTRY: 'edit-user-profile-country',
   EDIT_USER_PROFILE_ZIP_CODE: 'edit-user-profile-zip-code',
+  EDIT_USER_PROFILE_SKILLS: 'edit-user-profile-skills',
   EDIT_USER_PROFILE_SUBMIT: 'edit-user-profile-submit',
 
   ORGANIZATION_OVERVIEW_VIEW_PROFILE: 'organization-overview-view-profile',
