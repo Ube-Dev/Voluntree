@@ -7,7 +7,6 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import faker from 'faker';
@@ -20,7 +19,6 @@ const AdminStats = () => {
     BarElement,
     Title,
     Tooltip,
-    Legend,
   );
 
   const options = {
@@ -31,11 +29,6 @@ const AdminStats = () => {
       },
     },
     responsive: true,
-    plugins: {
-      legend: {
-        position: 'right',
-      },
-    },
   };
 
   const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
