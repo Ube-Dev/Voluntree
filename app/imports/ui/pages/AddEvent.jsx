@@ -7,12 +7,16 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { useTracker } from 'meteor/react-meteor-data';
+import { useParams } from 'react-router';
 import { createEvent } from '../../startup/both/Methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import '../css/AddEvent.css';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { Events } from '../../api/event/EventCollection';
+import { MainCategory } from '../../api/category/MainCategoryCollection';
+import { SubCategory } from '../../api/category/SubCategoryCollection';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -21,7 +25,6 @@ const formSchema = new SimpleSchema({
   description: { type: String, optional: false },
   impact: { type: String, optional: false },
   activityType: { type: String, allowedValues: ['remote', 'in-person', 'hybrid'], defaultValue: 'in-person', optional: false },
-  activityCategory: { type: String, optional: true },
   address: { type: String, optional: true },
   zipCode: { type: String, optional: true },
   city: { type: String, optional: true },
@@ -31,6 +34,19 @@ const formSchema = new SimpleSchema({
   startTime: { type: Date, optional: false },
   endTime: { type: Date, optional: false },
   showLocationForm: { type: Boolean, optional: false },
+  activityCategory: {
+    type: Object,
+    optional: false,
+    defaultValue: [],
+  },
+  'activityCategory.mainCategory': {
+    type: String,
+    optional: false,
+  },
+  'activityCategory.subCategory': {
+    type: String,
+    optional: false,
+  },
   frequency: {
     type: String,
     allowedValues: ['Once', 'Daily', 'Weekly', 'Monthly', 'Yearly'],
@@ -62,17 +78,35 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 /* Renders the AddEvent page for adding a document. */
 const AddEvent = () => {
   const navigate = useNavigate();
-  const sections = ['Event Details', 'Host Details', 'Location', 'Time of Event', 'Required Skills & Accessibilities'];
+  const sections = ['Event Details', 'Host Details', 'Location', 'Time of Event', 'Category', 'Required Skills & Accessibilities'];
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [showLocationForm, setShowLocationForm] = useState(false);
   const [selectedOrganization, setSelectedOrganization] = useState(null);
+
+  const { _id } = useParams();
+  const { eventReady, categories, subCategories } = useTracker(() => {
+    const subscription = Events.subscribeEvent();
+    const subscription2 = MainCategory.subscribeMainCategory(); // Subscribe to the main category publication
+    const subscription3 = SubCategory.subscribeSubCategory(); // Subscribe to the sub category publication
+    const rdy = subscription.ready() && subscription2.ready() && subscription3.ready();
+    const theEvents = Events.findOne(_id); // Assuming _id is defined somewhere
+    const mainCategory = MainCategory.find({}).fetch(); // Query main category
+    const subCategoryData = SubCategory.find({}).fetch(); // Query sub category
+    return {
+      events: theEvents,
+      categories: mainCategory.map(category => category.category),
+      subCategories: subCategoryData.map(subCategory => subCategory.category),
+      eventReady: rdy,
+    };
+  }, []);
+
   // Subscribe to the organization publication for the current user
-  const { ready, organization } = useTracker(() => {
+  const { orgReady, organization } = useTracker(() => {
     const currentUser = Meteor.user()._id; // Retrieve the current user
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication for the current user
     const profile = Organization.find({ leader: currentUser }).fetch(); // Query user profile for the current user
     return {
-      ready: subscription ? subscription.ready() : false,
+      orgReady: subscription ? subscription.ready() : false,
       organization: profile,
     };
   });
@@ -142,7 +176,7 @@ const AddEvent = () => {
   // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
-    ready ? (
+    eventReady && orgReady ? (
       <Container fluid className="color2" id={PAGE_IDS.ADD_EVENT}>
         <Container className="mb-5 mt-3">
           <Row className="justify-content-center">
@@ -248,6 +282,20 @@ const AddEvent = () => {
                             </Col>
                             <Col>
                               <SelectField name="frequency" id={COMPONENT_IDS.ADD_EVENT_FORM_FREQUENCY} />
+                            </Col>
+                          </Row>
+                        </div>
+                      )}
+                      {section === 'Category' && (
+                        <div>
+                          <p>Choose a category and sub-category that best matches your event.</p>
+                          <hr />
+                          <Row className="justify-content-center">
+                            <Col md={4} lg={4}>
+                              <SelectField name="activityCategory.mainCategory" label="Main Category" id={COMPONENT_IDS.ADD_EVENT_FORM_MAINCATEGORY} allowedValues={categories} />
+                            </Col>
+                            <Col md={4} lg={4}>
+                              <SelectField name="activityCategory.subCategory" label="Sub Category" id={COMPONENT_IDS.ADD_EVENT_FORM_SUBCATEGORY} allowedValues={subCategories} />
                             </Col>
                           </Row>
                         </div>
