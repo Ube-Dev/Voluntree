@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import AdminStats from './AdminStats';
+import AdminHoursStats from './AdminHoursStats';
+import '../css/AdminHome.css';
 
 const AdminHome = () => (
   <Container className="py-3">
@@ -8,37 +9,29 @@ const AdminHome = () => (
       <h1>Admin View</h1>
     </Row>
     <Row>
-      <Col>
+      <Col className="col-5">
         <Card className="rounded-4">
           <Card.Header><h3 className="text-center">Site Management</h3></Card.Header>
           <Card.Body>
             <Row className="text-center">
-              <Col className="col-6">
-                <Button variant="outline-dark" size="lg" className="rounded-0">
-                  Events
-                </Button>
-              </Col>
-              <Col className="col-6">
-                <Button variant="outline-dark" size="lg" className="rounded-0">
-                  Organizations
-                </Button>
-              </Col>
-              <Col className="col-6">
-                <Button variant="outline-dark" size="lg" className="rounded-0">
-                  Users
-                </Button>
-              </Col>
-              <Col className="col-6">
-                <Button variant="outline-dark" size="lg" className="rounded-0">
-                  Reviews
-                </Button>
-              </Col>
+              <Button variant="outline-dark" size="lg" className="rounded-0 management-btn">
+                Events
+              </Button>
+              <Button variant="outline-dark" size="lg" className="rounded-0 management-btn">
+                Organizations
+              </Button>
+              <Button variant="outline-dark" size="lg" className="rounded-0 management-btn">
+                Users
+              </Button>
+              <Button variant="outline-dark" size="lg" className="rounded-0 management-btn">
+                Reviews
+              </Button>
             </Row>
           </Card.Body>
         </Card>
       </Col>
-      <Col>
-        <AdminStats />
+      <Col className="col-7">
+        <AdminHoursStats />
       </Col>
     </Row>
   </Container>

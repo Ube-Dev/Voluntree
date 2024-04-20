@@ -11,7 +11,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import faker from 'faker';
 
-const AdminStats = () => {
+const AdminHoursStats = () => {
 
   ChartJS.register(
     CategoryScale,
@@ -58,4 +58,4 @@ const AdminStats = () => {
   );
 };
 
-export default AdminStats;
+export default AdminHoursStats;
