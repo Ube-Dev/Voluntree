@@ -1,7 +1,9 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import AdminHoursStats from './AdminHoursStats';
 import '../css/AdminHome.css';
+import AdminHoursStats from './AdminHoursStats';
+import AdminSiteStats from './AdminSiteStats';
+import AdminRecentEvents from './AdminRecentEvents';
 
 const AdminHome = () => (
   <Container className="py-3">
@@ -9,30 +11,34 @@ const AdminHome = () => (
       <h1>Admin View</h1>
     </Row>
     <Row>
-      <Col className="col-5">
+      <Col className="col-4">
+        <AdminSiteStats />
         <Card className="rounded-4">
           <Card.Header><h3 className="text-center">Site Management</h3></Card.Header>
-          <Card.Body>
+          <Card.Body className="mx-3">
             <Row className="text-center">
-              <Button variant="outline-dark" size="lg" className="rounded-0 management-btn">
+              <Button variant="outline-dark" className="rounded-0 management-btn">
                 Events
               </Button>
-              <Button variant="outline-dark" size="lg" className="rounded-0 management-btn">
+              <Button variant="outline-dark" className="rounded-0 management-btn">
                 Organizations
               </Button>
-              <Button variant="outline-dark" size="lg" className="rounded-0 management-btn">
+              <Button variant="outline-dark" className="rounded-0 management-btn">
                 Users
               </Button>
-              <Button variant="outline-dark" size="lg" className="rounded-0 management-btn">
+              <Button variant="outline-dark" className="rounded-0 management-btn">
                 Reviews
               </Button>
             </Row>
           </Card.Body>
         </Card>
       </Col>
-      <Col className="col-7">
+      <Col className="col-8 align-content-center">
         <AdminHoursStats />
       </Col>
+    </Row>
+    <Row>
+      <AdminRecentEvents />
     </Row>
   </Container>
 );
