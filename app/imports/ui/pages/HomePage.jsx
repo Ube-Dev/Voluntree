@@ -10,7 +10,7 @@ const HomePage = () => {
   const isAdmin = Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN);
 
   return (
-    <Container fluid className="color3">
+    <Container fluid className="color1">
       {/* checks if the user is an admin or a regular user and renders the appropriate home page */}
       {isAdmin ? <AdminHome /> : <UserHome />}
     </Container>

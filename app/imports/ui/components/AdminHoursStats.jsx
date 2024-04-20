@@ -46,10 +46,10 @@ const AdminHoursStats = () => {
 
   return (
     <Container>
-      <Card className="p-3 rounded-4">
+      <Card className="rounded-4 p-3">
         <Row>
           <Col className="text-center">
-            <h3>Total Hours Served</h3>
+            <h3>Hours Served By Month</h3>
             <Bar options={options} data={data} />
           </Col>
         </Row>

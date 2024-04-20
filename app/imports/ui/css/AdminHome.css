@@ -3,3 +3,9 @@
   margin: 0 0 7px 0;
   font-size: 1.4em !important;
 }
+
+.card-background {
+  background-color: var(--color2) !important;
+  margin: 0 -35px 0 -35px;
+  color: white !important;
+}
