@@ -71,7 +71,6 @@
       "leader": "FJHc6qrg9KzmDnwPt",
       "_id": "1SkcLcs",
       "name": "Green Earth Alliance",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "New York",
       "mission": "Green Earth Alliance is committed to promoting environmental sustainability through various initiatives and community engagement.",
       "type": "Environmental",
@@ -91,7 +90,6 @@
       "leader": "FJHc6qrg9KzmDnwPt",
       "_id": "1002",
       "name": "Youth Empowerment Foundation",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Los Angeles",
       "mission": "To empower and educate underprivileged youth for a brighter future.",
       "type": "Education",
@@ -112,7 +110,6 @@
       "leader": "FJHc6qrg9KzmDnwPt",
       "_id": "1003",
       "name": "Animal Guardians Society",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Chicago",
       "mission": "To rescue, protect, and advocate for animals in need.",
       "type": "Animal Welfare",
@@ -133,7 +130,6 @@
       "leader": "YhdWABR9mLpjx3vzC",
       "_id": "1004",
       "name": "Healthcare for All",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Houston",
       "mission": "To ensure access to quality healthcare for all individuals, regardless of income or background.",
       "type": "Healthcare",
@@ -154,7 +150,6 @@
       "leader": "YhdWABR9mLpjx3vzC",
       "_id": "1005",
       "name": "Relief Aid International",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Miami",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Disaster Relief",
@@ -175,7 +170,6 @@
       "leader": "YhdWABR9mLpjx3vzC",
       "_id": "1006",
       "name": "GLOBAL EDUCATION PHILANTHROPISTS",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Imperial",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Disaster Relief",
@@ -194,7 +188,6 @@
       "leader": "YhdWABR9mLpjx3vzC",
       "_id": "1007",
       "name": "Ala Moana",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -213,7 +206,6 @@
       "leader": "YhdWABR9mLpjx3vzC",
       "_id": "1008",
       "name": "Turtle Bay Beach Org",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -232,7 +224,6 @@
       "leader": "FJHc6qrg9KzmDnwPt",
       "_id": "1009",
       "name": "Lanikai Beach Org",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -251,7 +242,6 @@
       "leader": "FJHc6qrg9KzmDnwPt",
       "_id": "1010",
       "name": "Food Bank of Hawaii",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -270,7 +260,6 @@
       "leader": "YhdWABR9mLpjx3vzC",
       "_id": "1011",
       "name": "Catholic Charities Hawaii",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -353,7 +342,6 @@
       "state": "Cayo",
       "country": "Belize",
       "totalSpots": "10",
-      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "Adaptability",
@@ -370,12 +358,14 @@
       "impact": "You'll change people's lives!",
       "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
       "hostType": "individual",
-      "hostID": "FJHc6qrg9KzmDnwPt",
+      "hostID": "1006",
       "_id": "nT7sXq9KdYfR",
       "activityCategory": {
         "mainCategory": "Community Development",
         "subCategory": "Education"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Ala Moana Beach Clean Up",
@@ -387,7 +377,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "15",
-      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "lift 15 pounds",
@@ -403,12 +392,14 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Ala Moana",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "1007",
       "_id": "oT5zRj8QwFnS",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Turtle Bay Beach Clean Up",
@@ -420,7 +411,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "10",
-      "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -437,12 +427,14 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Turtle Bay Beach Org",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "1008",
       "_id": "lG4tZv7BmNcY",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Turtle Bay Beach Clean Up",
@@ -453,7 +445,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
-      "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -469,11 +460,15 @@
       ],
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Turtle Bay Beach Org",
+      "hostType": "organization",
+      "hostID": "1008",
       "_id": "iE9xWq3RvSfT",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Lanikai Beach Clean Up",
@@ -485,7 +480,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "7",
-      "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -502,12 +496,14 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "1009",
       "_id": "aT9mWc2RqLxV",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Lanikai Beach Clean Up",
@@ -519,7 +515,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
-      "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -536,12 +531,14 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "1009",
       "_id": "pH6uYt2QwNzC",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Food Bank Of Hawaii",
@@ -549,7 +546,6 @@
       "description": "Help your local food bank!",
       "city": "Honolulu",
       "totalSpots": "35",
-      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "lift 15 pounds",
@@ -566,12 +562,14 @@
       "impact": "You'll help feed the homeless!",
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "1010",
       "_id": "fV6qYn8UwDzS",
       "activityCategory": {
         "mainCategory": "Social Services",
         "subCategory": "Homelessness"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Elderly Home Talk",
@@ -583,7 +581,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
-      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "communication"
@@ -599,12 +596,14 @@
       "impact": "You'll help take care of your local elderly",
       "hostBy": "Catholic Charities Hawaii",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "1011",
       "_id": "sD3kFq5LmBvX",
       "activityCategory": {
         "mainCategory": "Community Development",
         "subCategory": "Education"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Food Packing",
@@ -616,7 +615,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
-      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "lift 15 pounds",
@@ -633,12 +631,14 @@
       "impact": "You'll help feed the homeless!",
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "1010",
       "_id": "cJ8yVr4HwNpZ",
       "activityCategory": {
         "mainCategory": "Social Services",
         "subCategory": "Homelessness"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     }
   ],
   "defaultReview": [

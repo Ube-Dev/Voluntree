@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Button, Row } from 'react-bootstrap';
+import { Container, Button, Row, Col, Card } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import '../css/AllEventPage.css';
 import { PAGE_IDS } from '../utilities/PageIDs';
@@ -28,15 +28,30 @@ const AllEventPage = () => {
     };
   }, []);
   return ready ? (
-    <Container id={PAGE_IDS.EVENTS}>
-      <Row className="justify-content-center text-center">
-        <h1 className="ps-5 ms-5">Find Events</h1>
-        <br />
-      </Row>
-      <EventFilter event={events} categories={categories} />
-      <Container className="text-center p-3">
-        <h4>Need Volunteers?</h4>
-        <Button variant="outline-primary" href="/createOrganization">Create An Organization</Button>
+    <Container fluid className="color1">
+      <Container fluid id={PAGE_IDS.EVENTS}>
+        <Row className="justify-content-center">
+          <Col className="col-11">
+            <Row className="text-center py-4">
+              <h1>Find Events</h1>
+            </Row>
+            <Row className="justify-content-center">
+              <Card fluid className="rounded-4 py-5 all-event-card-background">
+                <EventFilter event={events} categories={categories} />
+              </Card>
+            </Row>
+            <Row className="justify-content-center p-3">
+              <Col className="col-lg-4 col-md-6 text-center">
+                <Card className="rounded-4 p-3">
+                  <h4>Need Volunteers?</h4>
+                  <Col>
+                    <Button variant="primary" href="/createOrganization">Create An Organization</Button>
+                  </Col>
+                </Card>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </Container>
     </Container>
   ) : (

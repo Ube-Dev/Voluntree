@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Col, Container, Image, Row, Card } from 'react-bootstrap';
-import { Bell, Calendar, GeoAlt, People, HeartFill, Heart } from 'react-bootstrap-icons';
+import { Bell, Calendar, GeoAlt, PersonFill, HeartFill, Heart } from 'react-bootstrap-icons';
 import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
 import GoBackButton from './GoBackButton';
@@ -42,16 +42,19 @@ const Event = ({ event, org }) => {
               </Card.Body>
               <Card.Body className="eventDetailsLeft">
                 <Row>
-                  <Col><h4>Host: {event.hostBy}</h4></Col>
-                  <Col className="text-end col-3">
+                  <Col lg={9} md={12} className="col-12 col-lg-9">
+                    <h4>Hosted By:</h4>
+                    <h4>{event.hostBy}</h4>
+                  </Col>
+                  <Col lg={3} md={12} className="col-12 text-end align-content-center">
                     <ConnectButton org={org} />
                   </Col>
                 </Row>
                 <hr />
                 <h5><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</h5>
-                <h5><Calendar /> {event.time.toLocaleString()}</h5>
+                <h5><Calendar /> {event.startTime.toDateString()} | {event.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</h5>
                 <h5><Bell /> Frequency: {event.frequency}</h5>
-                <h5><People /> Seats: {event.spotsFilled.length}/{event.totalSpots}</h5>
+                <h5><PersonFill /> Seats: {event.spotsFilled.length}/{event.totalSpots}</h5>
               </Card.Body>
             </Col>
             <Col md="auto" className="col-lg-6 col-sm-6 my-auto">
