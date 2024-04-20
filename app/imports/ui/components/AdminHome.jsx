@@ -10,7 +10,7 @@ const AdminHome = () => (
     <Row className="text-center py-3">
       <h1>Admin View</h1>
     </Row>
-    <Card className="card-background rounded-4">
+    <Card className="admin-card-background rounded-4">
       <Row className="p-3">
         <Col className="col-4">
           <AdminSiteStats />

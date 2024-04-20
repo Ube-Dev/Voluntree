@@ -4,7 +4,7 @@
   font-size: 1.4em !important;
 }
 
-.card-background {
+.admin-card-background {
   background-color: var(--color2) !important;
   margin: 0 -35px 0 -35px;
   color: white !important;
