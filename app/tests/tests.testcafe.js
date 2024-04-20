@@ -112,6 +112,7 @@ test('Test that add event form works', async () => {
   await addEventPage.addEvent();
 });
 
+/** The following tests are for user profile pages. */
 test('Test that view user profile can be accessed from NavBar', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
@@ -170,6 +171,7 @@ test('Test that user profile can be updated', async () => {
   await editUserProfilePage.updateProfile();
 });
 
+/** The following tests are for organization dashboard page. */
 test('Test that organization dashboard works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
@@ -187,7 +189,7 @@ test('Test that organization dashboard dropdown works', async () => {
   await orgDropdown.selectOrg();
 });
 
-test.only('Test that org event card shows up in organization dashboard', async () => {
+test('Test that org event card shows up in organization dashboard', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -197,6 +199,18 @@ test.only('Test that org event card shows up in organization dashboard', async (
   await orgEventCard.isDisplayed();
 });
 
+test.only('Test that view event page can be navigated from org event card', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgDropdown.selectOrg();
+  await orgEventCard.isDisplayed();
+  await orgEventCard.gotoViewEventPage();
+});
+
+/** The following tests are for organization profile pages. */
 test('Test that view org profile page can be accessed from org dashboard', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);

@@ -6,6 +6,7 @@ import { Organization } from '../../api/organization/OrganizationCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Event from '../components/Event';
 import NotFound from './NotFound';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 const ViewEventPage = () => {
   // get event id
@@ -29,7 +30,7 @@ const ViewEventPage = () => {
       // fetch the right organization
       const theOrg = Organization.findOne({ name: events.hostBy });
       console.log(theOrg);
-      return <Event event={events} org={theOrg} />;
+      return <Event event={events} org={theOrg} id={PAGE_IDS.VIEW_EVENT} />;
     }
     return <NotFound />;
   }
