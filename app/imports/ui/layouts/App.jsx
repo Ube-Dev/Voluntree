@@ -34,6 +34,7 @@ import MyEventPage from '../pages/MyEventPage';
 import VerifyEmailPage from '../pages/verifyEmailPage';
 import ResetPasswordPage from '../pages/ResetPassword';
 import SubscriptionPage from '../pages/SubscriptionPage';
+import AdminEventModeration from '../pages/AdminEventModeration';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -70,6 +71,7 @@ const App = () => {
           <Route path="/scan-qr-code/:_id" element={<OrganizationProtectedRoute ready={ready}><OrgScanQR /></OrganizationProtectedRoute>} />
           <Route path="/edit-organization-profile/:_id" element={<OrganizationProtectedRoute ready={ready}><EditOrganizationProfile /></OrganizationProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
+          <Route path="/event-moderation" element={<AdminProtectedRoute ready={ready}><AdminEventModeration /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
           <Route path="/org-profile/:_id" element={<OrganizationProfile />} />
