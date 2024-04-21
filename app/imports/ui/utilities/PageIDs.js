@@ -20,4 +20,5 @@ export const PAGE_IDS = {
   EDIT_USER_PROFILE: 'edit-user-profile',
   ORGANIZATION_PROFILE: 'organization-profile',
   EDIT_ORGANIZATION_PROFILE: 'edit-organization-profile',
+  ORG_SCAN_QR: 'org-scan-qr',
 };

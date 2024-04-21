@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Row, Col, Button } from 'react-bootstrap';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import '../css/EventCard.css';
 
 const OrgEventCard = ({ event }) => (
-  <Card key={event._id} className="h-100 event-card">
+  <Card key={event._id} className="h-100 event-card" id={COMPONENT_IDS.ORG_EVENT_CARD}>
     <Card.Header>
       <Card.Img variant="top" src={event.image} className="event-image" />
     </Card.Header>
@@ -14,13 +15,13 @@ const OrgEventCard = ({ event }) => (
       <Card.Text className="event-description">{event.description}</Card.Text>
       <Row>
         <Col className="text-center">
-          <Button variant="primary" href={`/view_event/${event._id}`}>View</Button>
+          <Button variant="primary" href={`/view_event/${event._id}`} id={COMPONENT_IDS.ORG_EVENT_CARD_VIEW}>View</Button>
         </Col>
         <Col className="text-center">
-          <Button variant="primary" href={`/edit-event/${event._id}`}>Edit</Button>
+          <Button variant="primary" href={`/edit-event/${event._id}`} id={COMPONENT_IDS.ORG_EVENT_CARD_EDIT}>Edit</Button>
         </Col>
         <Col className="text-center">
-          <Button variant="primary" href={`/scan-qr-code/${event._id}`}>Record</Button>
+          <Button variant="primary" href={`/scan-qr-code/${event._id}`} id={COMPONENT_IDS.ORG_EVENT_CARD_RECORD}>Record</Button>
         </Col>
       </Row>
     </Card.Body>
