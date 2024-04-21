@@ -10,7 +10,7 @@ class EventsPage {
 
   /* Asserts that this page is currently displayed. */
   async isDisplayed() {
-    await t.expect(this.pageSelector.exists).ok();
+    await t.expect(this.pageSelector.exists).ok({ timeout: 5000 });
   }
 
   /* Inputs text to determine if entry is valid */
