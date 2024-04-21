@@ -10,7 +10,7 @@ class SignUpPage {
 
   /** Checks that this page is currently displayed. */
   async isDisplayed() {
-    await t.expect(this.pageSelector.exists).ok();
+    await t.expect(this.pageSelector.exists).ok({ timeout: 5000 });
   }
 
   /** Signs up a new user, then checks to see that they are logged in by checking the navbar. */
