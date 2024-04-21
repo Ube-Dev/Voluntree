@@ -202,7 +202,7 @@ test('Test that org event card shows up in organization dashboard', async () => 
   await orgEventCard.isDisplayed();
 });
 
-test.only('Test that view event page can be navigated from org event card', async () => {
+test('Test that view event page can be navigated from org event card', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -214,7 +214,7 @@ test.only('Test that view event page can be navigated from org event card', asyn
   await viewEventPage.isDisplayed();
 });
 
-test.only('Test that edit event page can be navigated from org event card', async () => {
+test('Test that edit event page can be navigated from org event card', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -226,7 +226,7 @@ test.only('Test that edit event page can be navigated from org event card', asyn
   await editEventPage.isDisplayed();
 });
 
-test.only('Test that org QR scan page can be navigated from org event card', async () => {
+test('Test that org QR scan page can be navigated from org event card', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
