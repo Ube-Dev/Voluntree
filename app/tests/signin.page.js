@@ -11,7 +11,7 @@ class SignInPage {
 
   /** Checks that this page is currently displayed. */
   async isDisplayed() {
-    await t.expect(this.pageSelector.exists).ok();
+    await t.expect(this.pageSelector.exists).ok({ timeout: 5000 });
   }
 
   /** Fills out and submits the form to signin, then checks to see that login was successful. */

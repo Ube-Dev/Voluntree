@@ -8,6 +8,8 @@ import { homePage } from './home.page';
 import { aboutPage } from './about.page';
 import { eventsPage } from './events.page';
 import { addEventPage } from './addevent.page';
+import { viewEventPage } from './viewevent.page';
+import { editEventPage } from './editevent.page';
 import { userProfilePage } from './userprofile.page';
 import { upcomingEventCard } from './upcomingeventcard.component';
 import { editUserProfilePage } from './edituserprofile.page';
@@ -17,6 +19,8 @@ import { orgDashboardPage } from './orgdashboard.page';
 import { orgOverview } from './orgoverview.component';
 import { editOrgProfilePage } from './editorgprofile.page';
 import { orgDropdown } from './orgdropdown.component';
+import { orgEventCard } from './orgeventcard.component';
+import { orgScanQRPage } from './orgscanqr.page';
 
 /* global fixture:false, test:false */
 
@@ -111,6 +115,7 @@ test('Test that add event form works', async () => {
   await addEventPage.addEvent();
 });
 
+/** The following tests are for user profile pages. */
 test('Test that view user profile can be accessed from NavBar', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
@@ -169,6 +174,7 @@ test('Test that user profile can be updated', async () => {
   await editUserProfilePage.updateProfile();
 });
 
+/** The following tests are for organization dashboard page. */
 test('Test that organization dashboard works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
@@ -177,7 +183,7 @@ test('Test that organization dashboard works', async () => {
   await orgDashboardPage.isDisplayed();
 });
 
-test('Test that org dashboard dropdown works', async () => {
+test('Test that organization dashboard dropdown works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -186,6 +192,53 @@ test('Test that org dashboard dropdown works', async () => {
   await orgDropdown.selectOrg();
 });
 
+test('Test that org event card shows up in organization dashboard', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgDropdown.selectOrg();
+  await orgEventCard.isDisplayed();
+});
+
+test('Test that view event page can be navigated from org event card', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgDropdown.selectOrg();
+  await orgEventCard.isDisplayed();
+  await orgEventCard.gotoViewEventPage();
+  await viewEventPage.isDisplayed();
+});
+
+test('Test that edit event page can be navigated from org event card', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgDropdown.selectOrg();
+  await orgEventCard.isDisplayed();
+  await orgEventCard.gotoEditEventPage();
+  await editEventPage.isDisplayed();
+});
+
+test('Test that org QR scan page can be navigated from org event card', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgDropdown.selectOrg();
+  await orgEventCard.isDisplayed();
+  await orgEventCard.gotoRecordPage();
+  await orgScanQRPage.isDisplayed();
+});
+
+/** The following tests are for organization profile pages. */
 test('Test that view org profile page can be accessed from org dashboard', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);

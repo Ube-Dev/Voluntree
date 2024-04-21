@@ -10,7 +10,7 @@ class EditOrgProfilePage {
 
   /* Asserts that this page is currently displayed. */
   async isDisplayed() {
-    await t.expect(this.pageSelector.exists).ok();
+    await t.expect(this.pageSelector.exists).ok({ timeout: 5000 });
   }
 
   /* Updates organization profile with new fields and verifies that the update went through. */

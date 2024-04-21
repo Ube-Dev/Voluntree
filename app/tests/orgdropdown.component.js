@@ -7,7 +7,7 @@ class OrgDropdownComponent {
     if (dropdown) {
       await t.click(`#${COMPONENT_IDS.ORGANIZATION_DROPDOWN}`);
       const dropdownItems = Selector('.dropdown-item');
-      await t.click(dropdownItems.nth(5));
+      await t.click(dropdownItems.nth(5)); // Selects 'Lanikai Beach Org'
     }
   }
 }
