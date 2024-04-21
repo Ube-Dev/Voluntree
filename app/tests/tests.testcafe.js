@@ -8,6 +8,8 @@ import { homePage } from './home.page';
 import { aboutPage } from './about.page';
 import { eventsPage } from './events.page';
 import { addEventPage } from './addevent.page';
+import { viewEventPage } from './viewevent.page';
+import { editEventPage } from './editevent.page';
 import { userProfilePage } from './userprofile.page';
 import { upcomingEventCard } from './upcomingeventcard.component';
 import { editUserProfilePage } from './edituserprofile.page';
@@ -18,6 +20,7 @@ import { orgOverview } from './orgoverview.component';
 import { editOrgProfilePage } from './editorgprofile.page';
 import { orgDropdown } from './orgdropdown.component';
 import { orgEventCard } from './orgeventcard.component';
+import { orgScanQRPage } from './orgscanqr.page';
 
 /* global fixture:false, test:false */
 
@@ -208,6 +211,31 @@ test.only('Test that view event page can be navigated from org event card', asyn
   await orgDropdown.selectOrg();
   await orgEventCard.isDisplayed();
   await orgEventCard.gotoViewEventPage();
+  await viewEventPage.isDisplayed();
+});
+
+test.only('Test that edit event page can be navigated from org event card', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgDropdown.selectOrg();
+  await orgEventCard.isDisplayed();
+  await orgEventCard.gotoEditEventPage();
+  await editEventPage.isDisplayed();
+});
+
+test.only('Test that org QR scan page can be navigated from org event card', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoDashboardPage();
+  await orgDashboardPage.isDisplayed();
+  await orgDropdown.selectOrg();
+  await orgEventCard.isDisplayed();
+  await orgEventCard.gotoRecordPage();
+  await orgScanQRPage.isDisplayed();
 });
 
 /** The following tests are for organization profile pages. */

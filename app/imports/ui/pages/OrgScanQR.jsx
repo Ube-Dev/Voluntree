@@ -13,6 +13,7 @@ import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { userAddHours, organizationAddHours } from '../../startup/both/Methods';
 import QRCodeScanner from '../components/QRCodeScanner';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 const formSchema = new SimpleSchema({
   totalHours: { type: Number, required: false },
@@ -92,7 +93,7 @@ const OrgScanQR = () => {
   };
 
   return ready && ready2 && ready3 ? (
-    <Container fluid className="color2">
+    <Container fluid className="color2" id={PAGE_IDS.ORG_SCAN_QR}>
       <Container className="text-center py-3">
         <Row className="text-center justify-content-center py-3">
           <Col className="col-11">
