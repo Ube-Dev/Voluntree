@@ -9,7 +9,7 @@ export const commentPublications = {
   event: 'commentRelatedToEvent',
 };
 
-const defaultCommentForType = Meteor.settings.defaultCommentForType;
+// const defaultCommentForType = Meteor.settings.defaultCommentForType;
 
 class CommentCollection extends BaseCollection {
   constructor() {
