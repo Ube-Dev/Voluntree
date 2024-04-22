@@ -87,6 +87,7 @@ export const COMPONENT_IDS = {
   UPCOMING_EVENT_CARD_FIND_EVENTS: 'upcoming-event-card-find-events',
   USER_DASHBOARD_VIEW_PROFILE: 'user-dashboard-view-profile',
   USER_DASHBOARD_EDIT_PROFILE: 'user-dashboard-edit-profile',
+  USER_DASHBOARD_VIEW_QR_CODE: 'user-dashboard-view-qr-code',
   USER_PROFILE_EDIT_PROFILE: 'user-profile-edit-profile',
 
   EDIT_USER_PROFILE_FIRST_NAME: 'edit-user-profile-first-name',
