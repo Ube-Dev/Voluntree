@@ -18,7 +18,7 @@ const AdminHome = () => (
             <Card.Header><h3 className="text-center">Site Management</h3></Card.Header>
             <Card.Body className="mx-3">
               <Row className="text-center">
-                <Button variant="outline-dark" className="rounded-0 management-btn">
+                <Button variant="outline-dark" href="/event-moderation" className="rounded-0 management-btn">
                   Events
                 </Button>
                 <Button variant="outline-dark" className="rounded-0 management-btn">

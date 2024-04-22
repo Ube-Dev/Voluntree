@@ -53,6 +53,7 @@ const NavBar = () => {
             ]) : ''}
             {/* If user is admin, set Manage Database dropdown as visible; hide it otherwise */}
             {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? ([
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN_EVENT_MODERATION_PAGE} as={NavLink} to="/event-moderation" key="AdminEventModeration">Event Moderation</Nav.Link>,
               <NavDropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} title="Manage" key="manage-dropdown">
                 <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} to="/manage-database">
                   <CloudDownload /> Database

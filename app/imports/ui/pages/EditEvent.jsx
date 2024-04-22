@@ -127,7 +127,7 @@ const EditEvent = () => {
   };
 
   if (redirectToReferer) {
-    return <Navigate to="/Dashboard" />;
+    return <Navigate to="/Events" />;
   }
 
   return ready ? (
