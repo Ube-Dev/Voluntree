@@ -21,14 +21,15 @@ const OrganizationOverview = ({ theOrganization }) => (
               <h5>Mission:</h5>
               <p>{theOrganization.mission}</p>
               <h5>Location:</h5>
-              <p>{theOrganization.hasPhysicalAddress ? theOrganization.address : 'N/A'}</p>
-              {theOrganization.hasPhysicalAddress && (
+              {theOrganization.hasPhysicalAddress ? (
                 <p>{theOrganization.address}, {theOrganization.zipCode}, {theOrganization.city}, {theOrganization.state}, {theOrganization.country}</p>
-              )}
+              ) : (<p>N/A</p>)}
               <Row>
                 <Col>
                   <h5>Contact Email:</h5>
-                  <p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>{theOrganization.contactEmail}</p>
+                  {theOrganization.contactEmail ? (
+                    <p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>{theOrganization.contactEmail}</p>
+                  ) : (<p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>N/A</p>)}
                 </Col>
                 <Col>
                   <h5>Phone:</h5>
@@ -39,7 +40,7 @@ const OrganizationOverview = ({ theOrganization }) => (
           </Row>
         </Card.Body>
         <Card.Footer>
-          <Button className="btn-primary" href={`/org-profile/${theOrganization._id}`} id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_VIEW_PROFILE}>
+          <Button className="btn-primary" href={`/org-profile/org-view/${theOrganization._id}`} id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_VIEW_PROFILE}>
             View More
           </Button>
           <Button className="mx-2 btn-primary" href={`/edit-organization-profile/${theOrganization._id}`} id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_EDIT_PROFILE}>
