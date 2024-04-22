@@ -1,16 +1,16 @@
 import React from 'react';
-import { Container, Button, Row, Col, Card, Image } from 'react-bootstrap';
+import { Container, Row, Col, Card, Image } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { Organization } from '../../api/organization/OrganizationCollection';
+import ConnectButton from '../components/ConnectButton';
+import UserViewOrgEvents from '../components/UserViewOrgEvents';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import '../css/OrganizationProfile.css';
-import OrganizationEvents from '../components/OrganizationEvents';
 
-/** Organization profile page which can only be viewed by org owner. */
-const OrganizationProfile = () => {
+/** Organization profile page which can be viewed by everyone. */
+const UserViewOrgProfile = () => {
   const { _id } = useParams();
 
   const { ready, orgProfile } = useTracker(() => {
@@ -32,7 +32,7 @@ const OrganizationProfile = () => {
 
   // Once data is ready, render the organization profile
   return (
-    <Container id={PAGE_IDS.ORGANIZATION_PROFILE}>
+    <Container id={PAGE_IDS.USER_VIEW_ORG_PROFILE}>
       <Row className="py-5">
         <Col md={1} />
         <Col md={4}>
@@ -68,9 +68,11 @@ const OrganizationProfile = () => {
                 </Col>
               </Row>
             </Card.Body>
-            <Card.Footer>
-              <Button variant="primary" href={`/edit-organization-profile/${_id}`} id={COMPONENT_IDS.ORGANIZATION_PROFILE_EDIT_PROFILE}>Edit</Button>
-            </Card.Footer>
+            {orgProfile.contactEmail ? (
+              <Card.Footer>
+                <ConnectButton org={orgProfile} />
+              </Card.Footer>
+            ) : ''}
           </Card>
         </Col>
       </Row>
@@ -78,11 +80,11 @@ const OrganizationProfile = () => {
         <Col md={1} />
         <Col md={10}>
           <h1 className="text-center">Events Organized by {orgProfile.name}</h1>
-          <OrganizationEvents org={orgProfile} />
+          <UserViewOrgEvents org={orgProfile} />
         </Col>
       </Row>
     </Container>
   );
 };
 
-export default OrganizationProfile;
+export default UserViewOrgProfile;

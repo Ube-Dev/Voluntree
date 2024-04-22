@@ -9,16 +9,16 @@ export const reviewPublications = {
   event: 'reviewRelatedToEvent',
 };
 
-const defaultReviewForType = Meteor.settings.defaultReviewForType;
-const defaultRatingRange = Meteor.settings.defaultRatingRange;
+// const defaultReviewForType = Meteor.settings.defaultReviewForType;
+// const defaultRatingRange = Meteor.settings.defaultRatingRange;
 
 class ReviewCollection extends BaseCollection {
   constructor() {
     super('review', new SimpleSchema({
-      rating: { type: Number, min: defaultRatingRange.min, max: defaultRatingRange.max },
+      rating: { type: Number, min: 1, max: 5 },
       reviewerID: { type: String }, // userID
       reviewFor: { type: Object },
-      'reviewFor.type': { type: String, allowedValues: Object.values(defaultReviewForType) }, // ["event", "organization"]
+      'reviewFor.type': { type: String, allowedValues: ['event', 'organization'] }, // ["event", "organization"]
       'reviewFor.ID': { type: String }, // eventID/organizationID
       content: { type: String },
     }));
@@ -43,7 +43,7 @@ class ReviewCollection extends BaseCollection {
       Meteor.publish(reviewPublications.event, function publish(eventID) {
         check(eventID, String);
         if (this.userId) {
-          return instance._collection.find({ reviewFor: { type: defaultReviewForType.event, ID: eventID } });
+          return instance._collection.find({ reviewFor: { type: 'event', ID: eventID } });
         }
         return this.ready();
       });
@@ -51,7 +51,7 @@ class ReviewCollection extends BaseCollection {
       Meteor.publish(reviewPublications.organization, function publish(organizationID) {
         check(organizationID, String);
         if (this.userId) {
-          return instance._collection.find({ reviewFor: { type: defaultReviewForType.organization, ID: organizationID } });
+          return instance._collection.find({ reviewFor: { type: 'organization', ID: organizationID } });
         }
         return this.ready();
       });

@@ -1,9 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { Events } from '../../api/event/EventCollection';
-import { createEvent, createOrganization, createReview, loadDefaultCategories } from '../both/Methods';
+import { createComment, createEvent, createOrganization, createReview, loadDefaultCategories } from '../both/Methods';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
 import { Review } from '../../api/review/ReviewCollection';
+import { Comment } from '../../api/comment/CommentCollection';
 /* eslint-disable no-console */
 
 if (MainCategory.count() === 0) {
@@ -40,6 +41,17 @@ if (Review.count() === 0) {
   if (Meteor.settings.defaultReview) {
     console.log('Creating default reviews.', Meteor.settings.defaultReview);
     Meteor.settings.defaultReview.forEach(data => Meteor.call(createReview, data, (error) => {
+      if (error) {
+        console.error(error);
+      }
+    }));
+  }
+}
+
+if (Comment.count() === 0) {
+  if (Meteor.settings.defaultComment) {
+    console.log('Creating default comments.', Meteor.settings.defaultComment);
+    Meteor.settings.defaultComment.forEach(data => Meteor.call(createComment, data, (error) => {
       if (error) {
         console.error(error);
       }
