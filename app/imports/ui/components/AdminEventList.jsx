@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Row, Col, Container, Pagination } from 'react-bootstrap';
 import Fuse from 'fuse.js';
-import AdminEventCard from './AdminEventCard';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import AdminEventCard from './AdminEventCard';
 
 /*
  * renders the searchBar, the events passed in, as well as the pagination for the page.

@@ -3,7 +3,8 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Events } from '../../api/event/EventCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
-import AdminEventFilter from '../components/EventFilter';
+import '../css/AllEventPage.css';
+import AdminEventFilter from '../components/AdminEventFilter';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const AdminEventModeration = () => {
@@ -26,15 +27,13 @@ const AdminEventModeration = () => {
 
   return ready ? (
     <Container fluid className="color1">
-      <Container>
-        <Row>
-          <Col>
-            <h1>Event Moderation</h1>
-          </Col>
+      <Container className="py-5">
+        <Row className="text-center pb-4">
+          <h1>Event Moderation</h1>
         </Row>
         <Row>
           <Col>
-            <Card>
+            <Card className="all-event-card-background rounded-4 py-5">
               <AdminEventFilter event={events} categories={categories} />
             </Card>
           </Col>
