@@ -21,14 +21,15 @@ const OrganizationOverview = ({ theOrganization }) => (
               <h5>Mission:</h5>
               <p>{theOrganization.mission}</p>
               <h5>Location:</h5>
-              <p>{theOrganization.hasPhysicalAddress ? theOrganization.address : 'N/A'}</p>
-              {theOrganization.hasPhysicalAddress && (
+              {theOrganization.hasPhysicalAddress ? (
                 <p>{theOrganization.address}, {theOrganization.zipCode}, {theOrganization.city}, {theOrganization.state}, {theOrganization.country}</p>
-              )}
+              ) : (<p>N/A</p>)}
               <Row>
                 <Col>
                   <h5>Contact Email:</h5>
-                  <p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>{theOrganization.contactEmail}</p>
+                  {theOrganization.contactEmail ? (
+                    <p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>{theOrganization.contactEmail}</p>
+                  ) : (<p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>N/A</p>)}
                 </Col>
                 <Col>
                   <h5>Phone:</h5>
