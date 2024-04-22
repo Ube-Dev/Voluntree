@@ -63,7 +63,7 @@ class UserHasSkillCollection extends BaseCollection {
   /**
    * Subscription method for skills.
    */
-  subscribeSkill() {
+  subscribeUserHasSkill() {
     if (Meteor.isClient) {
       return Meteor.subscribe(userHasSkillPublications.UserHasSkills);
     }

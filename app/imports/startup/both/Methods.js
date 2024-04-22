@@ -42,6 +42,9 @@ const updateReview = 'Review.update';
 const createComment = 'Comment.define';
 const removeComment = 'Comment.remove';
 const udpateComment = 'Comment.update';
+// app\imports\api\userHasSkill\UserHasSkillCollection.methods.js
+const updateUserHasSkill = 'UserHasSkills.define';
+const updateUserHasSkill = 'UserHasSkills.remove';
 
 // app\imports\api\notification\Notification.method.js
 const sendNotification = 'Notification_.define';

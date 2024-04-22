@@ -5,6 +5,7 @@ import { Organization } from '../../api/organization/OrganizationCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
 import { Review } from '../../api/review/ReviewCollection';
 import { Comment } from '../../api/comment/CommentCollection';
+import { UserHasSkills } from '../../api/userHasSkill/UserHasSkillCollection';
 /* eslint-disable no-console */
 
 if (MainCategory.count() === 0) {
@@ -51,7 +52,18 @@ if (Review.count() === 0) {
 if (Comment.count() === 0) {
   if (Meteor.settings.defaultComment) {
     console.log('Creating default comments.', Meteor.settings.defaultComment);
-    Meteor.settings.defaultComment.forEach(data => Meteor.call(createComment, data, (error) => {
+    Meteor.settings.defaultComment.forEach(data => Meteor.call(createUserHasSkill, data, (error) => {
+      if (error) {
+        console.error(error);
+      }
+    }));
+  }
+}
+
+if (UserHasSkills.count() === 0) {
+  if (Meteor.settings.defaultUserSkills) {
+    console.log('Creating default userSkills.', Meteor.settings.defaultUserSkills);
+    Meteor.settings.defaultUserSkills.forEach(data => Meteor.call(createComment, data, (error) => {
       if (error) {
         console.error(error);
       }

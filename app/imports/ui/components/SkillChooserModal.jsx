@@ -6,13 +6,15 @@ import { SubmitField } from 'uniforms-bootstrap5';
 import Tag from './Tag';
 import { Skills } from '../../api/skill/SkillCollection';
 import LoadingSpinner from './LoadingSpinner';
+import { UserHasSkills } from '../../api/userHasSkill/UserHasSkillCollection';
 
 const SkillChooserModal = () => {
   const { availableSkills, mySkills, ready } = useTracker(() => {
     const skillSubscription = Skills.subscribeSkill();
-    const mySkillList = ['12', '13', '14'];
+    const userSkillSubscription = UserHasSkills.subscribeUserHasSkill();
+    const mySkillList = UserHasSkills.find({}).fetch();
     const availableSkillList = Skills.find({}).fetch();
-    const rdy = skillSubscription.ready();
+    const rdy = skillSubscription.ready() && userSkillSubscription.ready();
     return {
       mySkills: mySkillList,
       availableSkills: availableSkillList,
@@ -48,7 +50,7 @@ const SkillChooserModal = () => {
               <Col className="col-md-6">
                 <Card>
                   {
-                    mySkills.map((skill) => (<Tag value={skill} />))
+                    mySkills.map((skill) => (<Tag value={skill.skillID} />))
                   }
                 </Card>
               </Col>
@@ -60,7 +62,10 @@ const SkillChooserModal = () => {
     );
   }
 
+  console.log(ready);
+
   return (
+
     <LoadingSpinner />
   );
 

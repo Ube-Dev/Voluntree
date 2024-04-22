@@ -1,12 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Skills } from './SkillCollection';
+import { UserHasSkills } from './UserHasSkillCollection';
 
 Meteor.methods({
-  'Skills.define': function (data) {
+  'UserHasSkills.define': function (data) {
     check(data, Object);
     try {
-      return Skills._collection.insert(data);
+      return UserHasSkills._collection.insert(data);
     } catch (error) {
       throw new Meteor.Error('create-failed', 'Failed to create new skill: ', error);
     }
@@ -14,10 +14,10 @@ Meteor.methods({
 });
 
 Meteor.methods({
-  'Skills.remove': function (data) {
+  'UserHasSkills.remove': function (data) {
     check(data, Object);
     try {
-      return Skills._collection.remove(data);
+      return UserHasSkills._collection.remove(data);
     } catch (error) {
       throw new Meteor.Error('create-failed', 'Failed to create new skill: ', error);
     }
