@@ -15,3 +15,7 @@
 .org-text-white {
   color: white;
 }
+
+.org-overview-image {
+  width: 95%;
+}
