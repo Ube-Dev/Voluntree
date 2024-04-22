@@ -24,6 +24,7 @@ import About from '../pages/About';
 import AllEventPage from '../pages/AllEventPage';
 import UserProfile from '../pages/UserProfile';
 import EditUserProfile from '../pages/EditUserProfile';
+import UserViewOrgProfile from '../pages/UserViewOrgProfile';
 import OrganizationProfile from '../pages/OrganizationProfile';
 import EditOrganizationProfile from '../pages/EditOrganizationProfile';
 import ViewEventPage from '../pages/ViewEventPage';
@@ -72,7 +73,8 @@ const App = () => {
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
-          <Route path="/org-profile/:_id" element={<OrganizationProfile />} />
+          <Route path="/org-profile/org-view/:_id" element={<OrganizationProtectedRoute ready={ready}><OrganizationProfile /></OrganizationProtectedRoute>} />
+          <Route path="/org-profile/:_id" element={<UserViewOrgProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
