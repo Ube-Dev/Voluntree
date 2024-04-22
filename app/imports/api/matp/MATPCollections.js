@@ -8,6 +8,8 @@ import { MainCategory } from '../category/MainCategoryCollection';
 import { SubCategory } from '../category/SubCategoryCollection';
 import { Notification_ } from '../notification/NotificationCollection';
 import { UserHasSkills } from '../userHasSkill/UserHasSkillCollection';
+import { Review } from '../review/ReviewCollection';
+import { Comment } from '../comment/CommentCollection';
 
 class MATPClass {
   collections;
@@ -28,6 +30,8 @@ class MATPClass {
       MainCategory,
       SubCategory,
       Notification_,
+      Review,
+      Comment,
     ];
     /*
      * A list of collection class instances in the order required for them to be sequentially loaded from a file.
@@ -42,6 +46,8 @@ class MATPClass {
       Events,
       Notification_,
       UserHasSkills,
+      Review,
+      Comment,
     ];
 
     /*

@@ -1,9 +1,9 @@
 import { Selector, t } from 'testcafe';
 import { PAGE_IDS } from '../imports/ui/utilities/PageIDs';
 
-class AboutPage {
+class OrgDashboardPage {
   constructor() {
-    this.pageId = `#${PAGE_IDS.ABOUT}`;
+    this.pageId = `#${PAGE_IDS.DASHBOARD}`;
     this.pageSelector = Selector(this.pageId);
   }
 
@@ -13,4 +13,4 @@ class AboutPage {
   }
 }
 
-export const aboutPage = new AboutPage();
+export const orgDashboardPage = new OrgDashboardPage();

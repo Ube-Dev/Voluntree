@@ -12,7 +12,6 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import TosModal from '../components/TosModal';
-import checkMark from '../components/CheckMark';
 
 /**
  * SignUp component is similar to signin component, but we create a new user instead.

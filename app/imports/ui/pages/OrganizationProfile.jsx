@@ -4,6 +4,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import '../css/OrganizationProfile.css';
 import OrganizationEvents from '../components/OrganizationEvents';
@@ -67,7 +68,7 @@ const OrganizationProfile = () => {
               </Row>
             </Card.Body>
             <Card.Footer>
-              <Button variant="primary" href={`/edit-organization-profile/${_id}`}>Edit</Button>
+              <Button variant="primary" href={`/edit-organization-profile/${_id}`} id={COMPONENT_IDS.ORGANIZATION_PROFILE_EDIT_PROFILE}>Edit</Button>
             </Card.Footer>
           </Card>
         </Col>
