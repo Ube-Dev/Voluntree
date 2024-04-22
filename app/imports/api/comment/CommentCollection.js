@@ -16,7 +16,7 @@ class CommentCollection extends BaseCollection {
     super('comment', new SimpleSchema({
       userID: { type: String }, // userID
       commentFor: { type: Object },
-      'commentFor.type': { type: String, allowedValues: Object.values(defaultCommentForType) }, // ["event", "organization"]
+      'commentFor.type': { type: String, allowedValues: ['event', 'organization'] }, // ["event", "organization"]
       'commentFor.ID': { type: String }, // eventID/organizationID
       content: { type: String },
       parentID: { type: String, optional: true },
@@ -42,7 +42,7 @@ class CommentCollection extends BaseCollection {
       Meteor.publish(commentPublications.event, function publish(eventID) {
         check(eventID, String);
         if (this.userId) {
-          return instance._collection.find({ commentFor: { type: commentPublications.event, ID: eventID } });
+          return instance._collection.find({ commentFor: { type: 'event', ID: eventID } });
         }
         return this.ready();
       });
@@ -50,7 +50,7 @@ class CommentCollection extends BaseCollection {
       Meteor.publish(commentPublications.organization, function publish(organizationID) {
         check(organizationID, String);
         if (this.userId) {
-          return instance._collection.find({ commentFor: { type: commentPublications.organization, ID: organizationID } });
+          return instance._collection.find({ commentFor: { type: 'organization', ID: organizationID } });
         }
         return this.ready();
       });
