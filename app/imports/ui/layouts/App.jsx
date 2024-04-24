@@ -37,6 +37,7 @@ import VerifyEmailPage from '../pages/verifyEmailPage';
 import ResetPasswordPage from '../pages/ResetPassword';
 import AdminEventModeration from '../pages/AdminEventModeration';
 import AdminOrganizationModeration from '../pages/AdminOrganizationModeration';
+import AdminUserModeration from '../pages/AdminUserModeration';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -62,6 +63,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/verify-email/:token" element={<VerifyEmailPage />} />
+          <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
           <Route path="/edit-user-profile/:_id" element={<ProtectedRoute><EditUserProfile /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/qr-code/:_id" element={<ProtectedRoute><UserQRCode /></ProtectedRoute>} />
@@ -79,8 +81,9 @@ const App = () => {
           <Route path="/organization-moderation" element={<AdminProtectedRoute ready={ready}><AdminOrganizationModeration /></AdminProtectedRoute>} />
           <Route path="/admin-edit-event/:_id" element={<AdminProtectedRoute ready={ready}><EditEvent /></AdminProtectedRoute>} />
           <Route path="/admin-edit-organization/:_id" element={<AdminProtectedRoute ready={ready}><EditOrganizationProfile /></AdminProtectedRoute>} />
+          <Route path="/user-moderation" element={<AdminProtectedRoute ready={ready}><AdminUserModeration /></AdminProtectedRoute>} />
+          <Route path="/admin-edit-user/:_id" element={<AdminProtectedRoute ready={ready}><EditUserProfile /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
-          <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

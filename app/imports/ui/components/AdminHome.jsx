@@ -24,7 +24,7 @@ const AdminHome = () => (
                 <Button variant="outline-dark" href="/organization-moderation" className="rounded-0 management-btn">
                   Organizations
                 </Button>
-                <Button variant="outline-dark" className="rounded-0 management-btn">
+                <Button variant="outline-dark" href="/user-moderation" className="rounded-0 management-btn">
                   Users
                 </Button>
                 <Button variant="outline-dark" className="rounded-0 management-btn">

@@ -55,6 +55,7 @@ const NavBar = () => {
             {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? ([
               <Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN_EVENT_MODERATION_PAGE} as={NavLink} to="/event-moderation" key="AdminEventModeration">Event Moderation</Nav.Link>,
               <Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN_ORGANIZATION_MODERATION_PAGE} as={NavLink} to="/organization-moderation" key="AdminOrganizationModeration">Organization Moderation</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN_USER_MODERATION_PAGE} as={NavLink} to="/user-moderation" key="AdminUserModeration">User Moderation</Nav.Link>,
               <NavDropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} title="Manage" key="manage-dropdown">
                 <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} to="/manage-database">
                   <CloudDownload /> Database
