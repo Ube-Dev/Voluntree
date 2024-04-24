@@ -9,6 +9,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { removeOrganization } from '../../startup/both/Methods';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import '../css/AdminOrganizationModeration.css';
 
 const AdminOrganizationModeration = () => {
   const { ready, organization } = useTracker(() => {
@@ -70,7 +71,7 @@ const AdminOrganizationModeration = () => {
         <Row className="text-center pb-3">
           <h1>Organization Moderation</h1>
         </Row>
-        <Card className="rounded-4 p-3">
+        <Card className="rounded-4 p-3 org-moderation-background">
           <Row className="justify-content-center">
             <Col className="col-7">
               <Form.Group className="search-bar">
