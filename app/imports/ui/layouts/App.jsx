@@ -56,7 +56,7 @@ const App = () => {
           <Route path="/subscribe" element={<SubscriptionPage />} />
           <Route path="/Events" element={<AllEventPage />} />
           <Route path="/view_event/:_id" element={<ViewEventPage />} />
-          <Route path="/my_event" element={<MyEventPage />} />
+          <Route path="/org-profile/:_id" element={<UserViewOrgProfile />} />
           <Route path="/about" element={<About />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
@@ -66,9 +66,11 @@ const App = () => {
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/qr-code/:_id" element={<ProtectedRoute><UserQRCode /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+          <Route path="/my_event" element={<ProtectedRoute><MyEventPage /></ProtectedRoute>} />
           <Route path="/createOrganization" element={<ProtectedRoute><CreateOrganization /></ProtectedRoute>} />
           <Route path="/dashboard" element={<OrganizationProtectedRoute ready={ready}><Dashboard /></OrganizationProtectedRoute>} />
           <Route path="/add-event" element={<OrganizationProtectedRoute ready={ready}><AddEvent /></OrganizationProtectedRoute>} />
+          <Route path="/org-profile/org-view/:_id" element={<OrganizationProtectedRoute ready={ready}><OrganizationProfile /></OrganizationProtectedRoute>} />
           <Route path="/edit-event/:_id" element={<OrganizationProtectedRoute ready={ready}><EditEvent /></OrganizationProtectedRoute>} />
           <Route path="/scan-qr-code/:_id" element={<OrganizationProtectedRoute ready={ready}><OrgScanQR /></OrganizationProtectedRoute>} />
           <Route path="/edit-organization-profile/:_id" element={<OrganizationProtectedRoute ready={ready}><EditOrganizationProfile /></OrganizationProtectedRoute>} />
@@ -76,10 +78,9 @@ const App = () => {
           <Route path="/event-moderation" element={<AdminProtectedRoute ready={ready}><AdminEventModeration /></AdminProtectedRoute>} />
           <Route path="/organization-moderation" element={<AdminProtectedRoute ready={ready}><AdminOrganizationModeration /></AdminProtectedRoute>} />
           <Route path="/admin-edit-event/:_id" element={<AdminProtectedRoute ready={ready}><EditEvent /></AdminProtectedRoute>} />
+          <Route path="/admin-edit-organization/:_id" element={<AdminProtectedRoute ready={ready}><EditOrganizationProfile /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
-          <Route path="/org-profile/org-view/:_id" element={<OrganizationProtectedRoute ready={ready}><OrganizationProfile /></OrganizationProtectedRoute>} />
-          <Route path="/org-profile/:_id" element={<UserViewOrgProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
