@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, Card, Button } from 'react-bootstrap';
+import { Card, Row, Col, Button } from 'react-bootstrap';
 import { PersonFill } from 'react-bootstrap-icons';
-import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import '../css/EventCard.css';
+import { Link } from 'react-router-dom';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
-const OrgEventCard = ({ event }) => (
-  <Card key={event._id} className="event-card rounded-4" id={COMPONENT_IDS.ORG_EVENT_CARD}>
+const AdminEventCard = ({ event }) => (
+  <Card key={event._id} className="event-card rounded-4">
     <Card.Header>
       <Card.Img src={event.image} className="event-image rounded-3" />
     </Card.Header>
@@ -15,15 +16,13 @@ const OrgEventCard = ({ event }) => (
       <hr />
       <Card.Text>{event.city}</Card.Text>
       <Card.Text className="event-description">{event.description}</Card.Text>
-      <Row>
-        <Col className="text-center">
+      <Link className="host-link" to={`/org-profile/${event.hostID}`}><Card.Text>{event.hostBy}</Card.Text></Link>
+      <Row className="text-center pt-3">
+        <Col>
           <Button variant="primary" href={`/view_event/${event._id}`} id={COMPONENT_IDS.ORG_EVENT_CARD_VIEW}>View</Button>
         </Col>
-        <Col className="text-center">
-          <Button variant="primary" href={`/edit-event/${event._id}`} id={COMPONENT_IDS.ORG_EVENT_CARD_EDIT}>Edit</Button>
-        </Col>
-        <Col className="text-center">
-          <Button variant="primary" href={`/scan-qr-code/${event._id}`} id={COMPONENT_IDS.ORG_EVENT_CARD_RECORD}>Record</Button>
+        <Col>
+          <Button variant="primary" href={`/admin-edit-event/${event._id}`} id={COMPONENT_IDS.ORG_EVENT_CARD_EDIT}>Edit</Button>
         </Col>
       </Row>
     </Card.Body>
@@ -40,7 +39,7 @@ const OrgEventCard = ({ event }) => (
   </Card>
 );
 
-OrgEventCard.propTypes = {
+AdminEventCard.propTypes = {
   event: PropTypes.shape({
     title: PropTypes.string,
     image: PropTypes.string,
@@ -54,8 +53,10 @@ OrgEventCard.propTypes = {
     accessibilities: PropTypes.instanceOf(Array),
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
+    hostBy: PropTypes.string,
+    hostID: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
 };
 
-export default OrgEventCard;
+export default AdminEventCard;

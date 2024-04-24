@@ -2,11 +2,11 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import propTypes from 'prop-types';
-import OrgEventCard from './OrgEventCard';
 import { Events } from '../../api/event/EventCollection';
+import EventCard from './EventCard';
 import LoadingSpinner from './LoadingSpinner';
 
-const OrganizationEvents = ({ org }) => {
+const UserViewOrgEvents = ({ org }) => {
   const { ready, event } = useTracker(() => {
     const subscription = Events.subscribeEvent(); // Subscribe to Event publication for the current user
     const orgEvent = Events.find({ hostBy: org.name }).fetch(); // Query events hosted by the organization
@@ -18,10 +18,10 @@ const OrganizationEvents = ({ org }) => {
 
   return ready ? (
     <Container>
-      <Row className="p-1">
+      <Row className="p-3">
         {event.map((item) => (
-          <Col key={item._id} sm={12} md={6} lg={4} className="py-2">
-            <OrgEventCard event={item} />
+          <Col key={item._id} md={4} className="py-2">
+            <EventCard event={item} />
           </Col>
         ))}
       </Row>
@@ -33,10 +33,10 @@ const OrganizationEvents = ({ org }) => {
   );
 };
 
-OrganizationEvents.propTypes = {
+UserViewOrgEvents.propTypes = {
   org: propTypes.shape({
     name: propTypes.string.isRequired,
   }).isRequired,
 };
 
-export default OrganizationEvents;
+export default UserViewOrgEvents;

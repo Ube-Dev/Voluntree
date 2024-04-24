@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../css/EventPage.css';
-import { Button, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import checkMark from './CheckMark';
 
@@ -11,11 +11,13 @@ const TosModal = ({ handleAccept, handleDecline }) => {
   const handleClose = () => setShow(false);
 
   return (
-    <>
-      <div className="text-center">
-        <Button className="align-content-center" variant="primary" onClick={handleShow}> Terms of Service </Button>                 {checkMark(accepted)}
-      </div>
-      <Modal show={show} onHide={handleClose} size="xl">
+    <Container>
+      <Row>
+        <Col className="text-center">
+          <Button variant="primary" onClick={handleShow}> Terms of Service </Button> {checkMark(accepted)}
+        </Col>
+      </Row>
+      <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Terms of Service</Modal.Title>
         </Modal.Header>
@@ -76,7 +78,7 @@ const TosModal = ({ handleAccept, handleDecline }) => {
           <br />
         </Modal.Footer>
       </Modal>
-    </>
+    </Container>
   );
 };
 export default TosModal;

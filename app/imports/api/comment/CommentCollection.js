@@ -9,6 +9,7 @@ export const commentPublications = {
   event: 'commentRelatedToEvent',
 };
 
+// eslint-disable-next-line no-unused-vars
 const defaultCommentForType = Meteor.settings.defaultCommentForType;
 
 class CommentCollection extends BaseCollection {
