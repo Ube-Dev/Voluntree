@@ -1,22 +1,23 @@
 import React from 'react';
 import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
+import '../css/OrgDashboard.css';
 import PropTypes from 'prop-types';
 import LoadingSpinner from './LoadingSpinner';
 import OrganizationEvents from './OrganizationEvents';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
-// import OrganizationStats from './OrganizationStats';
+import OrganizationStats from './OrganizationStats';
 
 const OrganizationOverview = ({ theOrganization }) => (
   theOrganization ? (
     <Container>
-      <Card>
+      <Card className="rounded-4">
         <Card.Body>
           <Row>
-            <Col className="col-md-3">
-              <Image style={{ width: '95%' }} src={theOrganization.image} alt={theOrganization.name} />
+            <Col sm={12} md={3} className="align-content-center text-center">
+              <Image className="org-overview-image" src={theOrganization.image} alt={theOrganization.name} />
             </Col>
-            <Col className="col-md-9">
-              <h3 id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_ORG_NAME}>{theOrganization.name}</h3>
+            <Col sm={12} md={9}>
+              <h2 id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_ORG_NAME}>{theOrganization.name}</h2>
               <hr />
               <h5>Mission:</h5>
               <p>{theOrganization.mission}</p>
@@ -25,15 +26,17 @@ const OrganizationOverview = ({ theOrganization }) => (
                 <p>{theOrganization.address}, {theOrganization.zipCode}, {theOrganization.city}, {theOrganization.state}, {theOrganization.country}</p>
               ) : (<p>N/A</p>)}
               <Row>
-                <Col>
+                <Col sm={12} md={6}>
                   <h5>Contact Email:</h5>
                   {theOrganization.contactEmail ? (
                     <p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>{theOrganization.contactEmail}</p>
                   ) : (<p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>N/A</p>)}
                 </Col>
-                <Col>
+                <Col sm={12} md={6}>
                   <h5>Phone:</h5>
-                  <p>{theOrganization.phone}</p>
+                  {theOrganization.phone ? (
+                    <p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_PHONE}>{theOrganization.phone}</p>
+                  ) : (<p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_PHONE}>N/A</p>)}
                 </Col>
               </Row>
             </Col>
@@ -48,6 +51,10 @@ const OrganizationOverview = ({ theOrganization }) => (
           </Button>
         </Card.Footer>
       </Card>
+      <Row>
+        <h1 className="text-center org-text-white pt-3">Organization Stats</h1>
+        <OrganizationStats />
+      </Row>
       <Row>
         <h1 className="text-center org-text-white pt-3 ">Organization Events</h1>
         <OrganizationEvents org={theOrganization} />
