@@ -13,11 +13,11 @@ const OrganizationOverview = ({ theOrganization }) => (
       <Card className="rounded-4">
         <Card.Body>
           <Row>
-            <Col className="col-md-3 align-content-center">
+            <Col className="col-md-3 align-content-center text-center">
               <Image className="org-overview-image" src={theOrganization.image} alt={theOrganization.name} />
             </Col>
             <Col className="col-md-9">
-              <h3 id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_ORG_NAME}>{theOrganization.name}</h3>
+              <h2 id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_ORG_NAME}>{theOrganization.name}</h2>
               <hr />
               <h5>Mission:</h5>
               <p>{theOrganization.mission}</p>
