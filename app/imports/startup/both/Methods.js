@@ -43,8 +43,8 @@ const createComment = 'Comment.define';
 const removeComment = 'Comment.remove';
 const udpateComment = 'Comment.update';
 // app\imports\api\userHasSkill\UserHasSkillCollection.methods.js
-const updateUserHasSkill = 'UserHasSkills.define';
-const updateUserHasSkill = 'UserHasSkills.remove';
+const createUserHasSkill = 'UserHasSkills.define';
+const removeUserHasSkill = 'UserHasSkills.remove';
 
 // app\imports\api\notification\Notification.method.js
 const sendNotification = 'Notification_.define';
@@ -165,5 +165,6 @@ export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
   createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, updateUserAccount, sendVerification, sendResetPasswordEmail_, deleteMyEvents,
-  sendNotification, userAddHours, createReview, updateReview, removeReview, organizationAddHours, createComment, removeComment, udpateComment,
+  sendNotification, userAddHours, createReview, updateReview, removeReview, organizationAddHours, createComment, removeComment, udpateComment, createUserHasSkill,
+  removeUserHasSkill,
 };

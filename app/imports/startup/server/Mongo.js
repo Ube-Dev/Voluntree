@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Events } from '../../api/event/EventCollection';
-import { createComment, createEvent, createOrganization, createReview, loadDefaultCategories } from '../both/Methods';
+import { createComment, createEvent, createOrganization, createReview, loadDefaultCategories, createUserHasSkill } from '../both/Methods';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
 import { Review } from '../../api/review/ReviewCollection';

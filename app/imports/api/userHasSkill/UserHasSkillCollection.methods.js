@@ -8,7 +8,7 @@ Meteor.methods({
     try {
       return UserHasSkills._collection.insert(data);
     } catch (error) {
-      throw new Meteor.Error('create-failed', 'Failed to create new skill: ', error);
+      throw new Meteor.Error('create-failed', 'Failed to create new userHasSkill: ', error);
     }
   },
 });
@@ -19,7 +19,7 @@ Meteor.methods({
     try {
       return UserHasSkills._collection.remove(data);
     } catch (error) {
-      throw new Meteor.Error('create-failed', 'Failed to create new skill: ', error);
+      throw new Meteor.Error('create-failed', 'Failed to create new userHasSkill: ', error);
     }
   },
 });

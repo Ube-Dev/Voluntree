@@ -24,7 +24,7 @@ const SkillChooserModal = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  if (ready) {
+  if (true) {
     return (
       <>
         <div className="text-center">
