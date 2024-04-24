@@ -26,13 +26,13 @@ const OrganizationOverview = ({ theOrganization }) => (
                 <p>{theOrganization.address}, {theOrganization.zipCode}, {theOrganization.city}, {theOrganization.state}, {theOrganization.country}</p>
               ) : (<p>N/A</p>)}
               <Row>
-                <Col>
+                <Col sm={12} md={6}>
                   <h5>Contact Email:</h5>
                   {theOrganization.contactEmail ? (
                     <p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>{theOrganization.contactEmail}</p>
                   ) : (<p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_CONTACT_EMAIL}>N/A</p>)}
                 </Col>
-                <Col>
+                <Col sm={12} md={6}>
                   <h5>Phone:</h5>
                   {theOrganization.phone ? (
                     <p id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_PHONE}>{theOrganization.phone}</p>
