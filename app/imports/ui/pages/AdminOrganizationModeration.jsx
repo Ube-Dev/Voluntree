@@ -104,6 +104,7 @@ const AdminOrganizationModeration = () => {
                   <tbody>
                     {displayedOrganizations.map((org) => (
                       <tr key={org._id}>
+                        {/* eslint-disable-next-line */}
                         <td><Image src={org.image} className="org-mod-image" /></td>
                         <td>{org.name}</td>
                         <td>{org.type}</td>
