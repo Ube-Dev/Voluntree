@@ -46,7 +46,7 @@ const AdminOrganizationModeration = () => {
       findAllMatches: true,
       useExtendedSearch: false,
       threshold: 0.2,
-      keys: ['name', 'type'],
+      keys: ['name', 'type', 'email', 'phone'],
     };
 
     const fuse = new Fuse(organization, fuseOptions);
