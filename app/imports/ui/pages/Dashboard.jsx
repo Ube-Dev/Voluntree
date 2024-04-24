@@ -21,8 +21,8 @@ const Dashboard = () => {
 
   return (
     ready ? (
-      <Container fluid id={PAGE_IDS.DASHBOARD} className="py-3 color1 justify-content-center">
-        <Row className="py-1 text-center">
+      <Container fluid id={PAGE_IDS.DASHBOARD} className="py-5 color1 justify-content-center">
+        <Row className="pb-4 text-center">
           <h1>Dashboard</h1>
         </Row>
         <Row className="px-md-5">
