@@ -69,7 +69,7 @@ const AdminUserModeration = () => {
     <Container fluid className="color1 py-5">
       <Container className="">
         <Row className="text-center pb-3">
-          <h1>Organization Moderation</h1>
+          <h1>User Moderation</h1>
         </Row>
         <Card className="rounded-4 p-3 org-moderation-background">
           <Row className="justify-content-center">
