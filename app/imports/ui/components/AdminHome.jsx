@@ -21,7 +21,7 @@ const AdminHome = () => (
                 <Button variant="outline-dark" href="/event-moderation" className="rounded-0 management-btn">
                   Events
                 </Button>
-                <Button variant="outline-dark" className="rounded-0 management-btn">
+                <Button variant="outline-dark" href="/organization-moderation" className="rounded-0 management-btn">
                   Organizations
                 </Button>
                 <Button variant="outline-dark" className="rounded-0 management-btn">
