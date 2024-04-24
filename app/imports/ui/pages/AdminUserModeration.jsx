@@ -59,7 +59,7 @@ const AdminUserModeration = () => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Organization deleted successfully', 'success');
+        swal('Success', 'User deleted successfully', 'success');
         setShowDeleteConfirmation(false);
       }
     });
@@ -127,7 +127,7 @@ const AdminUserModeration = () => {
             <Modal.Title>Confirm Delete</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>Are you sure you want to delete this Organization?</p>
+            <p>Are you sure you want to delete this User?</p>
             <p>The user will be notified of this deletion.</p>
           </Modal.Body>
           <Modal.Footer>
