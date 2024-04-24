@@ -68,13 +68,13 @@ const AdminHoursStats = () => {
   return (
     <Container>
       <Row className="text-center">
-        <Col className="col-6">
+        <Col sm={12} md={6} className="py-1">
           <Card className="rounded-4 p-3">
             <h3>Volunteers</h3>
             <Bar options={options2} data={data2} />
           </Card>
         </Col>
-        <Col className="col-6">
+        <Col sm={12} md={6} className="py-1">
           <Card className="rounded-4 p-3">
             <h3>Hours Served By Month</h3>
             <Bar options={options} data={data} />
