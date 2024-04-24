@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import Faq from '../pages/Faq';
+import SubscriptionPage from '../pages/SubscriptionPage';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
 import CreateOrganization from '../pages/CreateOrganization';
@@ -34,8 +35,8 @@ import OrgScanQR from '../pages/OrgScanQR';
 import MyEventPage from '../pages/MyEventPage';
 import VerifyEmailPage from '../pages/verifyEmailPage';
 import ResetPasswordPage from '../pages/ResetPassword';
-import SubscriptionPage from '../pages/SubscriptionPage';
 import AdminEventModeration from '../pages/AdminEventModeration';
+import AdminOrganizationModeration from '../pages/AdminOrganizationModeration';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -73,6 +74,7 @@ const App = () => {
           <Route path="/edit-organization-profile/:_id" element={<OrganizationProtectedRoute ready={ready}><EditOrganizationProfile /></OrganizationProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/event-moderation" element={<AdminProtectedRoute ready={ready}><AdminEventModeration /></AdminProtectedRoute>} />
+          <Route path="/organization-moderation" element={<AdminProtectedRoute ready={ready}><AdminOrganizationModeration /></AdminProtectedRoute>} />
           <Route path="/admin-edit-event/:_id" element={<AdminProtectedRoute ready={ready}><EditEvent /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
