@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button, ButtonGroup, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, ButtonGroup, Modal, Image } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
@@ -67,7 +67,7 @@ const AdminOrganizationModeration = () => {
 
   return ready ? (
     <Container fluid className="color1 py-5">
-      <Container>
+      <Container className="">
         <Row className="text-center pb-3">
           <h1>Organization Moderation</h1>
         </Row>
@@ -92,9 +92,11 @@ const AdminOrganizationModeration = () => {
                 <Table striped bordered hover>
                   <thead>
                     <tr>
+                      <th>PFP</th>
                       <th>Organization</th>
                       <th>Category</th>
                       <th>Email</th>
+                      <th>Phone</th>
                       <th>Rating</th>
                       <th>Actions</th>
                     </tr>
@@ -102,9 +104,11 @@ const AdminOrganizationModeration = () => {
                   <tbody>
                     {displayedOrganizations.map((org) => (
                       <tr key={org._id}>
+                        <td><Image src={org.image} className="org-mod-image" /></td>
                         <td>{org.name}</td>
                         <td>{org.type}</td>
                         <td>{org.contactEmail}</td>
+                        <td>{org.phone}</td>
                         <td>{org.averageRating}</td>
                         <td className="text-center">
                           <ButtonGroup>
