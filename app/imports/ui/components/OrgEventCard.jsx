@@ -6,7 +6,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import '../css/EventCard.css';
 
 const OrgEventCard = ({ event }) => (
-  <Card key={event._id} className="event-card rounded-4">
+  <Card key={event._id} className="event-card rounded-4" id={COMPONENT_IDS.ORG_EVENT_CARD}>
     <Card.Header>
       <Card.Img src={event.image} className="event-image rounded-3" />
     </Card.Header>
