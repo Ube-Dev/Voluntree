@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
+import '../css/OrgDashboard.css';
 import PropTypes from 'prop-types';
 import LoadingSpinner from './LoadingSpinner';
 import OrganizationEvents from './OrganizationEvents';
@@ -13,7 +14,7 @@ const OrganizationOverview = ({ theOrganization }) => (
         <Card.Body>
           <Row>
             <Col className="col-md-3 align-content-center">
-              <Image className="org-profile-img" src={theOrganization.image} alt={theOrganization.name} />
+              <Image className="org-overview-image" src={theOrganization.image} alt={theOrganization.name} />
             </Col>
             <Col className="col-md-9">
               <h3 id={COMPONENT_IDS.ORGANIZATION_OVERVIEW_ORG_NAME}>{theOrganization.name}</h3>
@@ -51,13 +52,8 @@ const OrganizationOverview = ({ theOrganization }) => (
         </Card.Footer>
       </Card>
       <Row>
-        <Col className="col-5">
-          <h1 className="text-center org-text-white pt-3">Upcoming Events</h1>
-        </Col>
-        <Col className="col-7">
-          <h1 className="text-center org-text-white pt-3">Organization Stats</h1>
-          <OrganizationStats />
-        </Col>
+        <h1 className="text-center org-text-white pt-3">Organization Stats</h1>
+        <OrganizationStats />
       </Row>
       <Row>
         <h1 className="text-center org-text-white pt-3 ">Organization Events</h1>
