@@ -46,10 +46,10 @@ const NavBar = () => {
   const adminMenu = (
     <>
       <Nav.Link id={COMPONENT_IDS.NAVBAR_HOME_PAGE} as={NavLink} to="/home" key="Home">Home</Nav.Link>
-      <Nav.Link id={COMPONENT_IDS.NAVBAR_EVENTS_PAGE} as={NavLink} to="/Events" key="Events">Find Events</Nav.Link>
       <Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN_EVENT_MODERATION_PAGE} as={NavLink} to="/event-moderation" key="AdminEventModeration">Event Moderation</Nav.Link>
       <Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN_ORGANIZATION_MODERATION_PAGE} as={NavLink} to="/organization-moderation" key="AdminOrganizationModeration">Organization Moderation</Nav.Link>
       <Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN_USER_MODERATION_PAGE} as={NavLink} to="/user-moderation" key="AdminUserModeration">User Moderation</Nav.Link>
+      <Nav.Link id={COMPONENT_IDS.NAVBAR_ADMIN_REVIEW_MODERATION_PAGE} as={NavLink} to="/review-moderation" key="AdminReviewModeration">Review Moderation</Nav.Link>
       <NavDropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} title="Manage" key="manage-dropdown">
         <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} to="/manage-database">
           <CloudDownload /> Database
@@ -72,6 +72,7 @@ const NavBar = () => {
         )}
         <Navbar.Toggle aria-controls={COMPONENT_IDS.NAVBAR_COLLAPSE} />
         <Navbar.Collapse id={COMPONENT_IDS.NAVBAR_COLLAPSE}>
+          {/* Display the navBar based on the user's role */}
           <Nav className="me-auto justify-content-start">
             {currentUser && Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) && adminMenu}
 
