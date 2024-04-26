@@ -22,20 +22,29 @@ import { editOrgProfilePage } from './editorgprofile.page';
 import { orgDropdown } from './orgdropdown.component';
 import { orgEventCard } from './orgeventcard.component';
 import { orgScanQRPage } from './orgscanqr.page';
+import { manageDatabase } from './managedatabase.page';
 
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
-// const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
-// const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
 const orgCredentials = { username: 'organization@foo.com', password: 'changeme' };
+const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
+// const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
 
 fixture('meteor-application-template-production localhost test with default db')
   .page('http://localhost:3000');
 
 test('Test that landing page shows up', async () => {
   await landingPage.isDisplayed();
+});
+
+test('Test that sign in and sign out work', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.logout();
+  await signOutPage.isDisplayed();
 });
 
 test('Test that about page works', async () => {
@@ -57,25 +66,17 @@ test('Test that find events page works', async () => {
   await eventsPage.enterField();
 });
 
-test.only('Test that subscribe page works', async () => {
+test('Test that subscribe page works', async () => {
   await navBar.gotoSubscribePage();
   await subscribePage.isDisplayed();
 });
 
-test('Test that Home page works', async () => {
+test('Test that User Home page works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
-});
-
-test('Test that sign in and sign out work', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await navBar.logout();
-  await signOutPage.isDisplayed();
 });
 
 /*
@@ -98,14 +99,13 @@ test('Test that user pages show up', async () => {
 //   await signOutPage.isDisplayed();
 // });
 
-// test('Test that admin pages show up', async () => {
-//   await navBar.gotoSignInPage();
-//   await signInPage.signin(adminCredentials.username, adminCredentials.password);
-//   await navBar.isLoggedIn(adminCredentials.username);
-//   // await t.click(editLinks.nth(0));
-//   // await navBar.gotoManageDatabasePage();
-//   // await manageDatabasePage.isDisplayed();
-// });
+test.only('Test that manage database page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoManageDatabasePage();
+  await manageDatabase.isDisplayed();
+});
 
 test('Test that add event form works', async () => {
   await navBar.gotoSignInPage();

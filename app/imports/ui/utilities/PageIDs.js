@@ -7,7 +7,6 @@ export const PAGE_IDS = {
   SUBSCRIBE: 'subscribe',
   HOME_PAGE: 'home-page',
   DASHBOARD: 'dashboard',
-  MANAGE_DATABASE: 'manage-database',
   VIEW_EVENT: 'view-event',
   NOT_AUTHORIZED: 'not-authorized',
   NOT_FOUND: 'not-found',
@@ -28,4 +27,5 @@ export const PAGE_IDS = {
   ADMIN_EVENT_MODERATION: 'admin-event-moderation',
   ADMIN_ORGANIZATION_MODERATION: 'admin-organization-moderation',
   ADMIN_USER_MODERATION: 'admin-user-moderation',
+  MANAGE_DATABASE: 'manage-database',
 };
