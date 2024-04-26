@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, Image } from 'react-bootstrap';
+import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { Organization } from '../../api/organization/OrganizationCollection';
@@ -66,6 +66,7 @@ const UserViewOrgProfile = () => {
                     <p>{orgProfile.phone}</p>
                   ) : (<p>N/A</p>)}
                 </Col>
+                <Button variant="primary" href={`/review-organization/${_id}`}>Leave a review</Button>
               </Row>
             </Card.Body>
             {orgProfile.contactEmail ? (

@@ -38,6 +38,7 @@ import ResetPasswordPage from '../pages/ResetPassword';
 import AdminEventModeration from '../pages/AdminEventModeration';
 import AdminOrganizationModeration from '../pages/AdminOrganizationModeration';
 import AdminUserModeration from '../pages/AdminUserModeration';
+import OrgReviewForm from '../pages/OrgReviewForm';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -64,6 +65,7 @@ const App = () => {
           <Route path="/signout" element={<SignOut />} />
           <Route path="/verify-email/:token" element={<VerifyEmailPage />} />
           <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+          <Route path="/review-organization/:_id" element={<ProtectedRoute><OrgReviewForm /></ProtectedRoute>} />
           <Route path="/edit-user-profile/:_id" element={<ProtectedRoute><EditUserProfile /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/qr-code/:_id" element={<ProtectedRoute><UserQRCode /></ProtectedRoute>} />

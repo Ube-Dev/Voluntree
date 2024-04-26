@@ -277,3 +277,13 @@ body {
 {
   font-size: 3em;
 }
+
+.star {
+  cursor: pointer;
+  width: 2em;
+  height: auto;
+}
+
+input[type=radio] {
+  display: none;
+}
