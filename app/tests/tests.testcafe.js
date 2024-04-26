@@ -47,6 +47,7 @@ test('Test that sign in and sign out work', async () => {
   await signOutPage.isDisplayed();
 });
 
+// No user singed in pages
 test('Test that about page works', async () => {
   await navBar.gotoAboutPage();
   await aboutPage.isDisplayed();
@@ -98,14 +99,6 @@ test('Test that user pages show up', async () => {
 //   await navBar.logout();
 //   await signOutPage.isDisplayed();
 // });
-
-test.only('Test that manage database page shows up', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(adminCredentials.username, adminCredentials.password);
-  await navBar.isLoggedIn(adminCredentials.username);
-  await navBar.gotoManageDatabasePage();
-  await manageDatabase.isDisplayed();
-});
 
 test('Test that add event form works', async () => {
   await navBar.gotoSignInPage();
@@ -279,4 +272,21 @@ test('Test that updating org profile works', async () => {
   await orgDashboardPage.isDisplayed();
   await orgOverview.gotoEditOrgProfilePage();
   await editOrgProfilePage.updateProfile();
+});
+
+// Admin pages
+test.only('Test that admin home page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoHomePage();
+  await homePage.isDisplayed();
+});
+
+test('Test that manage database page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoManageDatabasePage();
+  await manageDatabase.isDisplayed();
 });
