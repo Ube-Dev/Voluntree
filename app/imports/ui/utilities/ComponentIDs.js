@@ -17,7 +17,6 @@ export const COMPONENT_IDS = {
   NAVBAR_DASHBOARD_PAGE: 'navbar-dashboard',
   NAVBAR_ADD_EVENT_PAGE: 'navbar_add_event_page',
   NAVBAR_MY_EVENTS_PAGE: 'navbar-my-events',
-  NAVBAR_ADMIN_PAGE: 'navbar-admin',
   NAVBAR_ADMIN_EVENT_MODERATION_PAGE: 'navbar-admin-event-moderation',
   NAVBAR_ADMIN_ORGANIZATION_MODERATION_PAGE: 'navbar-admin-organization-moderation',
   NAVBAR_ADMIN_USER_MODERATION_PAGE: 'navbar-admin-user-moderation',

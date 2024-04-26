@@ -26,6 +26,7 @@ import { manageDatabase } from './managedatabase.page';
 import { adminEventModerationPage } from './admineventmoderation.page';
 import { adminOrganizationModerationPage } from './adminorganizationmoderation.page';
 import { adminUserModerationPage } from './adminusermoderation.page';
+import { adminHome } from './adminhome.component';
 
 /* global fixture:false, test:false */
 
@@ -286,11 +287,14 @@ test('Test that admin home page shows up', async () => {
   await homePage.isDisplayed();
 });
 
-test.only('Test that admin event moderation page shows up', async () => {
+test('Test that admin event moderation page shows up', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(adminCredentials.username, adminCredentials.password);
   await navBar.isLoggedIn(adminCredentials.username);
   await navBar.gotoEventModerationPage();
+  await adminEventModerationPage.isDisplayed();
+  await navBar.gotoHomePage();
+  await adminHome.gotoEventModeration();
   await adminEventModerationPage.isDisplayed();
 });
 
@@ -300,6 +304,9 @@ test('Test that admin organization moderation page shows up', async () => {
   await navBar.isLoggedIn(adminCredentials.username);
   await navBar.gotoOrganizationModerationPage();
   await adminOrganizationModerationPage.isDisplayed();
+  await navBar.gotoHomePage();
+  await adminHome.gotoOrganizationModeration();
+  await adminOrganizationModerationPage.isDisplayed();
 });
 
 test('Test that admin user moderation page shows up', async () => {
@@ -307,6 +314,9 @@ test('Test that admin user moderation page shows up', async () => {
   await signInPage.signin(adminCredentials.username, adminCredentials.password);
   await navBar.isLoggedIn(adminCredentials.username);
   await navBar.gotoUserModerationPage();
+  await adminUserModerationPage.isDisplayed();
+  await navBar.gotoHomePage();
+  await adminHome.gotoUserModeration();
   await adminUserModerationPage.isDisplayed();
 });
 
