@@ -23,6 +23,9 @@ import { orgDropdown } from './orgdropdown.component';
 import { orgEventCard } from './orgeventcard.component';
 import { orgScanQRPage } from './orgscanqr.page';
 import { manageDatabase } from './managedatabase.page';
+import { adminEventModerationPage } from './admineventmoderation.page';
+import { adminOrganizationModerationPage } from './adminorganizationmoderation.page';
+import { adminUserModerationPage } from './adminusermoderation.page';
 
 /* global fixture:false, test:false */
 
@@ -283,18 +286,28 @@ test('Test that admin home page shows up', async () => {
   await homePage.isDisplayed();
 });
 
-test('Test that admin event moderation page shows up', async () => {
+test.only('Test that admin event moderation page shows up', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(adminCredentials.username, adminCredentials.password);
   await navBar.isLoggedIn(adminCredentials.username);
   await navBar.gotoEventModerationPage();
+  await adminEventModerationPage.isDisplayed();
 });
 
-test.only('Test that admin organization moderation page shows up', async () => {
+test('Test that admin organization moderation page shows up', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(adminCredentials.username, adminCredentials.password);
   await navBar.isLoggedIn(adminCredentials.username);
   await navBar.gotoOrganizationModerationPage();
+  await adminOrganizationModerationPage.isDisplayed();
+});
+
+test('Test that admin user moderation page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoUserModerationPage();
+  await adminUserModerationPage.isDisplayed();
 });
 
 test('Test that manage database page shows up', async () => {
