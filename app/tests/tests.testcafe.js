@@ -275,12 +275,19 @@ test('Test that updating org profile works', async () => {
 });
 
 // Admin pages
-test.only('Test that admin home page shows up', async () => {
+test('Test that admin home page shows up', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(adminCredentials.username, adminCredentials.password);
   await navBar.isLoggedIn(adminCredentials.username);
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
+});
+
+test('Test that admin event moderation page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoEventModerationPage();
 });
 
 test('Test that manage database page shows up', async () => {
