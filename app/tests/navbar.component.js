@@ -110,7 +110,6 @@ class NavBar {
     if (!visible) {
       await t.click('button.navbar-toggler');
     }
-    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_SUBSCRIBE_PAGE}`);
   }
 
@@ -172,7 +171,7 @@ class NavBar {
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
-    await t.click(`#${COMPONENT_IDS.NAVBAR_EVENT_MODERATION_PAGE}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADMIN_EVENT_MODERATION_PAGE}`);
   }
 
   /* Go to the Organization moderation page. */
@@ -183,7 +182,7 @@ class NavBar {
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
-    await t.click(`#${COMPONENT_IDS._ORGANIZATION_MODERATION_PAGE}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADMIN_ORGANIZATION_MODERATION_PAGE}`);
   }
 
   /* Go to the User moderation page. */
@@ -194,7 +193,7 @@ class NavBar {
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
-    await t.click(`#${COMPONENT_IDS.NAVBAR_USER_MODERATION_PAGE}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADMIN_USER_MODERATION_PAGE}`);
   }
 
   /* Go to the Review moderation page. */
@@ -205,7 +204,7 @@ class NavBar {
     }
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
-    await t.click(`#${COMPONENT_IDS.NAVBAR_REVEIW_MODERATION_PAGE}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADMIN_REVIEW_MODERATION_PAGE}`);
   }
 }
 

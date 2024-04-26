@@ -3,6 +3,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Events } from '../../api/event/EventCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
+import { PAGE_IDS } from '../utilities/PageIDs';
 import '../css/AllEventPage.css';
 import AdminEventFilter from '../components/AdminEventFilter';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -26,7 +27,7 @@ const AdminEventModeration = () => {
   }, []);
 
   return ready ? (
-    <Container fluid className="color1">
+    <Container fluid className="color1" id={PAGE_IDS.ADMIN_EVENT_MODERATION}>
       <Container className="py-5">
         <Row className="text-center pb-4">
           <h1>Event Moderation</h1>

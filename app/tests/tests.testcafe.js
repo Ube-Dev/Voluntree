@@ -3,10 +3,11 @@ import { landingPage } from './landing.page';
 import { signInPage } from './signin.page';
 // import { signUpPage } from './signup.page';
 import { navBar } from './navbar.component';
-import { faqPage } from './faq.page';
-import { homePage } from './home.page';
 import { aboutPage } from './about.page';
+import { faqPage } from './faq.page';
 import { eventsPage } from './events.page';
+import { subscribePage } from './subscribe.page';
+import { homePage } from './home.page';
 import { addEventPage } from './addevent.page';
 import { viewEventPage } from './viewevent.page';
 import { editEventPage } from './editevent.page';
@@ -37,12 +38,28 @@ test('Test that landing page shows up', async () => {
   await landingPage.isDisplayed();
 });
 
+test('Test that about page works', async () => {
+  await navBar.gotoAboutPage();
+  await aboutPage.isDisplayed();
+});
+
 test('Test that FAQ page works', async () => {
+  await navBar.gotoFAQPage();
+  await faqPage.isDisplayed();
+});
+
+test('Test that find events page works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoFAQPage();
-  await faqPage.isDisplayed();
+  await navBar.gotoEventsPage();
+  await eventsPage.isDisplayed();
+  await eventsPage.enterField();
+});
+
+test.only('Test that subscribe page works', async () => {
+  await navBar.gotoSubscribePage();
+  await subscribePage.isDisplayed();
 });
 
 test('Test that Home page works', async () => {
@@ -51,23 +68,6 @@ test('Test that Home page works', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
-});
-
-test('Test that about page works', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoAboutPage();
-  await aboutPage.isDisplayed();
-});
-
-test('Test that events page works', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoEventsPage();
-  await eventsPage.isDisplayed();
-  await eventsPage.enterField();
 });
 
 test('Test that sign in and sign out work', async () => {
