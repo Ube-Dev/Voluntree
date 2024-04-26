@@ -15,3 +15,9 @@
 .org-text-white {
   color: white;
 }
+
+.org-overview-image {
+  width: 100%;
+  max-height: 275px !important;
+  max-width: 275px !important;
+}

@@ -107,6 +107,10 @@ export const COMPONENT_IDS = {
   ORGANIZATION_OVERVIEW_CONTACT_EMAIL: 'organization-overview-contact-email',
 
   ORGANIZATION_DROPDOWN: 'organization-dropdown',
+  ORG_EVENT_CARD: 'org-event-card',
+  ORG_EVENT_CARD_VIEW: 'org-event-card-view',
+  ORG_EVENT_CARD_EDIT: 'org-event-card-edit',
+  ORG_EVENT_CARD_RECORD: 'org-event-card-record',
 
   ORGANIZATION_PROFILE_EDIT_PROFILE: 'organization-profile-edit-profile',
 

@@ -6,6 +6,7 @@ import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
 import GoBackButton from './GoBackButton';
 import ConnectButton from './ConnectButton';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 const Event = ({ event, org }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -24,7 +25,7 @@ const Event = ({ event, org }) => {
   };
 
   return (
-    <Container fluid className="color1">
+    <Container fluid className="color1" id={PAGE_IDS.VIEW_EVENT}>
       <Container id="view-event-page" className="py-5 justify-content-center">
         <Card className="pageCard">
           <Card.Header className="pageCardHeader">

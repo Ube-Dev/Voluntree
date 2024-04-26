@@ -5,6 +5,7 @@
 
   "defaultNotificationSenderType": ["user", "organization"],
   "defaultReviewForType": { "event": "event", "organization": "organization" },
+  "defaultCommentForType": { "event": "event", "organization": "organization" },
   "defaultRatingRange": { "min": 1, "max": 5 },
   "packages": {
     "email": {
@@ -88,7 +89,7 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "1002",
+      "_id": "rStUvWxYz987",
       "name": "Youth Empowerment Foundation",
       "location": "Los Angeles",
       "mission": "To empower and educate underprivileged youth for a brighter future.",
@@ -108,7 +109,7 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "1003",
+      "_id": "6543210AbCdE",
       "name": "Animal Guardians Society",
       "location": "Chicago",
       "mission": "To rescue, protect, and advocate for animals in need.",
@@ -128,7 +129,7 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1004",
+      "_id": "FgHiJkLmNoPq",
       "name": "Healthcare for All",
       "location": "Houston",
       "mission": "To ensure access to quality healthcare for all individuals, regardless of income or background.",
@@ -148,7 +149,7 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1005",
+      "_id": "RsTuVwXyZ123",
       "name": "Relief Aid International",
       "location": "Miami",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
@@ -168,7 +169,7 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1006",
+      "_id": "4567890AbCdE",
       "name": "GLOBAL EDUCATION PHILANTHROPISTS",
       "location": "Imperial",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
@@ -186,7 +187,7 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1007",
+      "_id": "fGhIjKlMnOpQ",
       "name": "Ala Moana",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
@@ -204,7 +205,7 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1008",
+      "_id": "aBcDeFgHiJk1",
       "name": "Turtle Bay Beach Org",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
@@ -222,7 +223,7 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "1009",
+      "_id": "lMnOpQrStUv2",
       "name": "Lanikai Beach Org",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
@@ -240,7 +241,7 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "1010",
+      "_id": "wXyZ12345678",
       "name": "Food Bank of Hawaii",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
@@ -258,7 +259,7 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1011",
+      "_id": "90AbCdEfGhIj",
       "name": "Catholic Charities Hawaii",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
@@ -358,7 +359,7 @@
       "impact": "You'll change people's lives!",
       "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
       "hostType": "individual",
-      "hostID": "1006",
+      "hostID": "4567890AbCdE",
       "_id": "nT7sXq9KdYfR",
       "activityCategory": {
         "mainCategory": "Community Development",
@@ -392,7 +393,7 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Ala Moana",
       "hostType": "organization",
-      "hostID": "1007",
+      "hostID": "fGhIjKlMnOpQ",
       "_id": "oT5zRj8QwFnS",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
@@ -427,7 +428,7 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Turtle Bay Beach Org",
       "hostType": "organization",
-      "hostID": "1008",
+      "hostID": "aBcDeFgHiJk1",
       "_id": "lG4tZv7BmNcY",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
@@ -461,7 +462,7 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Turtle Bay Beach Org",
       "hostType": "organization",
-      "hostID": "1008",
+      "hostID": "aBcDeFgHiJk1",
       "_id": "iE9xWq3RvSfT",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
@@ -496,7 +497,7 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
-      "hostID": "1009",
+      "hostID": "lMnOpQrStUv2",
       "_id": "aT9mWc2RqLxV",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
@@ -531,7 +532,7 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
-      "hostID": "1009",
+      "hostID": "lMnOpQrStUv2",
       "_id": "pH6uYt2QwNzC",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
@@ -562,7 +563,7 @@
       "impact": "You'll help feed the homeless!",
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "1010",
+      "hostID": "wXyZ12345678",
       "_id": "fV6qYn8UwDzS",
       "activityCategory": {
         "mainCategory": "Social Services",
@@ -596,7 +597,7 @@
       "impact": "You'll help take care of your local elderly",
       "hostBy": "Catholic Charities Hawaii",
       "hostType": "organization",
-      "hostID": "1011",
+      "hostID": "90AbCdEfGhIj",
       "_id": "sD3kFq5LmBvX",
       "activityCategory": {
         "mainCategory": "Community Development",
@@ -631,7 +632,7 @@
       "impact": "You'll help feed the homeless!",
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "1010",
+      "hostID": "wXyZ12345678",
       "_id": "cJ8yVr4HwNpZ",
       "activityCategory": {
         "mainCategory": "Social Services",
@@ -691,6 +692,69 @@
         "ID": "1SkcLcs"
       },
       "content": "I was disappointed with the services provided by this organization."
+    }
+  ],
+  "defaultComment": [
+    {
+      "_id": "aBcDeFgHiJk1",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "event", "ID": "nT7sXq9KdYfR" },
+      "content": "Great event! I had an amazing time."
+    },
+    {
+      "_id": "lMnOpQrStUv2",
+      "userID": "ZpLMnWk2SCQrhtgN5",
+      "commentFor": { "type": "organization", "ID": "rStUvWxYz987" },
+      "content": "This organization is doing fantastic work in the community."
+    },
+    {
+      "_id": "wXyZ12345678",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "event", "ID": "lG4tZv7BmNcY" },
+      "content": "I think this event could improve in terms of accessibility."
+    },
+    {
+      "_id": "90AbCdEfGhIj",
+      "userID": "ZpLMnWk2SCQrhtgN5",
+      "commentFor": { "type": "organization", "ID": "aBcDeFgHiJk1" },
+      "content": "The leadership of this organization needs to be more transparent."
+    },
+    {
+      "_id": "KlMnOpQrStUv",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "event", "ID": "iE9xWq3RvSfT" },
+      "content": "The venue for this event was stunning!"
+    },
+    {
+      "_id": "WxYz98765432",
+      "userID": "ZpLMnWk2SCQrhtgN5",
+      "commentFor": { "type": "organization", "ID": "lMnOpQrStUv2" },
+      "content": "I appreciate the efforts of this organization in environmental conservation."
+    },
+    {
+      "_id": "FgHiJkLmNoPq",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "event", "ID": "pH6uYt2QwNzC" },
+      "content": "The speakers at this event were very insightful."
+    },
+    {
+      "_id": "RsTuVwXyZ123",
+      "userID": "ZpLMnWk2SCQrhtgN5",
+      "commentFor": { "type": "organization", "ID": "wXyZ12345678" },
+      "content": "I've volunteered with this organization before and had a great experience."
+    },
+    {
+      "_id": "4567890AbCdE",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "event", "ID": "cJ8yVr4HwNpZ" },
+      "content": "The organization of this event was a bit chaotic."
+    },
+    {
+      "_id": "fGhIjKlMnOpQ",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "organization", "ID": "wXyZ12345678" },
+      "content": "I agree!",
+      "parentID": "RsTuVwXyZ123"
     }
   ]
 }

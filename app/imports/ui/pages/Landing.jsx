@@ -5,32 +5,25 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import MailingList from '../components/MailingList';
 
 const Landing = () => (
-  <>
-    <Container fluid id={PAGE_IDS.LANDING} className="landing-background p-0">
-      <Row className="align-middle text-center">
-        <Col xs={12} className="justify-content-center mt-4">
-          <Image src="/images/voluntreeLogo.png" alt="Voluntree Logo" className="mx-auto d-block" style={{ width: '75%' }} />
-          <h2>Working together made simple</h2>
-        </Col>
-      </Row>
-      <Row className="mt-2 mb-3 g-0 justify-content-center">
-        <Col xs="auto">
-          <Button className="rounded-0" variant="outline-light-landing" size="lg" href="/signin">
-            Sign In
-          </Button>
-        </Col>
-        <Col xs="auto">
-          <Button className="rounded-0" variant="light" size="lg" href="/signup">
-            Register
-          </Button>
-        </Col>
-      </Row>
-      <Row className="mb-5 justify-content-center">
-        <Col xs="auto">
-          <MailingList />
-        </Col>
-      </Row>
-    </Container>
+  <Container fluid id={PAGE_IDS.LANDING} className="landing-background p-0">
+    <Row className="align-middle text-center">
+      <Col xs={12} className="justify-content-center mt-4">
+        <Image src="/images/voluntreeLogo.png" alt="Voluntree Logo" className="mx-auto d-block" style={{ width: '75%' }} />
+        <h2>Working together made simple</h2>
+      </Col>
+    </Row>
+    <Row className="mt-2 mb-3 g-0 justify-content-center">
+      <Col xs="auto">
+        <Button className="rounded-0" variant="outline-light-landing" size="lg" href="/signin">
+          Sign In
+        </Button>
+      </Col>
+      <Col xs="auto">
+        <Button className="rounded-0" variant="light" size="lg" href="/signup">
+          Register
+        </Button>
+      </Col>
+    </Row>
     <Container fluid className="color2 p-4 d-flex justify-content-center align-items-center">
       <Col className="col-11 text-center">
         <h1 style={{ color: 'gold' }}>Your Path to Meaningful Volunteering</h1>
@@ -81,13 +74,18 @@ const Landing = () => (
           <p>
             Ready to get started? Sign up now and let&apos;s grow The Voluntree together!
           </p>
-          <p>
-            <a className="landing-link" href="/signup">Sign Up</a> | <a className="landing-link" href="/about">Learn More</a>
-          </p>
+          <Col className="col-6 text-start">
+            <p>
+              <a className="landing-link" href="/signup">Sign Up</a> | <a className="landing-link" href="/about">Learn More</a>
+            </p>
+          </Col>
+          <Col className="col-6 text-end">
+            <MailingList />
+          </Col>
         </Row>
       </Col>
     </Container>
-  </>
+  </Container>
 );
 
 export default Landing;

@@ -9,6 +9,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import '../css/OrganizationProfile.css';
 import OrganizationEvents from '../components/OrganizationEvents';
 
+/** Organization profile page which can only be viewed by org owner. */
 const OrganizationProfile = () => {
   const { _id } = useParams();
 
@@ -74,8 +75,11 @@ const OrganizationProfile = () => {
         </Col>
       </Row>
       <Row>
-        <h1 className="text-center">Events Organized by {orgProfile.name}</h1>
-        <OrganizationEvents org={orgProfile} />
+        <Col md={1} />
+        <Col md={10}>
+          <h1 className="text-center">Events Organized by {orgProfile.name}</h1>
+          <OrganizationEvents org={orgProfile} />
+        </Col>
       </Row>
     </Container>
   );
