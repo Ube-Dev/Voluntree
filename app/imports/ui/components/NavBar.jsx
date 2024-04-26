@@ -13,6 +13,17 @@ const NavBar = () => {
   const { currentUser } = useTracker(() => ({
     currentUser: Meteor.user() ? Meteor.user().username : '',
   }), []);
+  console.log('User ID:', Meteor.userId());
+  console.log('User Privileges:', userPrivileges); // Check if userPrivileges.hasOrganization is correctly set
+
+  const isInRole = Roles.userIsInRole(Meteor.userId(), userPrivileges.hasOrganization);
+  console.log('Is in Role:', isInRole);
+
+  if (isInRole) {
+    console.log('User has organization privilege');
+  } else {
+    console.log('User does not have organization privilege');
+  }
   return (
     <Navbar className="color1" bg="light" expand="lg">
       <Container>
@@ -42,12 +53,12 @@ const NavBar = () => {
             <Nav.Link id={COMPONENT_IDS.NAVBAR_EVENTS_PAGE} as={NavLink} to="/Events" key="Events">Find Events</Nav.Link>
             {/* Subscription Page */}
             <Nav.Link id={COMPONENT_IDS.NAVBAR_SUBSCRIBE_PAGE} as={NavLink} to="/subscribe" key="Subscribe">Subscribe</Nav.Link>
-            {/* If user is logged in, set links to My Events and Dashboard pages as visible; hide it otherwise */}
+            {/* If user is logged in, set links to My Events page as visible; hide it otherwise */}
             {currentUser ? (
               <Nav.Link id={COMPONENT_IDS.NAVBAR_MY_EVENTS_PAGE} as={NavLink} to="/my_event" key="myEvents">My Events</Nav.Link>
             ) : ''}
             {/* If user is organization, set Dashboard page as visible; hide it otherwise */}
-            {Roles.userIsInRole(Meteor.userId(), userPrivileges.hasOrganization, ROLE.USER) ? ([
+            {Roles.userIsInRole(Meteor.userId(), userPrivileges.hasOrganization) ? ([
               <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_EVENT_PAGE} as={NavLink} to="/add-event" key="AddEvent">Add Event</Nav.Link>,
               <Nav.Link id={COMPONENT_IDS.NAVBAR_DASHBOARD_PAGE} as={NavLink} to="/Dashboard" key="Dashboard">Dashboard</Nav.Link>,
             ]) : ''}
