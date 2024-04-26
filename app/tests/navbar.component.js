@@ -101,8 +101,16 @@ class NavBar {
     if (!visible) {
       await t.click('button.navbar-toggler');
     }
-    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_FAQ_PAGE}`);
+  }
+
+  /* Go to the sign up page. */
+  async gotoSubscribePage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.click(`#${COMPONENT_IDS.NAVBAR_SUBSCRIBE_PAGE}`);
   }
 
   /* Go to the Home page. */
@@ -121,7 +129,6 @@ class NavBar {
     if (!visible) {
       await t.click('button.navbar-toggler');
     }
-    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_ABOUT_PAGE}`);
   }
 
@@ -154,6 +161,50 @@ class NavBar {
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
     await t.click(`#${COMPONENT_IDS.NAVBAR_USER_PROFILE_PAGE}`);
+  }
+
+  /* Go to the event moderation page. */
+  async gotoEventModerationPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADMIN_EVENT_MODERATION_PAGE}`);
+  }
+
+  /* Go to the Organization moderation page. */
+  async gotoOrganizationModerationPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADMIN_ORGANIZATION_MODERATION_PAGE}`);
+  }
+
+  /* Go to the User moderation page. */
+  async gotoUserModerationPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADMIN_USER_MODERATION_PAGE}`);
+  }
+
+  /* Go to the Review moderation page. */
+  async gotoReveiwModerationPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADMIN_REVIEW_MODERATION_PAGE}`);
   }
 }
 

@@ -3,10 +3,11 @@ import { landingPage } from './landing.page';
 import { signInPage } from './signin.page';
 // import { signUpPage } from './signup.page';
 import { navBar } from './navbar.component';
-import { faqPage } from './faq.page';
-import { homePage } from './home.page';
 import { aboutPage } from './about.page';
+import { faqPage } from './faq.page';
 import { eventsPage } from './events.page';
+import { subscribePage } from './subscribe.page';
+import { homePage } from './home.page';
 import { addEventPage } from './addevent.page';
 import { viewEventPage } from './viewevent.page';
 import { editEventPage } from './editevent.page';
@@ -21,14 +22,19 @@ import { editOrgProfilePage } from './editorgprofile.page';
 import { orgDropdown } from './orgdropdown.component';
 import { orgEventCard } from './orgeventcard.component';
 import { orgScanQRPage } from './orgscanqr.page';
+import { manageDatabase } from './managedatabase.page';
+import { adminEventModerationPage } from './admineventmoderation.page';
+import { adminOrganizationModerationPage } from './adminorganizationmoderation.page';
+import { adminUserModerationPage } from './adminusermoderation.page';
+import { adminHome } from './adminhome.component';
 
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
-// const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
-// const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
 const orgCredentials = { username: 'organization@foo.com', password: 'changeme' };
+const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
+// const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
 
 fixture('meteor-application-template-production localhost test with default db')
   .page('http://localhost:3000');
@@ -37,31 +43,26 @@ test('Test that landing page shows up', async () => {
   await landingPage.isDisplayed();
 });
 
-test('Test that FAQ page works', async () => {
+test('Test that sign in and sign out work', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoFAQPage();
-  await faqPage.isDisplayed();
+  await navBar.logout();
+  await signOutPage.isDisplayed();
 });
 
-test('Test that Home page works', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoHomePage();
-  await homePage.isDisplayed();
-});
-
+// No user singed in pages
 test('Test that about page works', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
   await navBar.gotoAboutPage();
   await aboutPage.isDisplayed();
 });
 
-test('Test that events page works', async () => {
+test('Test that FAQ page works', async () => {
+  await navBar.gotoFAQPage();
+  await faqPage.isDisplayed();
+});
+
+test('Test that find events page works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
@@ -70,12 +71,17 @@ test('Test that events page works', async () => {
   await eventsPage.enterField();
 });
 
-test('Test that sign in and sign out work', async () => {
+test('Test that subscribe page works', async () => {
+  await navBar.gotoSubscribePage();
+  await subscribePage.isDisplayed();
+});
+
+test('Test that User Home page works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
-  await navBar.logout();
-  await signOutPage.isDisplayed();
+  await navBar.gotoHomePage();
+  await homePage.isDisplayed();
 });
 
 /*
@@ -96,15 +102,6 @@ test('Test that user pages show up', async () => {
 //   await navBar.isLoggedIn(newCredentials.username);
 //   await navBar.logout();
 //   await signOutPage.isDisplayed();
-// });
-
-// test('Test that admin pages show up', async () => {
-//   await navBar.gotoSignInPage();
-//   await signInPage.signin(adminCredentials.username, adminCredentials.password);
-//   await navBar.isLoggedIn(adminCredentials.username);
-//   // await t.click(editLinks.nth(0));
-//   // await navBar.gotoManageDatabasePage();
-//   // await manageDatabasePage.isDisplayed();
 // });
 
 test('Test that add event form works', async () => {
@@ -279,4 +276,54 @@ test('Test that updating org profile works', async () => {
   await orgDashboardPage.isDisplayed();
   await orgOverview.gotoEditOrgProfilePage();
   await editOrgProfilePage.updateProfile();
+});
+
+// Admin pages
+test('Test that admin home page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoHomePage();
+  await homePage.isDisplayed();
+});
+
+test('Test that admin event moderation page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoEventModerationPage();
+  await adminEventModerationPage.isDisplayed();
+  await navBar.gotoHomePage();
+  await adminHome.gotoEventModeration();
+  await adminEventModerationPage.isDisplayed();
+});
+
+test('Test that admin organization moderation page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoOrganizationModerationPage();
+  await adminOrganizationModerationPage.isDisplayed();
+  await navBar.gotoHomePage();
+  await adminHome.gotoOrganizationModeration();
+  await adminOrganizationModerationPage.isDisplayed();
+});
+
+test('Test that admin user moderation page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoUserModerationPage();
+  await adminUserModerationPage.isDisplayed();
+  await navBar.gotoHomePage();
+  await adminHome.gotoUserModeration();
+  await adminUserModerationPage.isDisplayed();
+});
+
+test('Test that manage database page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoManageDatabasePage();
+  await manageDatabase.isDisplayed();
 });

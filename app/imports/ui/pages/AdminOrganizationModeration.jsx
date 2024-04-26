@@ -5,10 +5,11 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import Fuse from 'fuse.js';
 import { useTracker } from 'meteor/react-meteor-data';
+import { PAGE_IDS } from '../utilities/PageIDs';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { removeOrganization } from '../../startup/both/Methods';
 import { Organization } from '../../api/organization/OrganizationCollection';
-import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import '../css/AdminModeration.css';
 
 const AdminOrganizationModeration = () => {
@@ -66,7 +67,7 @@ const AdminOrganizationModeration = () => {
   };
 
   return ready ? (
-    <Container fluid className="color1 py-5">
+    <Container fluid className="color1 py-5" id={PAGE_IDS.ADMIN_ORGANIZATION_MODERATION}>
       <Container className="">
         <Row className="text-center pb-3">
           <h1>Organization Moderation</h1>
