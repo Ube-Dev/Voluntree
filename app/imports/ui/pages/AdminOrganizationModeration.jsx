@@ -3,9 +3,10 @@ import { Container, Row, Col, Card, Form, Button, ButtonGroup, Modal, Image } fr
 import Table from 'react-bootstrap/Table';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
-import { PAGE_IDS } from '../utilities/PageIDs';
 import Fuse from 'fuse.js';
 import { useTracker } from 'meteor/react-meteor-data';
+import { PAGE_IDS } from '../utilities/PageIDs';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { removeOrganization } from '../../startup/both/Methods';
 import { Organization } from '../../api/organization/OrganizationCollection';

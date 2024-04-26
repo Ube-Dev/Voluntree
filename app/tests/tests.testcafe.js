@@ -290,6 +290,13 @@ test('Test that admin event moderation page shows up', async () => {
   await navBar.gotoEventModerationPage();
 });
 
+test.only('Test that admin organization moderation page shows up', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(adminCredentials.username, adminCredentials.password);
+  await navBar.isLoggedIn(adminCredentials.username);
+  await navBar.gotoOrganizationModerationPage();
+});
+
 test('Test that manage database page shows up', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(adminCredentials.username, adminCredentials.password);
