@@ -31,16 +31,21 @@ Meteor.methods({
     const username = data.email;
     const user = UserProfiles._collection.findOne({ email: data.email });
     console.log(user);
+    console.log(data.privilege);
 
     // only create user if the user does not exists in the database.
     if (user === undefined) {
       const role = ROLE.USER;
       let newID;
+      let privilege = data.privilege;
       // returned newID is the userID, not _id.
+      if (typeof data.privilege === 'undefined') {
+        privilege = [];
+      }
       if (data.userID) {
-        newID = Users.define({ userID: data.userID, username, role, privilege: data.privilege, password: data.password });
+        newID = Users.define({ userID: data.userID, username, role, privilege: privilege, password: data.password });
       } else {
-        newID = Users.define({ username, role, privilege: data.privilege, password: data.password });
+        newID = Users.define({ username, role, privilege: privilege, password: data.password });
       }
 
       // TO-DO revert changes if there is an error while inserting.
