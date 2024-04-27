@@ -7,6 +7,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import UpcomingEventCard from '../components/UpcomingEventCard';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import GoBackButton from '../components/GoBackButton';
 
 const UserProfile = () => {
   const { ready, userProfile } = useTracker(() => {
@@ -20,18 +21,15 @@ const UserProfile = () => {
     };
   });
 
-  if (!ready) {
-    return (
-      <Container className="p-2">
-        <LoadingSpinner /> {/* Show loading spinner while data is loading */}
-      </Container>
-    );
-  }
-
   // Once data is ready, render the user profile
-  return (
+  return ready ? (
     <Container id={PAGE_IDS.USER_PROFILE}>
-      <Row className="py-5">
+      <Row className=" py-2 text-start">
+        <Col className="col-3">
+          <GoBackButton />
+        </Col>
+      </Row>
+      <Row className="py-1">
         <Col md={6}>
           <h1>Profile:</h1>
           <Card className="d-flex justify-content-center">
@@ -78,6 +76,8 @@ const UserProfile = () => {
         </Col>
       </Row>
     </Container>
+  ) : (
+    <LoadingSpinner />
   );
 };
 
