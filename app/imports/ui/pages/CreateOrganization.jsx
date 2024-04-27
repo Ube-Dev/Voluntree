@@ -100,6 +100,7 @@ const CreateOrganization = () => {
                           onChange={() => setHasAddress(!hasAddress)}
                           className="m-4"
                         />
+                      </label>
                     </Col>
                   </Row>
                 </Card.Body>
