@@ -21,13 +21,14 @@ import { editOrgProfilePage } from './editorgprofile.page';
 import { orgDropdown } from './orgdropdown.component';
 import { orgEventCard } from './orgeventcard.component';
 import { orgScanQRPage } from './orgscanqr.page';
+import { userQRCodePage } from './userqrcode.page';
 
 /* global fixture:false, test:false */
 
 /** Credentials for one of the sample users defined in settings.development.json. */
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 // const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
-// const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
+// const newCredentials = { username: 'chaewon@foo.com', password: 'fearless' };
 const orgCredentials = { username: 'organization@foo.com', password: 'changeme' };
 
 fixture('meteor-application-template-production localhost test with default db')
@@ -89,7 +90,7 @@ test('Test that user pages show up', async () => {
 });
 */
 
-// test('Test that sign up and sign out work', async () => {
+// test.only('Test that sign up and sign out work', async () => {
 //   await navBar.gotoSignUpPage();
 //   await signUpPage.isDisplayed();
 //   await signUpPage.signupUser(newCredentials.username, newCredentials.password);
@@ -115,20 +116,11 @@ test('Test that add event form works', async () => {
   await addEventPage.addEvent();
 });
 
-/** The following tests are for user profile pages. */
-test('Test that view user profile can be accessed from NavBar', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoUserProfilePage();
-  await userProfilePage.isDisplayed();
-});
-
+/** The following tests are for interacting with the user dashboard. */
 test('Test that view user profile can be accessed from Home', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoHomePage();
   await homePage.isDisplayed();
   await userDashboard.gotoUserProfilePage();
   await userProfilePage.isDisplayed();
@@ -138,10 +130,27 @@ test('Test that edit user profile can be accessed from Home', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoHomePage();
   await homePage.isDisplayed();
   await userDashboard.gotoEditUserProfilePage();
   await editUserProfilePage.isDisplayed();
+});
+
+test('Test that user\'s QR code can be navigated to from Home', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await homePage.isDisplayed();
+  await userDashboard.gotoUserQRCodePage();
+  await userQRCodePage.isDisplayed();
+});
+
+/** The following tests interact with the user profile pages. */
+test('Test that view user profile can be accessed from NavBar', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
 });
 
 test('Test that edit user profile can be accessed from view user profile', async () => {
