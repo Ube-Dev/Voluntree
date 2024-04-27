@@ -8,6 +8,7 @@ import UserViewOrgEvents from '../components/UserViewOrgEvents';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import '../css/OrganizationProfile.css';
+import GoBackButton from '../components/GoBackButton';
 
 /** Organization profile page which can be viewed by everyone. */
 const UserViewOrgProfile = () => {
@@ -22,18 +23,15 @@ const UserViewOrgProfile = () => {
     };
   });
 
-  if (!ready) {
-    return (
-      <Container className="px-2 py-5">
-        <LoadingSpinner /> {/* Show loading spinner while data is loading */}
-      </Container>
-    );
-  }
-
   // Once data is ready, render the organization profile
-  return (
+  return ready ? (
     <Container id={PAGE_IDS.USER_VIEW_ORG_PROFILE}>
-      <Row className="py-5">
+      <Row className="py-3">
+        <Col>
+          <GoBackButton />
+        </Col>
+      </Row>
+      <Row className="py-3">
         <Col md={1} />
         <Col md={4}>
           <h1>{orgProfile.name}</h1>
@@ -84,6 +82,8 @@ const UserViewOrgProfile = () => {
         </Col>
       </Row>
     </Container>
+  ) : (
+    <LoadingSpinner />
   );
 };
 

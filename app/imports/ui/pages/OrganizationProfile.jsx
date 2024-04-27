@@ -8,6 +8,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import '../css/OrganizationProfile.css';
 import OrganizationEvents from '../components/OrganizationEvents';
+import GoBackButton from '../components/GoBackButton';
 
 /** Organization profile page which can only be viewed by org owner. */
 const OrganizationProfile = () => {
@@ -22,18 +23,15 @@ const OrganizationProfile = () => {
     };
   });
 
-  if (!ready) {
-    return (
-      <Container className="px-2 py-5">
-        <LoadingSpinner /> {/* Show loading spinner while data is loading */}
-      </Container>
-    );
-  }
-
   // Once data is ready, render the organization profile
-  return (
+  return ready ? (
     <Container id={PAGE_IDS.ORGANIZATION_PROFILE}>
-      <Row className="py-5">
+      <Row className="py-3 text-start">
+        <Col>
+          <GoBackButton />
+        </Col>
+      </Row>
+      <Row className="py-3">
         <Col md={1} />
         <Col md={4}>
           <h1>{orgProfile.name}</h1>
@@ -82,6 +80,8 @@ const OrganizationProfile = () => {
         </Col>
       </Row>
     </Container>
+  ) : (
+    <LoadingSpinner />
   );
 };
 
