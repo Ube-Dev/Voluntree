@@ -21,6 +21,7 @@ export const PAGE_IDS = {
   USER_VIEW_ORG_PROFILE: 'user-view-org-profile',
   ORGANIZATION_PROFILE: 'organization-profile',
   EDIT_ORGANIZATION_PROFILE: 'edit-organization-profile',
+  USER_QR_CODE: 'user-qr-code',
   ORG_SCAN_QR: 'org-scan-qr',
 
   /* Admin pages */

@@ -1,7 +1,7 @@
 import { signOutPage } from './simple.page';
 import { landingPage } from './landing.page';
 import { signInPage } from './signin.page';
-// import { signUpPage } from './signup.page';
+import { signUpPage } from './signup.page';
 import { navBar } from './navbar.component';
 import { aboutPage } from './about.page';
 import { faqPage } from './faq.page';
@@ -27,6 +27,7 @@ import { adminEventModerationPage } from './admineventmoderation.page';
 import { adminOrganizationModerationPage } from './adminorganizationmoderation.page';
 import { adminUserModerationPage } from './adminusermoderation.page';
 import { adminHome } from './adminhome.component';
+import { userQRCodePage } from './userqrcode.page';
 
 /* global fixture:false, test:false */
 
@@ -34,7 +35,7 @@ import { adminHome } from './adminhome.component';
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const orgCredentials = { username: 'organization@foo.com', password: 'changeme' };
 const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
-// const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
+const newCredentials = { firstName: 'Chaewon', lastName: 'Kim', username: 'chaewon@foo.com', password: 'fearless' };
 
 fixture('meteor-application-template-production localhost test with default db')
   .page('http://localhost:3000');
@@ -51,7 +52,16 @@ test('Test that sign in and sign out work', async () => {
   await signOutPage.isDisplayed();
 });
 
-// No user singed in pages
+test('Test that sign up and sign out work', async () => {
+  await navBar.gotoSignUpPage();
+  await signUpPage.isDisplayed();
+  await signUpPage.signupUser(newCredentials.firstName, newCredentials.lastName, newCredentials.username, newCredentials.password);
+  await navBar.isLoggedIn(newCredentials.username);
+  await navBar.logout();
+  await signOutPage.isDisplayed();
+});
+
+/** The following tests are for pages that non-users can navigate to. */
 test('Test that about page works', async () => {
   await navBar.gotoAboutPage();
   await aboutPage.isDisplayed();
@@ -84,26 +94,6 @@ test('Test that User Home page works', async () => {
   await homePage.isDisplayed();
 });
 
-/*
-test('Test that user pages show up', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await t.click(editLinks.nth(0));
-  await navBar.logout();
-  await signOutPage.isDisplayed();
-});
-*/
-
-// test('Test that sign up and sign out work', async () => {
-//   await navBar.gotoSignUpPage();
-//   await signUpPage.isDisplayed();
-//   await signUpPage.signupUser(newCredentials.username, newCredentials.password);
-//   await navBar.isLoggedIn(newCredentials.username);
-//   await navBar.logout();
-//   await signOutPage.isDisplayed();
-// });
-
 test('Test that add event form works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(orgCredentials.username, orgCredentials.password);
@@ -112,20 +102,11 @@ test('Test that add event form works', async () => {
   await addEventPage.addEvent();
 });
 
-/** The following tests are for user profile pages. */
-test('Test that view user profile can be accessed from NavBar', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoUserProfilePage();
-  await userProfilePage.isDisplayed();
-});
-
+/** The following tests are for interacting with the user dashboard. */
 test('Test that view user profile can be accessed from Home', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoHomePage();
   await homePage.isDisplayed();
   await userDashboard.gotoUserProfilePage();
   await userProfilePage.isDisplayed();
@@ -135,10 +116,27 @@ test('Test that edit user profile can be accessed from Home', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoHomePage();
   await homePage.isDisplayed();
   await userDashboard.gotoEditUserProfilePage();
   await editUserProfilePage.isDisplayed();
+});
+
+test('Test that user\'s QR code can be navigated to from Home', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await homePage.isDisplayed();
+  await userDashboard.gotoUserQRCodePage();
+  await userQRCodePage.isDisplayed();
+});
+
+/** The following tests interact with the user profile pages. */
+test('Test that view user profile can be accessed from NavBar', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoUserProfilePage();
+  await userProfilePage.isDisplayed();
 });
 
 test('Test that edit user profile can be accessed from view user profile', async () => {
