@@ -30,13 +30,13 @@ const UserProfile = () => {
         </Col>
       </Row>
       <Row className="py-1">
+        <h1>{userProfile.firstName}&apos;s Profile:</h1>
         <Col md={6}>
-          <h1>Profile:</h1>
           <Card className="d-flex justify-content-center">
-            <Image src={userProfile.image} alt="Profile Picture" style={{ width: '250px' }} />
+            <Image src={userProfile.image} alt="Profile Picture" style={{ width: '250px' }}/>
           </Card>
           <Card.Body className="mt-3">
-            <UpcomingEventCard />
+            <UpcomingEventCard/>
           </Card.Body>
           <Card className="mt-3">
             <Card.Header>
@@ -59,7 +59,7 @@ const UserProfile = () => {
           <Card>
             <Card.Body>
               <h3>Basic Information:</h3>
-              <br />
+              <br/>
               <h4>Email:</h4>
               <p>{userProfile.email}</p>
               <h4>Phone Number:</h4>
@@ -77,7 +77,7 @@ const UserProfile = () => {
       </Row>
     </Container>
   ) : (
-    <LoadingSpinner />
+    <LoadingSpinner/>
   );
 };
 
