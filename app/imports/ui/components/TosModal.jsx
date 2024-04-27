@@ -3,6 +3,7 @@ import '../css/EventPage.css';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import checkMark from './CheckMark';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const TosModal = ({ handleAccept, handleDecline }) => {
   const [show, setShow] = useState(false);
@@ -14,7 +15,7 @@ const TosModal = ({ handleAccept, handleDecline }) => {
     <Container>
       <Row>
         <Col className="text-center">
-          <Button variant="primary" onClick={handleShow}> Terms of Service </Button> {checkMark(accepted)}
+          <Button variant="primary" onClick={handleShow} id={COMPONENT_IDS.TOS_MODAL_OPEN}> Terms of Service </Button> {checkMark(accepted)}
         </Col>
       </Row>
       <Modal show={show} onHide={handleClose} size="lg">
@@ -69,10 +70,10 @@ const TosModal = ({ handleAccept, handleDecline }) => {
           By using the Services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use and Service.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => { handleAccept(); setAccepted(true); handleClose(); }}>
+          <Button variant="primary" onClick={() => { handleAccept(); setAccepted(true); handleClose(); }} id={COMPONENT_IDS.TOS_MODAL_ACCEPT}>
             Accept
           </Button>
-          <Button variant="secondary" onClick={() => { handleDecline(); setAccepted(false); handleClose(); }}>
+          <Button variant="secondary" onClick={() => { handleDecline(); setAccepted(false); handleClose(); }} id={COMPONENT_IDS.TOS_MODAL_DECLINE}>
             Decline
           </Button>
           <br />

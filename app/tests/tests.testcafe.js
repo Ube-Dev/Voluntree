@@ -1,7 +1,7 @@
 import { signOutPage } from './simple.page';
 import { landingPage } from './landing.page';
 import { signInPage } from './signin.page';
-// import { signUpPage } from './signup.page';
+import { signUpPage } from './signup.page';
 import { navBar } from './navbar.component';
 import { aboutPage } from './about.page';
 import { faqPage } from './faq.page';
@@ -35,7 +35,7 @@ import { userQRCodePage } from './userqrcode.page';
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const orgCredentials = { username: 'organization@foo.com', password: 'changeme' };
 const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
-// const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
+const newCredentials = { firstName: 'Jane', lastName: 'Doe', username: 'jane@foo.com', password: 'changeme' };
 
 fixture('meteor-application-template-production localhost test with default db')
   .page('http://localhost:3000');
@@ -52,7 +52,16 @@ test('Test that sign in and sign out work', async () => {
   await signOutPage.isDisplayed();
 });
 
-// No user singed in pages
+test.only('Test that sign up and sign out work', async () => {
+  await navBar.gotoSignUpPage();
+  await signUpPage.isDisplayed();
+  await signUpPage.signupUser(newCredentials.firstName, newCredentials.lastName, newCredentials.username, newCredentials.password);
+  await navBar.isLoggedIn(newCredentials.username);
+  await navBar.logout();
+  await signOutPage.isDisplayed();
+});
+
+/** The following tests are for pages that non-users can navigate to. */
 test('Test that about page works', async () => {
   await navBar.gotoAboutPage();
   await aboutPage.isDisplayed();
@@ -84,26 +93,6 @@ test('Test that User Home page works', async () => {
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
 });
-
-/*
-test('Test that user pages show up', async () => {
-  await navBar.gotoSignInPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await t.click(editLinks.nth(0));
-  await navBar.logout();
-  await signOutPage.isDisplayed();
-});
-*/
-
-// test.only('Test that sign up and sign out work', async () => {
-//   await navBar.gotoSignUpPage();
-//   await signUpPage.isDisplayed();
-//   await signUpPage.signupUser(newCredentials.username, newCredentials.password);
-//   await navBar.isLoggedIn(newCredentials.username);
-//   await navBar.logout();
-//   await signOutPage.isDisplayed();
-// });
 
 test('Test that add event form works', async () => {
   await navBar.gotoSignInPage();
