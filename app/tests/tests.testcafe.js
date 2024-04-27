@@ -35,7 +35,7 @@ import { userQRCodePage } from './userqrcode.page';
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const orgCredentials = { username: 'organization@foo.com', password: 'changeme' };
 const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
-const newCredentials = { firstName: 'Jane', lastName: 'Doe', username: 'jane@foo.com', password: 'changeme' };
+const newCredentials = { firstName: 'Chaewon', lastName: 'Kim', username: 'chaewon@foo.com', password: 'fearless' };
 
 fixture('meteor-application-template-production localhost test with default db')
   .page('http://localhost:3000');
@@ -52,7 +52,7 @@ test('Test that sign in and sign out work', async () => {
   await signOutPage.isDisplayed();
 });
 
-test.only('Test that sign up and sign out work', async () => {
+test('Test that sign up and sign out work', async () => {
   await navBar.gotoSignUpPage();
   await signUpPage.isDisplayed();
   await signUpPage.signupUser(newCredentials.firstName, newCredentials.lastName, newCredentials.username, newCredentials.password);
