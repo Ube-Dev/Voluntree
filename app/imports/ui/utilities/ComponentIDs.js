@@ -120,6 +120,20 @@ export const COMPONENT_IDS = {
 
   ORGANIZATION_PROFILE_EDIT_PROFILE: 'organization-profile-edit-profile',
 
+  CREATE_ORGANIZATION_NAME: 'create-organization-name',
+  CREATE_ORGANIZATION_IMAGE: 'create-organization-image',
+  CREATE_ORGANIZATION_MISSION: 'create-organization-mission',
+  CREATE_ORGANIZATION_TYPE: 'create-organization-type',
+  CREATE_ORGANIZATION_PHONE: 'create-organization-phone',
+  CREATE_ORGANIZATION_CONTACT_EMAIL: 'create-organization-contact-email',
+  CREATE_ORGANIZATION_HAS_PHYSICAL_ADDRESS: 'create-organization-has-physical-address',
+  CREATE_ORGANIZATION_ADDRESS: 'create-organization-address',
+  CREATE_ORGANIZATION_CITY: 'create-organization-city',
+  CREATE_ORGANIZATION_STATE: 'create-organization-state',
+  CREATE_ORGANIZATION_ZIP_CODE: 'create-organization-zip-code',
+  CREATE_ORGANIZATION_COUNTRY: 'create-organization-country',
+  CREATE_ORGANIZATION_SUBMIT: 'create-organization-submit',
+
   EDIT_ORGANIZATION_PROFILE_NAME: 'edit-organization-profile-name',
   EDIT_ORGANIZATION_PROFILE_IMAGE: 'edit-organization-profile-image',
   EDIT_ORGANIZATION_PROFILE_MISSION: 'edit-organization-profile-mission',

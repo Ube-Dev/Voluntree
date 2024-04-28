@@ -10,6 +10,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { createOrganization, updateUserAccount } from '../../startup/both/Methods';
 import { userPrivileges } from '../../api/role/Role';
+import '../css/EditOrganizationProfile.css';
 
 const formSchema = new SimpleSchema({
   name: { type: String, optional: false },
@@ -61,40 +62,41 @@ const CreateOrganization = () => {
   }
 
   return (
-    <Container id={PAGE_IDS.SIGN_UP_ORGANIZATION} fluid className="color2">
+    <Container id={PAGE_IDS.CREATE_ORGANIZATION} fluid className="edit-org-form color2">
       <Container className="mb-5 mt-3">
         <Row className="justify-content-center">
           <Col md={8} xs={12}>
+            <Col className="pb-2 text-center"><h2>Create an Organization</h2></Col>
             <AutoForm schema={bridge} onSubmit={data => submit(data)}>
               <Card className="rounded-4">
                 <Card.Header className="section-header">Organization Details</Card.Header>
                 <Card.Body>
                   <Row>
                     <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_NAME} name="name" placeholder="Name" />
+                      <TextField id={COMPONENT_IDS.CREATE_ORGANIZATION_NAME} name="name" placeholder="Name" />
                     </Col>
                     <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_IMAGE} name="image" placeholder="Image" required />
-                    </Col>
-                  </Row>
-                  <LongTextField id={COMPONENT_IDS.SIGN_UP_FORM_MISSION} name="mission" placeholder="Mission" />
-                  <Row>
-                    <Col>
-                      <SelectField id={COMPONENT_IDS.SIGN_UP_FORM_TYPE} name="type" placeholder="Type" />
-                    </Col>
-                    <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PHONE} name="phone" placeholder="Phone" />
+                      <TextField id={COMPONENT_IDS.CREATE_ORGANIZATION_IMAGE} name="image" placeholder="Image" required />
                     </Col>
                   </Row>
+                  <LongTextField id={COMPONENT_IDS.CREATE_ORGANIZATION_MISSION} name="mission" placeholder="Mission" />
                   <Row>
                     <Col>
-                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="contactEmail" placeholder="Email" />
+                      <SelectField id={COMPONENT_IDS.CREATE_ORGANIZATION_TYPE} name="type" placeholder="Type" />
+                    </Col>
+                    <Col>
+                      <TextField id={COMPONENT_IDS.CREATE_ORGANIZATION_PHONE} name="phone" placeholder="Phone" />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <TextField id={COMPONENT_IDS.CREATE_ORGANIZATION_CONTACT_EMAIL} name="contactEmail" placeholder="Email" />
                     </Col>
                     <Col>
                       <label htmlFor="hasPhysicalAddress">Has Physical Address?
                         <input
                           type="checkbox"
-                          id={COMPONENT_IDS.SIGN_UP_FORM_HAS_PHYSICAL_ADDRESS}
+                          id={COMPONENT_IDS.CREATE_ORGANIZATION_HAS_PHYSICAL_ADDRESS}
                           name="hasPhysicalAddress"
                           checked={hasAddress}
                           onChange={() => setHasAddress(!hasAddress)}
@@ -107,7 +109,7 @@ const CreateOrganization = () => {
                 {!hasAddress && (
                   <Card.Footer>
                     <ErrorsField />
-                    <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
+                    <SubmitField id={COMPONENT_IDS.CREATE_ORGANIZATION_SUBMIT} />
                   </Card.Footer>
                 )}
               </Card>
@@ -115,25 +117,29 @@ const CreateOrganization = () => {
                 <Card className="mt-3 rounded-4">
                   <Card.Header className="section-header">Location</Card.Header>
                   <Card.Body>
-                    <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ADDRESS} name="address" placeholder="Address" />
+                    <Row>
+                      <TextField id={COMPONENT_IDS.CREATE_ORGANIZATION_ADDRESS} name="address" placeholder="Address" />
+                    </Row>
+                    <Row>
+                      <Col>
+                        <TextField id={COMPONENT_IDS.CREATE_ORGANIZATION_CITY} name="city" placeholder="City" />
+                      </Col>
+                      <Col>
+                        <TextField id={COMPONENT_IDS.CREATE_ORGANIZATION_CITY} name="state" placeholder="State" />
+                      </Col>
+                      <Col>
+                        <TextField id={COMPONENT_IDS.CREATE_ORGANIZATION_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
+                      </Col>
+                    </Row>
                     <Row>
                       <Col md={12}>
-                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_CITY} name="city" placeholder="City" />
-                      </Col>
-                      <Col md={12}>
-                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_STATE} name="state" placeholder="State" />
-                      </Col>
-                      <Col md={12}>
-                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_ZIP_CODE} name="zipCode" placeholder="Zip Code" />
-                      </Col>
-                      <Col md={12}>
-                        <TextField id={COMPONENT_IDS.SIGN_UP_FORM_COUNTRY} name="country" placeholder="Country" />
+                        <TextField id={COMPONENT_IDS.CREATE_ORGANIZATION_COUNTRY} name="country" placeholder="Country" />
                       </Col>
                     </Row>
                   </Card.Body>
                   <Card.Footer>
                     <ErrorsField />
-                    <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
+                    <SubmitField id={COMPONENT_IDS.CREATE_ORGANIZATION_SUBMIT} />
                   </Card.Footer>
                 </Card>
               )}
