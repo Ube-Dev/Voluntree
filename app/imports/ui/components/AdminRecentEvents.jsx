@@ -21,7 +21,7 @@ const AdminRecentEvents = () => {
       <Row className="text-center">
         <h2>Recent Events</h2>
       </Row>
-      <Row className="p-3">
+      <Row className="px-3">
         {recentEvents.map((item) => (
           <Col key={item._id} md={4} className="py-2">
             <EventCard event={item} />
