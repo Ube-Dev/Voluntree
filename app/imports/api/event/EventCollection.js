@@ -21,6 +21,11 @@ class EventCollection extends BaseCollection {
       image: { type: String, optional: true, defaultValue: defaultEventImage },
       description: { type: String, optional: true, defaultValue: '' },
       location: { type: String, optional: true, defaultValue: '' },
+      time: {
+        type: Date,
+        defaultValue: new Date(),
+        optional: true,
+      },
       frequency: { type: String, optional: true, defaultValue: 'Once' },
       accessibilities: { type: Array, unique: true, optional: true, defaultValue: [] },
       'accessibilities.$': { type: String },

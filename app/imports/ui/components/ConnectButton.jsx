@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
 const ConnectButton = ({ org }) => (
-  <Button id="connect-button" variant="primary" href={`mailto:${org.contactEmail}`}>
-    Connect
+  <Button id="connect-button" className="commit-btn" variant="success">
+    <a className="text-decoration-none" href={`mailto:${org.contactEmail}`}>
+      Connect
+    </a>
   </Button>
 );
 

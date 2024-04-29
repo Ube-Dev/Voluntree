@@ -1,88 +1,69 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-} from 'chart.js';
+import { Container, Row, Col } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
-import faker from 'faker';
 
-const AdminHoursStats = () => {
+const OrganizationStats = () => {
 
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-  );
+  // Function to generate random integers between min and max (inclusive)
+  const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-  const options = {
-    indexAxis: 'y',
-    elements: {
-      bar: {
-        borderWidth: 2,
+  // Generate random data for each month
+  const generateRandomData = () => {
+    const data = [];
+    for (let i = 0; i < 12; i++) {
+      data.push(getRandomInt(50, 200)); // Change the range as needed
+    }
+    return data;
+  };
+
+  const config = {
+    type: 'bar',
+    data: {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      datasets: [{
+        label: 'Hours Served',
+        data: generateRandomData(), // Generate random data for hours served
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1,
+      }],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Hours Served',
+          },
+        },
+        x: {
+          type: 'category',
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Hours Served Each Month',
+        },
       },
     },
-    responsive: true,
-  };
-
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: 'Hours Served',
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 500 })),
-        backgroundColor: 'rgba(255, 99, 132)',
-      },
-    ],
-  };
-
-  const options2 = {
-    indexAxis: 'y',
-    elements: {
-      bar: {
-        borderWidth: 2,
-      },
-    },
-    responsive: true,
-  };
-
-  const data2 = {
-    labels,
-    datasets: [
-      {
-        label: 'Hours Served',
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 75 })),
-        backgroundColor: 'rgba(255, 99, 132)',
-      },
-    ],
   };
 
   return (
     <Container>
-      <Row className="text-center">
-        <Col sm={12} md={6} className="py-1">
-          <Card className="rounded-4 p-3">
-            <h3>Volunteers</h3>
-            <Bar options={options2} data={data2} />
-          </Card>
-        </Col>
-        <Col sm={12} md={6} className="py-1">
-          <Card className="rounded-4 p-3">
-            <h3>Hours Served By Month</h3>
-            <Bar options={options} data={data} />
-          </Card>
+      <Row>
+        <Col>
+          <h3>Hours Served Each Month</h3>
+          <Bar data={config} />
         </Col>
       </Row>
     </Container>
   );
 };
 
-export default AdminHoursStats;
+export default OrganizationStats;

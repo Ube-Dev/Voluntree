@@ -1,10 +1,9 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import '../css/SubscriptionPage.css';
-import { PAGE_IDS } from '../utilities/PageIDs';
 
 const SubscriptionPage = () => (
-  <Container fluid className="color1" id={PAGE_IDS.SUBSCRIBE}>
+  <Container fluid className="color1">
     <Row>
       <Col className="subscription-background text-center">
         <h1>It Takes a Village to Create Change</h1>

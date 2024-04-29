@@ -1,9 +1,0 @@
-.org-moderation-background {
-  background: var(--color2) !important;
-}
-
-.org-mod-image {
-  width: 100%;
-  max-width: 100px;
-  border-radius: 15px;
-}

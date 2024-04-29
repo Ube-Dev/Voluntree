@@ -1,11 +1,9 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Button, Row, Col, Card } from 'react-bootstrap';
+import { Container, Button, Row } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Events } from '../../api/event/EventCollection';
-import '../css/AllEventPage.css';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { PAGE_IDS } from '../utilities/PageIDs';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
 import EventFilter from '../components/EventFilter';
@@ -42,39 +40,34 @@ const MyEventPage = () => {
     };
   }, []);
 
-  // if not, render a button for the user to find events
-  return ready ? (
-    <Container fluid className="color1" id={PAGE_IDS.MY_EVENTS_PAGE}>
-      <Container fluid className="mb-5">
-        <Row className="justify-content-center">
-          <Col className="col-11">
-            <Row className="text-center py-4">
-              <h1>Your Events</h1>
-            </Row>
-            <Row className="justify-content-center">
-              <Card className="rounded-4 py-5 all-event-card-background">
-                {events.length > 0 ? (
-                  <EventFilter event={events} categories={categories} />
-                ) : (
-                  <>
-                    <Row className="text-center py-5 text-color">
-                      <h2>No events? Let&apos;s help out!</h2>
-                    </Row>
-                    <Row className="justify-content-center py-3">
-                      <Col md={3} className="text-center">
-                        <Button href="/Events">Go Find Events</Button>
-                      </Col>
-                    </Row>
-                  </>
-                )}
-              </Card>
-            </Row>
-          </Col>
+  if (!ready) {
+    // show a loading indicator or any placeholder content while the data is loading
+    return <LoadingSpinner />;
+  }
+
+  // render the event cards once it is ready
+  if (events.length > 0) {
+    return (
+      <Container>
+        <Row className="justify-content-center text-center">
+          <h1 className="ps-5 ms-5">Your Events</h1>
+          <br />
         </Row>
+        <EventFilter event={events} categories={categories} />
       </Container>
-    </Container>
-  ) : (
-    <LoadingSpinner />
+    );
+  }
+
+  // if not, render a button for the user to find events
+  return (
+    <>
+      <Container className="d-flex justify-content-center mt-5">
+        <h2>You haven&apos;t registered for any events yet!</h2>
+      </Container>
+      <Container className="d-flex justify-content-center mt-5">
+        <Button href="/Events">Go Find Events</Button>
+      </Container>
+    </>
   );
 };
 
