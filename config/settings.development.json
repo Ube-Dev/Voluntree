@@ -810,76 +810,41 @@
         },
       "startTime": "2024-05-30T09:00:00",
       "endTime": "2024-05-30T12:00:00"
-    },
+     },
     {
-      "title": "Oceanfront Cleanup Initiative",
-      "image": "https://images.unsplash.com/photo-1530202373974-3b679b395491",
-      "description": "Join us in keeping our oceanfront clean and pristine!",
-      "address": "Oceanfront Beach",
-      "zipCode": "90210",
-      "city": "Malibu",
-      "state": "CA",
+      "title": "Hospital Visitor for Children",
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fensin-e.edu.br%2Fwp-content%2Fuploads%2F2021%2F07%2Fyoung-student-volunteer-helping-elderly-people-in-nursing-home-1.jpg&f=1&nofb=1",
+      "description": "Visit children in the hospital. Our kids need some people to chill, hangout, and play with. We have video games, toys, and much more. Come and help us out!",
+      "address": "Food Bank of Hawaii",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
       "country": "USA",
-      "totalSpots": 15,
-      "frequency": "monthly",
+      "totalSpots": "5",
+      "frequency": "once",
       "requiredSkills": [
-        "Lift 20 pounds",
-        "Trash sorting"
+        "lift 15 pounds",
+        "sorting"
       ],
       "accessibilities": [
         "Group",
-        "Family-friendly"
+        "Child-friendly"
       ],
       "requirements": [
-        "Reusable gloves",
-        "Closed-toe shoes"
+        "Driver's license",
+        "water bottle"
       ],
-      "impact": "You'll help preserve marine life and protect our beaches.",
-      "hostBy": "Malibu Oceanfront Preservation Society",
+      "impact": "Kids will be comforted in the hospital.",
+      "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "mOpQrStUvWxY2",
-      "_id": "aBcDeFgHiJk2",
+      "hostID": "wXyZ12345678",
+      "_id": "cJ8yVr4HwNpZ",
       "activityCategory": {
-        "mainCategory": "Environmental Conservation",
-        "subCategory": "Beach Cleanup"
+        "mainCategory": "Social Services",
+        "subCategory": "Child Welfare"
       },
-      "startTime": "2024-06-15T10:00:00",
-      "endTime": "2024-06-15T13:00:00"
-    },
-    {
-      "title": "Joyful Hearts: Hospital Visit for Kids",
-      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-      "description": "Brighten the day of children at the local hospital!",
-      "address": "Sunshine Pediatric Hospital",
-      "zipCode": "12345",
-      "city": "Sunshineville",
-      "state": "FL",
-      "country": "USA",
-      "totalSpots": 8,
-      "frequency": "bi-weekly",
-      "requiredSkills": [
-        "Empathy",
-        "Creative storytelling"
-      ],
-      "accessibilities": [
-        "Group",
-        "Kid-friendly"
-      ],
-      "requirements": [
-        "Background check",
-        "Positive attitude"
-      ],
-      "impact": "You'll bring smiles and happiness to children facing health challenges.",
-      "hostBy": "Sunshine Children's Foundation",
-      "hostType": "organization",
-      "hostID": "zYxWvUtSrQpO3",
-      "_id": "dEfGhIjKlMn4",
-      "activityCategory": {
-        "mainCategory": "Healthcare",
-        "subCategory": "Mental Health"
-      },
-      "startTime": "2024-06-10T14:00:00",
-      "endTime": "2024-06-10T16:00:00"
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     }
   ],
 
