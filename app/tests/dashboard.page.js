@@ -9,7 +9,7 @@ class DashboardPage {
 
   /* Asserts that this page is currently displayed. */
   async isDisplayed() {
-    await t.expect(this.pageSelector.exists).ok({ timeout: 5000 });
+    await t.expect(this.pageSelector.exists).ok();
   }
 }
 

@@ -8,7 +8,6 @@ import { SubCategory } from '../category/SubCategoryCollection';
 import { Events } from '../event/EventCollection';
 import { Skills } from '../skill/SkillCollection';
 import { Review } from '../review/ReviewCollection';
-import { Comment } from '../comment/CommentCollection';
 
 export const removeAllEntities = () => {
   if (Meteor.isTest || Meteor.isAppTest) {
@@ -54,5 +53,3 @@ export const isEvent_id = (_id) => Events.findOne({ _id: _id }) != null;
 export const isSkill = (skill) => Skills.findOne({ skill: skill }) != null;
 
 export const isReview_id = (_id) => Review.findOne({ _id: _id }) != null;
-
-export const isComment_id = (_id) => Comment.findOne({ _id: _id }) != null;

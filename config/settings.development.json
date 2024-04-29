@@ -5,7 +5,6 @@
 
   "defaultNotificationSenderType": ["user", "organization"],
   "defaultReviewForType": { "event": "event", "organization": "organization" },
-  "defaultCommentForType": { "event": "event", "organization": "organization" },
   "defaultRatingRange": { "min": 1, "max": 5 },
   "packages": {
     "email": {
@@ -72,6 +71,7 @@
       "leader": "FJHc6qrg9KzmDnwPt",
       "_id": "1SkcLcs",
       "name": "Green Earth Alliance",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "New York",
       "mission": "Green Earth Alliance is committed to promoting environmental sustainability through various initiatives and community engagement.",
       "type": "Environmental",
@@ -89,8 +89,9 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "rStUvWxYz987",
+      "_id": "1002",
       "name": "Youth Empowerment Foundation",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Los Angeles",
       "mission": "To empower and educate underprivileged youth for a brighter future.",
       "type": "Education",
@@ -109,8 +110,9 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "6543210AbCdE",
+      "_id": "1003",
       "name": "Animal Guardians Society",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Chicago",
       "mission": "To rescue, protect, and advocate for animals in need.",
       "type": "Animal Welfare",
@@ -129,8 +131,9 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "FgHiJkLmNoPq",
+      "_id": "1004",
       "name": "Healthcare for All",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Houston",
       "mission": "To ensure access to quality healthcare for all individuals, regardless of income or background.",
       "type": "Healthcare",
@@ -149,8 +152,9 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "RsTuVwXyZ123",
+      "_id": "1005",
       "name": "Relief Aid International",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Miami",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Disaster Relief",
@@ -169,8 +173,9 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "4567890AbCdE",
+      "_id": "1006",
       "name": "GLOBAL EDUCATION PHILANTHROPISTS",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Imperial",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Disaster Relief",
@@ -187,8 +192,9 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "fGhIjKlMnOpQ",
+      "_id": "1007",
       "name": "Ala Moana",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -205,8 +211,9 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "aBcDeFgHiJk1",
+      "_id": "1008",
       "name": "Turtle Bay Beach Org",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -223,8 +230,9 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "lMnOpQrStUv2",
+      "_id": "1009",
       "name": "Lanikai Beach Org",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -241,8 +249,9 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "wXyZ12345678",
+      "_id": "1010",
       "name": "Food Bank of Hawaii",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -259,8 +268,9 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "90AbCdEfGhIj",
+      "_id": "1011",
       "name": "Catholic Charities Hawaii",
+      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -343,6 +353,7 @@
       "state": "Cayo",
       "country": "Belize",
       "totalSpots": "10",
+      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "Adaptability",
@@ -359,14 +370,12 @@
       "impact": "You'll change people's lives!",
       "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
       "hostType": "individual",
-      "hostID": "4567890AbCdE",
+      "hostID": "FJHc6qrg9KzmDnwPt",
       "_id": "nT7sXq9KdYfR",
       "activityCategory": {
         "mainCategory": "Community Development",
         "subCategory": "Education"
-        },
-      "startTime": "2024-05-30T09:00:00",
-      "endTime": "2024-05-30T12:00:00"
+        }
     },
     {
       "title": "Ala Moana Beach Clean Up",
@@ -378,6 +387,7 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "15",
+      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "lift 15 pounds",
@@ -393,14 +403,12 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Ala Moana",
       "hostType": "organization",
-      "hostID": "fGhIjKlMnOpQ",
+      "hostID": "1SkcLcs",
       "_id": "oT5zRj8QwFnS",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        },
-      "startTime": "2024-05-30T09:00:00",
-      "endTime": "2024-05-30T12:00:00"
+        }
     },
     {
       "title": "Turtle Bay Beach Clean Up",
@@ -412,6 +420,7 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "10",
+      "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -428,14 +437,12 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Turtle Bay Beach Org",
       "hostType": "organization",
-      "hostID": "aBcDeFgHiJk1",
+      "hostID": "1SkcLcs",
       "_id": "lG4tZv7BmNcY",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        },
-      "startTime": "2024-05-30T09:00:00",
-      "endTime": "2024-05-30T12:00:00"
+        }
     },
     {
       "title": "Turtle Bay Beach Clean Up",
@@ -446,6 +453,7 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
+      "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -461,15 +469,11 @@
       ],
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Turtle Bay Beach Org",
-      "hostType": "organization",
-      "hostID": "aBcDeFgHiJk1",
       "_id": "iE9xWq3RvSfT",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        },
-      "startTime": "2024-05-30T09:00:00",
-      "endTime": "2024-05-30T12:00:00"
+        }
     },
     {
       "title": "Lanikai Beach Clean Up",
@@ -481,6 +485,7 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "7",
+      "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -497,14 +502,12 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
-      "hostID": "lMnOpQrStUv2",
+      "hostID": "1SkcLcs",
       "_id": "aT9mWc2RqLxV",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        },
-      "startTime": "2024-05-30T09:00:00",
-      "endTime": "2024-05-30T12:00:00"
+        }
     },
     {
       "title": "Lanikai Beach Clean Up",
@@ -516,6 +519,7 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
+      "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -532,14 +536,12 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
-      "hostID": "lMnOpQrStUv2",
+      "hostID": "1SkcLcs",
       "_id": "pH6uYt2QwNzC",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        },
-      "startTime": "2024-05-30T09:00:00",
-      "endTime": "2024-05-30T12:00:00"
+        }
     },
     {
       "title": "Food Bank Of Hawaii",
@@ -547,6 +549,7 @@
       "description": "Help your local food bank!",
       "city": "Honolulu",
       "totalSpots": "35",
+      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "lift 15 pounds",
@@ -563,14 +566,12 @@
       "impact": "You'll help feed the homeless!",
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "wXyZ12345678",
+      "hostID": "1SkcLcs",
       "_id": "fV6qYn8UwDzS",
       "activityCategory": {
         "mainCategory": "Social Services",
         "subCategory": "Homelessness"
-        },
-      "startTime": "2024-05-30T09:00:00",
-      "endTime": "2024-05-30T12:00:00"
+        }
     },
     {
       "title": "Elderly Home Talk",
@@ -582,6 +583,7 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
+      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "communication"
@@ -597,14 +599,12 @@
       "impact": "You'll help take care of your local elderly",
       "hostBy": "Catholic Charities Hawaii",
       "hostType": "organization",
-      "hostID": "90AbCdEfGhIj",
+      "hostID": "1SkcLcs",
       "_id": "sD3kFq5LmBvX",
       "activityCategory": {
         "mainCategory": "Community Development",
         "subCategory": "Education"
-        },
-      "startTime": "2024-05-30T09:00:00",
-      "endTime": "2024-05-30T12:00:00"
+        }
     },
     {
       "title": "Food Packing",
@@ -616,6 +616,7 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
+      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "lift 15 pounds",
@@ -632,14 +633,12 @@
       "impact": "You'll help feed the homeless!",
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "wXyZ12345678",
+      "hostID": "1SkcLcs",
       "_id": "cJ8yVr4HwNpZ",
       "activityCategory": {
         "mainCategory": "Social Services",
         "subCategory": "Homelessness"
-        },
-      "startTime": "2024-05-30T09:00:00",
-      "endTime": "2024-05-30T12:00:00"
+        }
     }
   ],
   "defaultReview": [
@@ -692,69 +691,6 @@
         "ID": "1SkcLcs"
       },
       "content": "I was disappointed with the services provided by this organization."
-    }
-  ],
-  "defaultComment": [
-    {
-      "_id": "aBcDeFgHiJk1",
-      "userID": "FJHc6qrg9KzmDnwPt",
-      "commentFor": { "type": "event", "ID": "nT7sXq9KdYfR" },
-      "content": "Great event! I had an amazing time."
-    },
-    {
-      "_id": "lMnOpQrStUv2",
-      "userID": "ZpLMnWk2SCQrhtgN5",
-      "commentFor": { "type": "organization", "ID": "rStUvWxYz987" },
-      "content": "This organization is doing fantastic work in the community."
-    },
-    {
-      "_id": "wXyZ12345678",
-      "userID": "FJHc6qrg9KzmDnwPt",
-      "commentFor": { "type": "event", "ID": "lG4tZv7BmNcY" },
-      "content": "I think this event could improve in terms of accessibility."
-    },
-    {
-      "_id": "90AbCdEfGhIj",
-      "userID": "ZpLMnWk2SCQrhtgN5",
-      "commentFor": { "type": "organization", "ID": "aBcDeFgHiJk1" },
-      "content": "The leadership of this organization needs to be more transparent."
-    },
-    {
-      "_id": "KlMnOpQrStUv",
-      "userID": "FJHc6qrg9KzmDnwPt",
-      "commentFor": { "type": "event", "ID": "iE9xWq3RvSfT" },
-      "content": "The venue for this event was stunning!"
-    },
-    {
-      "_id": "WxYz98765432",
-      "userID": "ZpLMnWk2SCQrhtgN5",
-      "commentFor": { "type": "organization", "ID": "lMnOpQrStUv2" },
-      "content": "I appreciate the efforts of this organization in environmental conservation."
-    },
-    {
-      "_id": "FgHiJkLmNoPq",
-      "userID": "FJHc6qrg9KzmDnwPt",
-      "commentFor": { "type": "event", "ID": "pH6uYt2QwNzC" },
-      "content": "The speakers at this event were very insightful."
-    },
-    {
-      "_id": "RsTuVwXyZ123",
-      "userID": "ZpLMnWk2SCQrhtgN5",
-      "commentFor": { "type": "organization", "ID": "wXyZ12345678" },
-      "content": "I've volunteered with this organization before and had a great experience."
-    },
-    {
-      "_id": "4567890AbCdE",
-      "userID": "FJHc6qrg9KzmDnwPt",
-      "commentFor": { "type": "event", "ID": "cJ8yVr4HwNpZ" },
-      "content": "The organization of this event was a bit chaotic."
-    },
-    {
-      "_id": "fGhIjKlMnOpQ",
-      "userID": "FJHc6qrg9KzmDnwPt",
-      "commentFor": { "type": "organization", "ID": "wXyZ12345678" },
-      "content": "I agree!",
-      "parentID": "RsTuVwXyZ123"
     }
   ]
 }

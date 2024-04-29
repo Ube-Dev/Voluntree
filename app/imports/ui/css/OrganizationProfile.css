@@ -1,7 +1,5 @@
 /* Styling only for OrganizationProfile.jsx page */
 
 .org-profile-img {
-  width: 100%;
-  max-height: 325px !important;
-  max-width: 325px !important;
+  width: 400px;
 }

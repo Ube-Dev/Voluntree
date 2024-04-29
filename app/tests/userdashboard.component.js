@@ -13,12 +13,6 @@ class UserDashboardComponent {
     await t.expect(Selector(`#${COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE}`);
   }
-
-  /* Go to QR Code page */
-  async gotoUserQRCodePage() {
-    await t.expect(Selector(`#${COMPONENT_IDS.USER_DASHBOARD_VIEW_QR_CODE}`).exists).ok();
-    await t.click(`#${COMPONENT_IDS.USER_DASHBOARD_VIEW_QR_CODE}`);
-  }
 }
 
 export const userDashboard = new UserDashboardComponent();
