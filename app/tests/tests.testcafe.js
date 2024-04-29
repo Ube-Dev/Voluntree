@@ -29,6 +29,8 @@ import { adminOrganizationModerationPage } from './adminorganizationmoderation.p
 import { adminUserModerationPage } from './adminusermoderation.page';
 import { adminHome } from './adminhome.component';
 import { userQRCodePage } from './userqrcode.page';
+import { footer } from './footer.component';
+import { createOrganizationPage } from './createorganization.page';
 
 /* global fixture:false, test:false */
 
@@ -333,4 +335,12 @@ test('Test that manage database page shows up', async () => {
   await navBar.isLoggedIn(adminCredentials.username);
   await navBar.gotoManageDatabasePage();
   await manageDatabase.isDisplayed();
+});
+
+test.only('Test that create organization works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(orgCredentials.username, orgCredentials.password);
+  await navBar.isLoggedIn(orgCredentials.username);
+  await footer.gotoCreateOrganization();
+  await createOrganizationPage.isDisplayed();
 });

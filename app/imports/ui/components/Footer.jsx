@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Col, Row, Image } from 'react-bootstrap';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import '../css/Footer.css';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
@@ -16,14 +17,14 @@ const Footer = () => (
           <h5>Quick Links</h5>
           <Row>
             <Col>
-              <a className="footer-link" href="/">Landing</a> <br />
-              <a className="footer-link" href="/about">About Us</a> <br />
-              <a className="footer-link" href="/FAQ">FAQ</a> <br />
-              <a className="footer-link" href="/subscribe">Subscribe</a> <br />
+              <a className="footer-link" href="/" id={COMPONENT_IDS.FOOTER_LANDING}>Landing</a> <br />
+              <a className="footer-link" href="/about" id={COMPONENT_IDS.FOOTER_ABOUT}>About Us</a> <br />
+              <a className="footer-link" href="/FAQ" id={COMPONENT_IDS.FOOTER_FAQ}>FAQ</a> <br />
+              <a className="footer-link" href="/subscribe" id={COMPONENT_IDS.FOOTER_SUBSCRIBE}>Subscribe</a> <br />
             </Col>
             <Col>
-              <a className="footer-link" href="/home">Home</a> <br />
-              <a className="footer-link" href="/Events">Find Events</a> <br />
+              <a className="footer-link" href="/home" id={COMPONENT_IDS.FOOTER_HOME}>Home</a> <br />
+              <a className="footer-link" href="/Events" id={COMPONENT_IDS.FOOTER_EVENTS}>Find Events</a> <br />
             </Col>
           </Row>
         </Col>
@@ -33,7 +34,7 @@ const Footer = () => (
           <p>sarakenley@thevoluntree.com</p>
           <hr />
           <h6>Become an Organization</h6>
-          <a className="footer-link" href="/createOrganization">Create Organization</a>
+          <a className="footer-link" href="/createOrganization" id={COMPONENT_IDS.FOOTER_CREATE_ORGANIZATION}>Create Organization</a>
         </Col>
         <Col sm={12} md={4} className="text-start">
           <hr />

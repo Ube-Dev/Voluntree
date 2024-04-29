@@ -25,6 +25,15 @@ export const COMPONENT_IDS = {
   NAVBAR_SIGN_OUT_PAGE: 'navbar-sign-out',
   NAVBAR_USER_PROFILE_PAGE: 'navbar-user-profile',
 
+  /* Footer */
+  FOOTER_LANDING: 'footer-landing',
+  FOOTER_ABOUT: 'footer-about',
+  FOOTER_FAQ: 'footer-faq',
+  FOOTER_SUBSCRIBE: 'footer-subscribe',
+  FOOTER_HOME: 'footer-home',
+  FOOTER_EVENTS: 'footer-events',
+  FOOTER_CREATE_ORGANIZATION: 'footer-create-organization',
+
   SIGN_IN_FORM_EMAIL: 'sign-in-form-email',
   SIGN_IN_FORM_PASSWORD: 'sign-in-form-password',
   SIGN_IN_FORM_SUBMIT: 'sign-in-form-submit',
