@@ -1,10 +1,12 @@
 export const COMPONENT_IDS = {
-  MANAGE_DATABASE_DUMP: 'manage-database-dump',
+  /* NavBar */
   NAVBAR_HOME_PAGE: 'navbar-home-page',
+  NAVBAR_LANDING_PAGE: 'navbar-landing-page',
   NAVBAR_ABOUT_PAGE: 'navbar-about-page',
+  NAVBAR_FAQ_PAGE: 'navbar-faq',
+  NAVBAR_SUBSCRIBE_PAGE: 'navbar-subscribe',
   NAVBAR_EVENTS_PAGE: 'navbar-events-page',
   NAVBAR_CURRENT_USER: 'navbar-current-user',
-  NAVBAR_LANDING_PAGE: 'navbar-landing-page',
   NAVBAR_COLLAPSE: 'navbar-collapse',
   NAVBAR_LOGIN_DROPDOWN: 'navbar-login-dropdown',
   NAVBAR_LOGIN_DROPDOWN_SIGN_IN: 'navbar-login-dropdown-sign-in',
@@ -15,8 +17,11 @@ export const COMPONENT_IDS = {
   NAVBAR_DASHBOARD_PAGE: 'navbar-dashboard',
   NAVBAR_ADD_EVENT_PAGE: 'navbar_add_event_page',
   NAVBAR_MY_EVENTS_PAGE: 'navbar-my-events',
-  NAVBAR_FAQ_PAGE: 'navbar-faq',
-  NAVBAR_ADMIN_PAGE: 'navbar-admin',
+  NAVBAR_ADMIN_EVENT_MODERATION_PAGE: 'navbar-admin-event-moderation',
+  NAVBAR_ADMIN_ORGANIZATION_MODERATION_PAGE: 'navbar-admin-organization-moderation',
+  NAVBAR_ADMIN_USER_MODERATION_PAGE: 'navbar-admin-user-moderation',
+  NAVBAR_ADMIN_REVIEW_MODERATION_PAGE: 'navbar-admin-review-moderation',
+  MANAGE_DATABASE_DUMP: 'manage-database-dump',
   NAVBAR_SIGN_OUT_PAGE: 'navbar-sign-out',
   NAVBAR_USER_PROFILE_PAGE: 'navbar-user-profile',
 
@@ -55,6 +60,7 @@ export const COMPONENT_IDS = {
   ADD_EVENT_FORM_NEXT_PAGE: 'add-event-form-next-page',
   ADD_EVENT_FORM_PREVIOUS_PAGE: 'add-event-form-previous-page',
   ADD_EVENT_FORM_SUBMIT: 'add-event-form-submit',
+  ADD_EVENT_FORM_SHOW_LOCATION: 'add-event-form-show-location',
 
   EDIT_EVENT_FORM_TITLE: 'edit-event-form-title',
   EDIT_EVENT_FORM_IMAGE: 'edit-event-form-image',
@@ -86,6 +92,7 @@ export const COMPONENT_IDS = {
   UPCOMING_EVENT_CARD_FIND_EVENTS: 'upcoming-event-card-find-events',
   USER_DASHBOARD_VIEW_PROFILE: 'user-dashboard-view-profile',
   USER_DASHBOARD_EDIT_PROFILE: 'user-dashboard-edit-profile',
+  USER_DASHBOARD_VIEW_QR_CODE: 'user-dashboard-view-qr-code',
   USER_PROFILE_EDIT_PROFILE: 'user-profile-edit-profile',
 
   EDIT_USER_PROFILE_FIRST_NAME: 'edit-user-profile-first-name',
@@ -100,7 +107,32 @@ export const COMPONENT_IDS = {
   EDIT_USER_PROFILE_ZIP_CODE: 'edit-user-profile-zip-code',
   EDIT_USER_PROFILE_SUBMIT: 'edit-user-profile-submit',
 
+  ORGANIZATION_OVERVIEW_VIEW_PROFILE: 'organization-overview-view-profile',
+  ORGANIZATION_OVERVIEW_EDIT_PROFILE: 'organization-overview-edit-profile',
+  ORGANIZATION_OVERVIEW_ORG_NAME: 'organization-overview-org-name',
+  ORGANIZATION_OVERVIEW_CONTACT_EMAIL: 'organization-overview-contact-email',
+
+  ORGANIZATION_DROPDOWN: 'organization-dropdown',
+  ORG_EVENT_CARD: 'org-event-card',
+  ORG_EVENT_CARD_VIEW: 'org-event-card-view',
+  ORG_EVENT_CARD_EDIT: 'org-event-card-edit',
+  ORG_EVENT_CARD_RECORD: 'org-event-card-record',
+
   ORGANIZATION_PROFILE_EDIT_PROFILE: 'organization-profile-edit-profile',
+
+  CREATE_ORGANIZATION_NAME: 'create-organization-name',
+  CREATE_ORGANIZATION_IMAGE: 'create-organization-image',
+  CREATE_ORGANIZATION_MISSION: 'create-organization-mission',
+  CREATE_ORGANIZATION_TYPE: 'create-organization-type',
+  CREATE_ORGANIZATION_PHONE: 'create-organization-phone',
+  CREATE_ORGANIZATION_CONTACT_EMAIL: 'create-organization-contact-email',
+  CREATE_ORGANIZATION_HAS_PHYSICAL_ADDRESS: 'create-organization-has-physical-address',
+  CREATE_ORGANIZATION_ADDRESS: 'create-organization-address',
+  CREATE_ORGANIZATION_CITY: 'create-organization-city',
+  CREATE_ORGANIZATION_STATE: 'create-organization-state',
+  CREATE_ORGANIZATION_ZIP_CODE: 'create-organization-zip-code',
+  CREATE_ORGANIZATION_COUNTRY: 'create-organization-country',
+  CREATE_ORGANIZATION_SUBMIT: 'create-organization-submit',
 
   EDIT_ORGANIZATION_PROFILE_NAME: 'edit-organization-profile-name',
   EDIT_ORGANIZATION_PROFILE_IMAGE: 'edit-organization-profile-image',
@@ -115,4 +147,14 @@ export const COMPONENT_IDS = {
   EDIT_ORGANIZATION_PROFILE_ZIP_CODE: 'edit-organization-profile-zip-code',
   EDIT_ORGANIZATION_PROFILE_COUNTRY: 'edit-organization-profile-country',
   EDIT_ORGANIZATION_PROFILE_SUBMIT: 'edit-organization-profile-submit',
+  EDIT_ORGANIZATION_PROFILE_RETURN_TO_DASHBOARD: 'edit-organization-profile-return-to-dashboard',
+
+  ADMIN_HOME_PAGE: 'admin-home-page',
+  ADMIN_HOME_EVENT_MODERATION: 'admin-home-event-moderation',
+  ADMIN_HOME_ORGANIZATION_MODERATION: 'admin-home-organization-moderation',
+  ADMIN_HOME_USER_MODERATION: 'admin-home-user-moderation',
+
+  TOS_MODAL_OPEN: 'tos-modal-open',
+  TOS_MODAL_ACCEPT: 'tos-modal-accept',
+  TOS_MODAL_DECLINE: 'tos-modal-decline',
 };

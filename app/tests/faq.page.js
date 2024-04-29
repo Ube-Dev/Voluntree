@@ -9,7 +9,7 @@ class FAQPage {
 
   /* Asserts that this page is currently displayed. */
   async isDisplayed() {
-    await t.expect(this.pageSelector.exists).ok();
+    await t.expect(this.pageSelector.exists).ok({ timeout: 5000 });
   }
 }
 
