@@ -153,6 +153,8 @@ export const COMPONENT_IDS = {
   ADMIN_HOME_EVENT_MODERATION: 'admin-home-event-moderation',
   ADMIN_HOME_ORGANIZATION_MODERATION: 'admin-home-organization-moderation',
   ADMIN_HOME_USER_MODERATION: 'admin-home-user-moderation',
+  ADMIN_HOME_REVIEW_MODERATION: 'admin-home-review-moderation',
+  ADMIN_ORGANIZATION_MODERATION_SEARCH_BAR: 'admin-organization-moderation-search-bar',
 
   TOS_MODAL_OPEN: 'tos-modal-open',
   TOS_MODAL_ACCEPT: 'tos-modal-accept',
