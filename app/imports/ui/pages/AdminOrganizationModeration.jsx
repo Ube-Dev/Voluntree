@@ -12,6 +12,7 @@ import { removeOrganization } from '../../startup/both/Methods';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import '../css/AdminModeration.css';
 
+/** This admin-only page moderates organizations. Able to view, edit, and delete organizations. */
 const AdminOrganizationModeration = () => {
   const { ready, organization } = useTracker(() => {
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication for the current user
@@ -77,7 +78,7 @@ const AdminOrganizationModeration = () => {
             <Col className="col-7">
               <Form.Group className="search-bar">
                 <Form.Control
-                  id={COMPONENT_IDS.ORGANIZATION_SEARCHBAR}
+                  id={COMPONENT_IDS.ADMIN_ORGANIZATION_MODERATION_SEARCH_BAR}
                   type="text"
                   placeholder="Search for organizations..."
                   className="align-content-center"
@@ -105,8 +106,7 @@ const AdminOrganizationModeration = () => {
                   <tbody>
                     {displayedOrganizations.map((org) => (
                       <tr key={org._id}>
-                        {/* eslint-disable-next-line */}
-                        <td><Image src={org.image} className="org-mod-image" /></td>
+                        <td><Image src={org.image} className="org-mod-image" alt="Organization-submitted image" /></td>
                         <td>{org.name}</td>
                         <td>{org.type}</td>
                         <td>{org.contactEmail}</td>

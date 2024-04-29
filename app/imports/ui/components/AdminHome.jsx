@@ -6,6 +6,7 @@ import AdminHoursStats from './AdminHoursStats';
 import AdminSiteStats from './AdminSiteStats';
 import AdminRecentEvents from './AdminRecentEvents';
 
+/** Main component in home page upon logging in as admin. */
 const AdminHome = () => (
   <Container className="py-3" id={COMPONENT_IDS.ADMIN_HOME_PAGE}>
     <Row className="text-center py-3">
@@ -28,7 +29,7 @@ const AdminHome = () => (
                 <Button variant="outline-dark" href="/user-moderation" className="rounded-0 management-btn" id={COMPONENT_IDS.ADMIN_HOME_USER_MODERATION}>
                   Users
                 </Button>
-                <Button variant="outline-dark" className="rounded-0 management-btn">
+                <Button variant="outline-dark" className="rounded-0 management-btn" id={COMPONENT_IDS.ADMIN_HOME_REVIEW_MODERATION}>
                   Reviews
                 </Button>
               </Row>
