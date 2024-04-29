@@ -22,7 +22,7 @@ const UpcomingEventCard = () => {
 
   return (
     ready ? (
-      <Card className="w-100 my-1">
+      <Card className="rounded-4 my-2">
         <Card.Header>
           <h2>Upcoming Events</h2>
         </Card.Header>
