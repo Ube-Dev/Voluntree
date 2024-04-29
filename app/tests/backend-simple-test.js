@@ -2,7 +2,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Notification_ } from '../imports/api/notification/NotificationCollection';
 import { Organization } from '../imports/api/organization/OrganizationCollection';
-import { createComment, createReview, createUserProfile, organizationAddHours, removeComment, removeReview, sendNotification, udpateComment, updateReview } from '../imports/startup/both/Methods';
+import { createReview, createUserProfile, organizationAddHours, removeReview, sendNotification, updateReview } from '../imports/startup/both/Methods';
 import { UserProfiles } from '../imports/api/user/UserProfileCollection';
 
   // const organizationReady = Organization.subscribeOrganization();
@@ -73,55 +73,4 @@ import { UserProfiles } from '../imports/api/user/UserProfileCollection';
 // Meteor.call(createReview, { rating: 5, reviewerID: 'FJHc6qrg9KzmDnwPt', reviewFor: {  "type": "event",
 // "ID": "nT7sXq9KdYfR" }, content: 'zasdni' });
 
-// Meteor.call(organizationAddHours, "1SkcLcs", 5);
-
-// comment with non existing user
-// Meteor.call(createComment, { userID: 'zz', commentFor: { "type": "organization", "ID": "lMnOpQrStUv2" }, content: '1'}, function(error) {
-//   if (error) {
-//     console.log('Pass', 'comment with non existing user');
-//   } else {
-//     console.error('error', 'comment with non existing user');
-//   }
-// });
-// // comment with non existing target in commentFor
-// Meteor.call(createComment, { userID: 'FJHc6qrg9KzmDnwPt', commentFor: { "type": "organization", "ID": "s" }, content: '1'}, function(error) {
-//   if (error) {
-//     console.log('Pass', 'comment with non existing target in commentFor');
-//   } else {
-//     console.error('error', 'comment with non existing target in commentFor');
-//   }
-// });
-
-// comment with mismatching parentID
-// Meteor.call(createComment, { userID: 'FJHc6qrg9KzmDnwPt', commentFor: { "type": "organization", "ID": "lMnOpQrStUv2" }, content: '1', parentID: 'KlMnOpQrStUv'}, function(error) {
-//   if (error) {
-//     console.log('error', 'comment with parentID');
-//   } else {
-//     console.error('Pass', 'comment with parentID');
-//   }
-// });
-
-// update content
-// Meteor.call(udpateComment, 'WxYz98765432', { content: 'zzz' }, function(error) {
-//   if (error) {
-//     console.error('error', 'update content', error);
-//   } else {
-//     console.log('Pass', 'update content');
-//   }
-// });
-// update userID
-// Meteor.call(udpateComment, 'fGhIjKlMnOpQ', { userID: 'zzz' }, function(error) {
-//   if (error) {
-//     console.log('Pass', 'update user');
-//   } else {
-//     console.error('error', 'update user');
-//   }
-// });
-// remove comment
-// Meteor.call(removeComment, 'FgHiJkLmNoPq', function(error) {
-//   if (error) {
-//     console.error('error', 'remove comment', error);
-//   } else {
-//     console.log('Pass', 'remove comment');
-//   }
-// });
+Meteor.call(organizationAddHours, "1SkcLcs", 5);

@@ -11,7 +11,6 @@ const QRCodeGenerator = ({ userID }) => {
 
   useEffect(() => {
     if (userID) {
-      // Generate QR code with userID
       qrcode.toDataURL(userID, (err, dataUrl) => {
         setQRCode(dataUrl);
         setQRCodeReady(true);
@@ -19,7 +18,6 @@ const QRCodeGenerator = ({ userID }) => {
     }
   }, [userID]);
 
-  // Returns QR code image
   return qrCodeReady ? (
     <Container className="d-flex justify-content-center">
       <Image src={qrCode} alt="User QR Code" className="qr-code" />

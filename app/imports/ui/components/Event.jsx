@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Col, Container, Image, Row, Card } from 'react-bootstrap';
-import { Bell, Calendar, GeoAlt, PersonFill, HeartFill, Heart } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
+import { Bell, Calendar, GeoAlt, People, HeartFill, Heart } from 'react-bootstrap-icons';
 import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
 import GoBackButton from './GoBackButton';
 import ConnectButton from './ConnectButton';
-import { PAGE_IDS } from '../utilities/PageIDs';
 
 const Event = ({ event, org }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -26,7 +24,7 @@ const Event = ({ event, org }) => {
   };
 
   return (
-    <Container fluid className="color1" id={PAGE_IDS.VIEW_EVENT}>
+    <Container fluid className="color1">
       <Container id="view-event-page" className="py-5 justify-content-center">
         <Card className="pageCard">
           <Card.Header className="pageCardHeader">
@@ -44,19 +42,16 @@ const Event = ({ event, org }) => {
               </Card.Body>
               <Card.Body className="eventDetailsLeft">
                 <Row>
-                  <Col lg={9} md={12} className="col-12 col-lg-9">
-                    <h4>Hosted By:</h4>
-                    <Link className="host-link" to={`/org-profile/${event.hostID}`}><h4>{event.hostBy}</h4></Link>
-                  </Col>
-                  <Col lg={3} md={12} className="col-12 text-end align-content-center">
+                  <Col><h4>Host: {event.hostBy}</h4></Col>
+                  <Col className="text-end col-3">
                     <ConnectButton org={org} />
                   </Col>
                 </Row>
                 <hr />
                 <h5><GeoAlt /> {event.address}, {event.city}, {event.state}, {event.zipCode}, {event.country}</h5>
-                <h5><Calendar /> {event.startTime.toDateString()} | {event.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</h5>
+                <h5><Calendar /> {event.time.toLocaleString()}</h5>
                 <h5><Bell /> Frequency: {event.frequency}</h5>
-                <h5><PersonFill /> Seats: {event.spotsFilled.length}/{event.totalSpots}</h5>
+                <h5><People /> Seats: {event.spotsFilled.length}/{event.totalSpots}</h5>
               </Card.Body>
             </Col>
             <Col md="auto" className="col-lg-6 col-sm-6 my-auto">
@@ -112,7 +107,6 @@ Event.propTypes = {
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
     hostBy: PropTypes.string,
-    hostID: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
   org: PropTypes.shape({
