@@ -8,10 +8,7 @@ import AdminRecentEvents from './AdminRecentEvents';
 
 /** Main component in home page upon logging in as admin. */
 const AdminHome = () => (
-  <Container className="py-3" id={COMPONENT_IDS.ADMIN_HOME_PAGE}>
-    <Row className="text-center py-3">
-      <h1>Admin View</h1>
-    </Row>
+  <Container className="py-5" id={COMPONENT_IDS.ADMIN_HOME_PAGE}>
     <Card className="admin-card-background rounded-4">
       <Row className="p-3">
         <Col className="col-4">
