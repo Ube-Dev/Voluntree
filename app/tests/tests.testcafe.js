@@ -95,7 +95,7 @@ test('Test that User Home page works', async () => {
   await homePage.isDisplayed();
 });
 
-test.only('Test that My Event page works', async () => {
+test('Test that My Event page works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
