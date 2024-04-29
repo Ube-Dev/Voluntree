@@ -79,8 +79,7 @@ test('Test that sign in and sign out work', async () => {
   await signOutPage.isDisplayed();
 });
 
-/*
-test('Test that user pages show up', async () => {
+test('Test that My Event page works', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
