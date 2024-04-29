@@ -5,6 +5,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { Events } from '../../api/event/EventCollection';
 import '../css/AllEventPage.css';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { PAGE_IDS } from '../utilities/PageIDs';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
 import EventFilter from '../components/EventFilter';
@@ -43,7 +44,7 @@ const MyEventPage = () => {
 
   // if not, render a button for the user to find events
   return ready ? (
-    <Container fluid className="color1">
+    <Container fluid className="color1" id={PAGE_IDS.MY_EVENTS_PAGE}>
       <Container fluid className="mb-5">
         <Row className="justify-content-center">
           <Col className="col-11">

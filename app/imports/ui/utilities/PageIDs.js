@@ -6,6 +6,7 @@ export const PAGE_IDS = {
   EVENTS: 'events',
   SUBSCRIBE: 'subscribe',
   HOME_PAGE: 'home-page',
+  MY_EVENTS_PAGE: 'my-events-page',
   DASHBOARD: 'dashboard',
   VIEW_EVENT: 'view-event',
   NOT_AUTHORIZED: 'not-authorized',

@@ -142,6 +142,16 @@ class NavBar {
     await t.click(`#${COMPONENT_IDS.NAVBAR_EVENTS_PAGE}`);
   }
 
+  /* Go to the My Events page. */
+  async gotoMyEventsPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_MY_EVENTS_PAGE}`);
+  }
+
   /* Go to the add event page. */
   async gotoAddEventPage() {
     const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;

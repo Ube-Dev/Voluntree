@@ -8,6 +8,7 @@ import { faqPage } from './faq.page';
 import { eventsPage } from './events.page';
 import { subscribePage } from './subscribe.page';
 import { homePage } from './home.page';
+import { myEventsPage } from './myevents.page';
 import { addEventPage } from './addevent.page';
 import { viewEventPage } from './viewevent.page';
 import { editEventPage } from './editevent.page';
@@ -92,6 +93,14 @@ test('Test that User Home page works', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoHomePage();
   await homePage.isDisplayed();
+});
+
+test.only('Test that My Event page works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoMyEventsPage();
+  await myEventsPage.isDisplayed();
 });
 
 test('Test that add event form works', async () => {
