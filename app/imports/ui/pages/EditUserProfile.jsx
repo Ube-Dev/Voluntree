@@ -1,17 +1,17 @@
 import React from 'react';
 import swal from 'sweetalert';
-import { Alert, Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { updateUserProfile } from '../../startup/both/Methods';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import GoBackButton from '../components/GoBackButton';
 
 const bridge = new SimpleSchema2Bridge(UserProfiles._schema);
 
@@ -45,39 +45,51 @@ const EditUserProfile = () => {
   };
 
   return ready ? (
-    <Container id={PAGE_IDS.EDIT_USER_PROFILE} fluid className="py-3 edit-page-background editCSS">
+    <Container id={PAGE_IDS.EDIT_USER_PROFILE} fluid className="color2 py-3 editCSS">
       <Row className="justify-content-center">
-        <Col xs={8}>
+        <Col xs={8} md={7}>
           <Col className="pb-2 text-center login-text"><h2>Edit User Profile</h2></Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)} model={userProfile}>
-            <Card>
+            <Card className="rounded-4">
               <Card.Body>
                 <Row>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_FIRST_NAME} name="firstName" label="First Name" /></Col>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_LAST_NAME} name="lastName" label="Last Name" /></Col>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_PROFILE_PICTURE_URL} name="image" label="Profile Picture URL" /></Col>
+                  <Col sm={12} md={4}><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_FIRST_NAME} name="firstName" label="First Name" /></Col>
+                  <Col sm={12} md={4}><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_LAST_NAME} name="lastName" label="Last Name" /></Col>
+                  <Col sm={12} md={4}><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_PROFILE_PICTURE_URL} name="image" label="Profile Picture URL" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ADDRESS} name="address" label="Address" /></Col>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_PHONE} name="phone" label="Phone" /></Col>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_EMAIL} name="email" label="EmailPage" /></Col>
+                  <Col sm={12} md={6}><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_PHONE} name="phone" label="Phone" /></Col>
+                  <Col sm={12} md={6}><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_EMAIL} name="email" label="EmailPage" /></Col>
+                </Row>
+              </Card.Body>
+            </Card>
+            <Card className="rounded-4 mt-3 mb-5">
+              <Card.Body>
+                <Row>
+                  <Col sm={12}><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ADDRESS} name="address" label="Address" /></Col>
                 </Row>
                 <Row>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_CITY} name="city" label="City" /></Col>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_STATE} name="state" label="State" /></Col>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_COUNTRY} name="country" label="Country" /></Col>
-                  <Col><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ZIP_CODE} name="zipCode" label="Zip Code" /></Col>
+                  <Col sm={12} md={3}><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_CITY} name="city" label="City" /></Col>
+                  <Col sm={12} md={3}><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_STATE} name="state" label="State" /></Col>
+                  <Col sm={12} md={3}><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_COUNTRY} name="country" label="Country" /></Col>
+                  <Col sm={12} md={3}><TextField id={COMPONENT_IDS.EDIT_USER_PROFILE_ZIP_CODE} name="zipCode" label="Zip Code" /></Col>
                 </Row>
                 <HiddenField name="role" />
                 <HiddenField name="userID" />
-                <SubmitField id={COMPONENT_IDS.EDIT_USER_PROFILE_SUBMIT} value="Update" />
-                <ErrorsField />
               </Card.Body>
+              <Card.Footer>
+                <Row>
+                  <Col className="text-start">
+                    <GoBackButton />
+                  </Col>
+                  <Col className="text-end">
+                    <SubmitField id={COMPONENT_IDS.EDIT_USER_PROFILE_SUBMIT} value="Update" />
+                    <ErrorsField />
+                  </Col>
+                </Row>
+              </Card.Footer>
             </Card>
           </AutoForm>
-          <Alert variant="secondary">
-            <Link to="/profile"><Button>Return to Profile</Button></Link>
-          </Alert>
         </Col>
       </Row>
     </Container>

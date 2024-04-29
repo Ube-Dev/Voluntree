@@ -1,21 +1,16 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import { Container, Card, Button, ButtonGroup, Row, Col, Pagination } from 'react-bootstrap';
-import { TagFill } from 'react-bootstrap-icons';
+import React from 'react';
+import { Container, Button, Row, Col, Card } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
-import EventList from '../components/EventList';
 import '../css/AllEventPage.css';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { Events } from '../../api/event/EventCollection';
 import EventFilter from '../components/EventFilter';
 import { MainCategory } from '../../api/category/MainCategoryCollection';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const AllEventPage = () => {
   // apply filter to the entire page when a specific skill is clicked.
   // buttons inside <EventCard> will invoke this function.
-  const filterSkill = (skill) => {
-    // console.log('triggered');
-  };
 
   const { ready, events, categories } = useTracker(() => {
   // Get access to events
@@ -24,7 +19,7 @@ const AllEventPage = () => {
     // Make sure its ready
     const rdy = subscription.ready() && subscription2.ready();
     // fetch all events and categories
-    const theEvents = Events.find({}).fetch();
+    const theEvents = Events.find({}).fetch().reverse();
     const theCategories = MainCategory.find({}).fetch();
     return {
       events: theEvents,
@@ -32,18 +27,35 @@ const AllEventPage = () => {
       ready: rdy,
     };
   }, []);
-  return (
-    <Container id={PAGE_IDS.EVENTS}>
-      <Row className="justify-content-center text-center">
-        <h1 className="ps-5 ms-5">Find Events</h1>
-        <br />
-      </Row>
-      <EventFilter event={events} categories={categories} />
-      <Container className="text-center p-3">
-        <h4>Need Volunteers?</h4>
-        <Button variant="outline-primary" href="/createOrganization">Create An Organization</Button>
+  return ready ? (
+    <Container fluid className="color1">
+      <Container fluid id={PAGE_IDS.EVENTS}>
+        <Row className="justify-content-center">
+          <Col className="col-11">
+            <Row className="text-center py-4">
+              <h1>Find Events</h1>
+            </Row>
+            <Row className="justify-content-center">
+              <Card fluid className="rounded-4 py-5 all-event-card-background">
+                <EventFilter event={events} categories={categories} />
+              </Card>
+            </Row>
+            <Row className="justify-content-center p-3">
+              <Col className="col-lg-4 col-md-6 text-center">
+                <Card className="rounded-4 p-3">
+                  <h4>Need Volunteers?</h4>
+                  <Col>
+                    <Button variant="primary" href="/createOrganization">Create An Organization</Button>
+                  </Col>
+                </Card>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </Container>
     </Container>
+  ) : (
+    <LoadingSpinner />
   );
 };
 

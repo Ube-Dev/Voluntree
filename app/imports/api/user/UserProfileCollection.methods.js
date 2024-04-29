@@ -31,23 +31,28 @@ Meteor.methods({
     const username = data.email;
     const user = UserProfiles._collection.findOne({ email: data.email });
     console.log(user);
+    console.log(data.privilege);
 
     // only create user if the user does not exists in the database.
     if (user === undefined) {
       const role = ROLE.USER;
       let newID;
+      let privilege = data.privilege;
       // returned newID is the userID, not _id.
+      if (typeof data.privilege === 'undefined') {
+        privilege = [];
+      }
       if (data.userID) {
-        newID = Users.define({ userID: data.userID, username, role, privilege: data.privilege, password: data.password });
+        newID = Users.define({ userID: data.userID, username, role, privilege: privilege, password: data.password });
       } else {
-        newID = Users.define({ username, role, privilege: data.privilege, password: data.password });
+        newID = Users.define({ username, role, privilege: privilege, password: data.password });
       }
 
       // TO-DO revert changes if there is an error while inserting.
       try {
         const profileID = UserProfiles._collection.insert({
           ...data,
-          ...{ userID: newID, role: ROLE.USER },
+          ...{ _id: newID, userID: newID, role: ROLE.USER },
         });
         return profileID;
       } catch (error) {
@@ -172,6 +177,24 @@ Meteor.methods({
       return result;
     } catch (error) {
       throw new Meteor.Error('delete-failed', 'Failed to delete user profile: ', error);
+    }
+  },
+});
+
+Meteor.methods({
+  'UserProfiles.AddHours': function (docID, hour) {
+    check(docID, String);
+    check(hour, Number);
+
+    if (!isAUser_id(docID)) {
+      console.error('User does not exists.');
+      throw new Meteor.Error('update-failed', 'User does not exist.');
+    }
+
+    try {
+      return UserProfiles._collection.update(docID, { $inc: { totalHours: hour } });
+    } catch (error) {
+      throw new Meteor.Error('update-AddHours-failed', `Failed to update user profile: ${error}`);
     }
   },
 });

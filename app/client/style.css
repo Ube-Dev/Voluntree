@@ -192,7 +192,7 @@ body {
   color: white;
   border-color: rgba(0, 0, 0, 0) !important;
   border-width: medium;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px;
   --bs-success-rgb: gold;
 }
 
@@ -201,7 +201,7 @@ body {
   color: white;
   border-color: var(--color1) !important;
   border-width: medium;
-  border-radius: 0 0 20px 20px;
+  border-radius: 20px;
   --bs-link-hover-color: white;
 }
 
@@ -262,10 +262,18 @@ body {
   padding-left: 15px !important;
   padding-right: 15px !important;
 }
-
+.scrollModal
+{
+  overflow-y: scroll;
+  max-height: 50vh;
+}
 /* Styling for profile image in Home page */
 #profile-img {
   width: 150px;
   height: 150px;
   border-radius: 50%;
+}
+.ascii-icon
+{
+  font-size: 3em;
 }

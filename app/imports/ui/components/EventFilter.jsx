@@ -26,30 +26,30 @@ const EventFilter = ({ event, categories }) => {
   return (
     <Container>
       <Row>
-        <Col>
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic"> Filter by Category </Dropdown.Toggle>
+        <Col md={12} className="col-lg-1 pb-3 text-center">
+          <Dropdown className="rounded-4">
+            <Dropdown.Toggle id="dropdown-basic-button">Filter by Category</Dropdown.Toggle>
             <Dropdown.Menu>
               <Form>
                 {categories.map((theCategory, index) => (
-                  <div className="d-flex mx-3 my-2" key={index}>
+                  <div className="d-flex m-2" key={index}>
                     <Form.Check
                       type="checkbox"
                       value={theCategory.category}
                       onChange={handleCheckboxChange}
                       checked={isCategoryChecked(theCategory.category)}
                     />
-                    <div className="ms-2">
+                    <div className="ms-1">
                       {theCategory.category}
                     </div>
                   </div>
                 ))}
-                <Button variant="link" className="ms-auto" onClick={resetFilter}>reset</Button>
+                <Button variant="primary" className="m-2" onClick={resetFilter}>reset</Button>
               </Form>
             </Dropdown.Menu>
           </Dropdown>
         </Col>
-        <Col className="col-10">
+        <Col md={12} className="col-lg-11">
           <EventList theEvents={filteredEvents} />
         </Col>
       </Row>

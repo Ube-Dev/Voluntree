@@ -9,6 +9,7 @@ import { ROLE } from '../../api/role/Role';
 const createUserProfile = 'UserProfiles.define';
 const updateUserProfile = 'UserProfiles.update';
 const removeUserProfile = 'UserProfiles.remove';
+const userAddHours = 'UserProfiles.AddHours';
 
 // app\imports\api\event\EventCollection.methods.js
 const createEvent = 'Events.define';
@@ -23,6 +24,7 @@ const removeSkill = 'Skills.remove';
 const createOrganization = 'Organization.define';
 const updateOrganization = 'Organization.update';
 const removeOrganization = 'Organization.remove';
+const organizationAddHours = 'Organization.AddHours';
 
 // app\imports\api\category\CategoryCollection.methods.js
 const createMainCategory = 'MainCategory.define';
@@ -30,6 +32,16 @@ const removeMainCategory = 'MainCategory.remove';
 const createSubcategory = 'Subcategory.define';
 const updateSubcategory = 'Subcategory.update';
 const removeSubcategory = 'Subcategory.remove';
+
+// app\imports\api\review\Review.methods.js
+const createReview = 'Review.define';
+const removeReview = 'Review.remove';
+const updateReview = 'Review.update';
+
+// app\imports\api\comment\Comment.methods.js
+const createComment = 'Comment.define';
+const removeComment = 'Comment.remove';
+const udpateComment = 'Comment.update';
 
 // app\imports\api\notification\Notification.method.js
 const sendNotification = 'Notification_.define';
@@ -150,5 +162,5 @@ export {
   updateUserProfile, createUserProfile, removeUserProfile, updateEvent, createEvent, removeEvent, createSkill, removeSkill,
   createOrganization, updateOrganization, removeOrganization, loadDefaultCategories, createMainCategory, removeMainCategory,
   createSubcategory, updateSubcategory, removeSubcategory, updateMyEvents, updateUserAccount, sendVerification, sendResetPasswordEmail_, deleteMyEvents,
-  sendNotification,
+  sendNotification, userAddHours, createReview, updateReview, removeReview, organizationAddHours, createComment, removeComment, udpateComment,
 };

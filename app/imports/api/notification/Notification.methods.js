@@ -19,9 +19,10 @@ Meteor.methods({ 'Notification_.define': function (data) {
     throw new Meteor.Error('sendNotification failed', `error: sender ${data.sender} does not exists.This call will not be executed.`);
   }
   try {
+    const id = data._id === undefined ? generateID : data._id;
     return Notification_._collection.insert({
       ...data,
-      ...{ notificationID: generateID() },
+      ...{ _id: id },
     });
   } catch (error) {
     throw new Meteor.Error('Notification_.define-failed', 'Failed to insert new notification.', error);
