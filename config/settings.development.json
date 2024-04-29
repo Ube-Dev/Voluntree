@@ -14,15 +14,18 @@
       "password": "kdsz nncn wqxp nflg"
     }
   },
+
   "organizationTypes": [
     "individual",
     "school",
     "organization"
   ],
+
   "defaultAccounts": [
     {
       "email": "organization@foo.com",
       "password": "changeme",
+      "phone": "123-456-7890",
       "role": "USER",
       "privilege": ["hasOrganization"],
       "firstName": "Temp",
@@ -41,6 +44,7 @@
     {
       "email": "john@foo.com",
       "password": "changeme",
+      "phone": "123-456-7890",
       "role": "USER",
       "privilege": ["hasOrganization"],
       "firstName": "John",
@@ -55,6 +59,8 @@
     {
       "email": "thomas@foo.com",
       "password": "changeme",
+      "image": "https://avatars.githubusercontent.com/u/70453373?v=4",
+      "phone": "123-456-7890",
       "role": "USER",
       "privilege": [],
       "firstName": "Thomas",
@@ -65,8 +71,170 @@
         "cleaning"
       ],
       "userID": "ZpLMnWk2SCQrhtgN5"
+    },
+    {
+      "email": "Alden@foo.com",
+      "password": "changeme",
+      "phone": "123-456-7890",
+      "image": "https://github.com/aldenparoni.png",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Alden",
+      "lastName": "Paroni"
+    },
+    {
+      "email": "sierra@foo.com",
+      "password": "changeme",
+      "phone": "123-456-7890",
+      "image": "https://github.com/sierranmorales.png",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Sierra",
+      "lastName": "Morales"
+    },
+    {
+      "email": "Jiawen@foo.com",
+      "password": "changeme",
+      "image": "https://github.com/Jchen20-1.png",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Jiawen",
+      "lastName": "Chen"
+    },
+    {
+      "email": "Jianle@foo.com",
+      "password": "changeme",
+      "image": "https://github.com/jianleliu.png",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Jianle",
+      "lastName": "Liu"
+    },
+    {
+      "email": "hokwai@foo.com",
+      "password": "changeme",
+      "image": "https://github.com/hokwaichan.png",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "HokWai",
+      "lastName": "Chan"
+    },
+    {
+      "email": "ryan@foo.com",
+      "password": "changeme",
+      "image": "https://avatars.githubusercontent.com/u/24851269?v=4",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Ryan",
+      "lastName": "Seng"
+    },
+    {
+      "email": "william@foo.com",
+      "password": "changeme",
+      "image": "https://github.com/willjsimmons.png",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "William",
+      "lastName": "Simmons"
+    },
+    {
+      "email": "mary@foo.com",
+      "password": "changeme",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Mary",
+      "lastName": "Grace"
+    },
+    {
+      "email": "Boomquifa@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Boomquifa",
+      "lastName": "Smith"
+    },
+    {
+      "email": "Joanne@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Joanne",
+      "lastName": "Harry"
+    },
+    {
+      "email": "Harry@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Harry",
+      "lastName": "Butt"
+    },
+    {
+      "email": "bill@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Bill",
+      "lastName": "Nye"
+    },
+    {
+      "email": "adam@foo.com",
+      "password": "changeme",
+      "image": "https://duckduckgo.com/i/31c8a4650a80104d.png",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Adam",
+      "lastName": "Savage"
+    },
+    {
+      "email": "kylo@foo.com",
+      "password": "changeme",
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.yysnc7hhUFPgaLqW6qVZJgHaEu%26pid%3DApi%26h%3D160&f=1&ipt=e244b56045ad3807d34a8ad55aebbc2d19ab2869b0d51a0d19eb449cac4a5cec&ipo=images",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Kylo",
+      "lastName": "Ren"
+    },
+    {
+      "email": "kpoptrainee@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Nick",
+      "lastName": "Ells"
+    },
+    {
+      "email": "tyler@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Tyler",
+      "lastName": "Fills"
+    },
+    {
+      "email": "pyra@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Pyra",
+      "lastName": "Mythra"
+    },
+    {
+      "email": "scam@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Scam",
+      "lastName": "Will Scam You"
     }
   ],
+
   "defaultOrganizations": [
     {
       "leader": "FJHc6qrg9KzmDnwPt",
@@ -329,9 +497,11 @@
       "Tech Accessibility"
     ]
   },
+
   "public": {
     "development": true
   },
+
   "defaultEvent": [
     {
       "title": "Humanitarian Aid Vacation in Belize!",
@@ -412,7 +582,7 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "10",
-      "frequency": "twice",
+      "frequency": "once",
       "requiredSkills": [
         "lift 15 pounds",
         "cleaning"
@@ -640,8 +810,79 @@
         },
       "startTime": "2024-05-30T09:00:00",
       "endTime": "2024-05-30T12:00:00"
+    },
+    {
+      "title": "Oceanfront Cleanup Initiative",
+      "image": "https://images.unsplash.com/photo-1530202373974-3b679b395491",
+      "description": "Join us in keeping our oceanfront clean and pristine!",
+      "address": "Oceanfront Beach",
+      "zipCode": "90210",
+      "city": "Malibu",
+      "state": "CA",
+      "country": "USA",
+      "totalSpots": 15,
+      "frequency": "monthly",
+      "requiredSkills": [
+        "Lift 20 pounds",
+        "Trash sorting"
+      ],
+      "accessibilities": [
+        "Group",
+        "Family-friendly"
+      ],
+      "requirements": [
+        "Reusable gloves",
+        "Closed-toe shoes"
+      ],
+      "impact": "You'll help preserve marine life and protect our beaches.",
+      "hostBy": "Malibu Oceanfront Preservation Society",
+      "hostType": "organization",
+      "hostID": "mOpQrStUvWxY2",
+      "_id": "aBcDeFgHiJk2",
+      "activityCategory": {
+        "mainCategory": "Environmental Conservation",
+        "subCategory": "Beach Cleanup"
+      },
+      "startTime": "2024-06-15T10:00:00",
+      "endTime": "2024-06-15T13:00:00"
+    },
+    {
+      "title": "Joyful Hearts: Hospital Visit for Kids",
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+      "description": "Brighten the day of children at the local hospital!",
+      "address": "Sunshine Pediatric Hospital",
+      "zipCode": "12345",
+      "city": "Sunshineville",
+      "state": "FL",
+      "country": "USA",
+      "totalSpots": 8,
+      "frequency": "bi-weekly",
+      "requiredSkills": [
+        "Empathy",
+        "Creative storytelling"
+      ],
+      "accessibilities": [
+        "Group",
+        "Kid-friendly"
+      ],
+      "requirements": [
+        "Background check",
+        "Positive attitude"
+      ],
+      "impact": "You'll bring smiles and happiness to children facing health challenges.",
+      "hostBy": "Sunshine Children's Foundation",
+      "hostType": "organization",
+      "hostID": "zYxWvUtSrQpO3",
+      "_id": "dEfGhIjKlMn4",
+      "activityCategory": {
+        "mainCategory": "Healthcare",
+        "subCategory": "Mental Health"
+      },
+      "startTime": "2024-06-10T14:00:00",
+      "endTime": "2024-06-10T16:00:00"
     }
   ],
+
   "defaultReview": [
     {
       "_id": "qwe890poi",
