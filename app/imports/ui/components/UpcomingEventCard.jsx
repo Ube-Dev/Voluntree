@@ -19,7 +19,6 @@ const UpcomingEventCard = () => {
       userProfile: userProfileData,
     };
   });
-
   return (
     ready ? (
       <Card className="w-100 my-1">

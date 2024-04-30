@@ -5,6 +5,7 @@ import moment from 'moment';
 import { Card } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
+import '../css/Calendar.css';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Events, eventPublications } from '../../api/event/EventCollection';
 import LoadingSpinner from './LoadingSpinner';
@@ -73,20 +74,18 @@ const UserCalendar = () => {
   };
 
   return (
-    <Card style={{ width: 'calc(100% - 20px)', height: 'calc(100% - 20px)', padding: '10px' }}>
-      <div style={{ width: '100%', height: '100%', backgroundColor: 'white', color: 'black' }}>
-        <Calendar
-          localizer={localize}
-          events={getCommittedEvents()}
-          startAccessor="startTime"
-          endAccessor="endTime"
-          selectable
-          onSelectEvent={handleEventSelect}
-          components={{ toolbar: Toolbar }}
-          eventPropGetter={() => ({ style: { backgroundColor: '#03A696' } })}
-          style={{ color: 'black', width: 'calc(100% - 20px)', height: 'calc(100% - 20px)', margin: '10px' }}
-        />
-      </div>
+    <Card className="calendar-card rounded-4">
+      <Calendar
+        localizer={localize}
+        events={getCommittedEvents()}
+        startAccessor="startTime"
+        endAccessor="endTime"
+        selectable
+        onSelectEvent={handleEventSelect}
+        components={{ toolbar: Toolbar }}
+        eventPropGetter={() => ({ style: { backgroundColor: '#03A696' } })}
+        className="rounded-4 p-3"
+      />
     </Card>
   );
 };

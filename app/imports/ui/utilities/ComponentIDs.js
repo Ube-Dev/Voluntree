@@ -115,4 +115,16 @@ export const COMPONENT_IDS = {
   EDIT_ORGANIZATION_PROFILE_ZIP_CODE: 'edit-organization-profile-zip-code',
   EDIT_ORGANIZATION_PROFILE_COUNTRY: 'edit-organization-profile-country',
   EDIT_ORGANIZATION_PROFILE_SUBMIT: 'edit-organization-profile-submit',
+  EDIT_ORGANIZATION_PROFILE_RETURN_TO_DASHBOARD: 'edit-organization-profile-return-to-dashboard',
+
+  ADMIN_HOME_PAGE: 'admin-home-page',
+  ADMIN_HOME_EVENT_MODERATION: 'admin-home-event-moderation',
+  ADMIN_HOME_ORGANIZATION_MODERATION: 'admin-home-organization-moderation',
+  ADMIN_HOME_USER_MODERATION: 'admin-home-user-moderation',
+  ADMIN_HOME_REVIEW_MODERATION: 'admin-home-review-moderation',
+  ADMIN_ORGANIZATION_MODERATION_SEARCH_BAR: 'admin-organization-moderation-search-bar',
+
+  TOS_MODAL_OPEN: 'tos-modal-open',
+  TOS_MODAL_ACCEPT: 'tos-modal-accept',
+  TOS_MODAL_DECLINE: 'tos-modal-decline',
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
+import { Row, Col, Card, Image, Button, Container } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
