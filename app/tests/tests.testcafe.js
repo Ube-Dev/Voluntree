@@ -16,6 +16,7 @@ import { userProfilePage } from './userprofile.page';
 import { upcomingEventCard } from './upcomingeventcard.component';
 import { editUserProfilePage } from './edituserprofile.page';
 import { userDashboard } from './userdashboard.component';
+import { goBackButton } from './gobackbutton.component';
 import { orgProfilePage } from './orgprofile.page';
 import { orgDashboardPage } from './orgdashboard.page';
 import { orgOverview } from './orgoverview.component';
@@ -176,6 +177,10 @@ test('Test that user profile can be updated', async () => {
   await userProfilePage.isDisplayed();
   await userProfilePage.gotoEditUserProfile();
   await editUserProfilePage.updateProfile();
+});
+
+test('Test that the GoBackButton works', async () => {
+  await goBackButton.isDisplayed();
 });
 
 /** The following tests are for organization dashboard page. */
