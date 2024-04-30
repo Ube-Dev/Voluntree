@@ -1,11 +1,13 @@
 /** Define ids for each page. */
 export const PAGE_IDS = {
   LANDING: 'landing',
-  HOME_PAGE: 'home-page',
-  DASHBOARD: 'dashboard',
-  MANAGE_DATABASE: 'manage-database',
   ABOUT: 'about',
+  FAQ: 'faq',
   EVENTS: 'events',
+  SUBSCRIBE: 'subscribe',
+  HOME_PAGE: 'home-page',
+  MY_EVENTS_PAGE: 'my-events-page',
+  DASHBOARD: 'dashboard',
   VIEW_EVENT: 'view-event',
   NOT_AUTHORIZED: 'not-authorized',
   NOT_FOUND: 'not-found',
@@ -14,12 +16,18 @@ export const PAGE_IDS = {
   SIGN_IN: 'sign-in',
   SIGN_OUT: 'sign-out',
   SIGN_UP: 'sign-up',
-  SIGN_UP_ORGANIZATION: 'sign-up-organization',
-  FAQ: 'faq',
+  CREATE_ORGANIZATION: 'create-organization',
   USER_PROFILE: 'user-profile',
   EDIT_USER_PROFILE: 'edit-user-profile',
   USER_VIEW_ORG_PROFILE: 'user-view-org-profile',
   ORGANIZATION_PROFILE: 'organization-profile',
   EDIT_ORGANIZATION_PROFILE: 'edit-organization-profile',
+  USER_QR_CODE: 'user-qr-code',
   ORG_SCAN_QR: 'org-scan-qr',
+
+  /* Admin pages */
+  ADMIN_EVENT_MODERATION: 'admin-event-moderation',
+  ADMIN_ORGANIZATION_MODERATION: 'admin-organization-moderation',
+  ADMIN_USER_MODERATION: 'admin-user-moderation',
+  MANAGE_DATABASE: 'manage-database',
 };

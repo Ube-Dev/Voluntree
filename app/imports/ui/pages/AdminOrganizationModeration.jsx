@@ -5,12 +5,14 @@ import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import Fuse from 'fuse.js';
 import { useTracker } from 'meteor/react-meteor-data';
+import { PAGE_IDS } from '../utilities/PageIDs';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { removeOrganization } from '../../startup/both/Methods';
 import { Organization } from '../../api/organization/OrganizationCollection';
-import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import '../css/AdminModeration.css';
 
+/** This admin-only page moderates organizations. Able to view, edit, and delete organizations. */
 const AdminOrganizationModeration = () => {
   const { ready, organization } = useTracker(() => {
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication for the current user
@@ -66,7 +68,7 @@ const AdminOrganizationModeration = () => {
   };
 
   return ready ? (
-    <Container fluid className="color1 py-5">
+    <Container fluid className="color1 py-5" id={PAGE_IDS.ADMIN_ORGANIZATION_MODERATION}>
       <Container className="">
         <Row className="text-center pb-3">
           <h1>Organization Moderation</h1>
@@ -76,7 +78,7 @@ const AdminOrganizationModeration = () => {
             <Col className="col-7">
               <Form.Group className="search-bar">
                 <Form.Control
-                  id={COMPONENT_IDS.ORGANIZATION_SEARCHBAR}
+                  id={COMPONENT_IDS.ADMIN_ORGANIZATION_MODERATION_SEARCH_BAR}
                   type="text"
                   placeholder="Search for organizations..."
                   className="align-content-center"
@@ -104,8 +106,7 @@ const AdminOrganizationModeration = () => {
                   <tbody>
                     {displayedOrganizations.map((org) => (
                       <tr key={org._id}>
-                        {/* eslint-disable-next-line */}
-                        <td><Image src={org.image} className="org-mod-image" /></td>
+                        <td><Image src={org.image} className="org-mod-image" alt="Organization-submitted image" /></td>
                         <td>{org.name}</td>
                         <td>{org.type}</td>
                         <td>{org.contactEmail}</td>

@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container } from 'react-bootstrap';
 import { Roles } from 'meteor/alanning:roles';
 import { ROLE } from '../../api/role/Role';
+import { PAGE_IDS } from '../utilities/PageIDs';
 import UserHome from '../components/UserHome';
 import AdminHome from '../components/AdminHome';
 
@@ -10,7 +11,7 @@ const HomePage = () => {
   const isAdmin = Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN);
 
   return (
-    <Container fluid className="color1">
+    <Container fluid className="color1" id={PAGE_IDS.HOME_PAGE}>
       {/* checks if the user is an admin or a regular user and renders the appropriate home page */}
       {isAdmin ? <AdminHome /> : <UserHome />}
     </Container>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
+import { Row, Col, Card, Image, Button } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
@@ -21,35 +21,33 @@ const UserDashboard = () => {
   });
 
   return ready ? (
-    <Container>
-      <Card>
-        <Card.Header>
-          <h2>Overview</h2>
-        </Card.Header>
-        <Card.Body className="d-flex flex-column align-items-start">
-          <Row>
-            <Col>
-              <Image src={userProfile?.image || '/path/to/default/profile/image.png'} alt="Profile Image" id="profile-img" />
-            </Col>
-            <Col>
-              <h4>{userProfile.firstName} {userProfile.lastName}</h4>
-              <p>Hours Recorded: {userProfile.totalHours}</p>
-            </Col>
-          </Row>
-        </Card.Body>
-        <Card.Footer className="p-2">
-          <Row>
-            <Col className="text-start">
-              <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_PROFILE} className="mx-1" href="/profile">View Profile</Button>
-              <Button id={COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE} className="mx-1" href={`/edit-user-profile/${userProfile?._id}`}>Edit</Button>
-            </Col>
-            <Col className="text-end">
-              <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_QR_CODE} className="mx-1" href={`/qr-code/${userProfile?._id}`}>Log Hours</Button>
-            </Col>
-          </Row>
-        </Card.Footer>
-      </Card>
-    </Container>
+    <Card className="rounded-4">
+      <Card.Header>
+        <h2>Overview</h2>
+      </Card.Header>
+      <Card.Body className="d-flex flex-column align-items-start">
+        <Row>
+          <Col>
+            <Image src={userProfile?.image || '/path/to/default/profile/image.png'} alt="Profile Image" id="profile-img" />
+          </Col>
+          <Col>
+            <h4>{userProfile.firstName} {userProfile.lastName}</h4>
+            <p>Hours Recorded: {userProfile.totalHours}</p>
+          </Col>
+        </Row>
+      </Card.Body>
+      <Card.Footer className="p-2">
+        <Row>
+          <Col className="text-start">
+            <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_PROFILE} className="mx-1" href="/profile">View Profile</Button>
+            <Button id={COMPONENT_IDS.USER_DASHBOARD_EDIT_PROFILE} className="mx-1" href={`/edit-user-profile/${userProfile?._id}`}>Edit</Button>
+          </Col>
+          <Col className="text-end">
+            <Button id={COMPONENT_IDS.USER_DASHBOARD_VIEW_QR_CODE} className="mx-1" href={`/qr-code/${userProfile?._id}`}>Log Hours</Button>
+          </Col>
+        </Row>
+      </Card.Footer>
+    </Card>
   ) : (
     <LoadingSpinner />
   );

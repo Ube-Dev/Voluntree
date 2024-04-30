@@ -18,7 +18,7 @@ const OrganizationEvents = ({ org }) => {
 
   return ready ? (
     <Container>
-      <Row className="p-1">
+      <Row className="p-3">
         {event.map((item) => (
           <Col key={item._id} sm={12} md={6} lg={4} className="py-2">
             <OrgEventCard event={item} />

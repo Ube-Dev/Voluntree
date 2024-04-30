@@ -1,0 +1,8 @@
+.user-image {
+  width: 100%;
+  max-width: 350px;
+  min-width: 250px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 4%;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Col, Container, Image, Row, Card } from 'react-bootstrap';
 import { Bell, Calendar, GeoAlt, PersonFill, HeartFill, Heart } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 import '../css/EventPage.css';
 import CommitToEvent from './CommitToEvent';
 import GoBackButton from './GoBackButton';
@@ -45,7 +46,7 @@ const Event = ({ event, org }) => {
                 <Row>
                   <Col lg={9} md={12} className="col-12 col-lg-9">
                     <h4>Hosted By:</h4>
-                    <h4>{event.hostBy}</h4>
+                    <Link className="host-link" to={`/org-profile/${event.hostID}`}><h4>{event.hostBy}</h4></Link>
                   </Col>
                   <Col lg={3} md={12} className="col-12 text-end align-content-center">
                     <ConnectButton org={org} />
@@ -111,6 +112,7 @@ Event.propTypes = {
     requirements: PropTypes.instanceOf(Array),
     impact: PropTypes.string,
     hostBy: PropTypes.string,
+    hostID: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
   org: PropTypes.shape({
