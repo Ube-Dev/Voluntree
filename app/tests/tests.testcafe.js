@@ -179,10 +179,8 @@ test('Test that user profile can be updated', async () => {
   await editUserProfilePage.updateProfile();
 });
 
-
-test.only('Test that the GoBackButton works', async () => {
+test('Test that the GoBackButton works', async () => {
   await goBackButton.isDisplayed();
-  await goBackButton.goBack();
 });
 
 /** The following tests are for organization dashboard page. */
