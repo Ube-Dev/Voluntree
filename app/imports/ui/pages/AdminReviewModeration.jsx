@@ -31,12 +31,6 @@ const AdminReviewModeration = () => {
     };
   });
 
-  // Function to fetch user's name by ID
-  const getUserById = (userId) => {
-    const user = UserProfiles.findOne({ _id: userId });
-    return user ? `${user.firstName} ${user.lastName}` : 'Unknown';
-  };
-
   const confirmDelete = () => {
     Meteor.call(removeReview, reviewToRemove, (error) => {
       if (error) {
@@ -73,6 +67,12 @@ const AdminReviewModeration = () => {
     displayedReviews = result.map((item) => item.item);
   }
 
+  // Function to fetch user's name by ID
+  const getUserById = (userId) => {
+    const user = UserProfiles.findOne({ _id: userId });
+    return user ? `${user.firstName} ${user.lastName}` : <LoadingSpinner />;
+  };
+
   return ready ? (
     <Container fluid className="color1 pb-5">
       <Container>
@@ -103,8 +103,8 @@ const AdminReviewModeration = () => {
                       <thead>
                         <tr>
                           <th>Reviewer</th>
-                          <th>Rating</th>
                           <th>Type</th>
+                          <th>Rating</th>
                           <th>Review</th>
                           <th>Actions</th>
                         </tr>
@@ -136,7 +136,7 @@ const AdminReviewModeration = () => {
             <Modal.Title>Confirm Delete</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>Are you sure you want to delete this Organization?</p>
+            <p>Are you sure you want to delete this Review?</p>
             <p>The user will be notified of this deletion.</p>
           </Modal.Body>
           <Modal.Footer>
