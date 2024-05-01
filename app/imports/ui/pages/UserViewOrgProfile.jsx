@@ -107,10 +107,10 @@ const UserViewOrgProfile = () => {
           </Row>
         </Container>
         <Container className="my-3 rounded-4 color2">
-          <Row>
+          <Row className="py-3">
+            <h1 className="text-center">Reviews</h1>
             <Col>
-              <h1 className="text-center">Reviews</h1>
-              {theReviews.map((review, index) => <Row key={index}><OrgReview review={review} /></Row>)}
+              {theReviews.map((review, index) => <Row key={index}><OrgReview review={review}/></Row>)}
             </Col>
           </Row>
         </Container>

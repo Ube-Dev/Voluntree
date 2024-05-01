@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Star } from 'react-bootstrap-icons';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import LoadingSpinner from './LoadingSpinner';
@@ -23,16 +23,21 @@ const OrgReview = ({ review }) => {
   }, []);
   return (ready ? (
     <Container>
-      <Container className="d-inline-block">
-        <h6>{profile.firstName} {profile.lastName}</h6>
-        {review.rating === null ? (
-          <h6>Rating: <Star className="pb-1" /> 0</h6>
-        ) : (
-          <h6>Rating: <Star className="pb-1" /> {review.rating}</h6>
-        )}
-        {review.content}
-        <hr />
-      </Container>
+      <Card className="rounded-4 p-3 mt-2">
+        <Row className="px-2">
+          <Col sm={12} md={2}>
+            <h5>{profile.firstName} {profile.lastName}</h5>
+            {review.rating === null ? (
+              <h5>Rating: <Star className="pb-1" /> 0</h5>
+            ) : (
+              <h5>Rating: <Star className="pb-1" /> {review.rating}</h5>
+            )}
+          </Col>
+          <Col sm={12} md={10}>
+            <h6>{review.content}</h6>
+          </Col>
+        </Row>
+      </Card>
     </Container>
   ) : (<LoadingSpinner />));
 };
