@@ -110,7 +110,7 @@ const UserViewOrgProfile = () => {
           <Row className="py-3">
             <h1 className="text-center">Reviews</h1>
             <Col>
-              {theReviews.map((review, index) => <Row key={index}><OrgReview review={review}/></Row>)}
+              {theReviews.map((review, index) => <Row key={index}><OrgReview review={review} /></Row>)}
             </Col>
           </Row>
         </Container>
