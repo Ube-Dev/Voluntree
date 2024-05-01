@@ -5,6 +5,7 @@
 
   "defaultNotificationSenderType": ["user", "organization"],
   "defaultReviewForType": { "event": "event", "organization": "organization" },
+  "defaultCommentForType": { "event": "event", "organization": "organization" },
   "defaultRatingRange": { "min": 1, "max": 5 },
   "packages": {
     "email": {
@@ -13,15 +14,18 @@
       "password": "kdsz nncn wqxp nflg"
     }
   },
+
   "organizationTypes": [
     "individual",
     "school",
     "organization"
   ],
+
   "defaultAccounts": [
     {
       "email": "organization@foo.com",
       "password": "changeme",
+      "phone": "123-456-7890",
       "role": "USER",
       "privilege": ["hasOrganization"],
       "firstName": "Temp",
@@ -40,6 +44,7 @@
     {
       "email": "john@foo.com",
       "password": "changeme",
+      "phone": "123-456-7890",
       "role": "USER",
       "privilege": ["hasOrganization"],
       "firstName": "John",
@@ -54,6 +59,8 @@
     {
       "email": "thomas@foo.com",
       "password": "changeme",
+      "image": "https://avatars.githubusercontent.com/u/70453373?v=4",
+      "phone": "123-456-7890",
       "role": "USER",
       "privilege": [],
       "firstName": "Thomas",
@@ -64,14 +71,175 @@
         "cleaning"
       ],
       "userID": "ZpLMnWk2SCQrhtgN5"
+    },
+    {
+      "email": "Alden@foo.com",
+      "password": "changeme",
+      "phone": "123-456-7890",
+      "image": "https://github.com/aldenparoni.png",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Alden",
+      "lastName": "Paroni"
+    },
+    {
+      "email": "sierra@foo.com",
+      "password": "changeme",
+      "phone": "123-456-7890",
+      "image": "https://github.com/sierranmorales.png",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Sierra",
+      "lastName": "Morales"
+    },
+    {
+      "email": "Jiawen@foo.com",
+      "password": "changeme",
+      "image": "https://github.com/Jchen20-1.png",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Jiawen",
+      "lastName": "Chen"
+    },
+    {
+      "email": "Jianle@foo.com",
+      "password": "changeme",
+      "image": "https://github.com/jianleliu.png",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Jianle",
+      "lastName": "Liu"
+    },
+    {
+      "email": "hokwai@foo.com",
+      "password": "changeme",
+      "image": "https://github.com/hokwaichan.png",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "HokWai",
+      "lastName": "Chan"
+    },
+    {
+      "email": "ryan@foo.com",
+      "password": "changeme",
+      "image": "https://avatars.githubusercontent.com/u/24851269?v=4",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Ryan",
+      "lastName": "Seng"
+    },
+    {
+      "email": "william@foo.com",
+      "password": "changeme",
+      "image": "https://github.com/willjsimmons.png",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "William",
+      "lastName": "Simmons"
+    },
+    {
+      "email": "mary@foo.com",
+      "password": "changeme",
+      "phone": "123-456-7890",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Mary",
+      "lastName": "Grace"
+    },
+    {
+      "email": "Boomquifa@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Boomquifa",
+      "lastName": "Smith"
+    },
+    {
+      "email": "Joanne@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Joanne",
+      "lastName": "Harry"
+    },
+    {
+      "email": "Harry@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Harry",
+      "lastName": "Butt"
+    },
+    {
+      "email": "bill@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Bill",
+      "lastName": "Nye"
+    },
+    {
+      "email": "adam@foo.com",
+      "password": "changeme",
+      "image": "https://duckduckgo.com/i/31c8a4650a80104d.png",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Adam",
+      "lastName": "Savage"
+    },
+    {
+      "email": "kylo@foo.com",
+      "password": "changeme",
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.yysnc7hhUFPgaLqW6qVZJgHaEu%26pid%3DApi%26h%3D160&f=1&ipt=e244b56045ad3807d34a8ad55aebbc2d19ab2869b0d51a0d19eb449cac4a5cec&ipo=images",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Kylo",
+      "lastName": "Ren"
+    },
+    {
+      "email": "kpoptrainee@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Nick",
+      "lastName": "Ells"
+    },
+    {
+      "email": "tyler@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Tyler",
+      "lastName": "Fills"
+    },
+    {
+      "email": "pyra@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Pyra",
+      "lastName": "Mythra"
+    },
+    {
+      "email": "scam@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "privilege": [],
+      "firstName": "Scam",
+      "lastName": "Will Scam You"
     }
   ],
+
   "defaultOrganizations": [
     {
       "leader": "FJHc6qrg9KzmDnwPt",
       "_id": "1SkcLcs",
       "name": "Green Earth Alliance",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "New York",
       "mission": "Green Earth Alliance is committed to promoting environmental sustainability through various initiatives and community engagement.",
       "type": "Environmental",
@@ -89,9 +257,8 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "1002",
+      "_id": "rStUvWxYz987",
       "name": "Youth Empowerment Foundation",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Los Angeles",
       "mission": "To empower and educate underprivileged youth for a brighter future.",
       "type": "Education",
@@ -110,9 +277,8 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "1003",
+      "_id": "6543210AbCdE",
       "name": "Animal Guardians Society",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Chicago",
       "mission": "To rescue, protect, and advocate for animals in need.",
       "type": "Animal Welfare",
@@ -131,9 +297,8 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1004",
+      "_id": "FgHiJkLmNoPq",
       "name": "Healthcare for All",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Houston",
       "mission": "To ensure access to quality healthcare for all individuals, regardless of income or background.",
       "type": "Healthcare",
@@ -152,9 +317,8 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1005",
+      "_id": "RsTuVwXyZ123",
       "name": "Relief Aid International",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Miami",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Disaster Relief",
@@ -173,9 +337,8 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1006",
+      "_id": "4567890AbCdE",
       "name": "GLOBAL EDUCATION PHILANTHROPISTS",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Imperial",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Disaster Relief",
@@ -192,9 +355,8 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1007",
+      "_id": "fGhIjKlMnOpQ",
       "name": "Ala Moana",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -211,9 +373,8 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1008",
+      "_id": "aBcDeFgHiJk1",
       "name": "Turtle Bay Beach Org",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -230,9 +391,8 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "1009",
+      "_id": "lMnOpQrStUv2",
       "name": "Lanikai Beach Org",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -249,9 +409,8 @@
     },
     {
       "leader": "FJHc6qrg9KzmDnwPt",
-      "_id": "1010",
+      "_id": "wXyZ12345678",
       "name": "Food Bank of Hawaii",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -268,9 +427,8 @@
     },
     {
       "leader": "YhdWABR9mLpjx3vzC",
-      "_id": "1011",
+      "_id": "90AbCdEfGhIj",
       "name": "Catholic Charities Hawaii",
-      "image": "https://res.cloudinary.com/dktp1ybbx/image/upload/c_limit,h_180,w_180/f_auto,fl_lossy,q_auto/v1705000832/organization/prod/1241363/F6DK4Q1UtR.png",
       "location": "Honolulu",
       "mission": "To provide humanitarian aid and relief to communities affected by disasters worldwide.",
       "type": "Environmental",
@@ -339,9 +497,11 @@
       "Tech Accessibility"
     ]
   },
+
   "public": {
     "development": true
   },
+
   "defaultEvent": [
     {
       "title": "Humanitarian Aid Vacation in Belize!",
@@ -353,7 +513,6 @@
       "state": "Cayo",
       "country": "Belize",
       "totalSpots": "10",
-      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "Adaptability",
@@ -370,12 +529,14 @@
       "impact": "You'll change people's lives!",
       "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
       "hostType": "individual",
-      "hostID": "FJHc6qrg9KzmDnwPt",
+      "hostID": "4567890AbCdE",
       "_id": "nT7sXq9KdYfR",
       "activityCategory": {
         "mainCategory": "Community Development",
         "subCategory": "Education"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Ala Moana Beach Clean Up",
@@ -387,7 +548,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "15",
-      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "lift 15 pounds",
@@ -403,12 +563,14 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Ala Moana",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "fGhIjKlMnOpQ",
       "_id": "oT5zRj8QwFnS",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Turtle Bay Beach Clean Up",
@@ -420,7 +582,40 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "10",
-      "time": "2024-02-29",
+      "frequency": "once",
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "water bottle"
+      ],
+      "impact": "You'll make the beach more beautiful and safe",
+      "hostBy": "Turtle Bay Beach Org",
+      "hostType": "organization",
+      "hostID": "aBcDeFgHiJk1",
+      "_id": "lG4tZv7BmNcY",
+      "activityCategory": {
+        "mainCategory": "Environmental Conservation",
+        "subCategory": "Wildlife Preservation"
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
+    },
+    {
+      "title": "Turtle Bay Beach Clean Up",
+      "description": "Help clean up your local beach! We need eveyone to come over to help clean this beach! It's dirty so be prepared to pick up trash.",
+      "address": "Turtle Bay Beach",
+      "zipCode": "96731",
+      "city": "Kahuku",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "5",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -437,43 +632,14 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Turtle Bay Beach Org",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
-      "_id": "lG4tZv7BmNcY",
-      "activityCategory": {
-        "mainCategory": "Environmental Conservation",
-        "subCategory": "Wildlife Preservation"
-        }
-    },
-    {
-      "title": "Turtle Bay Beach Clean Up",
-      "description": "Help clean up your local beach! We need eveyone to come over to help clean this beach! It's dirty so be prepared to pick up trash.",
-      "address": "Turtle Bay Beach",
-      "zipCode": "96731",
-      "city": "Kahuku",
-      "state": "HI",
-      "country": "USA",
-      "totalSpots": "5",
-      "time": "2024-02-29",
-      "frequency": "twice",
-      "requiredSkills": [
-        "lift 15 pounds",
-        "cleaning"
-      ],
-      "accessibilities": [
-        "Group",
-        "Child-friendly"
-      ],
-      "requirements": [
-        "Driver's license",
-        "water bottle"
-      ],
-      "impact": "You'll make the beach more beautiful and safe",
-      "hostBy": "Turtle Bay Beach Org",
+      "hostID": "aBcDeFgHiJk1",
       "_id": "iE9xWq3RvSfT",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Lanikai Beach Clean Up",
@@ -485,7 +651,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "7",
-      "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -502,12 +667,14 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "lMnOpQrStUv2",
       "_id": "aT9mWc2RqLxV",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Lanikai Beach Clean Up",
@@ -519,7 +686,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
-      "time": "2024-02-29",
       "frequency": "twice",
       "requiredSkills": [
         "lift 15 pounds",
@@ -536,12 +702,14 @@
       "impact": "You'll make the beach more beautiful and safe",
       "hostBy": "Lanikai Beach Org",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "lMnOpQrStUv2",
       "_id": "pH6uYt2QwNzC",
       "activityCategory": {
         "mainCategory": "Environmental Conservation",
         "subCategory": "Wildlife Preservation"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Food Bank Of Hawaii",
@@ -549,7 +717,6 @@
       "description": "Help your local food bank!",
       "city": "Honolulu",
       "totalSpots": "35",
-      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "lift 15 pounds",
@@ -566,12 +733,14 @@
       "impact": "You'll help feed the homeless!",
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "wXyZ12345678",
       "_id": "fV6qYn8UwDzS",
       "activityCategory": {
         "mainCategory": "Social Services",
         "subCategory": "Homelessness"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Elderly Home Talk",
@@ -583,7 +752,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
-      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "communication"
@@ -599,12 +767,14 @@
       "impact": "You'll help take care of your local elderly",
       "hostBy": "Catholic Charities Hawaii",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "90AbCdEfGhIj",
       "_id": "sD3kFq5LmBvX",
       "activityCategory": {
         "mainCategory": "Community Development",
         "subCategory": "Education"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     },
     {
       "title": "Food Packing",
@@ -616,7 +786,6 @@
       "state": "HI",
       "country": "USA",
       "totalSpots": "5",
-      "time": "2024-02-29",
       "frequency": "once",
       "requiredSkills": [
         "lift 15 pounds",
@@ -633,14 +802,550 @@
       "impact": "You'll help feed the homeless!",
       "hostBy": "Food Bank of Hawaii",
       "hostType": "organization",
-      "hostID": "1SkcLcs",
+      "hostID": "wXyZ12345678",
       "_id": "cJ8yVr4HwNpZ",
       "activityCategory": {
         "mainCategory": "Social Services",
         "subCategory": "Homelessness"
-        }
+        },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
+     },
+    {
+      "title": "Children's Hospital Visit",
+      "image": "https://cdnassets.hw.net/56/ff/ac3ca3704360adf77df35d4ea8ca/898689172a0f4f72b6c1c23c0977eaac.jpg",
+      "description": "Visit the children's hospital and bring joy to the kids! They love to see new faces and hear stories. Some of them are very lonely and would love to have someone to talk to.",
+      "address": "Children's Hospital",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "5",
+      "frequency": "once",
+      "requiredSkills": [
+        "lift 15 pounds",
+        "sorting"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "water bottle"
+      ],
+      "impact": "These kids need love too!",
+      "hostBy": "Food Bank of Hawaii",
+      "hostType": "organization",
+      "hostID": "wXyZ12345678",
+      "activityCategory": {
+        "mainCategory": "Social Services",
+        "subCategory": "Child Welfare"
+      },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
+    },
+    {
+      "title": "Food Packing",
+      "image": "https://www.brafb.org/wp-content/uploads/2022/10/PXL_20221011_173207811-scaled-e1665757839628.jpg",
+      "description": "Help your local food bank!",
+      "address": "Food Bank of Hawaii",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "5",
+      "frequency": "once",
+      "requiredSkills": [
+        "lift 15 pounds",
+        "sorting"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "water bottle"
+      ],
+      "impact": "You'll help feed the homeless!",
+      "hostBy": "Food Bank of Hawaii",
+      "hostType": "organization",
+      "hostID": "wXyZ12345678",
+      "activityCategory": {
+        "mainCategory": "Social Services",
+        "subCategory": "Homelessness"
+      },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
+    },
+    {
+      "title": "Security Guard",
+      "image": "https://cdnb.artstation.com/p/assets/images/images/027/436/795/large/andrew-vance-fnufeoffice.jpg?1591545193",
+      "description": "HELP WANTED. Freddy Fazbear’s Pizza Family pizzeria looking for security guard to work the nightshift.12am-6am.Monitor cameras, ensure safety of equipment and animatronic characters.Not responsible for injury/dismemberment.",
+      "address": "Freddy fazbear's Pizza Family Pizzeria",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "1",
+      "frequency": "weekly",
+      "requiredSkills": [
+        "lift 15 pounds",
+        "sorting"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "water bottle"
+      ],
+      "impact": "You'll help them find peace.",
+      "hostBy": "Food Bank of Hawaii",
+      "hostType": "organization",
+      "hostID": "wXyZ12345678",
+      "activityCategory": {
+        "mainCategory": "Social Services",
+        "subCategory": "Homelessness"
+      },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
+    },
+    {
+      "title": "Lanikai Beach Volyball Tournament",
+      "image": "https://www.fodors.com/wp-content/uploads/2019/01/trash1.gif",
+      "description": "We need volunteers to help set up the volleyball tournament at Lanikai Beach. We need help setting up the nets, organizing the teams, and making sure everything runs smoothly.",
+      "address": "Lanikai Beach",
+      "zipCode": "96734",
+      "city": "Kailua",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "25",
+      "frequency": "once",
+      "requiredSkills": [
+        "lift 15 pounds"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "water bottle"
+      ],
+      "impact": "You'll help make the tournament a success! Our community loves this event.",
+      "hostBy": "Lanikai Beach Org",
+      "hostType": "organization",
+      "hostID": "lMnOpQrStUv2",
+      "activityCategory": {
+        "mainCategory": "Community Development",
+        "subCategory": "Education"
+      },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
+    },
+    {
+      "title": "Maui Fire Relief",
+      "image": "https://d2c13moo8u717n.cloudfront.net/wp-content/uploads/sites/11/2019/07/12084025/2019-07-12T074411Z_1_LYNXNPEF6B0HS_RTROPTP_4_HAWAII-WILDFIRES.jpg",
+      "description": "Help the Maui Fire Relief team by providing food and water to the firefighters. We need volunteers to help organize and distribute supplies.",
+      "address": "Maui",
+      "zipCode": "96793",
+      "city": "Lahaina",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "50",
+      "frequency": "once",
+      "requiredSkills": [
+        "Adaptability",
+        "teaching abilities"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "Background-check"
+      ],
+      "impact": "You'll change people's lives!",
+      "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
+      "hostType": "individual",
+      "hostID": "4567890AbCdE",
+      "activityCategory": {
+        "mainCategory": "Community Development",
+        "subCategory": "Education"
+      },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
+    },
+    {
+      "title": "House Construction In Houston",
+      "image": "https://media4.s-nbcnews.com/j/newscms/2017_18/1983636/170501-tornado-texas-cr-0633_66ad1d86e8323cf546f6d672cc02cef5.nbcnews-ux-2880-1000.jpg",
+      "description": "Help build a house for a family in need in Houston. We need volunteers to help with construction, painting, and landscaping.",
+      "address": "1234 Park Lane",
+      "zipCode": "96793",
+      "city": "Houston",
+      "state": "TX",
+      "country": "USA",
+      "totalSpots": "25",
+      "frequency": "once",
+      "requiredSkills": [
+        "Adaptability",
+        "teaching abilities"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "Background-check"
+      ],
+      "impact": "People will have a home to go back to.",
+      "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
+      "hostType": "individual",
+      "hostID": "4567890AbCdE",
+      "activityCategory": {
+        "mainCategory": "Community Development",
+        "subCategory": "Housing"
+      },
+      "startTime": "2024-05-31T09:00:00",
+      "endTime": "2024-05-31T12:00:00"
+    },
+    {
+      "title": "Hurricane Relief Efforts 2023",
+      "image": "https://www.texasstandard.org/wp-content/uploads/2020/04/EWPxV3EWoAERIPc.jpg",
+      "description": "Help the victims of Hurricane Relief Efforts 2023 by providing food and water to the victims. We need volunteers to help organize and distribute supplies.",
+      "address": "Houston",
+      "zipCode": "77001",
+      "city": "Houston",
+      "state": "TX",
+      "country": "USA",
+      "totalSpots": "50",
+      "frequency": "once",
+      "requiredSkills": [
+        "Adaptability",
+        "Building"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "Background-check"
+      ],
+      "impact": "People will have food and water to survive.",
+      "hostBy": "GLOBAL EDUCATION PHILANTHROPISTS",
+      "hostType": "individual",
+      "hostID": "4567890AbCdE",
+      "activityCategory": {
+        "mainCategory": "Emergency Response",
+        "subCategory": "Natural Disasters"
+      },
+      "startTime": "2024-06-05T09:00:00",
+      "endTime": "2024-06-05T12:00:00"
+    },
+    {
+      "title": "Ala Moana Beach Paloosa Consession Stand",
+      "image": "https://magzhouse.com/wp-content/uploads/2020/05/Awesome-Beach-Theme-Party-Ideas-Perfect-For-Summertime-23.jpg",
+      "description": "Join us for a fun day at the beach! We'll have games, food, and music. Bring your friends and family for a day of fun in the sun. All proceeds will go to Ala Moana Beach Clean Up.",
+      "address": "Ala Moana Beach",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "15",
+      "frequency": "once",
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "water bottle"
+      ],
+      "impact": "Proceeds will go to Ala Moana Beach Clean Up",
+      "hostBy": "Ala Moana",
+      "hostType": "organization",
+      "hostID": "fGhIjKlMnOpQ",
+      "activityCategory": {
+        "mainCategory": "Arts and Culture",
+        "subCategory": "Performing Arts"
+      },
+      "startTime": "2024-06-30T09:00:00",
+      "endTime": "2024-06-30T12:00:00"
+    },
+    {
+      "title": "Ala Moana Halloween Party Organizing",
+      "image": "https://magzhouse.com/wp-content/uploads/2020/05/Awesome-Beach-Theme-Party-Ideas-Perfect-For-Summertime-23.jpg",
+      "description": "Assist in organizing the Ala Moana Halloween Party. We need volunteers to help set up decorations, organize games, and distribute candy.",
+      "address": "Ala Moana Shopping Center",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "15",
+      "frequency": "once",
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "water bottle"
+      ],
+      "impact": "Proceeds will go to Ala Moana Beach Clean Up",
+      "hostBy": "Ala Moana",
+      "hostType": "organization",
+      "hostID": "fGhIjKlMnOpQ",
+      "activityCategory": {
+        "mainCategory": "Arts and Culture",
+        "subCategory": "Performing Arts"
+      },
+      "startTime": "2024-10-20T09:00:00",
+      "endTime": "2024-10-20T12:00:00"
+    },
+    {
+      "title": "Ala Moana Magic Island Cleanup",
+      "image": "https://a.cdn-hotels.com/gdcs/production148/d778/c5c6fa03-6a48-41f0-babe-119d924b1ccf.jpg",
+      "description": "Assist in organizing the Ala Moana Magic Island Cleanup. We need volunteers to help collect trash, clean the beach, and set up recycling stations.",
+      "address": "Magic Island",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "15",
+      "frequency": "once",
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "water bottle"
+      ],
+      "impact": "You'll make the beach more beautiful and safe",
+      "hostBy": "Ala Moana",
+      "hostType": "organization",
+      "hostID": "fGhIjKlMnOpQ",
+      "activityCategory": {
+        "mainCategory": "Environmental Conservation",
+        "subCategory": "Wildlife Preservation"
+      },
+      "startTime": "2024-10-10T09:00:00",
+      "endTime": "2024-10-10T12:00:00"
+    },
+    {
+      "title": "Ala Moana Magic Island Cleanup",
+      "image": "https://a.cdn-hotels.com/gdcs/production148/d778/c5c6fa03-6a48-41f0-babe-119d924b1ccf.jpg",
+      "description": "Assist in organizing the Ala Moana Magic Island Cleanup. We need volunteers to help collect trash, clean the beach, and set up recycling stations.",
+      "address": "Magic Island",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "15",
+      "frequency": "once",
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "water bottle"
+      ],
+      "impact": "You'll make the beach more beautiful and safe",
+      "hostBy": "Ala Moana",
+      "hostType": "organization",
+      "hostID": "fGhIjKlMnOpQ",
+      "activityCategory": {
+        "mainCategory": "Environmental Conservation",
+        "subCategory": "Wildlife Preservation"
+      },
+      "startTime": "2024-08-10T09:00:00",
+      "endTime": "2024-08-10T12:00:00"
+    },
+    {
+      "title": "Walk for Alzheimer's",
+      "image": "https://www.bigislandvideonews.com/wp-content/uploads/2017/09/2017-09-16-walk-We-Forget.jpg",
+      "description": "Join us for a walk to raise awareness for Alzheimer's disease. We need volunteers to help set up the event, distribute water, and guide participants.",
+      "address": "Magic Island",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "15",
+      "frequency": "once",
+      "requiredSkills": [
+        "lift 15 pounds",
+        "cleaning"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "water bottle"
+      ],
+      "impact": "You'll bring awareness to alzheimer's disease",
+      "hostBy": "Ala Moana",
+      "hostType": "organization",
+      "hostID": "fGhIjKlMnOpQ",
+      "activityCategory": {
+        "mainCategory": "Community Development",
+        "subCategory": "Education"
+      },
+      "startTime": "2024-10-10T09:00:00",
+      "endTime": "2024-10-10T12:00:00"
+    },
+    {
+      "title": "Elderly Home Sports Day",
+      "image": "http://media.silive.com/advance/photo/2011/09/senior-olympics-tennis-5027ed501a80976e.jpg",
+      "description": "Join us for a sports day at the elderly home. We need volunteers to help set up the event, distribute water, and guide participants.",
+      "address": "Elderly Home",
+      "zipCode": "96814",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "5",
+      "frequency": "once",
+      "requiredSkills": [
+        "communication"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "background check"
+      ],
+      "impact": "You'll help take care of your local elderly",
+      "hostBy": "Catholic Charities Hawaii",
+      "hostType": "organization",
+      "hostID": "90AbCdEfGhIj",
+      "activityCategory": {
+        "mainCategory": "Community Development",
+        "subCategory": "Education"
+      },
+      "startTime": "2024-05-21T09:00:00",
+      "endTime": "2024-05-21T12:00:00"
+    },
+    {
+      "title": "Thanks Giving Food Drive",
+      "image": "https://www.ctvnews.ca/polopoly_fs/7.666396!/httpImage/image.jpg_gen/derivatives/default/image.jpg",
+      "description": "Join us for a food drive to help feed the homeless. We need volunteers to help collect food, organize donations, and distribute food to the homeless.",
+      "address": "Our Lady Of Good Counsel Church",
+      "zipCode": "96782",
+      "city": "Pearl City",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "35",
+      "frequency": "once",
+      "requiredSkills": [
+        "communication"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "background check"
+      ],
+      "impact": "You'll help feed the homeless",
+      "hostBy": "Catholic Charities Hawaii",
+      "hostType": "organization",
+      "hostID": "90AbCdEfGhIj",
+      "activityCategory": {
+        "mainCategory": "Community Development",
+        "subCategory": "Education"
+      },
+      "startTime": "2024-05-25T09:00:00",
+      "endTime": "2024-05-25T12:00:00"
+    },
+    {
+      "title": "Christmas Toy Drive",
+      "image": "https://www.clipartkey.com/mpngs/m/94-947924_christmas-toy-drive-png.png",
+      "description": "Join us for a toy drive to help children in need. We need volunteers to help collect toys, organize donations, and distribute toys to children in need.",
+      "address": "Our Lady Of Good Counsel Church",
+      "zipCode": "96782",
+      "city": "Pearl City",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "35",
+      "frequency": "once",
+      "requiredSkills": [
+        "communication"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "background check"
+      ],
+      "impact": "You'll help bring joy to children in need",
+      "hostBy": "Catholic Charities Hawaii",
+      "hostType": "organization",
+      "hostID": "90AbCdEfGhIj",
+      "activityCategory": {
+        "mainCategory": "Community Development",
+        "subCategory": "Education"
+      },
+      "startTime": "2024-12-01T09:00:00",
+      "endTime": "2024-12-01T12:00:00"
+    },
+    {
+      "title": "Video Game Testing Research",
+      "image": "http://skytechgeek.com/wp-content/uploads/2019/01/video-game-tester.jpg",
+      "description": "Join us for a video game testing research. We need volunteers to help test video games, provide feedback, and participate in focus groups.",
+      "address": "University of Hawaii",
+      "zipCode": "96822",
+      "city": "Honolulu",
+      "state": "HI",
+      "country": "USA",
+      "totalSpots": "5",
+      "frequency": "once",
+      "requiredSkills": [
+        "communication"
+      ],
+      "accessibilities": [
+        "Group",
+        "Child-friendly"
+      ],
+      "requirements": [
+        "Driver's license",
+        "background check"
+      ],
+      "impact": "You'll help improve video games",
+      "hostBy": "Youth Empowerment Foundation",
+      "hostType": "organization",
+      "hostID": "rStUvWxYz987",
+      "activityCategory": {
+        "mainCategory": "Arts and Culture",
+        "subCategory": "Performing Arts"
+      },
+      "startTime": "2024-05-30T09:00:00",
+      "endTime": "2024-05-30T12:00:00"
     }
   ],
+
   "defaultReview": [
     {
       "_id": "qwe890poi",
@@ -691,6 +1396,69 @@
         "ID": "1SkcLcs"
       },
       "content": "I was disappointed with the services provided by this organization."
+    }
+  ],
+  "defaultComment": [
+    {
+      "_id": "aBcDeFgHiJk1",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "event", "ID": "nT7sXq9KdYfR" },
+      "content": "Great event! I had an amazing time."
+    },
+    {
+      "_id": "lMnOpQrStUv2",
+      "userID": "ZpLMnWk2SCQrhtgN5",
+      "commentFor": { "type": "organization", "ID": "rStUvWxYz987" },
+      "content": "This organization is doing fantastic work in the community."
+    },
+    {
+      "_id": "wXyZ12345678",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "event", "ID": "lG4tZv7BmNcY" },
+      "content": "I think this event could improve in terms of accessibility."
+    },
+    {
+      "_id": "90AbCdEfGhIj",
+      "userID": "ZpLMnWk2SCQrhtgN5",
+      "commentFor": { "type": "organization", "ID": "aBcDeFgHiJk1" },
+      "content": "The leadership of this organization needs to be more transparent."
+    },
+    {
+      "_id": "KlMnOpQrStUv",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "event", "ID": "iE9xWq3RvSfT" },
+      "content": "The venue for this event was stunning!"
+    },
+    {
+      "_id": "WxYz98765432",
+      "userID": "ZpLMnWk2SCQrhtgN5",
+      "commentFor": { "type": "organization", "ID": "lMnOpQrStUv2" },
+      "content": "I appreciate the efforts of this organization in environmental conservation."
+    },
+    {
+      "_id": "FgHiJkLmNoPq",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "event", "ID": "pH6uYt2QwNzC" },
+      "content": "The speakers at this event were very insightful."
+    },
+    {
+      "_id": "RsTuVwXyZ123",
+      "userID": "ZpLMnWk2SCQrhtgN5",
+      "commentFor": { "type": "organization", "ID": "wXyZ12345678" },
+      "content": "I've volunteered with this organization before and had a great experience."
+    },
+    {
+      "_id": "4567890AbCdE",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "event", "ID": "cJ8yVr4HwNpZ" },
+      "content": "The organization of this event was a bit chaotic."
+    },
+    {
+      "_id": "fGhIjKlMnOpQ",
+      "userID": "FJHc6qrg9KzmDnwPt",
+      "commentFor": { "type": "organization", "ID": "wXyZ12345678" },
+      "content": "I agree!",
+      "parentID": "RsTuVwXyZ123"
     }
   ]
 }
