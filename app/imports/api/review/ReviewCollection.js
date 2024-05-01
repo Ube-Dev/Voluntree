@@ -55,6 +55,13 @@ class ReviewCollection extends BaseCollection {
         }
         return this.ready();
       });
+      // find and return cursor for all reviews in this collection.
+      Meteor.publish(this._collectionName, function publish() {
+        if (this.userId) {
+          return instance._collection.find();
+        }
+        return this.ready();
+      });
     }
   }
 
@@ -90,6 +97,17 @@ class ReviewCollection extends BaseCollection {
   subscribeReviewEvent(eventID) {
     if (Meteor.isClient) {
       return Meteor.subscribe(reviewPublications.event, eventID);
+    }
+    return null;
+  }
+
+  /**
+   * Subscription method for all reviews.
+   * @returns a subscription containing all reviews entities, else null.
+   */
+  subscribeReviewModeration() {
+    if (Meteor.isClient) {
+      return Meteor.subscribe(this._collectionName);
     }
     return null;
   }
