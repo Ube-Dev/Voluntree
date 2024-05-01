@@ -38,6 +38,7 @@ import ResetPasswordPage from '../pages/ResetPassword';
 import AdminEventModeration from '../pages/AdminEventModeration';
 import AdminOrganizationModeration from '../pages/AdminOrganizationModeration';
 import AdminUserModeration from '../pages/AdminUserModeration';
+import AdminReviewModeration from '../pages/AdminReviewModeration';
 import OrgReviewForm from '../pages/OrgReviewForm';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -85,6 +86,7 @@ const App = () => {
           <Route path="/admin-edit-organization/:_id" element={<AdminProtectedRoute ready={ready}><EditOrganizationProfile /></AdminProtectedRoute>} />
           <Route path="/user-moderation" element={<AdminProtectedRoute ready={ready}><AdminUserModeration /></AdminProtectedRoute>} />
           <Route path="/admin-edit-user/:_id" element={<AdminProtectedRoute ready={ready}><EditUserProfile /></AdminProtectedRoute>} />
+          <Route path="/review-moderation" element={<AdminProtectedRoute ready={ready}><AdminReviewModeration /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

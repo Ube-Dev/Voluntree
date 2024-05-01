@@ -26,7 +26,7 @@ const AdminHome = () => (
                 <Button variant="outline-dark" href="/user-moderation" className="rounded-0 management-btn" id={COMPONENT_IDS.ADMIN_HOME_USER_MODERATION}>
                   Users
                 </Button>
-                <Button variant="outline-dark" className="rounded-0 management-btn" id={COMPONENT_IDS.ADMIN_HOME_REVIEW_MODERATION}>
+                <Button variant="outline-dark" href="/review-moderation" className="rounded-0 management-btn" id={COMPONENT_IDS.ADMIN_HOME_REVIEW_MODERATION}>
                   Reviews
                 </Button>
               </Row>
