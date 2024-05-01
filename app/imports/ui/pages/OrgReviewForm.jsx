@@ -14,6 +14,7 @@ import { Review } from '../../api/review/ReviewCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Organization } from '../../api/organization/OrganizationCollection';
 import { createReview } from '../../startup/both/Methods';
+import GoBackButton from '../components/GoBackButton';
 
 const reviewSchema = new SimpleSchema({
   content: { type: String },
@@ -71,41 +72,48 @@ const OrgReviewForm = () => {
       return <NotFound />;
     }
     return (
-      <Container id="review-form-page" className="py-3">
-        <Row className="justify-content-center">
-          <Col xs={5}>
-            <Col className="text-center"><h2>Rate {organization.name}</h2></Col>
-            <AutoForm schema={bridge} onSubmit={data => submit(data)}>
-              <Card>
-                <Card.Body>
-                  Rate this organization: <br /> {[...Array(5)].map((star, index) => {
-                    const currentRating = index + 1;
-                    return (
+      <Container fluid className="color1 py-5">
+        <Container id="review-form-page" className="py-4 color2 rounded-4">
+          <Row className="justify-content-center">
+            <Col xs={5}>
+              <Col className="text-center"><h2>Rate {organization.name}</h2></Col>
+              <AutoForm schema={bridge} onSubmit={data => submit(data)}>
+                <Card>
+                  <Card.Body>
+                    Rate this organization: <br /> {[...Array(5)].map((star, index) => {
+                      const currentRating = index + 1;
+                      return (
                       // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                      <label key={currentRating}>
-                        <input
-                          type="radio"
-                          name="rating"
-                          value={currentRating}
-                          onClick={() => setRating(currentRating)}
-                        />
-                        <StarFill
-                          className="star"
-                          color={currentRating <= (hover || rating) ? '#ffc107' : '#e4e5e9'}
-                          onMouseEnter={() => setHover(currentRating)}
-                          onMouseLeave={() => setHover(null)}
-                        />
-                      </label>
-                    );
-                  })}
-                  <LongTextField id="review-org-content" name="content" />
-                  <SubmitField id="review-org-submit" value="Submit" />
-                  <ErrorsField />
-                </Card.Body>
-              </Card>
-            </AutoForm>
-          </Col>
-        </Row>
+                        <label key={currentRating}>
+                          <input
+                            type="radio"
+                            name="rating"
+                            value={currentRating}
+                            onClick={() => setRating(currentRating)}
+                          />
+                          <StarFill
+                            className="star"
+                            color={currentRating <= (hover || rating) ? '#ffc107' : '#e4e5e9'}
+                            onMouseEnter={() => setHover(currentRating)}
+                            onMouseLeave={() => setHover(null)}
+                          />
+                        </label>
+                      );
+                    })}
+                    <LongTextField id="review-org-content" name="content" />
+                    <SubmitField id="review-org-submit" value="Submit" />
+                    <ErrorsField />
+                  </Card.Body>
+                </Card>
+              </AutoForm>
+            </Col>
+          </Row>
+          <Row className="justify-content-center py-5">
+            <Col md={3} className="text-center">
+              <GoBackButton />
+            </Col>
+          </Row>
+        </Container>
       </Container>
     );
   }
