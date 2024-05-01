@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
@@ -13,7 +14,8 @@ import GoBackButton from '../components/GoBackButton';
 /** Organization profile page which can be viewed by everyone. */
 const UserViewOrgProfile = () => {
   const { _id } = useParams();
-
+  const theUser = Meteor.user();
+  console.log(theUser);
   const { ready, orgProfile } = useTracker(() => {
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication
     const profile = Organization.findOne({ _id: _id }); // Query organization
@@ -70,7 +72,7 @@ const UserViewOrgProfile = () => {
                       <p>{orgProfile.phone}</p>
                     ) : (<p>N/A</p>)}
                   </Col>
-                  <Button variant="primary" href={`/review-organization/${_id}`}>Leave a review</Button>
+                  {theUser._id !== orgProfile.leader ? (<Button variant="primary" href={`/review-organization/${_id}`}>Leave a review</Button>) : ''}
                 </Row>
               </Card.Body>
               {orgProfile.contactEmail ? (
