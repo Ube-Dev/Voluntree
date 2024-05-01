@@ -88,7 +88,7 @@ const AdminReviewModeration = () => {
                     <Form.Control
                       id={COMPONENT_IDS.ADMIN_ORGANIZATION_MODERATION_SEARCH_BAR}
                       type="text"
-                      placeholder="Search for organizations..."
+                      placeholder="Search for reviews..."
                       className="align-content-center"
                       value={searchQuery}
                       onChange={handleSearchChange}
