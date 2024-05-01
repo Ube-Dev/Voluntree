@@ -40,7 +40,7 @@ const UserViewOrgProfile = () => {
             <GoBackButton />
           </Col>
           <Col sm={12} md={11}>
-            <h1 className="text-center pb-2">{orgProfile.name}&apos; Profile</h1>
+            <h1 className="text-center pb-2">{orgProfile.name}&apos;s Profile</h1>
           </Col>
         </Row>
         <Container className="my-3 rounded-4 color2">
@@ -85,11 +85,11 @@ const UserViewOrgProfile = () => {
                 </Card.Body>
                 <Card.Footer>
                   <Row>
-                    <Col className="text-end">
+                    <Col className="text-start">
                       {orgProfile.contactEmail ? (<ConnectButton org={orgProfile} />) : ''}
                     </Col>
                     <Col className="text-end">
-                      {theUser._id !== orgProfile.leader ? (<Button variant="primary" href={`/review-organization/${_id}`}>Leave a review</Button>) : ''}
+                      {theUser && theUser._id !== orgProfile.leader ? (<Button variant="primary" href={`/review-organization/${_id}`}>Leave a review</Button>) : ''}
                     </Col>
                   </Row>
                 </Card.Footer>
