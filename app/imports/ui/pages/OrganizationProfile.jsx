@@ -9,17 +9,23 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import '../css/OrganizationProfile.css';
 import OrganizationEvents from '../components/OrganizationEvents';
 import GoBackButton from '../components/GoBackButton';
+import OrgReview from '../components/OrgReview';
+import { Review } from '../../api/review/ReviewCollection';
 
 /** Organization profile page which can only be viewed by org owner. */
 const OrganizationProfile = () => {
   const { _id } = useParams();
 
-  const { ready, orgProfile } = useTracker(() => {
+  const { ready, orgProfile, orgReviews } = useTracker(() => {
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication
+    const sub2 = Review.subscribeReviewOrganization(_id); // Subscribe to review publication
     const profile = Organization.findOne({ _id: _id }); // Query organization
+    const review = Review.find({ 'reviewFor.ID': _id }).fetch(); // Query reviews
+    console.log(review);
     return {
-      ready: subscription ? subscription.ready() : false,
+      ready: subscription ? subscription.ready() && sub2.ready() : false,
       orgProfile: profile,
+      orgReviews: review,
     };
   });
 
@@ -88,6 +94,14 @@ const OrganizationProfile = () => {
             <OrganizationEvents org={orgProfile} />
           </Col>
           <Col sm={12} md={1} />
+        </Row>
+      </Container>
+      <Container className="my-3 rounded-4 color2">
+        <Row>
+          <Col>
+            <h1 className="text-center">Reviews</h1>
+            {orgReviews.map((review, index) => <Row key={index}><OrgReview review={review} /></Row>)}
+          </Col>
         </Row>
       </Container>
     </Container>

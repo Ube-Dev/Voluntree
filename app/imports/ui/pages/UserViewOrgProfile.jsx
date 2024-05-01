@@ -10,18 +10,24 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import '../css/OrganizationProfile.css';
 import GoBackButton from '../components/GoBackButton';
+import OrgReview from '../components/OrgReview';
+import { Review } from '../../api/review/ReviewCollection';
 
 /** Organization profile page which can be viewed by everyone. */
 const UserViewOrgProfile = () => {
   const { _id } = useParams();
   const theUser = Meteor.user();
   console.log(theUser);
-  const { ready, orgProfile } = useTracker(() => {
+  const { ready, orgProfile, theReviews } = useTracker(() => {
     const subscription = Organization.subscribeOrganization(); // Subscribe to organization publication
+    const sub2 = Review.subscribeReviewOrganization(_id); // Subscribe to review publication
     const profile = Organization.findOne({ _id: _id }); // Query organization
+    const review = Review.find({ 'reviewFor.ID': _id }).fetch(); // Query reviews
+    console.log(review);
     return {
-      ready: subscription ? subscription.ready() : false,
+      ready: subscription ? subscription.ready() && sub2.ready() : false,
       orgProfile: profile,
+      theReviews: review,
     };
   });
 
@@ -93,6 +99,14 @@ const UserViewOrgProfile = () => {
             <UserViewOrgEvents org={orgProfile} />
           </Col>
           <Col md={1} />
+        </Row>
+      </Container>
+      <Container className="my-3 rounded-4 color2">
+        <Row>
+          <Col>
+            <h1 className="text-center">Reviews</h1>
+            {theReviews.map((review, index) => <Row key={index}><OrgReview review={review} /></Row>)}
+          </Col>
         </Row>
       </Container>
     </Container>
