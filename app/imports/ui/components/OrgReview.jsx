@@ -1,5 +1,4 @@
 import React from 'react';
-import Meteor from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Container } from 'react-bootstrap';
